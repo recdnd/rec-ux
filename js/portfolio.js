@@ -1,5 +1,5 @@
 /**
- * ux.rec.ooo — load data/cards.json, render rail + display.
+ * spiral.rec.ooo (Spiral UX) — load data/cards.json, render rail + display.
  * Stable video flow: reset -> set src -> loadedmetadata (ratio) -> canplay (play).
  */
 

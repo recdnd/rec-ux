@@ -1,28 +1,18 @@
-# ux.rec.ooo
+# spiral.rec.ooo -- Spiral UX
 
-Minimal UX portfolio interface for **ux.rec.ooo**.
+Spiral(2025-2026, 開発終了)の UX 実例 3 件を動画と説明で見せるだけの小さなサイト. 主筆 2026-10-02 に ux.rec.ooo(Rec Dungeons Studio の UX 作品集)から格下げ:
+- 作品集の入口は https://rec.ooo(ポートフォリオ兼個人サイト). ここは Spiral の UX 記録だけ.
+- spiral.ooo は停止したのでリンクしない.
+- repo 名は recdnd/rec-ux のまま, 本地は `ux-rec`.
 
 ## Stack
 
-- Plain `HTML + CSS + JavaScript`
-- Data-driven cards from `data/cards.json`
-- Local media playback from `movies/*.mp4`
-
-## Local development
+Plain HTML + CSS + JavaScript. 事例は `data/cards.json`, 動画は `movies/<id>.mp4`.
 
 ```bash
 python3 -m http.server 8080
 ```
 
-Open `http://127.0.0.1:8080/`.
-
-## Content
-
-- Edit case content in `data/cards.json`
-- Add videos to `movies/` using the same ids as card `id`
-
 ## Domain
 
-Configured for GitHub Pages custom domain:
-
-- `ux.rec.ooo`
+GitHub Pages, custom domain `spiral.rec.ooo`(CNAME). DNS: spiral.rec.ooo CNAME -> recdnd.github.io.
