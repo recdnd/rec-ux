@@ -24,8 +24,8 @@
       "outcome": "In the first playtest, a family member learned the controls in about three minutes with no explanation and cleared a five-floor section."
     },
     "media": {
-      "type": "image",
-      "src": "shots/dungeons.jpg",
+      "type": "video",
+      "poster": "movies/dungeons-no-manual.jpg",
       "alt": "Tower floor with the billboard panel showing one line of controls."
     },
     "featured": true
@@ -55,8 +55,8 @@
       "outcome": "Characters went from 14 to 139 in one month, with three consistency passes. 41 tools now feed the game."
     },
     "media": {
-      "type": "image",
-      "src": "shots/desks-npc.jpg",
+      "type": "video",
+      "poster": "movies/dungeons-desks.jpg",
       "alt": "NPC sheet editor: list of characters on the left, one character's settings on the right."
     },
     "featured": true
@@ -117,8 +117,8 @@
       "outcome": "Payment, storage, delivery and mail run through Stripe, R2, Upstash, Resend and Vercel. Purchase, download and email recovery pass end to end in test mode."
     },
     "media": {
-      "type": "image",
-      "src": "shots/band.jpg",
+      "type": "video",
+      "poster": "movies/band-no-account.jpg",
       "alt": "Music site with the release grid on the left and the player on the right."
     },
     "featured": true
@@ -129,7 +129,7 @@
     "board": "band",
     "title": "Owned Things Simply Appear",
     "statement": "What you bought shows up as an object, not a line in a list.",
-    "summary": "Releases are shown as CDs and a record player. The shelf icon on the home page does not exist until you buy something: it is not greyed out, it is absent.",
+    "summary": "Releases are shown as CDs and a record player. The listening room on the home page does not exist until you buy something: it is not greyed out, it is absent.",
     "role": [
       "Interaction design",
       "Visual design"
@@ -142,14 +142,14 @@
       "Objects"
     ],
     "detail": {
-      "problem": "Digital purchases usually sit in a grey library list that feels like nothing was bought, and an empty shelf button tells new visitors about a feature they can't use.",
-      "designMove": "Show owned releases as physical objects, and hide the shelf entirely until there is something on it instead of showing a disabled button.",
-      "outcome": "The home page stays clean for new visitors and gains a shelf the moment a purchase happens."
+      "problem": "Digital purchases usually sit in a grey library list that feels like nothing was bought, and an empty listening-room button tells new visitors about a feature they can't use.",
+      "designMove": "Show owned releases as physical objects, and keep the listening room off the home page until there is something in it, instead of showing a disabled button.",
+      "outcome": "The home page stays clean for new visitors and gains a listening room, \"everything you own, in one room\", the moment a purchase happens."
     },
     "media": {
-      "type": "image",
-      "src": "shots/band.jpg",
-      "alt": "Album covers and the player of the music site."
+      "type": "video",
+      "poster": "movies/band-owned-shelf.jpg",
+      "alt": "rec.ooo home before and after a purchase: the listening room icon appears."
     },
     "featured": true
   },
@@ -177,8 +177,8 @@
       "outcome": "Adding always works, and the promise on the first screen stays true."
     },
     "media": {
-      "type": "image",
-      "src": "shots/rec-hub.jpg",
+      "type": "video",
+      "poster": "movies/rec-dock.jpg",
       "alt": "rec.ooo home: grouped list on the left, intro panel and dock icons on the right."
     },
     "featured": true
@@ -207,9 +207,9 @@
       "outcome": "Visitors know the attempt didn't pass, and hidden entries stay hidden."
     },
     "media": {
-      "type": "image",
-      "src": "shots/rec-hub.jpg",
-      "alt": "rec.ooo home with locked entries in the list."
+      "type": "video",
+      "poster": "movies/rec-no-error-text.jpg",
+      "alt": "Locked career entry asks for an initial; a wrong answer returns without any message."
     },
     "featured": true
   },
@@ -237,8 +237,8 @@
       "outcome": "Every public entry has a mobile version, and desktop keeps its full sentences."
     },
     "media": {
-      "type": "image",
-      "src": "shots/rec-mobile.jpg",
+      "type": "video",
+      "poster": "movies/rec-short-copy.jpg",
       "alt": "rec.ooo on a phone: short greeting and a grid of icons."
     },
     "featured": true
@@ -268,9 +268,9 @@
       "outcome": "The same input always gives the same result. The how-to post has been shared more than 50 times."
     },
     "media": {
-      "type": "image",
-      "src": "shots/kiln.jpg",
-      "alt": "kiln shelf of projects."
+      "type": "video",
+      "poster": "movies/kiln-same-result.jpg",
+      "alt": "kiln projector switching presets on the same input and back."
     },
     "featured": true
   },
@@ -299,9 +299,9 @@
       "outcome": "Ideas move in and out as plain files; the tree view is one way to read them."
     },
     "media": {
-      "type": "image",
-      "src": "shots/ruvia.jpg",
-      "alt": "Ruvia tree: knots branching from one question to concrete answers."
+      "type": "video",
+      "poster": "movies/ruvia-format-first.jpg",
+      "alt": "New knots get an ID first (knot-a-d), then their content is written."
     },
     "featured": true
   },

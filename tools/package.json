@@ -1,0 +1,9 @@
+{
+  "name": "ux-rec-tools",
+  "private": true,
+  "type": "module",
+  "description": "事例動画の自動録画(playwright-core + 本機 Chrome + ffmpeg)",
+  "devDependencies": {
+    "playwright-core": "^1.48.2"
+  }
+}
