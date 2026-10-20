@@ -45,6 +45,9 @@ async function hoverClick(page, loc, wait = 700, steps = 12) {
 export const scenarios = {
   "dungeons-no-manual": {
     url: "https://rec.ooo/dungeons/",
+    // 塔(560 高)+ 上下の余白が 600 に入らず下が切れた(主筆 10-20 🎁). 16:10 のまま窓を広げて撮り, 1920x1200 に縮める
+    viewport: { width: 1120, height: 700 },
+    out: { w: 1920, h: 1200 },
     async before(page) {
       // 英語表示に(ZH -> EN). 表示がもう EN なら押さない
       const lang = page.locator("#d-lang");

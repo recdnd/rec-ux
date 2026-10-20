@@ -78,8 +78,9 @@ async function record(id, sc) {
   const c = [box.width * sx, box.height * sy, box.x * sx, box.y * sy].map((v) => Math.round(v));
   c[0] -= c[0] % 2;
   c[1] -= c[1] % 2;
-  const outW = Math.round(box.width * DPR) - (Math.round(box.width * DPR) % 2);
-  const outH = Math.round(box.height * DPR) - (Math.round(box.height * DPR) % 2);
+  // sc.out = 出力の寸法(内容が 960x600 に入らない頁は大きい窓で撮って 1920x1200 に縮める)
+  const outW = sc.out ? sc.out.w : Math.round(box.width * DPR) - (Math.round(box.width * DPR) % 2);
+  const outH = sc.out ? sc.out.h : Math.round(box.height * DPR) - (Math.round(box.height * DPR) % 2);
   const vf = `crop=${c[0]}:${c[1]}:${c[2]}:${c[3]},scale=${outW}:${outH}:flags=lanczos,fps=60,format=yuv420p`;
   const mp4 = ROOT + "movies/" + id + ".mp4";
   execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", dir + "list.txt", "-vf", vf,
