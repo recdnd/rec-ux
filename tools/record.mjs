@@ -1,5 +1,5 @@
 // 事例動画の自動録画. 用法: node record.mjs <scenario> [...]   (node record.mjs list で一覧)
-// 流れ: 本機 Chrome(headless)で開く -> CDP screencast で幀を集める -> 対象要素の枠で切る -> ffmpeg で H.264 mp4.
+// 流れ: 本機 Chrome(headless)で開く -> 操作と同時に框を 2 倍像素で連続截圖 -> ffmpeg で H.264 mp4(setsar=1).
 // 出力: ../movies/<id>.mp4 と ../movies/<id>.jpg(poster). 画面は公開サイトから撮る(本機 2828 は 🎀 が写る).
 // 尺寸は Spiral の録画に揃える(主筆 10-20): 桌面 960x600 @2x = 1920x1200(16:10), 手機 iPhone SE 375x667 @2x = 750x1334.
 import { chromium } from "playwright-core";
@@ -41,6 +41,14 @@ async function record(id, sc) {
       : { viewport: sc.viewport || { width: 960, height: 600 }, deviceScaleFactor: DPR, locale: "en-US" }
   );
   if (sc.init) await context.addInitScript(sc.init);
+  // sc.seed() = 要先放進 localStorage 的存檔(只在第一次載入時放, 之後遊戲自己寫的不蓋掉)
+  if (sc.seed) {
+    await context.addInitScript((s) => {
+      if (sessionStorage.getItem("__seeded")) return;
+      for (const [k, v] of Object.entries(s)) localStorage.setItem(k, v);
+      sessionStorage.setItem("__seeded", "1");
+    }, sc.seed());
+  }
   const page = await context.newPage();
   await page.goto(sc.url, { waitUntil: "networkidle" }).catch(() => {});
   await page.waitForTimeout(sc.settle ?? 2000);
@@ -57,20 +65,29 @@ async function record(id, sc) {
   const vp = page.viewportSize();
   box = box || { x: 0, y: 0, width: vp.width, height: vp.height };
 
-  const cdp = await context.newCDPSession(page);
+  // 截圖迴圈: 跟操作同時跑, 每一張都是框內的 2 倍像素(10-20 改: CDP screencast 給的幀只有 960x513, 而且寬高縮放不一樣, 影片被拉寬又糊)
   const frames = [];
-  cdp.on("Page.screencastFrame", async (f) => {
-    const n = String(frames.length).padStart(5, "0");
-    writeFileSync(dir + n + ".jpg", Buffer.from(f.data, "base64"));
-    frames.push({ file: n + ".jpg", t: f.metadata.timestamp });
-    await cdp.send("Page.screencastFrameAck", { sessionId: f.sessionId }).catch(() => {});
-  });
-  await cdp.send("Page.startScreencast", { format: "jpeg", quality: 92, everyNthFrame: 1, maxWidth: vp.width * DPR, maxHeight: vp.height * DPR });
+  let capturing = true;
+  const clip = { x: box.x, y: box.y, width: box.width, height: box.height };
+  const loop = (async () => {
+    while (capturing) {
+      const t = Date.now() / 1000;
+      try {
+        const buf = await page.screenshot({ type: "jpeg", quality: 90, clip, animations: "allow", caret: "initial" });
+        const n = String(frames.length).padStart(5, "0");
+        writeFileSync(dir + n + ".jpg", buf);
+        frames.push({ file: n + ".jpg", t });
+      } catch (e) {
+        await new Promise((r) => setTimeout(r, 60)); // 換頁中拍不到就等一下
+      }
+    }
+  })();
   await page.waitForTimeout(600);
   await sc.act(page);
   await page.waitForTimeout(sc.tail ?? 1200);
+  capturing = false;
+  await loop;
   const tEnd = Date.now() / 1000;
-  await cdp.send("Page.stopScreencast");
   await browser.close();
   if (frames.length < 2) throw new Error(id + ": no frames");
 
@@ -83,17 +100,10 @@ async function record(id, sc) {
   lines.push(`file '${frames[frames.length - 1].file}'`);
   writeFileSync(dir + "list.txt", lines.join("\n") + "\n");
 
-  // 幀の実寸は要求どおりとは限らない(上限で縮む)ので, 1 枚目の実寸から倍率を出す
-  const dims = execFileSync("ffprobe", ["-v", "error", "-show_entries", "stream=width,height", "-of", "csv=p=0", dir + frames[0].file]).toString().trim().split(",").map(Number);
-  const sx = dims[0] / vp.width;
-  const sy = dims[1] / vp.height;
-  const c = [box.width * sx, box.height * sy, box.x * sx, box.y * sy].map((v) => Math.round(v));
-  c[0] -= c[0] % 2;
-  c[1] -= c[1] % 2;
-  // sc.out = 出力の寸法(内容が 960x600 に入らない頁は大きい窓で撮って 1920x1200 に縮める)
+  // 幀はもう框の 2 倍像素. 偶数に揃えて, sc.out があればその寸法に. setsar=1 で正方形の画素に固定
   const outW = sc.out ? sc.out.w : Math.round(box.width * DPR) - (Math.round(box.width * DPR) % 2);
   const outH = sc.out ? sc.out.h : Math.round(box.height * DPR) - (Math.round(box.height * DPR) % 2);
-  const vf = `crop=${c[0]}:${c[1]}:${c[2]}:${c[3]},scale=${outW}:${outH}:flags=lanczos,fps=60,format=yuv420p`;
+  const vf = `scale=${outW}:${outH}:flags=lanczos,setsar=1,fps=30,format=yuv420p`;
   const mp4 = ROOT + "movies/" + id + ".mp4";
   execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", dir + "list.txt", "-vf", vf,
     "-c:v", "libx264", "-preset", "slow", "-crf", "22", "-movflags", "+faststart", "-an", mp4]);

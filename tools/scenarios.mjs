@@ -1,7 +1,19 @@
 // 事例ごとの録画手順. id = data/cards.json の id = movies/<id>.mp4
 // url / viewport / crop(切る要素)/ before(録画前の準備)/ act(録画中の操作)
 
+import { readFileSync } from "node:fs";
+
 const sleep = (page, ms) => page.waitForTimeout(ms);
+
+// 主筆的正式塔存檔(本機 127.0.0.1:2828 的 rec.ooo.* 那一份, 已經拿到 🫀 變成 sus). 檔在 tools/save/, 不進 git
+const SAVE = new URL("./save/formal-127.json", import.meta.url);
+function formalSave(at) {
+  const s = Object.assign(JSON.parse(readFileSync(SAVE, "utf8")), { "rec.lang": "en" });
+  if (at) s["rec.ooo.at"] = JSON.stringify(Object.assign({ v: 1 }, at));
+  return s;
+}
+// dungeons 的三支用同一個框: 960x600 窗裡 896x560(16:10)-> 電視一樣大, 裡面的格子也一樣大(主筆 10-20)
+const TOWER_BOX = { x: 32, y: 24, width: 896, height: 560 };
 
 async function keys(page, seq, gap = 260) {
   for (const k of seq) {
@@ -44,32 +56,23 @@ async function hoverClick(page, loc, wait = 700, steps = 12) {
 
 export const scenarios = {
   "dungeons-no-manual": {
+    // 主筆的存檔: sus, 背包有東西, 在地下 11 層 Yanlin Chamber(主筆 10-20「人類 + 第一層 沒有意思」)
     url: "https://rec.ooo/dungeons/",
-    // 塔(560 高)+ 上下の余白が 600 に入らず下が切れた(主筆 10-20 🎁). 16:10 のまま窓を広げて撮り, 1920x1200 に縮める
-    viewport: { width: 1120, height: 700 },
-    out: { w: 1920, h: 1200 },
-    async before(page) {
-      // 英語表示に(ZH -> EN). 表示がもう EN なら押さない
-      const lang = page.locator("#d-lang");
-      for (let i = 0; i < 3; i++) {
-        if (((await lang.innerText()) || "").trim().toUpperCase() === "EN") break;
-        await lang.click();
-        await sleep(page, 400);
-      }
-    },
+    seed: () => formalSave({ f: "__yanlin_chamber", x: 6, y: 6 }),
+    box: TOWER_BOX,
     async act(page) {
-      // 岩漿(橘)を避ける道: 告示牌を読む -> 下へ回って 🪢 と 🎲 を拾う(_dbg3 の地図で確認, 10-20)
+      await sleep(page, 1200);
+      await keys(page, ["ArrowLeft", "ArrowLeft"], 700);
+      await keys(page, ["ArrowUp", "ArrowUp", "ArrowRight", "ArrowRight", "ArrowRight", "ArrowRight"], 600);
+      await keys(page, ["ArrowDown", "ArrowDown", "ArrowDown", "ArrowRight", "ArrowRight"], 600);
       await sleep(page, 900);
-      await keys(page, ["ArrowLeft"], 1600);
-      await keys(page, ["ArrowDown", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowLeft", "ArrowLeft", "ArrowUp", "ArrowUp", "ArrowUp", "ArrowLeft"], 380);
-      await sleep(page, 900);
-      await keys(page, ["ArrowUp", "ArrowUp"], 380);
     },
   },
 
   "dungeons-desks": {
     // 線上の desks は 308 で閉じているので本機 2828 から(このページに 🎀 リンクは無い)
     url: "http://localhost:2828/desks/NPC%E8%A1%A8.html",
+    box: { x: 0, y: 0, width: 896, height: 560 },
     async act(page) {
       await sleep(page, 900);
       for (const i of [0, 3, 10, 12, 15, 5]) {
@@ -78,6 +81,20 @@ export const scenarios = {
       await page.locator("input#qName").click();
       await page.keyboard.type("00", { delay: 140 });
       await sleep(page, 1400);
+    },
+  },
+
+  "dungeons-livehouse": {
+    // 真的進場: 背包的 Live ticket -> ➤Go to the Livehouse -> 地下 108. 票是主筆存檔裡那張(本機測試票)
+    url: "https://rec.ooo/dungeons/",
+    seed: () => formalSave({ f: "__home", x: 1, y: 1 }),
+    box: TOWER_BOX,
+    async act(page) {
+      await sleep(page, 1200);
+      await hoverClick(page, page.locator("span.d-item.is-tap", { hasText: "Live ticket" }).first(), 1300);
+      await hoverClick(page, page.locator("button.d-opt", { hasText: "Livehouse" }).first(), 4500);
+      await keys(page, ["ArrowUp", "ArrowUp", "ArrowRight"], 800);
+      await sleep(page, 5000);
     },
   },
 
@@ -119,8 +136,8 @@ export const scenarios = {
         s.tickets["demo-1"] = { at, src: "album" };
         localStorage.setItem("rec.owned.v1", JSON.stringify(s));
       }, page.__rel);
-      await page.reload({ waitUntil: "networkidle" });
-      await sleep(page, 2200);
+      await page.reload({ waitUntil: "domcontentloaded" });
+      await sleep(page, 2600);
       const shelf = page.locator("a.icon:visible", { hasText: "💽" }).first();
       if (await shelf.count()) await hoverAt(page, shelf, 1500);
     },

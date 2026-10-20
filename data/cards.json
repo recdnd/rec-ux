@@ -26,8 +26,8 @@
     "media": {
       "type": "video",
       "poster": "movies/dungeons-no-manual.jpg",
-      "alt": "Tower floor with the billboard panel showing one line of controls.",
-      "v": "31e86ce4"
+      "alt": "Sus walking through Yanlin Chamber (B11); the billboard names each thing as Sus comes near.",
+      "v": "59fed662"
     },
     "featured": true
   },
@@ -58,8 +58,8 @@
     "media": {
       "type": "video",
       "poster": "movies/dungeons-desks.jpg",
-      "alt": "NPC sheet editor: list of characters on the left, one character's settings on the right.",
-      "v": "8379801a"
+      "alt": "NPC sheet editor: picking characters, then filtering by ID.",
+      "v": "3d4dd800"
     },
     "featured": true
   },
@@ -88,9 +88,11 @@
       "outcome": "Game and music now share one catalog, and an in-game ticket ($1.99) connects playing the game to the band."
     },
     "media": {
-      "type": "image",
+      "type": "video",
       "src": "shots/dungeons.jpg",
-      "alt": "The tower as it looks in the browser."
+      "alt": "Using the live ticket from the bag: a UFO flies Sus from the den to the Livehouse on B108, band on stage, crowd and bar.",
+      "poster": "movies/dungeons-livehouse.jpg",
+      "v": "f30baf26"
     },
     "featured": true
   },
@@ -122,7 +124,7 @@
       "type": "video",
       "poster": "movies/band-no-account.jpg",
       "alt": "Music site with the release grid on the left and the player on the right.",
-      "v": "e2db9571"
+      "v": "5ad0ca82"
     },
     "featured": true
   },
@@ -153,7 +155,7 @@
       "type": "video",
       "poster": "movies/band-owned-shelf.jpg",
       "alt": "rec.ooo home before and after a purchase: the listening room icon appears.",
-      "v": "9b1c641b"
+      "v": "3bb84ef4"
     },
     "featured": true
   },
@@ -184,7 +186,7 @@
       "type": "video",
       "poster": "movies/rec-dock.jpg",
       "alt": "rec.ooo home: grouped list on the left, intro panel and dock icons on the right.",
-      "v": "6f704093"
+      "v": "2b4ffbdb"
     },
     "featured": true
   },
@@ -215,7 +217,7 @@
       "type": "video",
       "poster": "movies/rec-no-error-text.jpg",
       "alt": "Locked career entry asks for an initial; a wrong answer returns without any message.",
-      "v": "08745b66"
+      "v": "b2aa7646"
     },
     "featured": true
   },
@@ -246,7 +248,7 @@
       "type": "video",
       "poster": "movies/rec-short-copy.jpg",
       "alt": "rec.ooo on a phone: short greeting and a grid of icons.",
-      "v": "49206fda"
+      "v": "ad35e978"
     },
     "featured": true
   },
@@ -278,7 +280,7 @@
       "type": "video",
       "poster": "movies/kiln-same-result.jpg",
       "alt": "kiln projector switching presets on the same input and back.",
-      "v": "98f5c183"
+      "v": "22a1dc49"
     },
     "featured": true
   },
@@ -310,7 +312,7 @@
       "type": "video",
       "poster": "movies/ruvia-format-first.jpg",
       "alt": "New knots get an ID first (knot-a-d), then their content is written.",
-      "v": "ce5c9830"
+      "v": "a4fe25d6"
     },
     "featured": true
   },
