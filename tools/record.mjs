@@ -3,13 +3,25 @@
 // 出力: ../movies/<id>.mp4 と ../movies/<id>.jpg(poster). 画面は公開サイトから撮る(本機 2828 は 🎀 が写る).
 // 尺寸は Spiral の録画に揃える(主筆 10-20): 桌面 960x600 @2x = 1920x1200(16:10), 手機 iPhone SE 375x667 @2x = 750x1334.
 import { chromium } from "playwright-core";
-import { mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, rmSync, writeFileSync, readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { scenarios } from "./scenarios.mjs";
 
 const ROOT = new URL("..", import.meta.url).pathname;
 const FRAMES = ROOT + "tools/_frames/";
 const DPR = 2;
+
+// cards.json の media.v に動画の雜湊を書く -> 頁は ?v= を付けて読むので, 撮り直すと必ず新しい方が出る
+function stampVersion(id, mp4) {
+  const file = ROOT + "data/cards.json";
+  const cards = JSON.parse(readFileSync(file, "utf8"));
+  const v = createHash("sha1").update(readFileSync(mp4)).digest("hex").slice(0, 8);
+  const c = cards.find((x) => x.id === id);
+  if (!c) return;
+  c.media = Object.assign({}, c.media, { type: "video", poster: "movies/" + id + ".jpg", v });
+  writeFileSync(file, JSON.stringify(cards, null, 2) + "\n");
+}
 
 async function record(id, sc) {
   const dir = FRAMES + id + "/";
@@ -86,6 +98,7 @@ async function record(id, sc) {
   execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", dir + "list.txt", "-vf", vf,
     "-c:v", "libx264", "-preset", "slow", "-crf", "22", "-movflags", "+faststart", "-an", mp4]);
   execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-sseof", "-0.1", "-i", mp4, "-frames:v", "1", "-q:v", "3", ROOT + "movies/" + id + ".jpg"]);
+  stampVersion(id, mp4);
   const dur = execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration:stream=width,height", "-of", "csv=p=0", mp4]).toString().trim().replace(/\n/g, " ");
   console.log(`${id}: ${frames.length} frames -> movies/${id}.mp4 (${dur})`);
 }

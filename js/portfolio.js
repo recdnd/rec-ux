@@ -42,11 +42,13 @@
       .map(function (item) {
         var media = item.media && typeof item.media === "object" ? item.media : {};
         var isImage = media.type === "image" && media.src;
+        /* media.v = 檔案內容的雜湊(record.mjs 重錄時寫入). 同一個檔名換了內容, 瀏覽器才不會播快取裡的舊片 */
+        var ver = media.v ? "?v=" + encodeURIComponent(String(media.v)) : "";
         return Object.assign({}, item, {
           resolvedMedia: {
             type: isImage ? "image" : "video",
-            src: isImage ? String(media.src) : "movies/" + String(item.id) + ".mp4",
-            poster: media.poster ? String(media.poster) : "",
+            src: (isImage ? String(media.src) : "movies/" + String(item.id) + ".mp4") + ver,
+            poster: media.poster ? String(media.poster) + ver : "",
             alt: media.alt ? String(media.alt) : String(item.title || "Preview"),
           },
         });
@@ -777,14 +779,14 @@
     var display = document.getElementById("rec-display");
     if (!rail || !display) return;
 
-    var boardsReq = fetch(BOARDS_URL)
+    var boardsReq = fetch(BOARDS_URL, { cache: "no-cache" })
       .then(function (r) {
         return r.ok ? r.json() : [];
       })
       .catch(function () {
         return [];
       });
-    var cardsReq = fetch(DATA_URL).then(function (r) {
+    var cardsReq = fetch(DATA_URL, { cache: "no-cache" }).then(function (r) {
       if (!r.ok) throw new Error(String(r.status));
       return r.json();
     });

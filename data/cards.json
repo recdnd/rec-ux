@@ -26,7 +26,8 @@
     "media": {
       "type": "video",
       "poster": "movies/dungeons-no-manual.jpg",
-      "alt": "Tower floor with the billboard panel showing one line of controls."
+      "alt": "Tower floor with the billboard panel showing one line of controls.",
+      "v": "31e86ce4"
     },
     "featured": true
   },
@@ -57,7 +58,8 @@
     "media": {
       "type": "video",
       "poster": "movies/dungeons-desks.jpg",
-      "alt": "NPC sheet editor: list of characters on the left, one character's settings on the right."
+      "alt": "NPC sheet editor: list of characters on the left, one character's settings on the right.",
+      "v": "8379801a"
     },
     "featured": true
   },
@@ -119,7 +121,8 @@
     "media": {
       "type": "video",
       "poster": "movies/band-no-account.jpg",
-      "alt": "Music site with the release grid on the left and the player on the right."
+      "alt": "Music site with the release grid on the left and the player on the right.",
+      "v": "e2db9571"
     },
     "featured": true
   },
@@ -149,7 +152,8 @@
     "media": {
       "type": "video",
       "poster": "movies/band-owned-shelf.jpg",
-      "alt": "rec.ooo home before and after a purchase: the listening room icon appears."
+      "alt": "rec.ooo home before and after a purchase: the listening room icon appears.",
+      "v": "9b1c641b"
     },
     "featured": true
   },
@@ -179,7 +183,8 @@
     "media": {
       "type": "video",
       "poster": "movies/rec-dock.jpg",
-      "alt": "rec.ooo home: grouped list on the left, intro panel and dock icons on the right."
+      "alt": "rec.ooo home: grouped list on the left, intro panel and dock icons on the right.",
+      "v": "6f704093"
     },
     "featured": true
   },
@@ -209,7 +214,8 @@
     "media": {
       "type": "video",
       "poster": "movies/rec-no-error-text.jpg",
-      "alt": "Locked career entry asks for an initial; a wrong answer returns without any message."
+      "alt": "Locked career entry asks for an initial; a wrong answer returns without any message.",
+      "v": "08745b66"
     },
     "featured": true
   },
@@ -239,7 +245,8 @@
     "media": {
       "type": "video",
       "poster": "movies/rec-short-copy.jpg",
-      "alt": "rec.ooo on a phone: short greeting and a grid of icons."
+      "alt": "rec.ooo on a phone: short greeting and a grid of icons.",
+      "v": "49206fda"
     },
     "featured": true
   },
@@ -270,7 +277,8 @@
     "media": {
       "type": "video",
       "poster": "movies/kiln-same-result.jpg",
-      "alt": "kiln projector switching presets on the same input and back."
+      "alt": "kiln projector switching presets on the same input and back.",
+      "v": "98f5c183"
     },
     "featured": true
   },
@@ -301,7 +309,8 @@
     "media": {
       "type": "video",
       "poster": "movies/ruvia-format-first.jpg",
-      "alt": "New knots get an ID first (knot-a-d), then their content is written."
+      "alt": "New knots get an ID first (knot-a-d), then their content is written.",
+      "v": "ce5c9830"
     },
     "featured": true
   },
@@ -331,7 +340,8 @@
     "media": {
       "type": "video",
       "poster": "movies/session-stream.jpg",
-      "alt": "Mobile interface showing continuous scrolling between AI sessions and documents."
+      "alt": "Mobile interface showing continuous scrolling between AI sessions and documents.",
+      "v": "602c5428"
     },
     "featured": true,
     "impact": "Turns multi-session interaction into a spatial navigation model.",
@@ -366,7 +376,8 @@
     "media": {
       "type": "video",
       "poster": "movies/meta-control.jpg",
-      "alt": "User changing document type and metadata through natural language commands."
+      "alt": "User changing document type and metadata through natural language commands.",
+      "v": "fe32fd45"
     },
     "featured": true,
     "impact": "Makes system-level behavior editable through interaction instead of hidden configuration.",
@@ -400,7 +411,8 @@
     "media": {
       "type": "video",
       "poster": "movies/header-system.jpg",
-      "alt": "Document header being modified and applied as a control layer."
+      "alt": "Document header being modified and applied as a control layer.",
+      "v": "2b633fff"
     },
     "featured": true,
     "impact": "Turns documents into active components of system behavior.",
@@ -434,7 +446,8 @@
     "media": {
       "type": "video",
       "poster": "movies/ghostwriting.jpg",
-      "alt": "AI writing directly inside a text document alongside user input."
+      "alt": "AI writing directly inside a text document alongside user input.",
+      "v": "6cb35a6a"
     },
     "featured": true,
     "impact": "Integrates AI into the writing surface instead of separating it.",
