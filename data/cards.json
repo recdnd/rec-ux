@@ -1,5 +1,311 @@
 [
   {
+    "id": "dungeons-no-manual",
+    "order": 1,
+    "board": "dungeons",
+    "title": "Learn Without a Manual",
+    "statement": "A first-time player should be moving before reading anything.",
+    "summary": "Designed the tower's screens so the controls are found by playing, then watched people play and fed every stuck point back into the design.",
+    "role": [
+      "Game UI",
+      "Interaction design",
+      "Playtesting"
+    ],
+    "product": "sus dungeons",
+    "year": "2026",
+    "tags": [
+      "Game UI",
+      "Onboarding",
+      "Playtest"
+    ],
+    "detail": {
+      "problem": "A large RPG (104 floors, over a thousand items) can bury a new player under rules and menus before the fun starts.",
+      "designMove": "Keep a single line of instruction on screen and let the map, items and characters teach the rest. Treat every place a tester stops as a design bug.",
+      "outcome": "In the first playtest, a family member learned the controls in about three minutes with no explanation and cleared a five-floor section."
+    },
+    "media": {
+      "type": "image",
+      "src": "shots/dungeons.jpg",
+      "alt": "Tower floor with the billboard panel showing one line of controls."
+    },
+    "featured": true
+  },
+  {
+    "id": "dungeons-desks",
+    "order": 2,
+    "board": "dungeons",
+    "title": "Tools Before Content",
+    "statement": "A world grows faster when the people filling it never touch code.",
+    "summary": "Built in-house authoring desks (NPC sheet, scene, item, enemy and price tables, and NESI for dialogue and events) so the game is edited as data.",
+    "role": [
+      "Tool UX",
+      "Information architecture",
+      "System design"
+    ],
+    "product": "sus dungeons",
+    "year": "2026",
+    "tags": [
+      "Authoring tools",
+      "Data",
+      "Workflow"
+    ],
+    "detail": {
+      "problem": "Content lived inside one 36,000-line game file. Each new character or item was slow to add, easy to break, and blocked several AI agents from working at the same time.",
+      "designMove": "Move content out of code into tables, each with its own editor showing the same IDs the game uses. Split the engine into 69 source files that are assembled back into one at build time.",
+      "outcome": "Characters went from 14 to 139 in one month, with three consistency passes. 41 tools now feed the game."
+    },
+    "media": {
+      "type": "image",
+      "src": "shots/desks-npc.jpg",
+      "alt": "NPC sheet editor: list of characters on the left, one character's settings on the right."
+    },
+    "featured": true
+  },
+  {
+    "id": "dungeons-livehouse",
+    "order": 3,
+    "board": "dungeons",
+    "title": "A Livehouse in the Tower",
+    "statement": "The game and the music are one world, not two products.",
+    "summary": "Designed an in-game livehouse where a band of characters plays songs from my own releases, with crowd cheers, an encore and stage lights.",
+    "role": [
+      "Experience design",
+      "Game UI",
+      "Music"
+    ],
+    "product": "sus dungeons",
+    "year": "2026",
+    "tags": [
+      "World design",
+      "Music",
+      "Cross-product"
+    ],
+    "detail": {
+      "problem": "The game had 34 tracks of background music made only for the game, separate from the songs released on the music site.",
+      "designMove": "Replace game-only music with released songs played through an in-game player, and turn listening into a place: a ticketed livehouse inside the tower.",
+      "outcome": "Game and music now share one catalog, and an in-game ticket ($1.99) connects playing the game to the band."
+    },
+    "media": {
+      "type": "image",
+      "src": "shots/dungeons.jpg",
+      "alt": "The tower as it looks in the browser."
+    },
+    "featured": true
+  },
+  {
+    "id": "band-no-account",
+    "order": 1,
+    "board": "band",
+    "title": "Buy Without an Account",
+    "statement": "Buying a song should take one step, and losing it should not be possible.",
+    "summary": "Designed a store where songs are bought without signing up, kept in the browser, and brought back by email.",
+    "role": [
+      "UX flow",
+      "Commerce",
+      "Front-end"
+    ],
+    "product": "Rec Dungeons",
+    "year": "2026",
+    "tags": [
+      "Checkout",
+      "Ownership",
+      "Recovery"
+    ],
+    "detail": {
+      "problem": "Making an account is where most small music purchases are dropped. Without accounts, clearing the browser would mean losing what you bought.",
+      "designMove": "Keep ownership in the browser for instant access, and make email the way back: one address restores every purchase.",
+      "outcome": "Payment, storage, delivery and mail run through Stripe, R2, Upstash, Resend and Vercel. Purchase, download and email recovery pass end to end in test mode."
+    },
+    "media": {
+      "type": "image",
+      "src": "shots/band.jpg",
+      "alt": "Music site with the release grid on the left and the player on the right."
+    },
+    "featured": true
+  },
+  {
+    "id": "band-owned-shelf",
+    "order": 2,
+    "board": "band",
+    "title": "Owned Things Simply Appear",
+    "statement": "What you bought shows up as an object, not a line in a list.",
+    "summary": "Releases are shown as CDs and a record player. The shelf icon on the home page does not exist until you buy something: it is not greyed out, it is absent.",
+    "role": [
+      "Interaction design",
+      "Visual design"
+    ],
+    "product": "Rec Dungeons",
+    "year": "2026",
+    "tags": [
+      "Ownership",
+      "Empty states",
+      "Objects"
+    ],
+    "detail": {
+      "problem": "Digital purchases usually sit in a grey library list that feels like nothing was bought, and an empty shelf button tells new visitors about a feature they can't use.",
+      "designMove": "Show owned releases as physical objects, and hide the shelf entirely until there is something on it instead of showing a disabled button.",
+      "outcome": "The home page stays clean for new visitors and gains a shelf the moment a purchase happens."
+    },
+    "media": {
+      "type": "image",
+      "src": "shots/band.jpg",
+      "alt": "Album covers and the player of the music site."
+    },
+    "featured": true
+  },
+  {
+    "id": "rec-dock",
+    "order": 1,
+    "board": "rec",
+    "title": "A Dock That Never Says No",
+    "statement": "When the dock is full, adding still works: the oldest icon leaves.",
+    "summary": "Visitors build their own dock of up to 14 icons from the site's list.",
+    "role": [
+      "Interaction design",
+      "Edge cases"
+    ],
+    "product": "rec.ooo",
+    "year": "2026",
+    "tags": [
+      "Customization",
+      "Limits",
+      "Copy"
+    ],
+    "detail": {
+      "problem": "An earlier version stopped drawing the add buttons when the dock was full. Every button in the list vanished at once, which looked like a bug and broke the first screen's promise that you can add freely.",
+      "designMove": "Never block. When the dock is full, push the oldest icon out (first in, first out).",
+      "outcome": "Adding always works, and the promise on the first screen stays true."
+    },
+    "media": {
+      "type": "image",
+      "src": "shots/rec-hub.jpg",
+      "alt": "rec.ooo home: grouped list on the left, intro panel and dock icons on the right."
+    },
+    "featured": true
+  },
+  {
+    "id": "rec-no-error-text",
+    "order": 2,
+    "board": "rec",
+    "title": "Failure Without Words",
+    "statement": "A wrong answer gets a symbol, not a sentence.",
+    "summary": "Hidden entries open with a keyword. A failed attempt gets a half-second ❌ at the input, and no error message.",
+    "role": [
+      "Microinteraction",
+      "Copy"
+    ],
+    "product": "rec.ooo",
+    "year": "2026",
+    "tags": [
+      "Errors",
+      "Hidden content",
+      "Feedback"
+    ],
+    "detail": {
+      "problem": "Error text like 'wrong password' explains the gate and turns a quiet hidden entry into a puzzle with instructions.",
+      "designMove": "Remove the warning layer. Flash ❌ once at the point of input; after that, nothing.",
+      "outcome": "Visitors know the attempt didn't pass, and hidden entries stay hidden."
+    },
+    "media": {
+      "type": "image",
+      "src": "shots/rec-hub.jpg",
+      "alt": "rec.ooo home with locked entries in the list."
+    },
+    "featured": true
+  },
+  {
+    "id": "rec-short-copy",
+    "order": 3,
+    "board": "rec",
+    "title": "Copy for People Standing Up",
+    "statement": "Phone users get their own words, not cut-off desktop sentences.",
+    "summary": "Every entry has a second, very short text for mobile, written like a small child who only knows a few words.",
+    "role": [
+      "UX writing",
+      "Mobile"
+    ],
+    "product": "rec.ooo",
+    "year": "2026",
+    "tags": [
+      "Mobile",
+      "Copy",
+      "Context"
+    ],
+    "detail": {
+      "problem": "The mobile screen is a small fixed square, and people scroll it standing up. The desktop sentences don't fit and aren't read.",
+      "designMove": "Write a separate short copy for every entry instead of truncating the long one. The two are edited independently.",
+      "outcome": "Every public entry has a mobile version, and desktop keeps its full sentences."
+    },
+    "media": {
+      "type": "image",
+      "src": "shots/rec-mobile.jpg",
+      "alt": "rec.ooo on a phone: short greeting and a grid of icons."
+    },
+    "featured": true
+  },
+  {
+    "id": "kiln-same-result",
+    "order": 1,
+    "board": "kiln",
+    "title": "Same Input, Same Result",
+    "statement": "A formatting tool you can trust has to be boringly predictable.",
+    "summary": "A text tool that formats by fixed rules, with no AI at run time.",
+    "role": [
+      "Product concept",
+      "Rule design",
+      "UX"
+    ],
+    "product": "kiln",
+    "year": "2026",
+    "tags": [
+      "Determinism",
+      "Trust",
+      "Traceability"
+    ],
+    "detail": {
+      "problem": "AI rewriting gives a different result each time, so you can't review what changed or rely on it for the next document.",
+      "designMove": "Make every rule explicit and deterministic, and keep each change traceable to the rule that made it.",
+      "outcome": "The same input always gives the same result. The how-to post has been shared more than 50 times."
+    },
+    "media": {
+      "type": "image",
+      "src": "shots/kiln.jpg",
+      "alt": "kiln shelf of projects."
+    },
+    "featured": true
+  },
+  {
+    "id": "ruvia-format-first",
+    "order": 1,
+    "board": "ruvia",
+    "title": "Design the File First",
+    "statement": "Before drawing the tree, decide what a tree is.",
+    "summary": "A tool that lays out ideas and documents as a tree. The .root file format (JSON schema ruvia-doc/0.1) was designed before the interface.",
+    "role": [
+      "Information architecture",
+      "Data design",
+      "UX"
+    ],
+    "product": "Ruvia",
+    "year": "2026",
+    "tags": [
+      "Schema",
+      "Import",
+      "Naming"
+    ],
+    "detail": {
+      "problem": "Thinking tools often lock content inside their own interface; anything written elsewhere, including by AI, has to be rebuilt by hand.",
+      "designMove": "Define the saved format first, so documents written by AI import as they are. Separate display names from internal IDs, so renaming never breaks links.",
+      "outcome": "Ideas move in and out as plain files; the tree view is one way to read them."
+    },
+    "media": {
+      "type": "image",
+      "src": "shots/ruvia.jpg",
+      "alt": "Ruvia tree: knots branching from one question to concrete answers."
+    },
+    "featured": true
+  },
+  {
     "id": "session-stream",
     "order": 1,
     "title": "Session Stream",
@@ -30,7 +336,8 @@
     "featured": true,
     "impact": "Turns multi-session interaction into a spatial navigation model.",
     "interfaceLens": "AI as workspace",
-    "status": "prototype"
+    "status": "prototype",
+    "board": "spiral"
   },
   {
     "id": "meta-control",
@@ -64,7 +371,8 @@
     "featured": true,
     "impact": "Makes system-level behavior editable through interaction instead of hidden configuration.",
     "interfaceLens": "AI as system interface",
-    "status": "prototype"
+    "status": "prototype",
+    "board": "spiral"
   },
   {
     "id": "header-system",
@@ -97,7 +405,8 @@
     "featured": true,
     "impact": "Turns documents into active components of system behavior.",
     "interfaceLens": "Document as system unit",
-    "status": "prototype"
+    "status": "prototype",
+    "board": "spiral"
   },
   {
     "id": "ghostwriting",
@@ -130,6 +439,7 @@
     "featured": true,
     "impact": "Integrates AI into the writing surface instead of separating it.",
     "interfaceLens": "AI as co-author",
-    "status": "prototype"
+    "status": "prototype",
+    "board": "spiral"
   }
 ]

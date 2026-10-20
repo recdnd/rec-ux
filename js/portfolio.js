@@ -1,12 +1,14 @@
 /**
- * spiral.rec.ooo (Spiral UX) — load data/cards.json, render rail + display.
+ * Rec UX — load data/boards.json + data/cards.json, render rail(按板塊分組) + display.
  * Stable video flow: reset -> set src -> loadedmetadata (ratio) -> canplay (play).
+ * 卡片的 media.type: "video"(預設, movies/<id>.mp4)或 "image"(media.src).
  */
 
 (function () {
   "use strict";
 
   const DATA_URL = "data/cards.json";
+  const BOARDS_URL = "data/boards.json";
   const THEME_KEY = "uxrec-theme";
 
   function esc(s) {
@@ -15,23 +17,35 @@
     return d.innerHTML;
   }
 
-  function normalizeCards(raw) {
+  /* 板塊順序照 boards.json; 沒登記板塊的卡排最後 */
+  function normalizeCards(raw, boards) {
     if (!Array.isArray(raw)) return [];
+    var rank = {};
+    boards.forEach(function (b, i) {
+      rank[b.id] = i;
+    });
+    function boardRank(c) {
+      return c.board in rank ? rank[c.board] : 999;
+    }
     return raw
       .filter(function (c) {
         return c && c.featured === true && c.id;
       })
       .sort(function (a, b) {
+        var ba = boardRank(a);
+        var bb = boardRank(b);
+        if (ba !== bb) return ba - bb;
         var oa = typeof a.order === "number" ? a.order : 999;
         var ob = typeof b.order === "number" ? b.order : 999;
         return oa - ob;
       })
       .map(function (item) {
         var media = item.media && typeof item.media === "object" ? item.media : {};
+        var isImage = media.type === "image" && media.src;
         return Object.assign({}, item, {
           resolvedMedia: {
-            type: "video",
-            src: "movies/" + String(item.id) + ".mp4",
+            type: isImage ? "image" : "video",
+            src: isImage ? String(media.src) : "movies/" + String(item.id) + ".mp4",
             poster: media.poster ? String(media.poster) : "",
             alt: media.alt ? String(media.alt) : String(item.title || "Preview"),
           },
@@ -194,7 +208,7 @@
     });
   }
 
-  function renderCards(cases, rail, display) {
+  function renderCards(cases, rail, display, boards) {
     rail.textContent = "";
     var videoEl = display.querySelector(".rec-display__video");
     var imageEl = display.querySelector(".rec-display__image");
@@ -337,12 +351,14 @@
 
     function pauseCurrentVideo() {
       if (currentIndex < 0 || isVideoPowerOff) return;
+      if (currentIsImage()) return;
       if (videoEl.hasAttribute("hidden")) return;
       videoEl.pause();
     }
 
     function resumeCurrentVideo() {
       if (currentIndex < 0 || isVideoPowerOff) return;
+      if (currentIsImage()) return;
       videoEl.hidden = false;
       videoEl.removeAttribute("hidden");
       videoEl.play().catch(function () {});
@@ -354,6 +370,7 @@
       isVideoPaused = false;
       videoEl.pause();
       videoEl.setAttribute("hidden", "");
+      imageEl.hidden = true;
       placeholderEl.hidden = false;
       if (placeholderText) {
         placeholderText.textContent = "SIGNAL OFF";
@@ -372,12 +389,16 @@
       if (placeholderText) {
         placeholderText.textContent = "";
       }
-      videoEl.hidden = false;
-      videoEl.removeAttribute("hidden");
       var item = cases[currentIndex];
       captionEl.textContent = item && item.title ? String(item.title) : "\u2014";
       display.removeAttribute("data-power-off");
-      videoEl.play().catch(function () {});
+      if (currentIsImage()) {
+        imageEl.hidden = false;
+      } else {
+        videoEl.hidden = false;
+        videoEl.removeAttribute("hidden");
+        videoEl.play().catch(function () {});
+      }
       updatePlayButtonStates();
       updateSignalButton();
     }
@@ -427,6 +448,33 @@
       captionEl.textContent = captionText || "—";
       displayEl.setAttribute("data-idle", "false");
       displayEl.setAttribute("aria-label", "Preview monitor. Click for next case.");
+    }
+
+    function showImageMedia(displayEl, media, captionText) {
+      ++videoLoadGeneration;
+      resetMonitorShape(displayEl);
+      hideAllMedia();
+      imageEl.onload = function () {
+        var w = imageEl.naturalWidth;
+        var h = imageEl.naturalHeight;
+        if (!w || !h) return;
+        displayEl.style.setProperty("--rec-monitor-ratio", w + " / " + h);
+        displayEl.setAttribute("data-orientation", w / h < 1 ? "portrait" : "landscape");
+        displayEl.style.setProperty("--rec-monitor-max-width", w / h < 1 ? "420px" : "100%");
+        syncDockFloat();
+      };
+      imageEl.alt = media.alt || "";
+      imageEl.src = media.src;
+      imageEl.hidden = false;
+      captionEl.textContent = captionText || "\u2014";
+      displayEl.setAttribute("data-idle", "false");
+      displayEl.setAttribute("aria-label", "Preview monitor. Click for next case.");
+      syncDockFloat();
+    }
+
+    function currentIsImage() {
+      var item = cases[currentIndex];
+      return !!(item && item.resolvedMedia && item.resolvedMedia.type === "image");
     }
 
     videoEl.addEventListener("error", function () {
@@ -497,7 +545,11 @@
       var media = item.resolvedMedia || {};
       console.log("[playCaseByIndex]", index, item.id, media.src);
 
-      showVideoMedia(videoEl, display, media, item.title ? String(item.title) : "—");
+      if (media.type === "image") {
+        showImageMedia(display, media, item.title ? String(item.title) : "\u2014");
+      } else {
+        showVideoMedia(videoEl, display, media, item.title ? String(item.title) : "\u2014");
+      }
       setPlayingIndex(index);
       updatePlayButtonStates();
       updateSignalButton();
@@ -574,7 +626,48 @@
 
     display.addEventListener("keydown", onMonitorActivate);
 
+    var boardById = {};
+    boards.forEach(function (b) {
+      boardById[b.id] = b;
+    });
+    var shownBoards = [];
+    cases.forEach(function (c) {
+      if (c.board && shownBoards.indexOf(c.board) < 0) shownBoards.push(c.board);
+    });
+
+    /* 板塊導覽: 點了捲到那一組的標題 */
+    if (shownBoards.length > 1) {
+      var nav = document.createElement("nav");
+      nav.className = "rec-boardnav";
+      nav.setAttribute("aria-label", "Projects");
+      shownBoards.forEach(function (id) {
+        var b = boardById[id] || { name: id };
+        var a = document.createElement("a");
+        a.className = "rec-boardnav__item";
+        a.href = "#board-" + id;
+        a.textContent = b.name;
+        nav.appendChild(a);
+      });
+      rail.appendChild(nav);
+    }
+
+    var lastBoard = null;
     cases.forEach(function (item, index) {
+      if (item.board && item.board !== lastBoard) {
+        lastBoard = item.board;
+        var b = boardById[item.board] || { name: item.board, line: "" };
+        var head = document.createElement("header");
+        head.className = "rec-board";
+        head.id = "board-" + item.board;
+        head.innerHTML =
+          '<h2 class="rec-board__name">' +
+          (b.url
+            ? '<a href="' + esc(b.url) + '" target="_blank" rel="noopener">' + esc(b.name) + "</a>"
+            : esc(b.name)) +
+          "</h2>" +
+          (b.line ? '<p class="rec-board__line">' + esc(b.line) + "</p>" : "");
+        rail.appendChild(head);
+      }
       var card = document.createElement("article");
       card.className = "rec-card";
       card.setAttribute("role", "listitem");
@@ -654,9 +747,7 @@
       rail.appendChild(card);
     });
 
-    var ghostIndex = cases.findIndex(function (c) {
-      return c.id === "ghostwriting";
-    });
+    var startIndex = cases.length > 0 ? 0 : -1;
     var signalBtn = display.querySelector(".rec-display__signal");
     if (signalBtn) {
       signalBtn.addEventListener("click", function (e) {
@@ -671,8 +762,8 @@
       });
     }
 
-    if (ghostIndex >= 0) {
-      playCaseByIndex(ghostIndex);
+    if (startIndex >= 0) {
+      playCaseByIndex(startIndex);
     } else {
       setIdleMonitor();
     }
@@ -686,19 +777,28 @@
     var display = document.getElementById("rec-display");
     if (!rail || !display) return;
 
-    fetch(DATA_URL)
+    var boardsReq = fetch(BOARDS_URL)
       .then(function (r) {
-        if (!r.ok) throw new Error(String(r.status));
-        return r.json();
+        return r.ok ? r.json() : [];
       })
-      .then(function (raw) {
-        var cases = normalizeCards(raw);
+      .catch(function () {
+        return [];
+      });
+    var cardsReq = fetch(DATA_URL).then(function (r) {
+      if (!r.ok) throw new Error(String(r.status));
+      return r.json();
+    });
+    Promise.all([cardsReq, boardsReq])
+      .then(function (both) {
+        var raw = both[0];
+        var boards = Array.isArray(both[1]) ? both[1] : [];
+        var cases = normalizeCards(raw, boards);
         if (cases.length === 0) {
           rail.innerHTML =
             '<p class="rec-empty">No featured cards in data/cards.json.</p>';
           return;
         }
-        renderCards(cases, rail, display);
+        renderCards(cases, rail, display, boards);
       })
       .catch(function () {
         rail.innerHTML =

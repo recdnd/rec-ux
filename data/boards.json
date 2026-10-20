@@ -1,0 +1,38 @@
+[
+  {
+    "id": "dungeons",
+    "name": "sus dungeons",
+    "line": "Browser 2D RPG built without a game engine, and the tools that make it.",
+    "url": "https://rec.ooo/dungeons/"
+  },
+  {
+    "id": "band",
+    "name": "Rec Dungeons",
+    "line": "Music site: listen, buy without an account, keep what you own.",
+    "url": "https://rec.ooo/band/"
+  },
+  {
+    "id": "rec",
+    "name": "rec.ooo",
+    "line": "Personal site and hub for everything else.",
+    "url": "https://rec.ooo/"
+  },
+  {
+    "id": "kiln",
+    "name": "kiln",
+    "line": "Rule-based text formatting.",
+    "url": "https://kiln.ooo/"
+  },
+  {
+    "id": "ruvia",
+    "name": "Ruvia",
+    "line": "Ideas as a tree, saved as plain files.",
+    "url": "https://ruvia.dev/"
+  },
+  {
+    "id": "spiral",
+    "name": "Spiral",
+    "line": "AI workspace prototype, 2025-2026. Development ended.",
+    "url": ""
+  }
+]

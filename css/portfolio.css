@@ -1001,3 +1001,54 @@ body {
     width: min(58vw, 250px);
   }
 }
+
+/* 板塊(2026-10-20): rail 頂的導覽 + 每組的標題. 卡片照舊, 組與組之間多一段空白 */
+.rec-boardnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin: 0 0 -12px;
+  font-size: 13px;
+}
+
+.rec-boardnav__item {
+  color: var(--rec-text-secondary);
+  text-decoration: none;
+}
+
+.rec-boardnav__item:hover {
+  color: var(--rec-text-primary);
+}
+
+.rec-board {
+  margin: 28px 0 -16px;
+  scroll-margin-top: 24px;
+}
+
+.rec-board:first-of-type {
+  margin-top: 0;
+}
+
+.rec-board__name {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rec-text-label);
+}
+
+.rec-board__name a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.rec-board__name a:hover {
+  color: var(--rec-text-primary);
+}
+
+.rec-board__line {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--rec-text-tertiary);
+}
