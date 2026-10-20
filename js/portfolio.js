@@ -545,6 +545,7 @@
       display.removeAttribute("data-power-off");
       var item = cases[index];
       var media = item.resolvedMedia || {};
+      writeAt({ caseId: item.id });
       console.log("[playCaseByIndex]", index, item.id, media.src);
 
       if (media.type === "image") {
@@ -558,11 +559,21 @@
       scrollCardIntoView(item.id, rail);
     }
 
+    function boardIndices(board) {
+      var out = [];
+      cases.forEach(function (c, i) {
+        if (!board || c.board === board) out.push(i);
+      });
+      return out;
+    }
+
     function nextChannel() {
       if (cases.length === 0) return;
       if (currentIndex < 0) return;
       if (isVideoPowerOff) return;
-      playCaseByIndex((currentIndex + 1) % cases.length);
+      var list = boardIndices(currentBoard);
+      var at = list.indexOf(currentIndex);
+      playCaseByIndex(list[(at + 1) % list.length]);
     }
 
     function handlePlayButtonClick(index) {
@@ -637,17 +648,24 @@
       if (c.board && shownBoards.indexOf(c.board) < 0) shownBoards.push(c.board);
     });
 
-    /* 板塊導覽: 點了捲到那一組的標題 */
+    /* 板塊導覽: 一次只看一個專案的事例(主筆 10-20「一長條行裡面應該就是一個專案的不同 case」). 點了切換, 不是捲動 */
+    var currentBoard = null;
+    var nav = null;
     if (shownBoards.length > 1) {
-      var nav = document.createElement("nav");
+      nav = document.createElement("nav");
       nav.className = "rec-boardnav";
       nav.setAttribute("aria-label", "Projects");
       shownBoards.forEach(function (id) {
         var b = boardById[id] || { name: id };
         var a = document.createElement("a");
         a.className = "rec-boardnav__item";
-        a.href = "#board-" + id;
+        a.href = "#" + id;
+        a.setAttribute("data-board", id);
         a.textContent = b.name;
+        a.addEventListener("click", function (e) {
+          e.preventDefault();
+          selectBoard(id, true);
+        });
         nav.appendChild(a);
       });
       rail.appendChild(nav);
@@ -661,6 +679,7 @@
         var head = document.createElement("header");
         head.className = "rec-board";
         head.id = "board-" + item.board;
+        head.setAttribute("data-board", item.board);
         head.innerHTML =
           '<h2 class="rec-board__name">' +
           (b.url
@@ -677,6 +696,7 @@
       card.setAttribute("data-case-index", String(index));
       card.setAttribute("data-playing", "false");
       card.setAttribute("data-collapsed", "false");
+      if (item.board) card.setAttribute("data-board", item.board);
 
       var ctx = productYearLine(item);
       var rolesHtml = rolesLine(item);
@@ -749,7 +769,53 @@
       rail.appendChild(card);
     });
 
-    var startIndex = cases.length > 0 ? 0 : -1;
+    /* 條 20: 硬重整回到上次的專案 / 事例 / 捲動位置(每個瀏覽者自己的方便, 存 localStorage). 網址 #<板塊> 優先 */
+    var AT_KEY = "uxrec.at.v1";
+    function readAt() {
+      try {
+        return JSON.parse(localStorage.getItem(AT_KEY) || "null") || {};
+      } catch (e) {
+        return {};
+      }
+    }
+    function writeAt(patch) {
+      try {
+        localStorage.setItem(AT_KEY, JSON.stringify(Object.assign(readAt(), patch)));
+      } catch (e) {}
+    }
+
+    function selectBoard(board, playFirst) {
+      currentBoard = board;
+      rail.querySelectorAll("[data-board]").forEach(function (el) {
+        if (el.classList.contains("rec-boardnav__item")) {
+          el.setAttribute("aria-current", el.getAttribute("data-board") === board ? "true" : "false");
+        } else {
+          el.hidden = el.getAttribute("data-board") !== board;
+        }
+      });
+      writeAt({ board: board });
+      try {
+        history.replaceState(null, "", "#" + board);
+      } catch (e) {}
+      if (playFirst) {
+        var list = boardIndices(board);
+        if (list.length) playCaseByIndex(list[0]);
+        window.scrollTo(0, 0);
+      }
+    }
+
+    var at = readAt();
+    var hashBoard = decodeURIComponent((location.hash || "").replace(/^#/, ""));
+    var startBoard = shownBoards.indexOf(hashBoard) >= 0 ? hashBoard : shownBoards.indexOf(at.board) >= 0 ? at.board : shownBoards[0] || null;
+    var startIndex = -1;
+    if (startBoard) {
+      var inBoard = boardIndices(startBoard);
+      var saved = at.caseId ? cases.findIndex(function (c) { return c.id === at.caseId; }) : -1;
+      startIndex = inBoard.indexOf(saved) >= 0 ? saved : inBoard.length ? inBoard[0] : -1;
+      selectBoard(startBoard, false);
+    } else if (cases.length) {
+      startIndex = 0;
+    }
     var signalBtn = display.querySelector(".rec-display__signal");
     if (signalBtn) {
       signalBtn.addEventListener("click", function (e) {
@@ -766,6 +832,14 @@
 
     if (startIndex >= 0) {
       playCaseByIndex(startIndex);
+      if (at.scrollY && !hashBoard) window.scrollTo(0, at.scrollY);
+      var scrollTimer = 0;
+      window.addEventListener("scroll", function () {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(function () {
+          writeAt({ scrollY: Math.round(window.scrollY) });
+        }, 200);
+      });
     } else {
       setIdleMonitor();
     }
