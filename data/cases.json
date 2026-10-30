@@ -1,0 +1,209 @@
+[
+  {
+    "id": "dungeons-no-manual",
+    "board": "dungeons",
+    "title": "Learn Without a Manual",
+    "line": "A first-time player should be moving before reading anything.",
+    "problem": "A large RPG (104 floors, over a thousand items) can bury a new player under rules and menus before the fun starts.",
+    "move": "Keep a single line of instruction on screen and let the map, items and characters teach the rest. Treat every place a tester stops as a design bug.",
+    "outcome": "In the first playtest, a family member learned the controls in about three minutes with no explanation and cleared a five-floor section.",
+    "role": [
+      "Game UI",
+      "Interaction design",
+      "Playtesting"
+    ],
+    "video": null
+  },
+  {
+    "id": "dungeons-desks",
+    "board": "dungeons",
+    "title": "Tools Before Content",
+    "line": "A world grows faster when the people filling it never touch code.",
+    "problem": "Content lived inside one 36,000-line game file. Each new character or item was slow to add, easy to break, and blocked several AI agents from working at the same time.",
+    "move": "Move content out of code into tables, each with its own editor showing the same IDs the game uses. Split the engine into 69 source files that are assembled back into one at build time.",
+    "outcome": "Characters went from 14 to 139 in one month, with three consistency passes. 41 tools now feed the game.",
+    "role": [
+      "Tool UX",
+      "Information architecture",
+      "System design"
+    ],
+    "video": null
+  },
+  {
+    "id": "dungeons-livehouse",
+    "board": "dungeons",
+    "title": "A Livehouse in the Tower",
+    "line": "The game and the music are one world, not two products.",
+    "problem": "The game had 34 tracks of background music made only for the game, separate from the songs released on the music site.",
+    "move": "Replace game-only music with released songs played through an in-game player, and turn listening into a place: a ticketed livehouse inside the tower.",
+    "outcome": "Game and music now share one catalog, and an in-game ticket ($1.99) connects playing the game to the band.",
+    "role": [
+      "Experience design",
+      "Game UI",
+      "Music"
+    ],
+    "video": null
+  },
+  {
+    "id": "band-no-account",
+    "board": "band",
+    "title": "Buy Without an Account",
+    "line": "Buying a song should take one step, and losing it should not be possible.",
+    "problem": "Making an account is where most small music purchases are dropped. Without accounts, clearing the browser would mean losing what you bought.",
+    "move": "Keep ownership in the browser for instant access, and make email the way back: one address restores every purchase.",
+    "outcome": "Payment, storage, delivery and mail run through Stripe, R2, Upstash, Resend and Vercel. Purchase, download and email recovery pass end to end in test mode.",
+    "role": [
+      "UX flow",
+      "Commerce",
+      "Front-end"
+    ],
+    "video": null
+  },
+  {
+    "id": "band-owned-shelf",
+    "board": "band",
+    "title": "Owned Things Simply Appear",
+    "line": "What you bought shows up as an object, not a line in a list.",
+    "problem": "Digital purchases usually sit in a grey library list that feels like nothing was bought, and an empty listening-room button tells new visitors about a feature they can't use.",
+    "move": "Show owned releases as physical objects, and keep the listening room off the home page until there is something in it, instead of showing a disabled button.",
+    "outcome": "The home page stays clean for new visitors and gains a listening room, \"everything you own, in one room\", the moment a purchase happens.",
+    "role": [
+      "Interaction design",
+      "Visual design"
+    ],
+    "video": null
+  },
+  {
+    "id": "rec-dock",
+    "board": "rec",
+    "title": "A Dock That Never Says No",
+    "line": "When the dock is full, adding still works: the oldest icon leaves.",
+    "problem": "An earlier version stopped drawing the add buttons when the dock was full. Every button in the list vanished at once, which looked like a bug and broke the first screen's promise that you can add freely.",
+    "move": "Never block. When the dock is full, push the oldest icon out (first in, first out).",
+    "outcome": "Adding always works, and the promise on the first screen stays true.",
+    "role": [
+      "Interaction design",
+      "Edge cases"
+    ],
+    "video": null
+  },
+  {
+    "id": "rec-no-error-text",
+    "board": "rec",
+    "title": "Failure Without Words",
+    "line": "A wrong answer gets a symbol, not a sentence.",
+    "problem": "Error text like 'wrong password' explains the gate and turns a quiet hidden entry into a puzzle with instructions.",
+    "move": "Remove the warning layer. Flash ❌ once at the point of input; after that, nothing.",
+    "outcome": "Visitors know the attempt didn't pass, and hidden entries stay hidden.",
+    "role": [
+      "Microinteraction",
+      "Copy"
+    ],
+    "video": null
+  },
+  {
+    "id": "rec-short-copy",
+    "board": "rec",
+    "title": "Copy for People Standing Up",
+    "line": "Phone users get their own words, not cut-off desktop sentences.",
+    "problem": "The mobile screen is a small fixed square, and people scroll it standing up. The desktop sentences don't fit and aren't read.",
+    "move": "Write a separate short copy for every entry instead of truncating the long one. The two are edited independently.",
+    "outcome": "Every public entry has a mobile version, and desktop keeps its full sentences.",
+    "role": [
+      "UX writing",
+      "Mobile"
+    ],
+    "video": null
+  },
+  {
+    "id": "kiln-same-result",
+    "board": "kiln",
+    "title": "Same Input, Same Result",
+    "line": "A formatting tool you can trust has to be boringly predictable.",
+    "problem": "AI rewriting gives a different result each time, so you can't review what changed or rely on it for the next document.",
+    "move": "Make every rule explicit and deterministic, and keep each change traceable to the rule that made it.",
+    "outcome": "The same input always gives the same result. The how-to post has been shared more than 50 times.",
+    "role": [
+      "Product concept",
+      "Rule design",
+      "UX"
+    ],
+    "video": null
+  },
+  {
+    "id": "ruvia-format-first",
+    "board": "ruvia",
+    "title": "Design the File First",
+    "line": "Before drawing the tree, decide what a tree is.",
+    "problem": "Thinking tools often lock content inside their own interface; anything written elsewhere, including by AI, has to be rebuilt by hand.",
+    "move": "Define the saved format first, so documents written by AI import as they are. Separate display names from internal IDs, so renaming never breaks links.",
+    "outcome": "Ideas move in and out as plain files; the tree view is one way to read them.",
+    "role": [
+      "Information architecture",
+      "Data design",
+      "UX"
+    ],
+    "video": null
+  },
+  {
+    "id": "session-stream",
+    "board": "spiral",
+    "title": "Session Stream",
+    "line": "AI work unfolds as a continuous workspace rather than a series of closed sessions.",
+    "problem": "Conventional AI interfaces split work into separate sessions, forcing users to repeatedly enter, exit, and reconstruct context across isolated views.",
+    "move": "Recast sessions as positions inside a single spatial stream, so movement across tasks happens through scrolling rather than through container changes.",
+    "outcome": "Shifts conversation from session management to spatial navigation, making context easier to retain, revisit, and work across.",
+    "role": [
+      "Interaction model",
+      "UX concept",
+      "Prototype implementation"
+    ],
+    "video": null
+  },
+  {
+    "id": "meta-control",
+    "board": "spiral",
+    "title": "Meta Control",
+    "line": "System behavior is edited in context through language instead of hidden control panels.",
+    "problem": "In most systems, configuration is pushed into secondary panels and technical metadata flows, separating operational control from the work itself.",
+    "move": "Placed behavioral control inside the primary interface by letting users issue structural changes in language, with explicit application states that keep the system legible.",
+    "outcome": "Turns configuration into a first-class interaction, allowing system behavior to be modified where the work is actually happening.",
+    "role": [
+      "UX concept",
+      "Interaction design",
+      "System design",
+      "Prototype implementation"
+    ],
+    "video": null
+  },
+  {
+    "id": "header-system",
+    "board": "spiral",
+    "title": "Header System",
+    "line": "Documents operate as active system objects rather than passive files.",
+    "problem": "Most software separates content from behavior, leaving users to navigate between the document they are working on and the hidden structures that determine how it behaves.",
+    "move": "Promoted the document header into an explicit control surface, so the governing logic of a document can be inspected, modified, and applied in place.",
+    "outcome": "Repositions documents as programmable interface units whose structure is directly usable rather than concealed in the system layer.",
+    "role": [
+      "System design",
+      "UX concept",
+      "Interaction design"
+    ],
+    "video": null
+  },
+  {
+    "id": "ghostwriting",
+    "board": "spiral",
+    "title": "Ghostwriting",
+    "line": "AI assistance appears inside the draft instead of in a separate conversational channel.",
+    "problem": "Typical AI writing tools split drafting and assistance across two interfaces, which breaks writing flow and turns revision into a context-switching task.",
+    "move": "Collapsed the editor and the assistant into one surface, so generation happens exactly where the text is being written and revised.",
+    "outcome": "Produces a co-writing model in which AI behaves as part of the drafting environment rather than as an external sidecar.",
+    "role": [
+      "UX concept",
+      "Interaction design",
+      "Prototype implementation"
+    ],
+    "video": null
+  }
+]

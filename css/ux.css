@@ -1,0 +1,63 @@
+/* Rec UX 重做(2026-10-30). 色與字照 rec.ooo/band: 系統黑字, 選中系統紅, 底色框 = 主題黑 k 的 alpha 階.
+   前端契約: 無框 / 無圓角 / 無陰影 / 無漸進動畫, 外距與內距最多 4px, 一個模組最多兩種字色.
+   背景簡潔: 純白, 不鋪 band 的手做底圖. */
+:root{
+  --ink:#000;
+  --op:#0000ff;          /* 系統藍 - 連結 */
+  --pick:#ff0000;        /* 系統紅 - 選中 */
+  --bg:#fff;
+  --k:5,5,5;             /* 主題黑, 只當底色框 */
+  --vh:100vh;
+  /* 舞台寬: 16:10, 高放得下(視窗高 - 上下 40)與寬放得下(視窗寬 - 側欄 420 - 間隙 16)取小, 下限 560 上限 1200 */
+  --stage: clamp(560px, min((var(--vh) - 40px) * 1.6, 100vw - 436px), 1200px);
+  --font: ui-monospace,"SF Mono",Menlo,"Courier New","Hiragino Sans","PingFang TC",monospace;
+}
+@supports (height:100svh){ :root{ --vh:100svh; } }
+*{ box-sizing:border-box; }
+html{ background:var(--bg); }
+html,body{ margin:0; padding:0; color:var(--ink); }
+body{ font:12px/1.35 var(--font); padding:4px; }
+button,input,select,textarea{ border:0; border-radius:0; margin:0; padding:0; background:none; color:inherit; font:inherit; outline:none; }
+a{ color:inherit; text-decoration:none; }
+p,dl,dd{ margin:0; font:inherit; }
+
+/* 角落工具: 前置浮動, 底色框毛玻璃 .50 */
+#tools{ position:fixed; top:4px; right:4px; z-index:5; display:flex; gap:3px; }
+#tools a{ padding:1px 3px; background:rgba(255,255,255,.50); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); }
+#tools a:hover,#tools a:focus-visible{ background:rgba(var(--k),.10); }
+#tools a:active{ background:rgba(var(--k),.18); }
+#go[hidden]{ display:none; }
+
+main{ display:flex; gap:4px; align-items:flex-start; }
+@media (min-width:761px){
+  body{ min-height:var(--vh); display:flex; align-items:center; justify-content:center; }
+}
+
+#stage{ width:var(--stage); max-width:100%; aspect-ratio:16/10; background:rgba(var(--k),.07); }
+#vid{ width:100%; height:100%; display:block; object-fit:contain; }
+#vid:not([src]){ visibility:hidden; }
+
+#side{ width:420px; max-width:100%; height:calc(var(--stage) / 1.6); display:flex; flex-direction:column; gap:4px; }
+
+/* 事例條: band 曲目條同一套 .07 / .14 / .22, 選中字換系統紅. 板塊名是不可按的一行, 只有字 */
+#list{ display:flex; flex-direction:column; gap:1px; overflow:auto; flex:0 1 auto; }
+.bd{ padding:4px 1px 1px; }
+.bd:first-child{ padding-top:0; }
+.row{ display:flex; gap:3px; width:100%; padding:1px; text-align:left; cursor:pointer; background:rgba(var(--k),.07); }
+.row:hover,.row:focus-visible{ background:rgba(var(--k),.14); }
+.row:active,.row.on{ background:rgba(var(--k),.22); }
+.row.on{ color:var(--pick); }
+.row .n{ width:2ch; text-align:right; }
+.row .t{ flex:1; }
+.row .v{ width:2ch; text-align:center; }
+
+/* 說明: band 歌詞位. 一種字號, 黑字 + 標籤用 .55 */
+#detail{ flex:1 1 auto; overflow:auto; padding:1px; display:flex; flex-direction:column; gap:4px; }
+#detail dl{ display:grid; grid-template-columns:8ch 1fr; gap:4px 3px; }
+#detail dt,#role{ opacity:.55; }
+
+@media (max-width:760px){
+  :root{ --stage: calc(100vw - 8px); }
+  main{ flex-direction:column; }
+  #side{ width:100%; height:auto; }
+}
