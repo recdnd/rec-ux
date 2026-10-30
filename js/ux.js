@@ -87,8 +87,13 @@
     it.el.scrollIntoView({ block: "nearest" });
     return j;
   }
-  // 沒有 # 或對不到: 第一則事例(預設放影片)
-  const find = (k) => { const j = items.findIndex((x) => x.key === k); return j >= 0 ? j : items.findIndex((x) => x.kind === "case"); };
+  // 沒有 # 或對不到: cases.json 標 start 的那一則(主筆 10-30 Livehouse「作為默認播放的, 因為比較長」), 沒標就第一則
+  const find = (k) => {
+    const j = items.findIndex((x) => x.key === k);
+    if (j >= 0) return j;
+    const s = items.findIndex((x) => x.kind === "case" && x.ref.start);
+    return s >= 0 ? s : items.findIndex((x) => x.kind === "case");
+  };
 
   let cur = show(find(location.hash.slice(1)));
   // 手打 / 貼上另一個 #id(同一頁不會重載)也要換過去
