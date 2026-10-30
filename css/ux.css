@@ -41,6 +41,10 @@ main{ display:flex; gap:4px; align-items:flex-start; }
 /* 寬 = 原寸, 盒放不下才縮(盒寬 / 盒高 x 比例); 高由 aspect-ratio 給. 還沒有影片時這一塊就是 .07 的空框, 大小照 size */
 #vid{ display:block; aspect-ratio:var(--r); width:min(var(--nw), 100cqw, 100cqh * (var(--r))); height:auto; background:rgba(var(--k),.07); }
 
+/* 嵌入版(?live, 試做 10-30): 真頁面鋪滿整個盒, 不縮放, 頁面自己照盒寬排 */
+#live{ display:block; width:100cqw; height:100cqh; border:0; }
+#live[hidden],#vid[hidden]{ display:none; }
+
 #side{ width:420px; max-width:100%; height:var(--stage-h); display:flex; flex-direction:column; gap:4px; }
 
 /* 事例條: band 曲目條同一套 .07 / .14 / .22, 選中字換系統紅. 板塊名是不可按的一行, 只有字 */

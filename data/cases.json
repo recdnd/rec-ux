@@ -12,7 +12,8 @@
       "Interaction design",
       "Playtesting"
     ],
-    "video": null
+    "video": null,
+    "live": "https://rec.ooo/dungeons/"
   },
   {
     "id": "dungeons-desks",
@@ -27,7 +28,8 @@
       "Information architecture",
       "System design"
     ],
-    "video": null
+    "video": null,
+    "live": "https://rec.ooo/dungeons/"
   },
   {
     "id": "dungeons-livehouse",
@@ -42,7 +44,8 @@
       "Game UI",
       "Music"
     ],
-    "video": null
+    "video": null,
+    "live": "https://rec.ooo/dungeons/"
   },
   {
     "id": "band-no-account",
@@ -57,7 +60,8 @@
       "Commerce",
       "Front-end"
     ],
-    "video": null
+    "video": "movies/band-player.mp4",
+    "live": "https://rec.ooo/band/"
   },
   {
     "id": "band-owned-shelf",
@@ -71,7 +75,39 @@
       "Interaction design",
       "Visual design"
     ],
-    "video": null
+    "video": "movies/band-owned.mp4",
+    "live": "https://rec.ooo/band/"
+  },
+  {
+    "id": "band-room",
+    "board": "band",
+    "title": "Hold What You Bought",
+    "line": "A bought CD is a box you can turn in your hands.",
+    "problem": "Owning a digital album usually means one more row in a list, with nothing to look at or touch.",
+    "move": "Give each owned release its own room: the case floats over a CD deck and turns in every direction; the disc comes out of it. Back, spine and disc are drawn in code until the hand-made art is ready.",
+    "outcome": "Only people who bought something load this room, so the player page stays light for everyone else.",
+    "role": [
+      "Interaction design",
+      "3D in the browser",
+      "Illustration"
+    ],
+    "video": "movies/band-room.mp4",
+    "live": "https://rec.ooo/band/shelf.html"
+  },
+  {
+    "id": "band-phone",
+    "board": "band",
+    "title": "Same Store on a Phone",
+    "line": "Pick, buy and reach the listening room with one thumb.",
+    "problem": "The desktop player puts cover, tracks and lyrics side by side; a phone has room for one of them.",
+    "move": "Pin the cover on top, let the release shelf and track list scroll under it, and keep the player controls in the bottom corner where the thumb is.",
+    "outcome": "The whole flow, from choosing a release to the thank-you note and the listening-room link, works without leaving the page.",
+    "role": [
+      "Responsive design",
+      "UI design"
+    ],
+    "video": "movies/band-phone.mp4",
+    "live": "https://rec.ooo/band/"
   },
   {
     "id": "rec-dock",
@@ -85,7 +121,8 @@
       "Interaction design",
       "Edge cases"
     ],
-    "video": null
+    "video": null,
+    "live": "https://rec.ooo/"
   },
   {
     "id": "rec-no-error-text",
@@ -99,7 +136,8 @@
       "Microinteraction",
       "Copy"
     ],
-    "video": null
+    "video": null,
+    "live": "https://rec.ooo/"
   },
   {
     "id": "rec-short-copy",
@@ -113,7 +151,8 @@
       "UX writing",
       "Mobile"
     ],
-    "video": null
+    "video": null,
+    "live": "https://rec.ooo/"
   },
   {
     "id": "kiln-same-result",
@@ -128,7 +167,8 @@
       "Rule design",
       "UX"
     ],
-    "video": null
+    "video": null,
+    "live": "https://kiln.ooo/"
   },
   {
     "id": "ruvia-format-first",
@@ -143,7 +183,8 @@
       "Data design",
       "UX"
     ],
-    "video": null
+    "video": null,
+    "live": "https://ruvia.dev/"
   },
   {
     "id": "session-stream",

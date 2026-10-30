@@ -5,7 +5,9 @@
     ["data/cases.json", "data/boards.json"].map((u) => fetch(u, { cache: "no-cache" }).then((r) => r.json())));
   const board = Object.fromEntries(boards.map((b) => [b.id, b]));
   const $ = (id) => document.getElementById(id);
-  const list = $("list"), vid = $("vid"), go = $("go"), root = document.documentElement;
+  const list = $("list"), vid = $("vid"), go = $("go"), frame = $("live"), root = document.documentElement;
+  // ?live = 嵌入版(試做, 主筆 10-30「嵌入版的也試試」): 有 live 網址的則把真頁面嵌進舞台, 沒有的照舊放影片
+  const liveMode = new URLSearchParams(location.search).has("live");
   // 原寸: 錄影是 deviceScaleFactor 2, 所以影片像素 / 2 = 頁面上的原本大小
   const size = (w, h) => {
     root.style.setProperty("--r", `${w}/${h}`);
@@ -45,17 +47,27 @@
     $("role").textContent = c.role.join(" / ");
     // 大小: 先用 cases.json 的 size(影片像素, 如 "1792x1120"), 影片 metadata 到了再照實際寬高改; 都沒有 = 1920x1200
     size(...(c.size || "1920x1200").split("x").map(Number));
-    if (c.video) { vid.src = c.video; vid.play().catch(() => {}); }
-    else { vid.removeAttribute("src"); vid.load(); }
+    const embed = liveMode && c.live;
+    vid.hidden = !!embed; frame.hidden = !embed;
+    if (embed) {
+      vid.removeAttribute("src"); vid.load();
+      if (frame.getAttribute("src") !== c.live) frame.src = c.live;
+    } else {
+      frame.removeAttribute("src");
+      if (c.video) { vid.src = c.video; vid.play().catch(() => {}); }
+      else { vid.removeAttribute("src"); vid.load(); }
+    }
     const url = board[c.board] && board[c.board].url;
     go.hidden = !url;
     if (url) go.href = url;
-    history.replaceState(null, "", "#" + c.id);
+    history.replaceState(null, "", location.search + "#" + c.id);
     rows[i].scrollIntoView({ block: "nearest" });
     return i;
   }
 
   let cur = show(location.hash.slice(1));
+  // 手打 / 貼上另一個 #id(同一頁不會重載)也要換過去
+  addEventListener("hashchange", () => { cur = show(location.hash.slice(1)); });
   document.addEventListener("keydown", (e) => {
     if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
     e.preventDefault();
