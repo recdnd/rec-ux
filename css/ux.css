@@ -56,12 +56,12 @@ main{ display:flex; gap:4px; align-items:flex-start; }
 .bd.live{ width:100%; margin-top:3px; padding:1px; cursor:pointer; outline:none; }
 .bd.live:first-child{ margin-top:0; }
 .bd.live.on{ color:var(--pick); }
-/* 🔗: 靜置只有符號; hover 才長出藍字底色框的連結(系統藍, 藍的 .07 / .14 / .22 階), 點了開新分頁. 不放說明字 */
-.bd .lk{ position:relative; display:inline-flex; align-items:center; gap:3px; cursor:pointer; }
-.bd .lk a{ display:none; padding:1px; color:var(--op); background:rgba(0,0,255,.07); white-space:nowrap; }
-.bd .lk:hover a,.bd .lk:focus-within a{ display:inline-block; }
-.bd .lk a:hover,.bd .lk a:focus-visible{ background:rgba(0,0,255,.14); }
-.bd .lk a:active{ background:rgba(0,0,255,.22); }
+/* 🔗: 靜置只有符號; hover 時 🔗 + 網址一起變成一顆藍字底色框的連結(系統藍, 藍的 .07 / .14 / .22 階), 整顆都能點, 開新分頁. 不放說明字 */
+.bd .lk{ display:inline-flex; align-items:center; gap:3px; padding:1px; color:var(--op); text-decoration:none; white-space:nowrap; }
+.bd .lk span{ display:none; }
+.bd .lk:hover,.bd .lk:focus-visible{ background:rgba(0,0,255,.14); }
+.bd .lk:hover span,.bd .lk:focus-visible span{ display:inline; }
+.bd .lk:active{ background:rgba(0,0,255,.22); }
 .row{ display:flex; gap:3px; width:100%; padding:1px; text-align:left; cursor:pointer; background:rgba(var(--k),.07); }
 .row:hover,.row:focus-visible{ background:rgba(var(--k),.14); }
 .row:active,.row.on{ background:rgba(var(--k),.22); }

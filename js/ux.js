@@ -43,12 +43,12 @@
         items.push({ key: c.board, el: h, kind: "board", ref: b });
       }
       if (b.url) {
-        const lk = document.createElement("span");
+        // 🔗 和 hover 出來的網址是同一個 <a>: 點 🔗 本身也跳(主筆 10-30「hover時，🔗按鈕本身也是可點擊跳轉範圍」)
+        const lk = document.createElement("a");
         lk.className = "lk";
-        lk.innerHTML = `🔗<a target="_blank" rel="noopener"></a>`;
-        const a = lk.querySelector("a");
-        a.href = b.url;
-        a.textContent = b.url.replace(/^https?:\/\//, "").replace(/\/$/, "");
+        lk.href = b.url; lk.target = "_blank"; lk.rel = "noopener";
+        lk.innerHTML = `🔗<span></span>`;
+        lk.querySelector("span").textContent = b.url.replace(/^https?:\/\//, "").replace(/\/$/, "");
         lk.addEventListener("click", (e) => e.stopPropagation());   // 點連結不要順便切到互動版
         h.appendChild(lk);
       }
