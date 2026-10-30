@@ -45,7 +45,8 @@
       "Music"
     ],
     "video": null,
-    "live": "https://rec.ooo/dungeons/"
+    "live": "https://rec.ooo/dungeons/",
+    "default": "video"
   },
   {
     "id": "band-no-account",
@@ -76,7 +77,8 @@
       "Visual design"
     ],
     "video": "movies/band-owned.mp4",
-    "live": "https://rec.ooo/band/"
+    "live": "https://rec.ooo/band/",
+    "default": "video"
   },
   {
     "id": "band-room",
@@ -92,7 +94,8 @@
       "Illustration"
     ],
     "video": "movies/band-room.mp4",
-    "live": "https://rec.ooo/band/shelf.html"
+    "live": "https://rec.ooo/band/shelf.html",
+    "default": "video"
   },
   {
     "id": "band-phone",
@@ -199,7 +202,7 @@
       "UX concept",
       "Prototype implementation"
     ],
-    "video": null
+    "video": "movies/session-stream.mp4"
   },
   {
     "id": "meta-control",
@@ -215,7 +218,7 @@
       "System design",
       "Prototype implementation"
     ],
-    "video": null
+    "video": "movies/meta-control.mp4"
   },
   {
     "id": "header-system",
@@ -230,7 +233,7 @@
       "UX concept",
       "Interaction design"
     ],
-    "video": null
+    "video": "movies/header-system.mp4"
   },
   {
     "id": "ghostwriting",
@@ -245,6 +248,6 @@
       "Interaction design",
       "Prototype implementation"
     ],
-    "video": null
+    "video": "movies/ghostwriting.mp4"
   }
 ]
