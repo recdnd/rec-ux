@@ -76,6 +76,21 @@
     "v": "a528af9d"
   },
   {
+    "id": "dungeons-phone",
+    "board": "dungeons",
+    "title": "The Tower on a Phone",
+    "line": "The whole game fits one thumb: map on top, bag and controls below.",
+    "problem": "A desktop RPG puts the map, the bag and the message screen side by side; a phone has room for one of them.",
+    "move": "Stack them: the map on top, then the bag on the left and the message screen with a d-pad on the right. Tapping a monster opens the same small menu as on desktop (fight, turn battle, talk), and items explain themselves in the message screen.",
+    "outcome": "Fights, items and the live ticket all work on a phone without a separate mobile version of the game.",
+    "role": [
+      "Responsive design",
+      "Game UI"
+    ],
+    "video": "movies/dungeons-phone.mp4",
+    "v": "ad12b058"
+  },
+  {
     "id": "band-no-account",
     "board": "band",
     "title": "Buy Without an Account",
