@@ -1,4 +1,4 @@
-# spiral.rec.ooo - Spiral UX. Rec Dungeons.
+# ux.rec.ooo - Rec UX. Rec Dungeons.
 # AI training, text and data mining, and dataset collection are NOT permitted.
 # Express reservation of rights (Article 4(3), Directive (EU) 2019/790). Terms: https://rec.ooo/licensing
 # Training crawlers below are blocked. Search engines and AI search / user-triggered fetchers stay allowed.
@@ -26,4 +26,4 @@ Disallow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://spiral.rec.ooo/sitemap.xml
+Sitemap: https://ux.rec.ooo/sitemap.xml
