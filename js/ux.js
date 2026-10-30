@@ -73,8 +73,8 @@
     } else {
       const c = it.ref;
       text(c.title, c.line, c);
-      // 大小: 先用 cases.json 的 size(影片像素, 如 "1792x1120"), 影片 metadata 到了再照實際寬高改; 都沒有 = 2320x1450(錄影規格 1160x725 @2x)
-      size(...(c.size || "2320x1450").split("x").map(Number));
+      // 大小: 先用 cases.json 的 size(影片像素, 如 "1792x1120"), 影片 metadata 到了再照實際寬高改; 都沒有 = 2000x1600(錄影規格 1000x800 @2x; band 例外 1160x725)
+      size(...(c.size || "2000x1600").split("x").map(Number));
       vid.hidden = false; frame.hidden = true;
       frame.removeAttribute("src");
       if (c.video) { vid.src = c.video; vid.play().catch(() => {}); }
