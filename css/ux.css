@@ -36,12 +36,13 @@ main{ display:flex; gap:4px; align-items:flex-start; }
   body{ min-height:var(--vh); display:flex; align-items:center; justify-content:center; }
 }
 
-#stage{ width:var(--stage-w); max-width:100%; height:var(--stage-h); container-type:size; display:flex; justify-content:center; align-items:flex-start; }
+/* 舞台跟著影片縮(主筆 10-30「1試試看」): 不再是固定的盒, 寬 = 影片顯示寬, 影片 + 列表一組貼著, 整組由 body 置中. 換寬度不同的片時整組會左右移 */
+#stage{ max-width:100%; }
 /* 寬 = 原寸, 盒放不下才縮(盒寬 / 盒高 x 比例); 高由 aspect-ratio 給. 還沒有影片時這一塊就是 .07 的空框, 大小照 size */
-#vid{ display:block; aspect-ratio:var(--r); width:min(var(--nw), 100cqw, 100cqh * (var(--r))); height:auto; background:rgba(var(--k),.07); }
+#vid{ display:block; aspect-ratio:var(--r); width:min(var(--nw), var(--stage-w), var(--stage-h) * (var(--r))); max-width:100%; height:auto; background:rgba(var(--k),.07); }
 
 /* 可玩版 🕹️: 真頁面鋪滿整個盒, 不縮放, 頁面自己照盒寬排 */
-#live{ display:block; width:100cqw; height:100cqh; border:0; }
+#live{ display:block; width:var(--stage-w); max-width:100%; height:var(--stage-h); border:0; }   /* 互動版用整個可用的盒 */
 #live[hidden],#vid[hidden]{ display:none; }
 
 #side{ width:420px; max-width:100%; height:var(--stage-h); display:flex; flex-direction:column; gap:4px; }
@@ -88,5 +89,7 @@ main{ display:flex; gap:4px; align-items:flex-start; }
 @media (max-width:760px){
   :root{ --stage-w: calc(100vw - 8px); --stage-h: min(70vh, calc(100vw - 8px) / (var(--r))); }
   main{ flex-direction:column; }
+  #stage{ align-self:center; }        /* 直式手機片比螢幕窄: 置中 */
+  #live{ height:70vh; }               /* 互動版不跟著上一支影片的比例, 給固定的高 */
   #side{ width:100%; height:auto; }
 }
