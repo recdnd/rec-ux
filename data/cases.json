@@ -46,6 +46,20 @@
     "default": "video"
   },
   {
+    "id": "dungeons-trade",
+    "board": "dungeons",
+    "title": "Pay on a Scale",
+    "line": "Buying happens on the map, not in a shop menu.",
+    "problem": "A shop window pulls the player out of the world into a list of prices and buttons.",
+    "move": "Pick the item up and carry it, unpaid. At the scale, put coins on the pan until it balances; the item is yours. The same hands that walk and pick things up also pay.",
+    "outcome": "There is no separate shop screen to learn, and the price is something you can see: a heavier item needs more coins on the pan.",
+    "role": [
+      "Game UI",
+      "Interaction design"
+    ],
+    "video": "movies/dungeons-trade.mp4"
+  },
+  {
     "id": "band-no-account",
     "board": "band",
     "title": "Buy Without an Account",
