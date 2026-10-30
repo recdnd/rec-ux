@@ -8,8 +8,11 @@
   --bg:#fff;
   --k:5,5,5;             /* 主題黑, 只當底色框 */
   --vh:100vh;
-  /* 舞台寬: 16:10, 高放得下(視窗高 - 上下 40)與寬放得下(視窗寬 - 側欄 420 - 間隙 16)取小, 下限 560 上限 1200 */
-  --stage: clamp(560px, min((var(--vh) - 40px) * 1.6, 100vw - 436px), 1200px);
+  /* 舞台 = 一個固定的盒(換則時版面不跳), 影片在盒裡照自己的比例放到最大(主筆 10-30: dungeons 是裝備欄 + 右側地圖的比例, 不鎖 16:10).
+     盒寬 = 視窗寬 - 側欄 420 - 間隙 16, 下限 560 上限 1200; 盒高 = 視窗高 - 40 與 盒寬 / 1.25 取小. */
+  --stage-w: clamp(560px, 100vw - 436px, 1200px);
+  --stage-h: min(var(--vh) - 40px, var(--stage-w) / 1.25);
+  --r: 16/10;            /* 影片比例, js 讀影片 metadata 或 cases.json 的 ratio 改寫 */
   --font: ui-monospace,"SF Mono",Menlo,"Courier New","Hiragino Sans","PingFang TC",monospace;
 }
 @supports (height:100svh){ :root{ --vh:100svh; } }
@@ -33,11 +36,11 @@ main{ display:flex; gap:4px; align-items:flex-start; }
   body{ min-height:var(--vh); display:flex; align-items:center; justify-content:center; }
 }
 
-#stage{ width:var(--stage); max-width:100%; aspect-ratio:16/10; background:rgba(var(--k),.07); }
-#vid{ width:100%; height:100%; display:block; object-fit:contain; }
-#vid:not([src]){ visibility:hidden; }
+#stage{ width:var(--stage-w); max-width:100%; height:var(--stage-h); container-type:size; display:flex; justify-content:center; align-items:flex-start; }
+/* 盒寬放得下就用盒寬, 不然用盒高 x 比例; 高由 aspect-ratio 給. 還沒有影片時這一塊就是 .07 的空框, 比例照 ratio */
+#vid{ display:block; aspect-ratio:var(--r); width:min(100cqw, 100cqh * (var(--r))); height:auto; background:rgba(var(--k),.07); }
 
-#side{ width:420px; max-width:100%; height:calc(var(--stage) / 1.6); display:flex; flex-direction:column; gap:4px; }
+#side{ width:420px; max-width:100%; height:var(--stage-h); display:flex; flex-direction:column; gap:4px; }
 
 /* 事例條: band 曲目條同一套 .07 / .14 / .22, 選中字換系統紅. 板塊名是不可按的一行, 只有字 */
 #list{ display:flex; flex-direction:column; gap:1px; overflow:auto; flex:0 1 auto; }
@@ -57,7 +60,7 @@ main{ display:flex; gap:4px; align-items:flex-start; }
 #detail dt,#role{ opacity:.55; }
 
 @media (max-width:760px){
-  :root{ --stage: calc(100vw - 8px); }
+  :root{ --stage-w: calc(100vw - 8px); --stage-h: min(70vh, calc(100vw - 8px) / (var(--r))); }
   main{ flex-direction:column; }
   #side{ width:100%; height:auto; }
 }
