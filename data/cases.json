@@ -126,7 +126,8 @@
       "Prototype implementation"
     ],
     "video": "movies/session-stream.mp4",
-    "v": "602c5428"
+    "v": "602c5428",
+    "live": "https://spiral.ooo/"
   },
   {
     "id": "meta-control",
@@ -143,7 +144,8 @@
       "Prototype implementation"
     ],
     "video": "movies/meta-control.mp4",
-    "v": "fe32fd45"
+    "v": "fe32fd45",
+    "live": "https://spiral.ooo/"
   },
   {
     "id": "header-system",
@@ -159,7 +161,8 @@
       "Interaction design"
     ],
     "video": "movies/header-system.mp4",
-    "v": "2b633fff"
+    "v": "2b633fff",
+    "live": "https://spiral.ooo/"
   },
   {
     "id": "ghostwriting",
@@ -175,6 +178,7 @@
       "Prototype implementation"
     ],
     "video": "movies/ghostwriting.mp4",
-    "v": "6cb35a6a"
+    "v": "6cb35a6a",
+    "live": "https://spiral.ooo/"
   }
 ]
