@@ -6,9 +6,12 @@
   const board = Object.fromEntries(boards.map((b) => [b.id, b]));
   const $ = (id) => document.getElementById(id);
   const list = $("list"), vid = $("vid"), go = $("go"), root = document.documentElement;
-  vid.addEventListener("loadedmetadata", () => {
-    if (vid.videoWidth) root.style.setProperty("--r", `${vid.videoWidth}/${vid.videoHeight}`);
-  });
+  // 原寸: 錄影是 deviceScaleFactor 2, 所以影片像素 / 2 = 頁面上的原本大小
+  const size = (w, h) => {
+    root.style.setProperty("--r", `${w}/${h}`);
+    root.style.setProperty("--nw", `${w / 2}px`);
+  };
+  vid.addEventListener("loadedmetadata", () => { if (vid.videoWidth) size(vid.videoWidth, vid.videoHeight); });
 
   let last = null, n = 0;
   const rows = cases.map((c) => {
@@ -40,8 +43,8 @@
     $("move").textContent = c.move;
     $("outcome").textContent = c.outcome;
     $("role").textContent = c.role.join(" / ");
-    // 比例: 先用 cases.json 的 ratio(如 "896/560"), 影片 metadata 到了再照實際寬高改; 都沒有 = 16/10
-    root.style.setProperty("--r", c.ratio || "16/10");
+    // 大小: 先用 cases.json 的 size(影片像素, 如 "1792x1120"), 影片 metadata 到了再照實際寬高改; 都沒有 = 1920x1200
+    size(...(c.size || "1920x1200").split("x").map(Number));
     if (c.video) { vid.src = c.video; vid.play().catch(() => {}); }
     else { vid.removeAttribute("src"); vid.load(); }
     const url = board[c.board] && board[c.board].url;

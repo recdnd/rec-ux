@@ -12,7 +12,8 @@
      盒寬 = 視窗寬 - 側欄 420 - 間隙 16, 下限 560 上限 1200; 盒高 = 視窗高 - 40 與 盒寬 / 1.25 取小. */
   --stage-w: clamp(560px, 100vw - 436px, 1200px);
   --stage-h: min(var(--vh) - 40px, var(--stage-w) / 1.25);
-  --r: 16/10;            /* 影片比例, js 讀影片 metadata 或 cases.json 的 ratio 改寫 */
+  --r: 16/10;            /* 影片比例, js 讀影片 metadata 或 cases.json 的 size 改寫 */
+  --nw: 960px;           /* 影片原寸寬(錄影是 @2x, 所以 = 影片像素寬 / 2). 不放大, 只在盒放不下時縮(主筆 10-30「保持影片的大小, 不然會不好看」) */
   --font: ui-monospace,"SF Mono",Menlo,"Courier New","Hiragino Sans","PingFang TC",monospace;
 }
 @supports (height:100svh){ :root{ --vh:100svh; } }
@@ -37,8 +38,8 @@ main{ display:flex; gap:4px; align-items:flex-start; }
 }
 
 #stage{ width:var(--stage-w); max-width:100%; height:var(--stage-h); container-type:size; display:flex; justify-content:center; align-items:flex-start; }
-/* 盒寬放得下就用盒寬, 不然用盒高 x 比例; 高由 aspect-ratio 給. 還沒有影片時這一塊就是 .07 的空框, 比例照 ratio */
-#vid{ display:block; aspect-ratio:var(--r); width:min(100cqw, 100cqh * (var(--r))); height:auto; background:rgba(var(--k),.07); }
+/* 寬 = 原寸, 盒放不下才縮(盒寬 / 盒高 x 比例); 高由 aspect-ratio 給. 還沒有影片時這一塊就是 .07 的空框, 大小照 size */
+#vid{ display:block; aspect-ratio:var(--r); width:min(var(--nw), 100cqw, 100cqh * (var(--r))); height:auto; background:rgba(var(--k),.07); }
 
 #side{ width:420px; max-width:100%; height:var(--stage-h); display:flex; flex-direction:column; gap:4px; }
 
