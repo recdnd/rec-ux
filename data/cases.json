@@ -61,6 +61,21 @@
     "v": "783a9ebd"
   },
   {
+    "id": "dungeons-job-card",
+    "board": "dungeons",
+    "title": "A Job and a Bank Card",
+    "line": "Money is earned in town, and kept in the town's bank.",
+    "problem": "When gold only drops from monsters, money says nothing about the place the player is in.",
+    "move": "Put money into the town: sit down and fix the church chairs to earn a coin, ask the priest to make a card, then type a name at the church bank's ATM. Every step happens on the map, in the same small boxes as the rest of the game.",
+    "outcome": "The church is a workplace and a bank, not only scenery, and the coin in the bag has a story behind it.",
+    "role": [
+      "Game design",
+      "Game UI"
+    ],
+    "video": "movies/dungeons-job-card.mp4",
+    "v": "a528af9d"
+  },
+  {
     "id": "band-no-account",
     "board": "band",
     "title": "Buy Without an Account",
