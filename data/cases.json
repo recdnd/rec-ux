@@ -78,21 +78,22 @@
     "v": "fcb1fef5"
   },
   {
-    "id": "band-owned-shelf",
+    "id": "band-room",
     "board": "band",
-    "title": "Owned Things Simply Appear",
-    "line": "What you bought shows up as an object, not a line in a list.",
-    "problem": "Digital purchases usually sit in a grey library list that feels like nothing was bought, and an empty listening-room button tells new visitors about a feature they can't use.",
-    "move": "Show owned releases as physical objects, and keep the listening room off the home page until there is something in it, instead of showing a disabled button.",
-    "outcome": "The home page stays clean for new visitors and gains a listening room, \"everything you own, in one room\", the moment a purchase happens.",
+    "title": "Hold What You Bought",
+    "line": "A bought CD is a box you can turn in your hands.",
+    "problem": "Owning a digital album usually means one more row in a list, with nothing to look at or touch.",
+    "move": "Give each owned release its own room: the case floats over a CD deck and turns in every direction; the disc comes out of it. Back, spine and disc are drawn in code until the hand-made art is ready.",
+    "outcome": "Only people who bought something load this room, so the player page stays light for everyone else.",
     "role": [
       "Interaction design",
-      "Visual design"
+      "3D in the browser",
+      "Illustration"
     ],
-    "video": "movies/band-owned.mp4",
-    "live": "https://rec.ooo/band/",
+    "video": "movies/band-room.mp4",
+    "live": "https://rec.ooo/band/shelf.html",
     "default": "video",
-    "v": "6f679f88"
+    "v": "cadf4a23"
   },
   {
     "id": "band-phone",
