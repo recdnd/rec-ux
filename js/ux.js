@@ -57,7 +57,7 @@
     const r = document.createElement("button");
     r.className = "row";
     r.innerHTML = `<span class="n">${++n}</span><span class="t"></span>`;
-    r.querySelector(".t").textContent = c.title;
+    r.querySelector(".t").textContent = c.title + (c.phone ? " 📱" : "");   // 📱 = 手機介面(直式影片, tools/stamp.py 判定)
     items.push({ key: c.id, el: r, kind: "case", ref: c });
     list.appendChild(r);
   });
@@ -85,7 +85,7 @@
       if (frame.getAttribute("src") !== liveOf[bid]) frame.src = liveOf[bid];
     } else {
       const c = it.ref;
-      text(c.title, c.line, c);
+      text(c.title + (c.phone ? " 📱" : ""), c.line, c);
       // 大小: 先用 cases.json 的 size(影片像素, 如 "1792x1120"), 影片 metadata 到了再照實際寬高改; 都沒有 = 2000x1600(錄影規格 1000x800 @2x; band 例外 1160x725)
       size(...(c.size || "2000x1600").split("x").map(Number));
       vid.hidden = false; frame.hidden = true;

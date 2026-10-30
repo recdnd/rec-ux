@@ -59,7 +59,8 @@
       "Game UI"
     ],
     "video": "movies/dungeons-phone.mp4",
-    "v": "ad12b058"
+    "v": "ad12b058",
+    "phone": true
   },
   {
     "id": "band-no-account",
@@ -110,7 +111,8 @@
     ],
     "video": "movies/band-phone.mp4",
     "live": "https://rec.ooo/band/",
-    "v": "f2612bbd"
+    "v": "f2612bbd",
+    "phone": true
   },
   {
     "id": "session-stream",
@@ -127,7 +129,8 @@
     ],
     "video": "movies/session-stream.mp4",
     "v": "602c5428",
-    "live": "https://spiral.ooo/"
+    "live": "https://spiral.ooo/",
+    "phone": true
   },
   {
     "id": "meta-control",
@@ -145,7 +148,8 @@
     ],
     "video": "movies/meta-control.mp4",
     "v": "fe32fd45",
-    "live": "https://spiral.ooo/"
+    "live": "https://spiral.ooo/",
+    "phone": true
   },
   {
     "id": "header-system",
@@ -162,7 +166,8 @@
     ],
     "video": "movies/header-system.mp4",
     "v": "2b633fff",
-    "live": "https://spiral.ooo/"
+    "live": "https://spiral.ooo/",
+    "phone": true
   },
   {
     "id": "ghostwriting",
