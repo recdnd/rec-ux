@@ -95,24 +95,6 @@
     "v": "6f679f88"
   },
   {
-    "id": "band-room",
-    "board": "band",
-    "title": "Hold What You Bought",
-    "line": "A bought CD is a box you can turn in your hands.",
-    "problem": "Owning a digital album usually means one more row in a list, with nothing to look at or touch.",
-    "move": "Give each owned release its own room: the case floats over a CD deck and turns in every direction; the disc comes out of it. Back, spine and disc are drawn in code until the hand-made art is ready.",
-    "outcome": "Only people who bought something load this room, so the player page stays light for everyone else.",
-    "role": [
-      "Interaction design",
-      "3D in the browser",
-      "Illustration"
-    ],
-    "video": "movies/band-room.mp4",
-    "live": "https://rec.ooo/band/shelf.html",
-    "default": "video",
-    "v": "cadf4a23"
-  },
-  {
     "id": "band-phone",
     "board": "band",
     "title": "Same Store on a Phone",
