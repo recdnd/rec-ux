@@ -12,8 +12,7 @@
       "Interaction design",
       "Playtesting"
     ],
-    "video": null,
-    "live": "https://rec.ooo/dungeons/"
+    "video": null
   },
   {
     "id": "dungeons-desks",
@@ -28,8 +27,7 @@
       "Information architecture",
       "System design"
     ],
-    "video": null,
-    "live": "https://rec.ooo/dungeons/"
+    "video": null
   },
   {
     "id": "dungeons-livehouse",
@@ -45,7 +43,6 @@
       "Music"
     ],
     "video": null,
-    "live": "https://rec.ooo/dungeons/",
     "default": "video"
   },
   {
