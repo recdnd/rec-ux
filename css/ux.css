@@ -30,7 +30,6 @@ p,dl,dd{ margin:0; font:inherit; }
 #tools a{ padding:1px 3px; background:rgba(255,255,255,.50); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); }
 #tools a:hover,#tools a:focus-visible{ background:rgba(var(--k),.10); }
 #tools a:active{ background:rgba(var(--k),.18); }
-#go[hidden]{ display:none; }
 
 main{ display:flex; gap:4px; align-items:flex-start; }
 @media (min-width:761px){
@@ -52,10 +51,17 @@ main{ display:flex; gap:4px; align-items:flex-start; }
 .bd{ padding:4px 1px 1px; }
 .bd:first-child{ padding-top:0; }
 /* 可玩的板塊名(主筆 10-30「標題本身可選擇，對應互動版」): 一顆可按的條, 右邊標 🕹️; 跟事例條同一套階, 只是底色是淡藍 */
-button.bd{ display:flex; gap:3px; width:100%; margin-top:3px; padding:1px; text-align:left; cursor:pointer; }
-button.bd:first-child{ margin-top:0; }
-button.bd .t{ flex:0 0 auto; }   /* 🕹️ 緊貼在名字右邊(主筆「在小標題右側」), 整條仍然都可以按 */
-button.bd.on{ color:var(--pick); }
+/* 板塊名一行: 名字 🕹️ 🔗 緊貼著排(主筆「在小標題右側」) */
+.bd{ display:flex; gap:3px; align-items:center; }
+.bd.live{ width:100%; margin-top:3px; padding:1px; cursor:pointer; outline:none; }
+.bd.live:first-child{ margin-top:0; }
+.bd.live.on{ color:var(--pick); }
+/* 🔗: 靜置只有符號; hover 才長出藍字底色框的連結(系統藍, 藍的 .07 / .14 / .22 階), 點了開新分頁. 不放說明字 */
+.bd .lk{ position:relative; display:inline-flex; align-items:center; gap:3px; cursor:pointer; }
+.bd .lk a{ display:none; padding:1px; color:var(--op); background:rgba(0,0,255,.07); white-space:nowrap; }
+.bd .lk:hover a,.bd .lk:focus-within a{ display:inline-block; }
+.bd .lk a:hover,.bd .lk a:focus-visible{ background:rgba(0,0,255,.14); }
+.bd .lk a:active{ background:rgba(0,0,255,.22); }
 .row{ display:flex; gap:3px; width:100%; padding:1px; text-align:left; cursor:pointer; background:rgba(var(--k),.07); }
 .row:hover,.row:focus-visible{ background:rgba(var(--k),.14); }
 .row:active,.row.on{ background:rgba(var(--k),.22); }

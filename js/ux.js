@@ -8,7 +8,7 @@
     ["data/cases.json", "data/boards.json"].map((u) => fetch(u, { cache: "no-cache" }).then((r) => r.json())));
   const board = Object.fromEntries(boards.map((b) => [b.id, b]));
   const $ = (id) => document.getElementById(id);
-  const list = $("list"), vid = $("vid"), go = $("go"), frame = $("live"), dl = document.querySelector("#detail dl"), root = document.documentElement;
+  const list = $("list"), vid = $("vid"), frame = $("live"), dl = document.querySelector("#detail dl"), root = document.documentElement;
   // 原寸: 錄影是 deviceScaleFactor 2, 所以影片像素 / 2 = 頁面上的原本大小
   const size = (w, h) => {
     root.style.setProperty("--r", `${w}/${h}`);
@@ -27,19 +27,32 @@
     if (c.board !== last) {
       last = c.board; n = 0;
       const b = board[c.board] || { id: c.board, name: c.board };
+      // 板塊名一行: 名字 + 🕹️(有可玩頁才有, 整條可按)+ 🔗(有產品網址才有).
+      // 🔗(主筆 10-30「改為小標題右側一個🔗按鈕，hover🔗就出藍字底色框按鈕點擊可以直接跳走」): 靜置只有 🔗, hover 才長出藍字底色框的連結, 點了開新分頁.
+      // 🔗 在可按的板塊名裡面, 所以板塊名不能是 <button>(button 裡不能放 a): 用 div + role=button + tabindex, Enter / 空白鍵也能按.
+      const h = document.createElement("div");
+      h.className = "bd";
+      h.innerHTML = `<span class="t"></span>`;
+      h.querySelector(".t").textContent = b.name;
       if (liveOf[c.board]) {
-        const h = document.createElement("button");
-        h.className = "bd live";
-        h.innerHTML = `<span class="t"></span><span class="p">🕹️</span>`;
-        h.querySelector(".t").textContent = b.name;
+        h.classList.add("live");
+        h.setAttribute("role", "button");
+        h.tabIndex = 0;
+        h.insertAdjacentHTML("beforeend", `<span class="p">🕹️</span>`);
+        h.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); h.click(); } });
         items.push({ key: c.board, el: h, kind: "board", ref: b });
-        list.appendChild(h);
-      } else {
-        const h = document.createElement("div");
-        h.className = "bd";
-        h.textContent = b.name;
-        list.appendChild(h);
       }
+      if (b.url) {
+        const lk = document.createElement("span");
+        lk.className = "lk";
+        lk.innerHTML = `🔗<a target="_blank" rel="noopener"></a>`;
+        const a = lk.querySelector("a");
+        a.href = b.url;
+        a.textContent = b.url.replace(/^https?:\/\//, "").replace(/\/$/, "");
+        lk.addEventListener("click", (e) => e.stopPropagation());   // 點連結不要順便切到互動版
+        h.appendChild(lk);
+      }
+      list.appendChild(h);
     }
     const r = document.createElement("button");
     r.className = "row";
@@ -80,9 +93,6 @@
       if (c.video) { vid.src = c.video + (c.v ? "?v=" + c.v : ""); vid.play().catch(() => {}); }   // ?v = 內容雜湊(tools/stamp.py), 換了影片網址就換
       else { vid.removeAttribute("src"); vid.load(); }
     }
-    const url = board[bid] && board[bid].url;
-    go.hidden = !url;
-    if (url) go.href = url;
     history.replaceState(null, "", "#" + it.key);
     it.el.scrollIntoView({ block: "nearest" });
     return j;
