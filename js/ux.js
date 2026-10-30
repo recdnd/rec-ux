@@ -55,8 +55,8 @@
     $("move").textContent = c.move;
     $("outcome").textContent = c.outcome;
     $("role").textContent = c.role.join(" / ");
-    // 大小: 先用 cases.json 的 size(影片像素, 如 "1792x1120"), 影片 metadata 到了再照實際寬高改; 都沒有 = 1920x1200
-    size(...(c.size || "1920x1200").split("x").map(Number));
+    // 大小: 先用 cases.json 的 size(影片像素, 如 "1792x1120"), 影片 metadata 到了再照實際寬高改; 都沒有 = 2320x1450(錄影規格 1160x725 @2x, 主筆 10-30 交 agent 定)
+    size(...(c.size || "2320x1450").split("x").map(Number));
     const embed = modeOf(c) === "live";
     paint();
     vid.hidden = !!embed; frame.hidden = !embed;
