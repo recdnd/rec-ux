@@ -47,31 +47,31 @@ main{ display:flex; gap:4px; align-items:flex-start; }
 
 #side{ width:420px; max-width:100%; height:var(--stage-h); display:flex; flex-direction:column; gap:4px; }
 
-/* 事例條: band 曲目條同一套 .07 / .14 / .22, 選中字換系統紅. 板塊名是不可按的一行, 只有字 */
+/* 事例條: band 曲目條同一套 .07 / .14 / .22, 選中字換系統紅. 沒有可玩頁的板塊名(Spiral)是不可按的一行, 只有字 */
 #list{ display:flex; flex-direction:column; gap:1px; overflow:auto; flex:0 1 auto; }
 .bd{ padding:4px 1px 1px; }
 .bd:first-child{ padding-top:0; }
+/* 可玩的板塊名(主筆 10-30「標題本身可選擇，對應互動版」): 一顆可按的條, 右邊標 🕹️; 跟事例條同一套階, 只是底色是淡藍 */
+button.bd{ display:flex; gap:3px; width:100%; margin-top:3px; padding:1px; text-align:left; cursor:pointer; }
+button.bd:first-child{ margin-top:0; }
+button.bd .t{ flex:0 0 auto; }   /* 🕹️ 緊貼在名字右邊(主筆「在小標題右側」), 整條仍然都可以按 */
+button.bd.on{ color:var(--pick); }
 .row{ display:flex; gap:3px; width:100%; padding:1px; text-align:left; cursor:pointer; background:rgba(var(--k),.07); }
 .row:hover,.row:focus-visible{ background:rgba(var(--k),.14); }
 .row:active,.row.on{ background:rgba(var(--k),.22); }
 .row.on{ color:var(--pick); }
 .row .n{ width:2ch; text-align:right; }
 .row .t{ flex:1; }
-.row .m{ display:flex; gap:3px; }
-/* 🕹️ / 🎞️ 同級標識(主筆 10-30): 有的才出現, 正在看的那個不透明, 另一個 .35; 點了換成那個 */
-.row .m i,.row .m b{ width:2ch; text-align:center; font-style:normal; }   /* 兩格固定: 🕹️ 一格, 🎞️ 一格, 沒有的那格空著, 上下對齊 */
-.row .m i{ opacity:.35; }
-.row .m i.cur{ opacity:1; }
-.row .m i:hover{ opacity:.82; }
-/* 可玩的則: 淡藍底(主筆 10-30 (c): 藍 = band 的「連結, 通往真的東西」). 同一套階 .07 / .14 / .22, 只換 k */
-.row.live{ background:rgba(0,0,255,.07); }
-.row.live:hover,.row.live:focus-visible{ background:rgba(0,0,255,.14); }
-.row.live:active,.row.live.on{ background:rgba(0,0,255,.22); }
+/* 可玩 = 淡藍底(主筆 10-30 (c): 藍 = band 的「連結, 通往真的東西」). 同一套階 .07 / .14 / .22, 只換 k. 現在只在板塊名那一條 */
+.bd.live{ background:rgba(0,0,255,.07); }
+.bd.live:hover,.bd.live:focus-visible{ background:rgba(0,0,255,.14); }
+.bd.live:active,.bd.live.on{ background:rgba(0,0,255,.22); }
 
 /* 說明: band 歌詞位. 一種字號, 黑字 + 標籤用 .55 */
 #detail{ flex:1 1 auto; overflow:auto; padding:1px; display:flex; flex-direction:column; gap:4px; }
 #detail dl{ display:grid; grid-template-columns:8ch 1fr; gap:4px 3px; }
 #detail dt,#role{ opacity:.55; }
+#detail dl[hidden]{ display:none; }
 
 @media (max-width:760px){
   :root{ --stage-w: calc(100vw - 8px); --stage-h: min(70vh, calc(100vw - 8px) / (var(--r))); }
