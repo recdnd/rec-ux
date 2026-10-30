@@ -3,36 +3,54 @@
     "id": "dungeons",
     "name": "sus dungeons",
     "line": "Browser 2D RPG built without a game engine, and the tools that make it.",
-    "url": "https://rec.ooo/dungeons/"
+    "url": "https://rec.ooo/dungeons/",
+    "ja": {
+      "line": "ゲームエンジンを使わずに作ったブラウザの 2D RPG と、それを作るための道具。"
+    }
   },
   {
     "id": "band",
     "name": "Rec Dungeons",
     "line": "Music site: listen, buy without an account, keep what you own.",
-    "url": "https://rec.ooo/band/"
+    "url": "https://rec.ooo/band/",
+    "ja": {
+      "line": "音楽サイト。聴いて、アカウントなしで買って、買ったものを持っておく。"
+    }
   },
   {
     "id": "rec",
     "name": "rec.ooo",
     "line": "Personal site and hub for everything else.",
-    "url": "https://rec.ooo/"
+    "url": "https://rec.ooo/",
+    "ja": {
+      "line": "個人サイトと、ほかの全部への入口。"
+    }
   },
   {
     "id": "kiln",
     "name": "kiln",
     "line": "Rule-based text formatting.",
-    "url": "https://kiln.ooo/"
+    "url": "https://kiln.ooo/",
+    "ja": {
+      "line": "ルールで決まる文章の整形。"
+    }
   },
   {
     "id": "ruvia",
     "name": "Ruvia",
     "line": "Ideas as a tree, saved as plain files.",
-    "url": "https://ruvia.dev/"
+    "url": "https://ruvia.dev/",
+    "ja": {
+      "line": "アイデアを木の形に。保存はただのファイル。"
+    }
   },
   {
     "id": "spiral",
     "name": "Spiral",
     "line": "AI workspace prototype, 2025-2026. Development ended.",
-    "url": "https://spiral.ooo/"
+    "url": "https://spiral.ooo/",
+    "ja": {
+      "line": "AI の作業場のプロトタイプ（2025〜2026）。開発は終了。"
+    }
   }
 ]

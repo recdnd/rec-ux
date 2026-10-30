@@ -9,6 +9,14 @@
   const board = Object.fromEntries(boards.map((b) => [b.id, b]));
   const $ = (id) => document.getElementById(id);
   const list = $("list"), vid = $("vid"), frame = $("live"), dl = document.querySelector("#detail dl"), root = document.documentElement;
+  // 語言(主筆 10-31「做成自動檢測語言對齊為日語版的, 並且右上角一個燈泡按鈕可切換語言」): ja / en.
+  // 首次照瀏覽器: 認得 ja 就日語, 其餘英語. 按過燈泡之後以按的為準(rec.ux.lang). 文案在 cases.json / boards.json 的 ja 欄, 沒有就退回英文.
+  const LANGS = ["ja", "en"], LKEY = "rec.ux.lang";
+  const auto = () => (navigator.languages || [navigator.language || "en"]).some((l) => /^ja/i.test(l)) ? "ja" : "en";
+  let lang = (() => { let v; try { v = localStorage.getItem(LKEY); } catch (e) {} return LANGS.includes(v) ? v : auto(); })();
+  const tx = (o, k) => (lang === "ja" && o.ja && o.ja[k]) || o[k];
+  const LABEL = { ja: ["課題", "設計", "結果"], en: ["Problem", "Design", "Outcome"] };
+  const bulb = $("lang");
   // 原寸: 錄影是 deviceScaleFactor 2, 所以影片像素 / 2 = 頁面上的原本大小
   const size = (w, h) => {
     root.style.setProperty("--r", `${w}/${h}`);
@@ -57,7 +65,7 @@
     const r = document.createElement("button");
     r.className = "row";
     r.innerHTML = `<span class="n">${++n}</span><span class="t"></span>`;
-    r.querySelector(".t").textContent = c.title + (c.phone ? " 📱" : "");   // 📱 = 手機介面(直式影片, tools/stamp.py 判定)
+    // 標題在 paint() 寫(換語言時重寫). 📱 = 手機介面(直式影片, tools/stamp.py 判定)
     items.push({ key: c.id, el: r, kind: "case", ref: c });
     list.appendChild(r);
   });
@@ -67,11 +75,26 @@
     $("t").textContent = t;
     $("line").textContent = line || "";
     dl.hidden = !c;
-    $("problem").textContent = c ? c.problem : "";
-    $("move").textContent = c ? c.move : "";
-    $("outcome").textContent = c ? c.outcome : "";
-    $("role").textContent = c ? c.role.join(" / ") : "";
+    $("problem").textContent = c ? tx(c, "problem") : "";
+    $("move").textContent = c ? tx(c, "move") : "";
+    $("outcome").textContent = c ? tx(c, "outcome") : "";
+    $("role").textContent = c ? tx(c, "role").join(" / ") : "";
   };
+  // 換語言: 列表的事例標題, 說明的三個標籤, 燈泡的字, <html lang>; 說明欄由 show() 重畫
+  const paint = () => {
+    root.lang = lang;
+    bulb.textContent = lang === "ja" ? "日" : "EN";
+    bulb.setAttribute("aria-label", lang === "ja" ? "日本語" : "English");
+    document.querySelectorAll("#detail dt").forEach((d, i) => { d.textContent = LABEL[lang][i]; });
+    items.forEach((it) => { if (it.kind === "case") it.el.querySelector(".t").textContent = tx(it.ref, "title") + (it.ref.phone ? " 📱" : ""); });
+  };
+  bulb.addEventListener("click", () => {
+    lang = LANGS[(LANGS.indexOf(lang) + 1) % LANGS.length];
+    try { localStorage.setItem(LKEY, lang); } catch (e) {}
+    paint();
+    if (typeof cur === "number") show(cur);
+  });
+  paint();
 
   function show(j) {
     const it = items[j];
@@ -79,13 +102,13 @@
     const bid = it.kind === "board" ? it.key : it.ref.board;
     if (it.kind === "board") {
       // 互動版: 真頁面鋪滿盒, 不縮放
-      text(it.ref.name, it.ref.line, null);
+      text(it.ref.name, tx(it.ref, "line"), null);
       vid.hidden = true; frame.hidden = false;
       vid.removeAttribute("src"); vid.load();
       if (frame.getAttribute("src") !== liveOf[bid]) frame.src = liveOf[bid];
     } else {
       const c = it.ref;
-      text(c.title + (c.phone ? " 📱" : ""), c.line, c);
+      text(tx(c, "title") + (c.phone ? " 📱" : ""), tx(c, "line"), c);
       // 大小: 先用 cases.json 的 size(影片像素, 如 "1792x1120"), 影片 metadata 到了再照實際寬高改; 都沒有 = 2000x1600(錄影規格 1000x800 @2x; band 例外 1160x725)
       size(...(c.size || "2000x1600").split("x").map(Number));
       vid.hidden = false; frame.hidden = true;

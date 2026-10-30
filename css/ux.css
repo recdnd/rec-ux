@@ -30,6 +30,10 @@ p,dl,dd{ margin:0; font:inherit; }
 #tools a{ padding:1px 3px; background:rgba(255,255,255,.50); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); }
 #tools a:hover,#tools a:focus-visible{ background:rgba(var(--k),.10); }
 #tools a:active{ background:rgba(var(--k),.18); }
+/* 語言鈕: rec-kit〈燈泡按鈕模組〉. 透明底, 1px 系統藍細框, hover 亮成系統紅. 排在 🏠 左邊(〈頂部工具欄模組〉: 語言鈕永遠最左) */
+#tools{ align-items:center; }
+.bulb{ display:inline-block; box-sizing:border-box; padding:1px 4px; font-size:10px; line-height:1; color:var(--op); border:1px solid var(--op); border-radius:6px; background:transparent; cursor:pointer; }
+.bulb:hover,.bulb:focus-visible{ color:var(--pick); border-color:var(--pick); }
 
 main{ display:flex; gap:4px; align-items:flex-start; }
 @media (min-width:761px){
@@ -45,7 +49,7 @@ main{ display:flex; gap:4px; align-items:flex-start; }
 #live{ display:block; width:var(--stage-w); max-width:100%; height:var(--stage-h); border:0; }   /* 互動版用整個可用的盒 */
 #live[hidden],#vid[hidden]{ display:none; }
 
-#side{ width:420px; max-width:100%; height:var(--stage-h); display:flex; flex-direction:column; gap:4px; }
+#side{ width:420px; max-width:100%; max-height:var(--stage-h); display:flex; flex-direction:column; gap:4px; }   /* 高 = 內容(最多到可用高), 整組才看得出是在正中間(主筆 10-31「內容容器居中」) */
 
 /* 事例條: band 曲目條同一套 .07 / .14 / .22, 選中字換系統紅. 沒有可玩頁的板塊名(Spiral)是不可按的一行, 只有字 */
 #list{ display:flex; flex-direction:column; gap:1px; overflow:auto; flex:0 1 auto; }
