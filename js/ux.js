@@ -77,7 +77,7 @@
       size(...(c.size || "2000x1600").split("x").map(Number));
       vid.hidden = false; frame.hidden = true;
       frame.removeAttribute("src");
-      if (c.video) { vid.src = c.video; vid.play().catch(() => {}); }
+      if (c.video) { vid.src = c.video + (c.v ? "?v=" + c.v : ""); vid.play().catch(() => {}); }   // ?v = 內容雜湊(tools/stamp.py), 換了影片網址就換
       else { vid.removeAttribute("src"); vid.load(); }
     }
     const url = board[bid] && board[bid].url;

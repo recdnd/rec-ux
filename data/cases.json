@@ -57,7 +57,8 @@
       "Game UI",
       "Interaction design"
     ],
-    "video": "movies/dungeons-trade.mp4"
+    "video": "movies/dungeons-trade.mp4",
+    "v": "783a9ebd"
   },
   {
     "id": "band-no-account",
@@ -73,7 +74,8 @@
       "Front-end"
     ],
     "video": "movies/band-buy.mp4",
-    "live": "https://rec.ooo/band/"
+    "live": "https://rec.ooo/band/",
+    "v": "cd560b72"
   },
   {
     "id": "band-owned-shelf",
@@ -89,7 +91,8 @@
     ],
     "video": "movies/band-owned.mp4",
     "live": "https://rec.ooo/band/",
-    "default": "video"
+    "default": "video",
+    "v": "6f679f88"
   },
   {
     "id": "band-room",
@@ -106,7 +109,8 @@
     ],
     "video": "movies/band-room.mp4",
     "live": "https://rec.ooo/band/shelf.html",
-    "default": "video"
+    "default": "video",
+    "v": "cadf4a23"
   },
   {
     "id": "band-phone",
@@ -121,7 +125,8 @@
       "UI design"
     ],
     "video": "movies/band-phone.mp4",
-    "live": "https://rec.ooo/band/"
+    "live": "https://rec.ooo/band/",
+    "v": "f2612bbd"
   },
   {
     "id": "rec-dock",
@@ -213,7 +218,8 @@
       "UX concept",
       "Prototype implementation"
     ],
-    "video": "movies/session-stream.mp4"
+    "video": "movies/session-stream.mp4",
+    "v": "602c5428"
   },
   {
     "id": "meta-control",
@@ -229,7 +235,8 @@
       "System design",
       "Prototype implementation"
     ],
-    "video": "movies/meta-control.mp4"
+    "video": "movies/meta-control.mp4",
+    "v": "fe32fd45"
   },
   {
     "id": "header-system",
@@ -244,7 +251,8 @@
       "UX concept",
       "Interaction design"
     ],
-    "video": "movies/header-system.mp4"
+    "video": "movies/header-system.mp4",
+    "v": "2b633fff"
   },
   {
     "id": "ghostwriting",
@@ -259,6 +267,7 @@
       "Interaction design",
       "Prototype implementation"
     ],
-    "video": "movies/ghostwriting.mp4"
+    "video": "movies/ghostwriting.mp4",
+    "v": "6cb35a6a"
   }
 ]
