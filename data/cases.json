@@ -319,26 +319,26 @@
     "id": "braintank",
     "board": "singles",
     "title": "BraintankAI",
-    "line": "Frontier research news, where every story is read from one paper.",
-    "problem": "Science news usually reaches readers through press releases, so a claim is hard to trace back to the paper behind it, and preprints read the same as peer-reviewed work.",
-    "move": "Each story starts from one paper and ends with a paper card (title, authors, venue, link, code); preprints say \"not yet peer reviewed\" in the venue line. Nine sections follow research areas instead of newspaper desks.",
-    "outcome": "Every claim on the site can be traced to its source from the story itself, and the reader always knows whether that source has been peer reviewed.",
+    "line": "A research news site: lively to browse, quiet to read.",
+    "problem": "The front page has to make dense papers look worth opening, while the article page has to stay calm enough to read a long explanation of methods and limits. If the whole site is loud, nobody can read; if it is all quiet, nothing gets opened.",
+    "move": "Two modes. Browsing moves: a full-screen lead story, and cards and section tiles that stay dim or gray until the pointer reaches them, then turn to color with a pink line. Reading is still: the header hides as you scroll down, the text is one serif column, a thin pink line at the top shows how far you are, and the paper card (venue, link, code) waits at the end.",
+    "outcome": "Color and motion only ever mean \"this can be opened\", so the front page needs no extra buttons, and once a story is open, nothing on screen competes with the text.",
     "role": [
-      "Editorial design",
-      "Visual design",
+      "UI design",
+      "Interaction design",
       "Front-end"
     ],
     "video": "movies/braintank.mp4",
     "url": "https://braintank.ai/",
     "ja": {
       "title": "BraintankAI",
-      "line": "最先端の研究ニュース。どの記事も、一本の論文から読んで書く。",
-      "problem": "科学ニュースはふつうプレスリリース経由で届くので、主張の元になった論文までたどりにくく、プレプリントも査読済みの研究と同じように読めてしまう。",
-      "move": "記事は一本の論文から始まり、最後に論文カード（タイトル、著者、掲載先、リンク、コード）を置く。プレプリントは掲載先の行に「not yet peer reviewed」と出る。セクションは新聞の部署ではなく、研究分野の九つ。",
-      "outcome": "サイト上のどの主張も、記事の中から出典までたどれて、その出典が査読済みかどうかも常にわかる。",
+      "line": "研究ニュースのサイト。見て回るときはにぎやかに、読むときは静かに。",
+      "problem": "トップは、難しい論文を開いてみたくなるように見せる必要がある。一方で記事ページは、方法や限界の長い説明を読めるくらい静かでないといけない。全部にぎやかだと読めず、全部静かだと開かれない。",
+      "move": "二つのモードに分けた。見て回るときは動く。画面いっぱいのトップ記事、カードとセクションのタイルはポインタが来るまで暗いか灰色のままで、来ると色が戻り、ピンクの線が伸びる。読むときは止まる。下にスクロールするとヘッダーが引っ込み、本文はセリフ体の一段組み、上端の細いピンクの線が読んだ位置を示し、論文カード（掲載先、リンク、コード）は最後に置く。",
+      "outcome": "色と動きは「ここを開ける」という意味にだけ使うので、トップに余計なボタンがいらず、記事を開いたあとは本文と競うものが画面にない。",
       "role": [
-        "編集デザイン",
-        "ビジュアルデザイン",
+        "UI デザイン",
+        "インタラクションデザイン",
         "フロントエンド"
       ]
     },
