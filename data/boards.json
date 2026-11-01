@@ -52,5 +52,13 @@
     "ja": {
       "line": "AI の作業場のプロトタイプ（2025〜2026）。開発は終了。"
     }
+  },
+  {
+    "id": "singles",
+    "name": "Singles",
+    "line": "One-off projects, one case each.",
+    "ja": {
+      "line": "単発のプロジェクト。一つにつき一つの事例。"
+    }
   }
 ]

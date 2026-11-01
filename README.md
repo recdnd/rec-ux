@@ -1,6 +1,6 @@
 # Rec UX(ux-rec)
 
-**2026-10-30 重做中(分支 `redo`)**: 主筆「ux.rec.ooo 重做作品集. 風格對齊 rec.ooo/band, 背景簡潔, 照前端契約, 先骨架, 之後走 15 秒影片一支一支做」. 新頁 = `index.html` + `css/ux.css` + `js/ux.js` + `data/cases.json`(一則 = 一支影片 + problem / move / outcome; `video` 為 null = 還沒做, 列表右邊不打 ▶; 影片不鎖比例, 顯示原寸(影片像素 / 2, 錄影是 @2x), 不放大, 盒放不下才縮; 還沒影片時用 `size` 欄如 "1792x1120", 沒有就 2320x1450. **錄影規格 1000x800(CSS px, 5:4, Retina 錄出 2000x1600; 1440 螢幕上剛好原寸). band 桌面例外 1160x725(排法要 1160 寬)**, 手機照原本). 本機 `python3 -m http.server 2323`. 合回 main 才上線; 網域回 ux.rec.ooo 要改 CNAME + DNS(主筆).
+**2026-10-30 重做中(分支 `redo`)**: 主筆「ux.rec.ooo 重做作品集. 風格對齊 rec.ooo/band, 背景簡潔, 照前端契約, 先骨架, 之後走 15 秒影片一支一支做」. 新頁 = `index.html` + `css/ux.css` + `js/ux.js` + `data/cases.json`(一則 = 一支影片 + problem / move / outcome; `video` 為 null = 還沒做, 列表右邊不打 ▶; 影片不鎖比例, 顯示原寸(影片像素 / 2, 錄影是 @2x), 不放大, 盒放不下才縮; 還沒影片時用 `size` 欄如 "1792x1120", 沒有就 2320x1450. **錄影規格 1000x800(CSS px, 5:4, Retina 錄出 2000x1600; 1440 螢幕上剛好原寸). band 桌面例外 1160x725(排法要 1160 寬)**, 手機照原本). **Singles 板塊(2026-11-01, 主筆「底部加一個 single cases, 類似單曲, 來補全我做的範圍」)**: 放在最底, 一則 = 一個單發產品(第一則 BraintankAI); 板塊名沒有 🔗 / 🕹️, 產品網址寫在事例自己的 `url`, 說明標題後面出 🔗. 本機 `python3 -m http.server 2323`. 合回 main 才上線; 網域回 ux.rec.ooo 要改 CNAME + DNS(主筆).
 
 UX の事例を**プロジェクトごとの板塊**で見せるサイト. 2026-10-20 主筆「後面很多大量新專案, 劃分為 dungeons / kiln / band 等各種板塊」で Spiral 単独から作り直し.
 - 板塊: sus dungeons / Rec Dungeons(band)/ rec.ooo / kiln / Ruvia / Spiral(開発終了, 最後に置く). 順番と一行説明は `data/boards.json`.

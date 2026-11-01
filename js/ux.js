@@ -24,6 +24,16 @@
   };
   vid.addEventListener("loadedmetadata", () => { if (vid.videoWidth) size(vid.videoWidth, vid.videoHeight); });
 
+  // 🔗 一顆: 靜置只有符號, hover 長出網址. 板塊名用 b.url; Singles(主筆 11-01「類似單曲, 來補全我做的範圍」)一則一個產品, 用事例自己的 c.url, 放在說明的標題後面
+  const link = (url) => {
+    const lk = document.createElement("a");
+    lk.className = "lk";
+    lk.href = url; lk.target = "_blank"; lk.rel = "noopener";
+    lk.innerHTML = `🔗<span></span>`;
+    lk.querySelector("span").textContent = url.replace(/^https?:\/\//, "").replace(/\/$/, "");
+    return lk;
+  };
+
   // 板塊的可玩網址 = 那一組第一則的 live
   const liveOf = {};
   cases.forEach((c) => { if (c.live && !liveOf[c.board]) liveOf[c.board] = c.live; });
@@ -52,11 +62,7 @@
       }
       if (b.url) {
         // 🔗 和 hover 出來的網址是同一個 <a>: 點 🔗 本身也跳(主筆 10-30「hover時，🔗按鈕本身也是可點擊跳轉範圍」)
-        const lk = document.createElement("a");
-        lk.className = "lk";
-        lk.href = b.url; lk.target = "_blank"; lk.rel = "noopener";
-        lk.innerHTML = `🔗<span></span>`;
-        lk.querySelector("span").textContent = b.url.replace(/^https?:\/\//, "").replace(/\/$/, "");
+        const lk = link(b.url);
         lk.addEventListener("click", (e) => e.stopPropagation());   // 點連結不要順便切到互動版
         h.appendChild(lk);
       }
@@ -73,6 +79,7 @@
 
   const text = (t, line, c) => {
     $("t").textContent = t;
+    if (c && c.url) $("t").append(" ", link(c.url));
     $("line").textContent = line || "";
     dl.hidden = !c;
     $("problem").textContent = c ? tx(c, "problem") : "";

@@ -314,5 +314,34 @@
         "プロトタイプ実装"
       ]
     }
+  },
+  {
+    "id": "braintank",
+    "board": "singles",
+    "title": "BraintankAI",
+    "line": "Frontier research news, where every story is read from one paper.",
+    "problem": "Science news usually reaches readers through press releases, so a claim is hard to trace back to the paper behind it, and preprints read the same as peer-reviewed work.",
+    "move": "Each story starts from one paper and ends with a paper card (title, authors, venue, link, code); preprints say \"not yet peer reviewed\" in the venue line. Nine sections follow research areas instead of newspaper desks.",
+    "outcome": "Every claim on the site can be traced to its source from the story itself, and the reader always knows whether that source has been peer reviewed.",
+    "role": [
+      "Editorial design",
+      "Visual design",
+      "Front-end"
+    ],
+    "video": "movies/braintank.mp4",
+    "url": "https://braintank.ai/",
+    "ja": {
+      "title": "BraintankAI",
+      "line": "最先端の研究ニュース。どの記事も、一本の論文から読んで書く。",
+      "problem": "科学ニュースはふつうプレスリリース経由で届くので、主張の元になった論文までたどりにくく、プレプリントも査読済みの研究と同じように読めてしまう。",
+      "move": "記事は一本の論文から始まり、最後に論文カード（タイトル、著者、掲載先、リンク、コード）を置く。プレプリントは掲載先の行に「not yet peer reviewed」と出る。セクションは新聞の部署ではなく、研究分野の九つ。",
+      "outcome": "サイト上のどの主張も、記事の中から出典までたどれて、その出典が査読済みかどうかも常にわかる。",
+      "role": [
+        "編集デザイン",
+        "ビジュアルデザイン",
+        "フロントエンド"
+      ]
+    },
+    "v": "4c5b9c3e"
   }
 ]

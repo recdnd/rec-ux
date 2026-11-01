@@ -62,16 +62,17 @@ main{ display:flex; gap:4px; align-items:flex-start; }
 .bd.live:first-child{ margin-top:0; }
 .bd.live.on{ color:var(--pick); }
 /* 🔗: 靜置只有符號; hover 時 🔗 + 網址一起變成一顆藍字底色框的連結(系統藍, 藍的 .07 / .14 / .22 階), 整顆都能點, 開新分頁. 不放說明字 */
-.bd .lk{ display:inline-flex; align-items:center; gap:3px; padding:1px; color:var(--op); text-decoration:none; white-space:nowrap; }
-.bd .lk span{ display:none; }
-.bd .lk:hover,.bd .lk:focus-visible{ background:rgba(0,0,255,.14); }
-.bd .lk:hover span,.bd .lk:focus-visible span{ display:inline; }
-.bd .lk:active{ background:rgba(0,0,255,.22); }
+/* 同一顆也用在 Singles 的說明標題後面(一則一個產品, 連結跟著事例) */
+.lk{ display:inline-flex; align-items:center; gap:3px; padding:1px; color:var(--op); text-decoration:none; white-space:nowrap; }
+.lk span{ display:none; }
+.lk:hover,.lk:focus-visible{ background:rgba(0,0,255,.14); }
+.lk:hover span,.lk:focus-visible span{ display:inline; }
+.lk:active{ background:rgba(0,0,255,.22); }
 /* 手機(主筆 10-30「手機版的ux網站的鏈接改為默認全顯示，無hover動作」): 沒有 hover, 🔗 + 網址一直顯示成一顆藍字底色框連結 */
 @media (max-width:760px), (hover:none){
-  .bd .lk{ background:rgba(0,0,255,.07); }
-  .bd .lk span{ display:inline; }
-  .bd .lk:hover{ background:rgba(0,0,255,.07); }
+  .lk{ background:rgba(0,0,255,.07); }
+  .lk span{ display:inline; }
+  .lk:hover{ background:rgba(0,0,255,.07); }
 }
 .row{ display:flex; gap:3px; width:100%; padding:1px; text-align:left; cursor:pointer; background:rgba(var(--k),.07); }
 .row:hover,.row:focus-visible{ background:rgba(var(--k),.14); }
