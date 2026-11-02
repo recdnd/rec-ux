@@ -200,7 +200,7 @@
     "title": "From Variance to What Needs Action",
     "line": "A budget review that starts from the alerts, not the whole grid.",
     "problem": "A budget-vs-actual grid gives every cell the same weight. The planning team scans departments, accounts and months to find the few numbers someone has to act on.",
-    "move": "The overview leads with four totals against budget and a monthly chart: actuals solid, forecast hatched. Beside it, a \"needs action\" list holds 17 alerts written as sentences (\"Marketing ad spend is 14% over budget\"). Initiatives get the same filter; members past their weekly hours turn red.",
+    "move": "The overview leads with four totals against budget and a monthly chart: actuals solid, forecast hatched. Beside it, a \"needs action\" list holds 17 alerts written as sentences (\"Marketing ad spend is 14% over budget\"). Initiatives get the same filter: a \"needs action\" tab with 6, rows over their hours marked red.",
     "outcome": "A review starts from 17 alerts and 6 initiatives instead of the whole grid, and each alert already says which department, which account and by how much.",
     "role": [
       "UI design",
@@ -212,7 +212,7 @@
       "title": "差異から、やることへ",
       "line": "予実の確認を、表全体ではなくアラートから始める。",
       "problem": "予実の表は、どのセルも同じ重さで並ぶ。経営企画は、部門と勘定科目と月を見渡して、誰かが手を打つべき数字を探すことになる。",
-      "move": "概要は、予算比つきの四つの合計と月次グラフから始まる（実績は塗り、見込は斜線）。横の「要対応」には 17 件のアラートが文で並ぶ。施策にも同じ絞り込みがあり、稼働を超えたメンバーは赤くなる。",
+      "move": "概要は、予算比つきの四つの合計と月次グラフから始まる（実績は塗り、見込は斜線）。横の「要対応」には 17 件のアラートが文で並ぶ。施策にも同じ「要対応」の絞り込み（6 件）があり、工数を超えた行は赤くなる。",
       "outcome": "確認は、表全体ではなく 17 件のアラートと 6 件の施策から始まる。どのアラートも、どの部門のどの科目がどれだけ外れたかを最初から書いている。",
       "role": [
         "UI デザイン",
@@ -220,7 +220,7 @@
         "フロントエンド"
       ]
     },
-    "v": "86853208"
+    "v": "190b7c18"
   },
   {
     "id": "cloutric-chat",
