@@ -55,6 +55,17 @@
     "kind": "Web tool"
   },
   {
+    "id": "cloutric",
+    "name": "Cloutric",
+    "line": "Budget vs. actual and management alerts, wired into team chat.",
+    "url": "https://cloutric.com/",
+    "ja": {
+      "line": "予実管理と経営アラートを、チームの会話につなぐ経営管理クラウド。",
+      "kind": "B2B SaaS"
+    },
+    "kind": "B2B SaaS"
+  },
+  {
     "id": "spiral",
     "name": "Spiral",
     "line": "AI workspace prototype, 2025-2026. Development ended.",

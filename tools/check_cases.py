@@ -44,8 +44,8 @@ def check(c):
         n = len(ja.get(f, ""))
         if n > m: err.append(f"ja.{f} {n} 字 > {m}")
     en_all = " ".join(c.get(f, "") for f in FIELDS).lower()
-    for b in BUZZ:
-        if b in en_all: err.append(f"en 空話「{b}」")
+    for b in BUZZ:   # 詞頭對齊(\b), 不然 forecast 會中 recast
+        if re.search(r"\b" + re.escape(b), en_all): err.append(f"en 空話「{b}」")
     ja_all = "".join(ja.get(f, "") for f in FIELDS)
     for b in JA_BUZZ:
         if b in ja_all: err.append(f"ja 空話「{b}」")

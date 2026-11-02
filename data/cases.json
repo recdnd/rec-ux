@@ -195,6 +195,62 @@
     }
   },
   {
+    "id": "cloutric-overview",
+    "board": "cloutric",
+    "title": "From Variance to What Needs Action",
+    "line": "A budget review that starts from the alerts, not the whole grid.",
+    "problem": "A budget-vs-actual grid gives every cell the same weight. The planning team scans departments, accounts and months to find the few numbers someone has to act on.",
+    "move": "The overview leads with four totals against budget and a monthly chart: actuals solid, forecast hatched. Beside it, a \"needs action\" list holds 17 alerts written as sentences (\"Marketing ad spend is 14% over budget\"). Initiatives get the same filter; members past their weekly hours turn red.",
+    "outcome": "A review starts from 17 alerts and 6 initiatives instead of the whole grid, and each alert already says which department, which account and by how much.",
+    "role": [
+      "UI design",
+      "Information design",
+      "Front-end"
+    ],
+    "video": "movies/cloutric-overview.mp4",
+    "ja": {
+      "title": "差異から、やることへ",
+      "line": "予実の確認を、表全体ではなくアラートから始める。",
+      "problem": "予実の表は、どのセルも同じ重さで並ぶ。経営企画は、部門と勘定科目と月を見渡して、誰かが手を打つべき数字を探すことになる。",
+      "move": "概要は、予算比つきの四つの合計と月次グラフから始まる（実績は塗り、見込は斜線）。横の「要対応」には 17 件のアラートが文で並ぶ。施策にも同じ絞り込みがあり、稼働を超えたメンバーは赤くなる。",
+      "outcome": "確認は、表全体ではなく 17 件のアラートと 6 件の施策から始まる。どのアラートも、どの部門のどの科目がどれだけ外れたかを最初から書いている。",
+      "role": [
+        "UI デザイン",
+        "情報設計",
+        "フロントエンド"
+      ]
+    },
+    "v": "86853208"
+  },
+  {
+    "id": "cloutric-chat",
+    "board": "cloutric",
+    "title": "Alerts Reach the Right Person",
+    "line": "Chat lives next to the numbers, and alerts arrive where the team already talks.",
+    "problem": "When the numbers live in one tool and the talk in another, someone screenshots an overrun, pastes it into chat and tags the owner by hand, every time.",
+    "move": "Chat is built in: a member's row opens a DM, @ shows each person's role, and ⌘K finds any page, channel or initiative. On the rules page, each alert type picks a channel and whether to mention the owner; Slack, Teams and mail connect there.",
+    "outcome": "Each rule shows how many alerts it matches right now, so routing is set on live numbers, and nobody copies a screenshot into another app.",
+    "role": [
+      "UI design",
+      "Interaction design",
+      "Front-end"
+    ],
+    "video": "movies/cloutric-chat.mp4",
+    "ja": {
+      "title": "アラートを、届くべき人へ",
+      "line": "会話を数字の隣に置き、アラートはチームがもう話している場所に届く。",
+      "problem": "数字は一つのツール、会話は別のツールにあると、誰かが超過をスクショしてチャットに貼り、担当者を手でメンションすることになる。毎回。",
+      "move": "チャットは内蔵。メンバーの行から DM、@ で役職も見え、⌘K でページ、チャンネル、施策へ飛ぶ。通知ルールでは、アラートの種類ごとにチャンネルと担当者メンションを選び、Slack、Teams、メールもここでつなぐ。",
+      "outcome": "どのルールにも「現在 3 件」のように今の該当数が出るので、本物の数字を見ながら届け先を決められる。スクショを別のアプリに貼る人はいない。",
+      "role": [
+        "UI デザイン",
+        "インタラクションデザイン",
+        "フロントエンド"
+      ]
+    },
+    "v": "c4ece390"
+  },
+  {
     "id": "session-stream",
     "board": "spiral",
     "title": "All Work on One Board",
