@@ -4,7 +4,7 @@
     "board": "dungeons",
     "title": "A Livehouse in the Tower",
     "line": "The game and the music are one world, not two products.",
-    "problem": "The game had 34 tracks of background music made only for the game, separate from the songs released on the music site.",
+    "problem": "The game had 34 tracks made only for it, released nowhere else, so a player who liked a song could not find it on the band's music site.",
     "move": "Replace game-only music with released songs played through an in-game player, and turn listening into a place: a ticketed livehouse inside the tower.",
     "outcome": "Game and music now share one catalog, and an in-game ticket ($1.99) connects playing the game to the band.",
     "role": [
@@ -18,7 +18,7 @@
     "ja": {
       "title": "塔の中のライブハウス",
       "line": "ゲームと音楽を、別々のプロダクトではなく一つの世界に。",
-      "problem": "ゲームには、ゲームのためだけに作った BGM が 34 曲あり、音楽サイトで出している曲とは別になっていた。",
+      "problem": "ゲームのためだけに作った BGM が 34 曲あり、どこにも出していなかった。気に入った曲があっても、プレイヤーは band の音楽サイトで見つけられない。",
       "move": "ゲーム専用の BGM を、発表済みの曲に置き換えて、ゲーム内のプレイヤーで流す。聴くこと自体を場所にした。塔の中に、チケットで入るライブハウスがある。",
       "outcome": "ゲームと音楽が一つのカタログを共有し、ゲーム内のチケット（$1.99）が、遊ぶことと band をつないでいる。",
       "role": [
@@ -85,7 +85,7 @@
     "board": "dungeons",
     "title": "The Tower on a Phone",
     "line": "The whole game fits one thumb: map on top, bag and controls below.",
-    "problem": "A desktop RPG puts the map, the bag and the message screen side by side; a phone has room for one of them.",
+    "problem": "A desktop RPG puts the map, the bag and the message screen side by side; on a phone, the player has room for one of them.",
     "move": "Stack them: the map on top, then the bag on the left and the message screen with a d-pad on the right. Tapping a monster opens the same small menu as on desktop (fight, turn battle, talk), and items explain themselves in the message screen.",
     "outcome": "Fights, items and the live ticket all work on a phone without a separate mobile version of the game.",
     "role": [
@@ -112,9 +112,9 @@
     "board": "band",
     "title": "Buy Without an Account",
     "line": "Buying a song should take one step, and losing it should not be possible.",
-    "problem": "Making an account is where most small music purchases are dropped. Without accounts, clearing the browser would mean losing what you bought.",
+    "problem": "Asking a listener to sign up before paying puts a form in front of a one-song purchase. Without accounts, though, clearing the browser would lose what they bought.",
     "move": "Keep ownership in the browser for instant access, and make email the way back: one address restores every purchase.",
-    "outcome": "Payment, storage, delivery and mail run through Stripe, R2, Upstash, Resend and Vercel. Purchase, download and email recovery pass end to end in test mode.",
+    "outcome": "No password and no sign-up form anywhere in the flow. Purchase, download and email recovery pass end to end in test mode.",
     "role": [
       "UX flow",
       "Commerce",
@@ -126,9 +126,9 @@
     "ja": {
       "title": "アカウントなしで買う",
       "line": "曲を買うのは一手で済み、なくすことはできないように。",
-      "problem": "小さな音楽の購入は、アカウント作成のところで一番やめられる。かといってアカウントがないと、ブラウザを消した時に買ったものもなくなる。",
+      "problem": "払う前にアカウント作成を求めると、曲一つの買い物の前にフォームが立ちはだかる。かといってアカウントがないと、ブラウザを消した時に買ったものもなくなる。",
       "move": "持っているものはブラウザに置いてすぐ聴けるようにし、メールを戻り道にした。メールアドレス一つで、買ったものが全部戻る。",
-      "outcome": "決済、保存、配信、メールは Stripe、R2、Upstash、Resend、Vercel で回る。購入、ダウンロード、メールでの復元を、テストモードで最初から最後まで通した。",
+      "outcome": "パスワードも登録フォームも、流れのどこにもない。購入、ダウンロード、メールでの復元を、テストモードで最初から最後まで通した。",
       "role": [
         "UX フロー",
         "コマース",
@@ -141,7 +141,7 @@
     "board": "band",
     "title": "Hold What You Bought",
     "line": "A bought CD is a box you can turn in your hands.",
-    "problem": "Owning a digital album usually means one more row in a list, with nothing to look at or touch.",
+    "problem": "For a listener, owning a digital album usually means one more row in a list, with nothing to look at or touch.",
     "move": "Give each owned release its own room: the case floats over a CD deck and turns in every direction; the disc comes out of it. Back, spine and disc are drawn in code until the hand-made art is ready.",
     "outcome": "Only people who bought something load this room, so the player page stays light for everyone else.",
     "role": [
@@ -197,11 +197,11 @@
   {
     "id": "session-stream",
     "board": "spiral",
-    "title": "Session Stream",
-    "line": "AI work unfolds as a continuous workspace rather than a series of closed sessions.",
-    "problem": "Conventional AI interfaces split work into separate sessions, forcing users to repeatedly enter, exit, and reconstruct context across isolated views.",
-    "move": "Recast sessions as positions inside a single spatial stream, so movement across tasks happens through scrolling rather than through container changes.",
-    "outcome": "Shifts conversation from session management to spatial navigation, making context easier to retain, revisit, and work across.",
+    "title": "All Work on One Board",
+    "line": "Every document is a card on one board; leaving one does not close it.",
+    "problem": "In a chat-style AI tool, each session is a thread in a sidebar. To switch, the writer leaves one conversation, and work in progress hides behind a list of titles.",
+    "move": "All documents sit as cards on one scrolling board, each labeled (Personal, Record, Open, Protected). Tap one to open it full screen; back on the board, every document you opened is still marked edit: active. Protected ones are wrapped in red.",
+    "outcome": "Which documents exist, which are still open and which are locked can be read from one screen, before opening anything.",
     "role": [
       "Interaction model",
       "UX concept",
@@ -212,11 +212,11 @@
     "live": "https://spiral.ooo/",
     "phone": true,
     "ja": {
-      "title": "一続きのセッション",
-      "line": "AI との作業を、閉じたセッションの連続ではなく、一続きの作業場として広げる。",
-      "problem": "よくある AI の画面は作業をセッションごとに分けるので、使う人は別々の画面を出入りし、そのたびに文脈を組み直すことになる。",
-      "move": "セッションを、一本の流れの中の位置として扱い直した。タスクの間の移動は、入れ物の切り替えではなく、スクロールで行う。",
-      "outcome": "会話を「セッションの管理」から「場所の移動」に変え、文脈を残しやすく、戻りやすく、またいで作業しやすくした。",
+      "title": "一枚のボードに並ぶ作業",
+      "line": "文書は全部、一枚のボードのカード。離れても閉じない。",
+      "problem": "チャット型の AI ツールでは、セッションがサイドバーのスレッドに分かれている。切り替えるたびに会話を離れ、途中の作業はタイトルの一覧の奥に隠れる。",
+      "move": "スクロールするボードに、文書がラベル付きのカードで並ぶ。タップで全画面に開き、戻ると、開いた文書には edit: active の印が残っている。Protected の文書は赤く包まれる。",
+      "outcome": "どの文書があり、どれが開いたままで、どれがロックされているかが、何も開かずに一画面で読める。",
       "role": [
         "インタラクションモデル",
         "UX コンセプト",
@@ -227,11 +227,11 @@
   {
     "id": "meta-control",
     "board": "spiral",
-    "title": "Meta Control",
-    "line": "System behavior is edited in context through language instead of hidden control panels.",
-    "problem": "In most systems, configuration is pushed into secondary panels and technical metadata flows, separating operational control from the work itself.",
-    "move": "Placed behavioral control inside the primary interface by letting users issue structural changes in language, with explicit application states that keep the system legible.",
-    "outcome": "Turns configuration into a first-class interaction, allowing system behavior to be modified where the work is actually happening.",
+    "title": "Settings in Plain Words",
+    "line": "Document settings change from the writing box, in plain words.",
+    "problem": "A document's type and who can read it usually live in a separate settings panel. The writer stops, finds the panel and comes back, and nothing in the document shows the change.",
+    "move": "The writer types the change into the same box used for writing: \"Change Type to Core Document\". The header fields about to change turn red; once applied, they show the new values, and the request stays in the document as a line.",
+    "outcome": "There is no settings screen to find, and every change leaves a line, so how the document got its current settings reads top to bottom.",
     "role": [
       "UX concept",
       "Interaction design",
@@ -244,10 +244,10 @@
     "phone": true,
     "ja": {
       "title": "言葉で変える設定",
-      "line": "システムの振る舞いを、隠れた設定画面ではなく、その場で言葉で変える。",
-      "problem": "多くのシステムでは、設定が別の画面や技術的なメタデータに押しやられ、制御が作業そのものから切り離されている。",
-      "move": "振る舞いの制御をメインの画面の中に置いた。構造の変更を言葉で指示でき、適用の状態をはっきり見せることで、システムが何をしているか読めるようにした。",
-      "outcome": "設定を一級の操作にして、作業が起きているその場で、システムの振る舞いを変えられるようにした。",
+      "line": "文書の設定を、書く欄から、ふつうの言葉で変える。",
+      "problem": "文書の種類や読める人の設定は、たいてい別の設定画面にある。書く手を止めて画面を探し、戻ってくる。しかも文書の中には、変えた跡が残らない。",
+      "move": "書くのと同じ欄に、変えたいことを打つ（「Change Type to Core Document」）。変わるヘッダーの項目が赤くなり、適用されると新しい値に変わる。頼んだ一行は文書に残る。",
+      "outcome": "探す設定画面がなく、変更のたびに一行残るので、文書が今の設定になった経緯を上から読める。",
       "role": [
         "UX コンセプト",
         "インタラクションデザイン",
@@ -259,11 +259,11 @@
   {
     "id": "header-system",
     "board": "spiral",
-    "title": "Header System",
-    "line": "Documents operate as active system objects rather than passive files.",
-    "problem": "Most software separates content from behavior, leaving users to navigate between the document they are working on and the hidden structures that determine how it behaves.",
-    "move": "Promoted the document header into an explicit control surface, so the governing logic of a document can be inspected, modified, and applied in place.",
-    "outcome": "Repositions documents as programmable interface units whose structure is directly usable rather than concealed in the system layer.",
+    "title": "The Header Shows the Rules",
+    "line": "What a document is and who wrote each line are printed on the page.",
+    "problem": "Whether a file is private, read-only or shared is usually hidden in metadata, and its lines do not say who wrote them. The writer finds out only when something is blocked.",
+    "move": "Each document opens with a gray header of plain fields: type, author, access tier, seal level, created. Every line below carries its author's mark; when the writer types \"I am Rec\", that line's mark changes to 𝕽.",
+    "outcome": "Before typing, the writer can see whether the document is private, sealed or shared, and who wrote every line.",
     "role": [
       "System design",
       "UX concept",
@@ -274,11 +274,11 @@
     "live": "https://spiral.ooo/",
     "phone": true,
     "ja": {
-      "title": "操作面になるヘッダー",
-      "line": "ドキュメントを、受け身のファイルではなく、動くシステムの部品として扱う。",
-      "problem": "多くのソフトは中身と振る舞いを分けていて、使う人は、編集中のドキュメントと、その振る舞いを決める隠れた構造の間を行き来することになる。",
-      "move": "ドキュメントのヘッダーを、はっきりした操作面に格上げした。ドキュメントを決めているロジックを、その場で見て、変えて、適用できる。",
-      "outcome": "ドキュメントを、構造がシステムの層に隠れたものではなく、そのまま使えるプログラム可能な部品にした。",
+      "title": "ルールを見せるヘッダー",
+      "line": "文書が何なのか、各行を誰が書いたのかが、ページに書いてある。",
+      "problem": "ファイルが非公開か、読み取り専用か、共有かは、たいていメタデータに隠れていて、行にも書いた人は出ない。書く人は、何かが止められて初めて気づく。",
+      "move": "文書の上には灰色のヘッダーがあり、種類、作者、アクセス、封印、作成日時がそのまま並ぶ。下の各行には書いた人の印が付き、「I am Rec」と打つと、その行の印が 𝕽 に変わる。",
+      "outcome": "書き始める前に、文書が非公開か、封印済みか、共有かが分かり、どの行を誰が書いたかも分かる。",
       "role": [
         "システム設計",
         "UX コンセプト",
@@ -289,11 +289,11 @@
   {
     "id": "ghostwriting",
     "board": "spiral",
-    "title": "Ghostwriting",
-    "line": "AI assistance appears inside the draft instead of in a separate conversational channel.",
-    "problem": "Typical AI writing tools split drafting and assistance across two interfaces, which breaks writing flow and turns revision into a context-switching task.",
-    "move": "Collapsed the editor and the assistant into one surface, so generation happens exactly where the text is being written and revised.",
-    "outcome": "Produces a co-writing model in which AI behaves as part of the drafting environment rather than as an external sidecar.",
+    "title": "The AI Writes in the Draft",
+    "line": "The AI continues on the next line of the draft, not in a chat.",
+    "problem": "In most AI writing tools the draft is on one side and the chat on the other. The writer asks in one, copies the answer into the other, and loses the thread.",
+    "move": "There is no chat panel. On a new line of the draft, the AI's continuation is typed in place, a few words at a time, with a small \"generating\" note under the text.",
+    "outcome": "Nothing to copy or paste: the suggestion is already where it belongs, and can be kept, edited or deleted like any other line.",
     "role": [
       "UX concept",
       "Interaction design",
@@ -304,10 +304,10 @@
     "live": "https://spiral.ooo/",
     "ja": {
       "title": "下書きの中の AI",
-      "line": "AI の手助けを、別の会話の窓ではなく、下書きの中に出す。",
-      "problem": "よくある AI の文章ツールは、書く画面と手伝う画面が分かれていて、書く流れが切れ、直す作業が画面の行き来になる。",
-      "move": "エディタとアシスタントを一つの面にまとめた。生成は、文章を書いて直しているその場所で起きる。",
-      "outcome": "AI が外付けの横の窓ではなく、下書きの環境の一部として動く、共同執筆のかたちになった。",
+      "line": "AI は、チャットではなく、下書きの次の行で続きを書く。",
+      "problem": "多くの AI 文章ツールは、下書きとチャットが左右に分かれている。書く人は片方で頼み、答えをもう片方に写し、そのたびに文章の流れを見失う。",
+      "move": "チャット欄はない。下書きの新しい行に、AI の続きが数語ずつその場で打ち込まれ、文の下に小さく「生成中」と出る。",
+      "outcome": "コピーも貼り付けもいらない。提案は最初から置くべき場所にあり、ほかの行と同じように残すことも、直すことも、消すこともできる。",
       "role": [
         "UX コンセプト",
         "インタラクションデザイン",
@@ -320,8 +320,8 @@
     "board": "singles",
     "title": "BraintankAI",
     "line": "A research news site: lively to browse, quiet to read.",
-    "problem": "The front page has to make dense papers look worth opening, while the article page has to stay calm enough to read a long explanation of methods and limits. If the whole site is loud, nobody can read; if it is all quiet, nothing gets opened.",
-    "move": "Two modes. Browsing moves: a full-screen lead story, and cards and section tiles that stay dim or gray until the pointer reaches them, then turn to color with a pink line. Reading is still: the header hides as you scroll down, the text is one serif column, a thin pink line at the top shows how far you are, and the paper card (venue, link, code) waits at the end.",
+    "problem": "The front page must make dense papers look worth opening to readers; the article page must stay calm for a long read on methods and limits. One style cannot do both.",
+    "move": "Two modes. Browsing moves: a full-screen lead story; cards and section tiles stay gray until pointed at, then turn color with a pink line. Reading is still: the header hides on scroll, one serif column, a thin pink progress line, the paper card (venue, link, code) last.",
     "outcome": "Color and motion only ever mean \"this can be opened\", so the front page needs no extra buttons, and once a story is open, nothing on screen competes with the text.",
     "role": [
       "UI design",
@@ -333,8 +333,8 @@
     "ja": {
       "title": "BraintankAI",
       "line": "研究ニュースのサイト。見て回るときはにぎやかに、読むときは静かに。",
-      "problem": "トップは、難しい論文を開いてみたくなるように見せる必要がある。一方で記事ページは、方法や限界の長い説明を読めるくらい静かでないといけない。全部にぎやかだと読めず、全部静かだと開かれない。",
-      "move": "二つのモードに分けた。見て回るときは動く。画面いっぱいのトップ記事、カードとセクションのタイルはポインタが来るまで暗いか灰色のままで、来ると色が戻り、ピンクの線が伸びる。読むときは止まる。下にスクロールするとヘッダーが引っ込み、本文はセリフ体の一段組み、上端の細いピンクの線が読んだ位置を示し、論文カード（掲載先、リンク、コード）は最後に置く。",
+      "problem": "トップは難しい論文を開きたくなるように見せ、記事ページは方法や限界の長い説明を落ち着いて読めるようにしたい。一つのスタイルでは両方はできない。",
+      "move": "二つのモード。見て回るときは動く。全画面のトップ記事、カードとタイルはポインタが来ると灰色から色に変わり、ピンクの線が伸びる。読むときは止まる。ヘッダーは引っ込み、セリフ体の一段組み、細い進捗線、論文カードは最後。",
       "outcome": "色と動きは「ここを開ける」という意味にだけ使うので、トップに余計なボタンがいらず、記事を開いたあとは本文と競うものが画面にない。",
       "role": [
         "UI デザイン",

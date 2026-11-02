@@ -1,0 +1,11 @@
+#!/bin/sh
+# ux-rec: cases.json 動了就跑案例檢查, 有 ✗ 擋 commit(主筆 2026-11-02「每次都要檢查」).
+# 裝法: ln -sf ../../tools/pre-commit .git/hooks/pre-commit . 標準正本 b-rec/docs/🎀 工表/ux-rec/案例寫法工表.md
+if git diff --cached --name-only | grep -q '^data/cases.json$'; then
+  if ! python3 tools/check_cases.py >/tmp/ux-case-check.$$ 2>&1; then
+    cat /tmp/ux-case-check.$$; rm -f /tmp/ux-case-check.$$
+    echo "cases.json 沒過案例檢查, commit 擋下."
+    exit 1
+  fi
+  rm -f /tmp/ux-case-check.$$
+fi
