@@ -18,7 +18,9 @@
   const LABEL = { ja: ["課題", "設計", "結果"], en: ["Problem", "Design", "Outcome"] };
   const bulb = $("lang");
   // 類型標(主筆 11-02「要不要標每個案件是什麼類型」-> 三個試版選 A「做成A吧」): 板塊名那一行最右邊灰字寫類型(boards.json kind / ja.kind).
-  //   跟著產品走, 不是每一則; Singles 一則一個產品, 類型寫在事例上(cases.json c.kind), 放那一則的右邊. 不用圖標(B / C 沒選).
+  //   跟著產品走, 不是每一則. 不用圖標(B / C 沒選).
+  //   🧊 Singles 雪藏(主筆 11-02「決定不再採用singles這個操作」「singles這個功能和相關代碼雪藏comment out，以後我想做再說」):
+  //   原本 Singles 一則一個產品, 類型寫在事例上(cases.json c.kind)放那一則右邊, 網址用事例自己的 c.url 掛在說明標題後. 相關程式下面標 🧊 註解掉, 要開回就拿掉註解.
   // 原寸: 錄影是 deviceScaleFactor 2, 所以影片像素 / 2 = 頁面上的原本大小
   const size = (w, h) => {
     root.style.setProperty("--r", `${w}/${h}`);
@@ -26,7 +28,7 @@
   };
   vid.addEventListener("loadedmetadata", () => { if (vid.videoWidth) size(vid.videoWidth, vid.videoHeight); });
 
-  // 🔗 一顆: 靜置只有符號, hover 長出網址. 板塊名用 b.url; Singles(主筆 11-01「類似單曲, 來補全我做的範圍」)一則一個產品, 用事例自己的 c.url, 放在說明的標題後面
+  // 🔗 一顆: 靜置只有符號, hover 長出網址. 板塊名用 b.url. (🧊 Singles 時期(主筆 11-01「類似單曲, 來補全我做的範圍」)也用在事例自己的 c.url, 見 text())
   const link = (url) => {
     const lk = document.createElement("a");
     lk.className = "lk";
@@ -73,8 +75,9 @@
     }
     const r = document.createElement("button");
     r.className = "row";
-    r.innerHTML = `<span class="n">${++n}</span><span class="t"></span><span class="k"></span>`;
-    if (c.kind) r.kind = c;
+    r.innerHTML = `<span class="n">${++n}</span><span class="t"></span>`;
+    // 🧊 Singles: 事例自己的類型(c.kind)放那一則右邊. 開回時上一行補 <span class="k"></span>, paint() 的選擇器加回 ".row"
+    // if (c.kind) r.kind = c;
     // 標題在 paint() 寫(換語言時重寫). 📱 = 手機介面(直式影片, tools/stamp.py 判定)
     items.push({ key: c.id, el: r, kind: "case", ref: c });
     list.appendChild(r);
@@ -83,7 +86,8 @@
 
   const text = (t, line, c) => {
     $("t").textContent = t;
-    if (c && c.url) $("t").append(" ", link(c.url));
+    // 🧊 Singles: 事例自己的產品網址掛在說明標題後
+    // if (c && c.url) $("t").append(" ", link(c.url));
     $("line").textContent = line || "";
     dl.hidden = !c;
     $("problem").textContent = c ? tx(c, "problem") : "";
@@ -98,7 +102,8 @@
     bulb.setAttribute("aria-label", lang === "ja" ? "日本語" : "English");
     document.querySelectorAll("#detail dt").forEach((d, i) => { d.textContent = LABEL[lang][i]; });
     items.forEach((it) => { if (it.kind === "case") it.el.querySelector(".t").textContent = tx(it.ref, "title") + (it.ref.phone ? " 📱" : ""); });
-    list.querySelectorAll(".bd, .row").forEach((el) => { el.querySelector(".k").textContent = el.kind && el.kind.kind ? tx(el.kind, "kind") : ""; });
+    // 🧊 Singles 時期選擇器是 ".bd, .row"(事例列也有類型)
+    list.querySelectorAll(".bd").forEach((el) => { el.querySelector(".k").textContent = el.kind && el.kind.kind ? tx(el.kind, "kind") : ""; });
   };
   bulb.addEventListener("click", () => {
     lang = LANGS[(LANGS.indexOf(lang) + 1) % LANGS.length];

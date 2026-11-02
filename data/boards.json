@@ -77,11 +77,23 @@
     "kind": "Web app"
   },
   {
+    "id": "braintank",
+    "name": "BraintankAI",
+    "line": "Frontier technology and AI research news, every story linked to its paper.",
+    "url": "https://braintank.ai/",
+    "ja": {
+      "line": "最先端の技術と AI 研究のニュース。どの記事も元の論文につながっている。",
+      "kind": "Web メディア"
+    },
+    "kind": "News media"
+  },
+  {
     "id": "singles",
     "name": "Singles",
     "line": "One-off projects, one case each.",
     "ja": {
       "line": "単発のプロジェクト。一つにつき一つの事例。"
-    }
+    },
+    "_iced": "🧊 2026-11-02 主筆「決定不再採用singles這個操作」「singles這個功能和相關代碼雪藏comment out，以後我想做再說」. 沒有事例指到它, 列表不會出現. 要開回: 事例 board 改 singles, 並拿掉 js/ux.js 與 tools/check_cases.py 的 🧊 註解"
   }
 ]

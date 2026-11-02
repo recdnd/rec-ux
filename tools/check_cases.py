@@ -34,9 +34,12 @@ def check(c):
     if not c.get("role"): err.append("role 空")
     if not ja.get("role"): err.append("ja.role 空")
     if len(c.get("role") or []) > 4: warn.append(f"role {len(c['role'])} 項, 最多 4")
-    single = c.get("board") == "singles"
-    if ja.get("title") == c.get("title") and not single:
-        err.append(f"ja.title 還是英文「{c.get('title')}」(Singles 的產品名例外)")
+    # 🧊 Singles 雪藏(主筆 11-02): 那時 Singles 一則一個產品, 標題 = 產品名, 不用翻也不查具體的人. 開回時換回下面兩行
+    # single = c.get("board") == "singles"
+    # if ja.get("title") == c.get("title") and not single:
+    single = False
+    if ja.get("title") == c.get("title"):
+        err.append(f"ja.title 還是英文「{c.get('title')}」")
     for f, m in EN_MAX.items():
         n = len(words(c.get(f, "")))
         if n > m: err.append(f"en.{f} {n} 字 > {m}")
@@ -52,7 +55,7 @@ def check(c):
     if re.search(r"ね[。」]|ね$", ja_all): err.append("ja 句末「ね」(主筆不用)")
     p = words(c.get("problem", ""))
     if "users" in p or "user" in p: warn.append("problem 寫 user(s): 換成具體的人(player / listener / reader / writer ...)")
-    elif not any(a in p for a in ACTORS) and not single:
+    elif not any(w.startswith(a) for w in p for a in ACTORS) and not single:   # 詞頭比, readers / players 也算
         warn.append("problem 沒有具體的人: 誰卡住了?")
     mv = {w for w in words(c.get("move", "")) if w not in STOP}
     oc = {w for w in words(c.get("outcome", "")) if w not in STOP}

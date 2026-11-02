@@ -62,7 +62,7 @@ main{ display:flex; gap:4px; align-items:flex-start; }
 .bd.live:first-child{ margin-top:0; }
 .bd.live.on{ color:var(--pick); }
 /* 🔗: 靜置只有符號; hover 時 🔗 + 網址一起變成一顆藍字底色框的連結(系統藍, 藍的 .07 / .14 / .22 階), 整顆都能點, 開新分頁. 不放說明字 */
-/* 同一顆也用在 Singles 的說明標題後面(一則一個產品, 連結跟著事例) */
+/* 🧊 Singles(11-02 雪藏)時期同一顆也用在說明標題後面(一則一個產品, 連結跟著事例). 樣式通用, 不用改 */
 .lk{ display:inline-flex; align-items:center; gap:3px; padding:1px; color:var(--op); text-decoration:none; white-space:nowrap; }
 .lk span{ display:none; }
 .lk:hover,.lk:focus-visible{ background:rgba(0,0,255,.14); }
@@ -85,9 +85,9 @@ main{ display:flex; gap:4px; align-items:flex-start; }
 .bd.live:hover,.bd.live:focus-visible{ background:rgba(0,0,255,.14); }
 .bd.live:active,.bd.live.on{ background:rgba(0,0,255,.22); }
 
-/* 類型標(主筆 11-02 三個試版選 A): 灰字 .55, 跟 role 行同一個灰, 不加第三種字色. 沒有類型的(Singles 板塊名, 一般事例)是空的 span */
+/* 類型標(主筆 11-02 三個試版選 A): 灰字 .55, 跟 role 行同一個灰, 不加第三種字色. 只有板塊名有; 🧊 Singles 雪藏前事例列也有(.row .k), 樣式通用 */
 .k{ opacity:.55; white-space:nowrap; }
-.bd .k{ order:1; margin-left:auto; }   /* 板塊名的類型靠右, 跟 Singles 那一則同一條線; 🕹️🔗 仍貼著名字(主筆「在小標題右側」) */
+.bd .k{ order:1; margin-left:auto; }   /* 板塊名的類型靠右; 🕹️🔗 仍貼著名字(主筆「在小標題右側」) */
 
 /* 說明: band 歌詞位. 一種字號, 黑字 + 標籤用 .55 */
 #detail{ flex:1 1 auto; overflow:auto; padding:1px; display:flex; flex-direction:column; gap:4px; }

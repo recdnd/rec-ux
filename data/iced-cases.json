@@ -1,0 +1,96 @@
+{
+  "_note": "🧊 雪藏的事例(頁面不讀這個檔). 2026-11-02 主筆「spiral為可玩版+1個一枚のボードに並ぶ作業錄像」: Spiral 只留 session-stream, 下面三則收在這裡, 影片仍在 movies/. 要開回就搬回 cases.json(放在 session-stream 後面).",
+  "cases": [
+    {
+      "id": "meta-control",
+      "board": "spiral",
+      "title": "Settings in Plain Words",
+      "line": "Document settings change from the writing box, in plain words.",
+      "problem": "A document's type and who can read it usually live in a separate settings panel. The writer stops, finds the panel and comes back, and nothing in the document shows the change.",
+      "move": "The writer types the change into the same box used for writing: \"Change Type to Core Document\". The header fields about to change turn red; once applied, they show the new values, and the request stays in the document as a line.",
+      "outcome": "There is no settings screen to find, and every change leaves a line, so how the document got its current settings reads top to bottom.",
+      "role": [
+        "UX concept",
+        "Interaction design",
+        "System design",
+        "Prototype implementation"
+      ],
+      "video": "movies/meta-control.mp4",
+      "v": "fe32fd45",
+      "live": "https://spiral.ooo/",
+      "phone": true,
+      "ja": {
+        "title": "言葉で変える設定",
+        "line": "文書の設定を、書く欄から、ふつうの言葉で変える。",
+        "problem": "文書の種類や読める人の設定は、たいてい別の設定画面にある。書く手を止めて画面を探し、戻ってくる。しかも文書の中には、変えた跡が残らない。",
+        "move": "書くのと同じ欄に、変えたいことを打つ（「Change Type to Core Document」）。変わるヘッダーの項目が赤くなり、適用されると新しい値に変わる。頼んだ一行は文書に残る。",
+        "outcome": "探す設定画面がなく、変更のたびに一行残るので、文書が今の設定になった経緯を上から読める。",
+        "role": [
+          "UX コンセプト",
+          "インタラクションデザイン",
+          "システム設計",
+          "プロトタイプ実装"
+        ]
+      }
+    },
+    {
+      "id": "header-system",
+      "board": "spiral",
+      "title": "The Header Shows the Rules",
+      "line": "What a document is and who wrote each line are printed on the page.",
+      "problem": "Whether a file is private, read-only or shared is usually hidden in metadata, and its lines do not say who wrote them. The writer finds out only when something is blocked.",
+      "move": "Each document opens with a gray header of plain fields: type, author, access tier, seal level, created. Every line below carries its author's mark; when the writer types \"I am Rec\", that line's mark changes to 𝕽.",
+      "outcome": "Before typing, the writer can see whether the document is private, sealed or shared, and who wrote every line.",
+      "role": [
+        "System design",
+        "UX concept",
+        "Interaction design"
+      ],
+      "video": "movies/header-system.mp4",
+      "v": "2b633fff",
+      "live": "https://spiral.ooo/",
+      "phone": true,
+      "ja": {
+        "title": "ルールを見せるヘッダー",
+        "line": "文書が何なのか、各行を誰が書いたのかが、ページに書いてある。",
+        "problem": "ファイルが非公開か、読み取り専用か、共有かは、たいていメタデータに隠れていて、行にも書いた人は出ない。書く人は、何かが止められて初めて気づく。",
+        "move": "文書の上には灰色のヘッダーがあり、種類、作者、アクセス、封印、作成日時がそのまま並ぶ。下の各行には書いた人の印が付き、「I am Rec」と打つと、その行の印が 𝕽 に変わる。",
+        "outcome": "書き始める前に、文書が非公開か、封印済みか、共有かが分かり、どの行を誰が書いたかも分かる。",
+        "role": [
+          "システム設計",
+          "UX コンセプト",
+          "インタラクションデザイン"
+        ]
+      }
+    },
+    {
+      "id": "ghostwriting",
+      "board": "spiral",
+      "title": "The AI Writes in the Draft",
+      "line": "The AI continues on the next line of the draft, not in a chat.",
+      "problem": "In most AI writing tools the draft is on one side and the chat on the other. The writer asks in one, copies the answer into the other, and loses the thread.",
+      "move": "There is no chat panel. On a new line of the draft, the AI's continuation is typed in place, a few words at a time, with a small \"generating\" note under the text.",
+      "outcome": "Nothing to copy or paste: the suggestion is already where it belongs, and can be kept, edited or deleted like any other line.",
+      "role": [
+        "UX concept",
+        "Interaction design",
+        "Prototype implementation"
+      ],
+      "video": "movies/ghostwriting.mp4",
+      "v": "6cb35a6a",
+      "live": "https://spiral.ooo/",
+      "ja": {
+        "title": "下書きの中の AI",
+        "line": "AI は、チャットではなく、下書きの次の行で続きを書く。",
+        "problem": "多くの AI 文章ツールは、下書きとチャットが左右に分かれている。書く人は片方で頼み、答えをもう片方に写し、そのたびに文章の流れを見失う。",
+        "move": "チャット欄はない。下書きの新しい行に、AI の続きが数語ずつその場で打ち込まれ、文の下に小さく「生成中」と出る。",
+        "outcome": "コピーも貼り付けもいらない。提案は最初から置くべき場所にあり、ほかの行と同じように残すことも、直すことも、消すこともできる。",
+        "role": [
+          "UX コンセプト",
+          "インタラクションデザイン",
+          "プロトタイプ実装"
+        ]
+      }
+    }
+  ]
+}
