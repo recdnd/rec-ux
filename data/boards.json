@@ -5,8 +5,10 @@
     "line": "Browser 2D RPG built without a game engine, and the tools that make it.",
     "url": "https://rec.ooo/dungeons/",
     "ja": {
-      "line": "ゲームエンジンを使わずに作ったブラウザの 2D RPG と、それを作るための道具。"
-    }
+      "line": "ゲームエンジンを使わずに作ったブラウザの 2D RPG と、それを作るための道具。",
+      "kind": "ブラウザゲーム"
+    },
+    "kind": "Browser game"
   },
   {
     "id": "band",
@@ -14,8 +16,10 @@
     "line": "Music site: listen, buy without an account, keep what you own.",
     "url": "https://rec.ooo/band/",
     "ja": {
-      "line": "音楽サイト。聴いて、アカウントなしで買って、買ったものを持っておく。"
-    }
+      "line": "音楽サイト。聴いて、アカウントなしで買って、買ったものを持っておく。",
+      "kind": "音楽ストア"
+    },
+    "kind": "Music store"
   },
   {
     "id": "rec",
@@ -23,8 +27,10 @@
     "line": "Personal site and hub for everything else.",
     "url": "https://rec.ooo/",
     "ja": {
-      "line": "個人サイトと、ほかの全部への入口。"
-    }
+      "line": "個人サイトと、ほかの全部への入口。",
+      "kind": "Web サイト"
+    },
+    "kind": "Website"
   },
   {
     "id": "kiln",
@@ -32,8 +38,10 @@
     "line": "Rule-based text formatting.",
     "url": "https://kiln.ooo/",
     "ja": {
-      "line": "ルールで決まる文章の整形。"
-    }
+      "line": "ルールで決まる文章の整形。",
+      "kind": "Web ツール"
+    },
+    "kind": "Web tool"
   },
   {
     "id": "ruvia",
@@ -41,8 +49,10 @@
     "line": "Ideas as a tree, saved as plain files.",
     "url": "https://ruvia.dev/",
     "ja": {
-      "line": "アイデアを木の形に。保存はただのファイル。"
-    }
+      "line": "アイデアを木の形に。保存はただのファイル。",
+      "kind": "Web ツール"
+    },
+    "kind": "Web tool"
   },
   {
     "id": "spiral",
@@ -50,8 +60,10 @@
     "line": "AI workspace prototype, 2025-2026. Development ended.",
     "url": "https://spiral.ooo/",
     "ja": {
-      "line": "AI の作業場のプロトタイプ（2025〜2026）。開発は終了。"
-    }
+      "line": "AI の作業場のプロトタイプ（2025〜2026）。開発は終了。",
+      "kind": "Web アプリ"
+    },
+    "kind": "Web app"
   },
   {
     "id": "singles",

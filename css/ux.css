@@ -85,6 +85,10 @@ main{ display:flex; gap:4px; align-items:flex-start; }
 .bd.live:hover,.bd.live:focus-visible{ background:rgba(0,0,255,.14); }
 .bd.live:active,.bd.live.on{ background:rgba(0,0,255,.22); }
 
+/* 類型標(主筆 11-02 三個試版選 A): 灰字 .55, 跟 role 行同一個灰, 不加第三種字色. 沒有類型的(Singles 板塊名, 一般事例)是空的 span */
+.k{ opacity:.55; white-space:nowrap; }
+.bd .k{ order:1; margin-left:auto; }   /* 板塊名的類型靠右, 跟 Singles 那一則同一條線; 🕹️🔗 仍貼著名字(主筆「在小標題右側」) */
+
 /* 說明: band 歌詞位. 一種字號, 黑字 + 標籤用 .55 */
 #detail{ flex:1 1 auto; overflow:auto; padding:1px; display:flex; flex-direction:column; gap:4px; }
 #detail dl{ display:grid; grid-template-columns:8ch 1fr; gap:4px 3px; }
