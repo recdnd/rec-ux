@@ -40,8 +40,15 @@ main{ display:flex; gap:4px; align-items:flex-start; }
   body{ min-height:var(--vh); display:flex; align-items:center; justify-content:center; }
 }
 
-/* 舞台跟著影片縮(主筆 10-30「1試試看」): 不再是固定的盒, 寬 = 影片顯示寬, 影片 + 列表一組貼著, 整組由 body 置中. 換寬度不同的片時整組會左右移 */
+/* 舞台 = 固定的盒, 影片貼著右欄、頂端對齊(主筆 11-03 看 saturn/ux-版式試版 後「走 B 固定盒」).
+   換片時右欄不動(之前 1440 x 900 量到左右 314 / 上下 93 在跳), 只有影片的左邊界在變.
+   取代 10-30「影片框跟著影片縮，整組置中…1試試看」; 保留那時的「影片 + 列表貼著」. 整組(盒 + 右欄)大小固定, 照舊由 body 置中.
+   手機(<= 760)不走這一段: 上下排, 照舊. */
 #stage{ max-width:100%; }
+@media (min-width:761px){
+  /* 寬再跟 100vw - 436 取小: --stage-w 下限 560, 761..995 寬的視窗不取小會整頁橫捲(900 寬實測多 42) */
+  #stage{ width:min(var(--stage-w), 100vw - 436px); height:var(--stage-h); display:flex; align-items:flex-start; justify-content:flex-end; }
+}
 /* 寬 = 原寸, 盒放不下才縮(盒寬 / 盒高 x 比例); 高由 aspect-ratio 給. 還沒有影片時這一塊就是 .07 的空框, 大小照 size */
 #vid{ display:block; aspect-ratio:var(--r); width:min(var(--nw), var(--stage-w), var(--stage-h) * (var(--r))); max-width:100%; height:auto; background:rgba(var(--k),.07); }
 
@@ -49,7 +56,8 @@ main{ display:flex; gap:4px; align-items:flex-start; }
 #live{ display:block; width:var(--stage-w); max-width:100%; height:var(--stage-h); border:0; }   /* 互動版用整個可用的盒 */
 #live[hidden],#vid[hidden]{ display:none; }
 
-#side{ width:420px; max-width:100%; max-height:var(--stage-h); display:flex; flex-direction:column; gap:4px; }   /* 高 = 內容(最多到可用高), 整組才看得出是在正中間(主筆 10-31「內容容器居中」) */
+/* 右欄高 = 盒高, 固定(主筆 11-03「走 B 固定盒」). 10-31「內容容器居中」時是高 = 內容, 說明長短一變整組就上下移; 現在內容少時下方留白 */
+#side{ width:420px; max-width:100%; height:var(--stage-h); max-height:var(--stage-h); display:flex; flex-direction:column; gap:4px; }
 
 /* 事例條: band 曲目條同一套 .07 / .14 / .22, 選中字換系統紅. 沒有可玩頁的板塊名(Spiral)是不可按的一行, 只有字 */
 #list{ display:flex; flex-direction:column; gap:1px; overflow:auto; flex:0 1 auto; }
