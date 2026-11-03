@@ -88,6 +88,17 @@
     "kind": "News media"
   },
   {
+    "id": "talk",
+    "name": "rec.ooo/talk",
+    "line": "Commission desk: a step-by-step chat for design, art or software requests.",
+    "url": "https://rec.ooo/talk",
+    "ja": {
+      "line": "依頼の窓口。デザイン、イラスト、ソフトウェアの依頼を、一問ずつのチャットで受け付ける。",
+      "kind": "会話型フォーム"
+    },
+    "kind": "Conversational form"
+  },
+  {
     "id": "singles",
     "name": "Singles",
     "line": "One-off projects, one case each.",

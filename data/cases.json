@@ -308,5 +308,68 @@
     },
     "v": "cfbc8170",
     "live": "https://braintank.ai/"
+  },
+  {
+    "id": "rec-phone-box",
+    "board": "rec",
+    "title": "Read Before You Leave",
+    "line": "On a phone, a tap explains the icon; only the rocket button leaves.",
+    "problem": "The desktop site explains each icon on hover. A phone has no hover, so a visitor tapping an unfamiliar emoji would land on another site before knowing what it was.",
+    "move": "A tap opens the black box at the top in short lines written for the phone (Kiln: tidies punctuation and formatting in one click), and a -Ok. 🚀 button appears; only that button leaves. Icons are scattered, not a grid, and can be dragged anywhere.",
+    "outcome": "18 icons on one 375 × 667 screen, with no menu and no scrolling. Every way out to another site passes through the box first.",
+    "role": [
+      "UI design",
+      "Interaction design",
+      "Copywriting",
+      "Front-end"
+    ],
+    "video": "movies/rec-phone-box.mp4",
+    "live": "https://rec.ooo/",
+    "ja": {
+      "title": "行き先を読んでから進む",
+      "line": "スマホでは、タップで説明が出る。出かけるのは 🚀 のボタンだけ。",
+      "problem": "PC 版はアイコンにカーソルを乗せると説明が出る。スマホにはホバーがないので、知らない絵文字をタップした人は、それが何かを知る前に別のサイトへ飛ばされる。",
+      "move": "タップすると上の黒い枠に、スマホ用に短く書いた説明が出る（Kiln なら「句読点や書式の乱れを、ワンクリックで整える。」）。出かけるのは -Ok. 🚀 のボタンだけ。アイコンは格子に並べず散らし、ドラッグで動かせる。",
+      "outcome": "375 × 667 の一画面に 18 個のアイコン。メニューもスクロールもない。別のサイトへ出る道は、どれも先に黒い枠を通る。",
+      "role": [
+        "UI デザイン",
+        "インタラクションデザイン",
+        "コピーライティング",
+        "フロントエンド"
+      ]
+    },
+    "v": "405067b0",
+    "phone": true
+  },
+  {
+    "id": "talk-desk",
+    "board": "talk",
+    "title": "A Desk Instead of an Email",
+    "line": "Commissioning by answering questions, not by writing an email.",
+    "problem": "Someone with an idea but no spec has to write a cold email and guess what to include: scope, rights, budget, deadline.",
+    "move": "The desk asks one thing at a time (scope, rights, budget, deadline, the idea, a reply address) and keeps the whole exchange on screen. A line above the input says how the price works: design work is quoted after reading, not with a made-up number on the spot.",
+    "outcome": "The answers come back as one summary card. A failed send is never silent: the video shows http 501 next to a button that copies the whole request.",
+    "role": [
+      "UI design",
+      "Conversation design",
+      "Front-end",
+      "Back-end"
+    ],
+    "video": "movies/talk-desk.mp4",
+    "live": "https://rec.ooo/talk",
+    "ja": {
+      "title": "メールではなく、窓口で",
+      "line": "メールを書くかわりに、質問に答えて依頼する。",
+      "problem": "アイデアはあっても仕様はない人が、いきなりメールを書くことになる。範囲、権利、予算、締め切りのうち何を書けばいいかは、自分で考えるしかない。",
+      "move": "窓口は一つずつ聞く（範囲、権利、予算、締め切り、内容、返信先）。やりとりは全部画面に残る。入力欄の上の一行が金額の決まり方を示す。設計の仕事は、その場で適当な数字を出さず、内容を見てから見積もる。",
+      "outcome": "答えは一枚のまとめになって返ってくる。送信に失敗しても黙らない。動画では http 501 と出て、依頼内容をまるごとコピーするボタンが残る。",
+      "role": [
+        "UI デザイン",
+        "会話設計",
+        "フロントエンド",
+        "バックエンド"
+      ]
+    },
+    "v": "39e33c5b"
   }
 ]
