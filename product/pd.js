@@ -146,7 +146,7 @@
       const rows = c.type === "note" ? c.notes : C_LABEL.map(([f, l]) => [l, c[f]]);
       text(c.title + (c.media && c.media.phone ? " 📱" : ""), null, rows, c.role);
     }
-    codeFill(it.kind === "case" ? it.ref.id : "");
+    codeFill(it.key);   // 產品層も枠を持てる(主筆 11-06 Personal Directory「加點代碼/規則層」). products と cases の id は重ならない
   };
 
   // 右欄垂直置中(主筆 11-05「右側板垂直居中」), 但換則時不跳(11-03「走 B 固定盒」):

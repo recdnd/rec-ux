@@ -13,9 +13,9 @@ import json, os, re, sys
 ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
 OUT = os.path.join(ROOT, 'p-rec/product/data/code.json')
 
-# case id -> 枠 1 つ. ranges = 原ファイルの行 [from, to] (両端含む). notes = {行番号: 注}.
+# case id(または products.json の id = 產品層)-> 枠 1 つ. ranges = 原ファイルの行 [from, to] (両端含む). notes = {行番号: 注}.
 CODE = {
-    'dungeons-trade': {
+    'dungeons-genre': {
         'file': 'rec-rec/home/dungeons/trade.js', 'name': 'trade.js',
         'ranges': [(110, 181), (202, 213)],
         'notes': {
@@ -28,7 +28,7 @@ CODE = {
             206: '成立は、この瞬間に自分の皿が下がっているかだけで決める。',
         },
     },
-    'band-no-account': {
+    'band-sell': {
         'file': 'rec-band/index.html', 'name': 'band/index.html',
         'ranges': [(2537, 2572)],
         'notes': {
@@ -46,6 +46,45 @@ CODE = {
             2609: '会話のブロックを、入れ子のまま字下げして書き出す。',
             2625: '分岐の中の分岐も、同じ関数でたどる。',
             3793: '何も選んでいないときは、空の中身をコピーせず ❌ を返す。',
+        },
+    },
+    # Personal Directory(主筆 11-06「personaldirectory沒東西可以展示嗎，加點代碼/規則層啊」). 產品層 key = products.json の id
+    'pdir': {
+        'file': 'PD+FC/form-copilot/extension/content/injectPanel.ts', 'name': 'injectPanel.ts',
+        'ranges': [(470, 499)],
+        'notes': {
+            472: 'このサイトで自分の手で直して覚えさせた値を、欄の形から引く。',
+            473: '学歴の欄が何行も並ぶときは、2 行目から先に同じ学校を入れない。',
+            481: '覚えさせた値がある欄は、住所や電話の推定を通さない。',
+            482: '住所の欄なのに組の形がわからなければ、埋めずにコピー用に回す。',
+            487: '候補には、出どころと確かさを必ず付ける。',
+            491: '形のわからない住所は、全住所をコピー用に出すだけにし、確かさは低くする。',
+            496: 'どれにも当たらない欄だけが、元本の候補になる。',
+            498: '読み取れなかった欄には、候補を出さない。',
+        },
+    },
+    'pdir-fields': {
+        'file': 'PD+FC/form-copilot/extension/content/phoneGroup.ts', 'name': 'phoneGroup.ts',
+        'ranges': [(37, 41), (90, 110), (129, 132)],
+        'notes': {
+            39: '携帯の 11 桁だけを 3・4・4 に割る。固定電話は市外局番の長さが決まらないため割らない。',
+            91: '欄が一つしかなければ、組とはみなさない。',
+            95: '全桁が入る欄が二つ並ぶだけ（自宅と携帯など）なら、組にしない。',
+            102: '欄の長さが足りない、または並びがわからなければ、三つとも埋めない。',
+            108: '前・中・後に分けて入れる。',
+            131: '一つの欄には、ハイフン入りの例や指示があるときだけハイフンを入れる。',
+        },
+    },
+    'pdir-layers': {
+        'file': 'PD+FC/form-copilot/scripts/buildSnapshots.ts', 'name': 'buildSnapshots.ts',
+        'ranges': [(28, 33), (35, 36), (41, 42), (49, 56)],
+        'notes': {
+            28: 'ハード層の元本（HEAD.md）から、値を書き換えずにそのまま取り出す。',
+            30: '元本に項目がなければ、推測せずにそこで止める。',
+            35: 'ひらがな版は、カタカナから機械で作る。',
+            41: '全角版も、同じ値から機械で作る。',
+            52: '住所は元本の一行を、郵便番号・都道府県・市区町村・番地・建物に割る。',
+            53: '割れなければ書き出しを止め、間違った値を黙って作らない。',
         },
     },
 }
@@ -95,8 +134,9 @@ def main():
         }
         print(f'{cid}: {sum(len(b) for b in blocks)} 行, 注 {len(spec["notes"])}')
     cases = {c['id'] for c in json.load(open(os.path.join(ROOT, 'p-rec/product/data/cases.json'), encoding='utf-8'))}
+    cases |= {p['id'] for p in json.load(open(os.path.join(ROOT, 'p-rec/product/data/products.json'), encoding='utf-8'))}   # 產品層も枠を持てる
     for cid in data:
-        if cid not in cases: print(f'✗ {cid}: cases.json にない'); bad += 1
+        if cid not in cases: print(f'✗ {cid}: cases.json / products.json にない'); bad += 1
     json.dump(data, open(OUT, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     print(OUT)
     sys.exit(1 if bad else 0)

@@ -1,5 +1,5 @@
 {
- "dungeons-trade": {
+ "dungeons-genre": {
   "name": "trade.js",
   "span": "110–181 / 202–213",
   "blocks": [
@@ -168,7 +168,7 @@
    ]
   ]
  },
- "band-no-account": {
+ "band-sell": {
   "name": "band/index.html",
   "span": "2537–2572",
   "blocks": [
@@ -534,6 +534,348 @@
     [
      3798,
      "});"
+    ]
+   ]
+  ]
+ },
+ "pdir": {
+  "name": "injectPanel.ts",
+  "span": "470–499",
+  "blocks": [
+   [
+    [
+     470,
+     "    for (const field of classified) {"
+    ],
+    [
+     471,
+     "      const sig = fieldSignature(field.element);"
+    ],
+    [
+     472,
+     "      const learnedVal = activeSet ? activeSet.fields[sig] : undefined;",
+     "このサイトで自分の手で直して覚えさせた値を、欄の形から引く。"
+    ],
+    [
+     473,
+     "      const snapCandidate = repeatKeys.has(field.key)",
+     "学歴の欄が何行も並ぶときは、2 行目から先に同じ学校を入れない。"
+    ],
+    [
+     474,
+     "        ? { value: \"\", source: \"repeat\", confidence: \"low\" }"
+    ],
+    [
+     475,
+     "        : resolveCandidate(field.fieldType, { profile, answerBank, links });"
+    ],
+    [
+     476,
+     "      const isLearned = learnedVal !== undefined;"
+    ],
+    [
+     477,
+     "      if (isLearned) learnedMatches++;"
+    ],
+    [
+     481,
+     "      const addrHit = !isLearned ? addrGroups.assigned.get(field.key) : undefined;",
+     "覚えさせた値がある欄は、住所や電話の推定を通さない。"
+    ],
+    [
+     482,
+     "      const addrRejected = !isLearned && !addrHit && addrGroups.rejected.has(field.key);",
+     "住所の欄なのに組の形がわからなければ、埋めずにコピー用に回す。"
+    ],
+    [
+     483,
+     "      const phoneHit = !isLearned && !addrHit && !addrRejected ? phoneGroups.assigned.get(field.key) : undefined;"
+    ],
+    [
+     484,
+     "      const phoneRejected = !isLearned && !addrHit && !addrRejected && !phoneHit && phoneGroups.rejected.has(field.key);"
+    ],
+    [
+     486,
+     "      const candidate = isLearned"
+    ],
+    [
+     487,
+     "        ? { value: learnedVal as string, source: \"learned\", confidence: \"high\" }",
+     "候補には、出どころと確かさを必ず付ける。"
+    ],
+    [
+     488,
+     "        : addrHit"
+    ],
+    [
+     489,
+     "          ? { value: addrHit.value, source: `addr·${addrHit.slot}${addrHit.zen ? \"·全角\" : \"\"}`, confidence: \"high\" }"
+    ],
+    [
+     490,
+     "          : addrRejected"
+    ],
+    [
+     491,
+     "            ? { value: (addressParts as AddressParts).full || \"\", source: \"addr·pattern?\", confidence: \"low\" }",
+     "形のわからない住所は、全住所をコピー用に出すだけにし、確かさは低くする。"
+    ],
+    [
+     492,
+     "            : phoneHit"
+    ],
+    [
+     493,
+     "              ? { value: phoneHit.value, source: `phone·${phoneHit.slot}`, confidence: \"high\" }"
+    ],
+    [
+     494,
+     "              : phoneRejected"
+    ],
+    [
+     495,
+     "                ? { value: (splitPhone(String(profile.phone || \"\")) || [String(profile.phone || \"\")]).join(\"-\"), source: \"phone·pattern?\", confidence: \"low\" }"
+    ],
+    [
+     496,
+     "                : snapCandidate;",
+     "どれにも当たらない欄だけが、元本の候補になる。"
+    ],
+    [
+     498,
+     "      const isUnknown =",
+     "読み取れなかった欄には、候補を出さない。"
+    ],
+    [
+     499,
+     "        field.fieldType === \"free_text_unknown\" && !isLearned && !addrHit && !addrRejected && !phoneHit && !phoneRejected;"
+    ]
+   ]
+  ]
+ },
+ "pdir-fields": {
+  "name": "phoneGroup.ts",
+  "span": "37–41 / 90–110 / 129–132",
+  "blocks": [
+   [
+    [
+     37,
+     "export function splitPhone(phone: string): string[] | null {"
+    ],
+    [
+     38,
+     "  const d = (phone || \"\").replace(/\\D/g, \"\");"
+    ],
+    [
+     39,
+     "  if (/^0[5789]0\\d{8}$/.test(d)) return [d.slice(0, 3), d.slice(3, 7), d.slice(7)];",
+     "携帯の 11 桁だけを 3・4・4 に割る。固定電話は市外局番の長さが決まらないため割らない。"
+    ],
+    [
+     40,
+     "  return null;"
+    ],
+    [
+     41,
+     "}"
+    ]
+   ],
+   [
+    [
+     90,
+     "  for (const group of byBase.values()) {"
+    ],
+    [
+     91,
+     "    if (group.length < 2 || !group.some((f) => f.fieldType === \"phone\")) continue;",
+     "欄が一つしかなければ、組とはみなさない。"
+    ],
+    [
+     92,
+     "    const sufs = group.map(sufOf);"
+    ],
+    [
+     93,
+     "    const order = ORDERS.find((o) => o.length === sufs.length && o.every((x) => sufs.includes(x)));"
+    ],
+    [
+     95,
+     "    const split = group.some(isShort) || (order !== undefined && group.length === 3 && group.every((f) => maxLen(f) < 10));",
+     "全桁が入る欄が二つ並ぶだけ（自宅と携帯など）なら、組にしない。"
+    ],
+    [
+     96,
+     "    if (!split) continue;"
+    ],
+    [
+     97,
+     "    for (const f of group) grouped.add(f.key);"
+    ],
+    [
+     98,
+     "    const ok = parts && order && group.every((f) => {"
+    ],
+    [
+     99,
+     "      const ml = maxLen(f);"
+    ],
+    [
+     100,
+     "      return ml === 0 || ml >= parts[order.indexOf(sufOf(f))].length;"
+    ],
+    [
+     101,
+     "    });"
+    ],
+    [
+     102,
+     "    if (!ok || !parts || !order) {",
+     "欄の長さが足りない、または並びがわからなければ、三つとも埋めない。"
+    ],
+    [
+     103,
+     "      for (const f of group) rejected.add(f.key);"
+    ],
+    [
+     104,
+     "      continue;"
+    ],
+    [
+     105,
+     "    }"
+    ],
+    [
+     106,
+     "    for (const f of group) {"
+    ],
+    [
+     107,
+     "      const i = order.indexOf(sufOf(f));"
+    ],
+    [
+     108,
+     "      assigned.set(f.key, { value: parts[i], slot: SLOT_NAMES[i] });",
+     "前・中・後に分けて入れる。"
+    ],
+    [
+     109,
+     "    }"
+    ],
+    [
+     110,
+     "  }"
+    ]
+   ],
+   [
+    [
+     129,
+     "  for (const f of phones) {"
+    ],
+    [
+     130,
+     "    if (grouped.has(f.key) || !wantsHyphen(f) || !parts) continue;"
+    ],
+    [
+     131,
+     "    assigned.set(f.key, { value: parts.join(\"-\"), slot: \"ハイフン\" });",
+     "一つの欄には、ハイフン入りの例や指示があるときだけハイフンを入れる。"
+    ],
+    [
+     132,
+     "  }"
+    ]
+   ]
+  ]
+ },
+ "pdir-layers": {
+  "name": "buildSnapshots.ts",
+  "span": "28–33 / 35–36 / 41–42 / 49–56",
+  "blocks": [
+   [
+    [
+     28,
+     "function headValue(md: string, key: string): string {",
+     "ハード層の元本（HEAD.md）から、値を書き換えずにそのまま取り出す。"
+    ],
+    [
+     29,
+     "  const block = md.match(new RegExp(`^${key}:\\\\n((?:[ \\\\t]+.*\\\\n?)*)`, \"m\"));"
+    ],
+    [
+     30,
+     "  if (!block) throw new Error(`HEAD.md に ${key} がない`);",
+     "元本に項目がなければ、推測せずにそこで止める。"
+    ],
+    [
+     31,
+     "  const v = block[1].match(/^\\s+value:\\s*(.*)$/m);"
+    ],
+    [
+     32,
+     "  return v ? v[1].trim().replace(/^\"|\"$/g, \"\") : \"\";"
+    ],
+    [
+     33,
+     "}"
+    ]
+   ],
+   [
+    [
+     35,
+     "const toHira = (s: string): string =>",
+     "ひらがな版は、カタカナから機械で作る。"
+    ],
+    [
+     36,
+     "  s.replace(/[\\u30a1-\\u30f6]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0x60));"
+    ]
+   ],
+   [
+    [
+     41,
+     "const zen = (s: string): string =>",
+     "全角版も、同じ値から機械で作る。"
+    ],
+    [
+     42,
+     "  s.replace(/[0-9]/g, (c) => String.fromCharCode(c.charCodeAt(0) + 0xfee0)).replace(/-/g, \"ー\").replace(/ /g, \"\\u3000\");"
+    ]
+   ],
+   [
+    [
+     49,
+     "function splitAddress(md: string): AddrParts {"
+    ],
+    [
+     50,
+     "  const raw = headValue(md, \"address_current\");"
+    ],
+    [
+     51,
+     "  const am = raw.normalize(\"NFKC\")"
+    ],
+    [
+     52,
+     "    .match(/^〒(\\d{3})-(\\d{4})\\s*(東京都|北海道|(?:京都|大阪)府|.{2,3}県)(.+?[市区町村])(\\D+?)(\\d+(?:-\\d+)*)\\s+(.+)$/);",
+     "住所は元本の一行を、郵便番号・都道府県・市区町村・番地・建物に割る。"
+    ],
+    [
+     53,
+     "  if (!am) throw new Error(\"address_current を割れない: \" + raw);",
+     "割れなければ書き出しを止め、間違った値を黙って作らない。"
+    ],
+    [
+     54,
+     "  const [, zip3, zip4, pref, city, town, banchi, building] = am;"
+    ],
+    [
+     55,
+     "  return { zip3, zip4, pref, city, town, banchi, building };"
+    ],
+    [
+     56,
+     "}"
     ]
    ]
   ]
