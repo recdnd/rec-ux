@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<!-- 掛在哪個子路徑都能動: 不寫死網域或根路徑, 全部相對路徑.
+     沒有結尾斜線的網址會讓相對路徑解到上一層, 所以第一件事照現在的網址補一個 <base>(不是寫死的路徑). -->
+<script>(function(){var p=location.pathname;if(!/\/$/.test(p))p=/\.html?$/.test(p)?p.replace(/[^\/]*$/,""):p+"/";var b=document.createElement("base");b.href=p;document.head.appendChild(b);})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Rec Product Design</title>
+<meta name="description" content="Rec のプロダクトデザイン。音楽サイト、ブラウザゲーム、B2B SaaS などで、誰の何の課題に、何を検討して何を決めたか。">
+<link rel="canonical" href="https://p.rec.ooo/33b/">
+<meta name="robots" content="noindex">
+<!-- 代號站(2026-11-05 從 product/ 複製後凍結, 之後只在這個夾裡改). 代號是給哪一家的: b-rec 🎀(不部署), 這個 repo 是 Public 所以不寫在這裡. -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📐</text></svg>">
+<link rel="stylesheet" href="pd.css?v=20261105c">
+</head>
+<body>
+<!-- Rec Product Design(2026-11-05). 左 = 舞台, 右 = 列表 + 說明.
+     產品名那一條 = プロダクト層(課題 / 提供 / 運営 / 体制), 一則 = 一個決定(課題 / 検討 / 決定 / 確認 / 次).
+     文案 data/products.json + data/cases.json. 舞台四種: 影片(movies/)/ 真頁面(iframe)/ 截圖(img/)/ 示意圖(下面的 <template id="fig-...">). -->
+<nav id="tools">
+  <a href="https://rec.ooo/" aria-label="rec.ooo">🏠</a>
+</nav>
+<main>
+  <section id="stage">
+    <video id="vid" muted loop playsinline preload="metadata"></video>
+    <iframe id="live" hidden aria-label="live page"></iframe>
+    <figure id="pic" hidden><img alt=""><figcaption></figcaption></figure>
+    <div id="fig" hidden></div>
+  </section>
+  <aside id="side">
+    <p id="guide">各事例は、課題 → 検討 → 決定 → 確認 の順で書いています。</p>
+    <div id="list"></div>
+    <article id="detail">
+      <p id="t"></p>
+      <p id="line"></p>
+      <dl id="dl"></dl>
+      <p id="role"></p>
+    </article>
+  </aside>
+</main>
+
+<!-- 示意圖. 字是素材原文, 改字先改素材再改這裡 -->
+<template id="fig-offer">
+  <h3>導入する企業が気にすることから、提供のしかたを決める（販売開始前）</h3>
+  <table class="tb">
+    <thead><tr><th>導入する企業が気にすること</th><th>Cloutric での設計</th></tr></thead>
+    <tbody>
+      <tr><td>数字を社外に出したくない</td><td>自社のサーバーで Docker で動く。データは自社の1つのフォルダにだけあり、外部への通信はない。提供する自分も、どの会社の数字にも触れない。</td></tr>
+      <tr><td>導入と更新の手間</td><td>インストールも更新も1行。更新時のデータベース移行に失敗したら自動で元に戻し、更新前のバックアップを残す。</td></tr>
+      <tr><td>料金と人数</td><td>¥9,800 の一回払い、全社で人数無制限、1年分の更新つき。その1年に出た版は、期限後もずっと使える。</td></tr>
+      <tr><td>やめるとき・ほかのツールへ移るとき</td><td>契約の状態に関係なく、閲覧と書き出しは止めない。書き出しは1つの ZIP に、全データの JSON、Excel で開ける CSV、ほかの予実・BI ツールが読める縦持ちの CSV、データベース本体をまとめる。取り込みは Excel から書き出した CSV（Shift_JIS）をそのまま読める。</td></tr>
+      <tr><td>試すまでのハードル</td><td>cloutric.com のデモをそのまま触れる。インストール後30日は鍵なしで使える。</td></tr>
+    </tbody>
+  </table>
+</template>
+
+<template id="fig-om">
+  <h3>Cloutric のオブジェクトモデル（画面から書き起こし）</h3>
+  <div class="om">
+    <div class="objs">
+      <div class="o"><b>施策</b><p>ID / 施策名 / 部門 / 担当 / ステータス / 工数（実績・予定）/ 原価差異 / 期限</p><p class="a">新規作成</p></div>
+      <div class="o on"><b>アラート</b><p>部門 / 勘定科目 / 差異</p><p class="a">なし。見るだけ。届け先は通知ルールで決める</p></div>
+      <div class="o"><b>通知ルール</b><p>アラートの種類 / 届け先チャンネル / 担当者メンション / 現在の該当数</p><p class="a">届け先を選ぶ / Slack・Teams・メールにつなぐ</p></div>
+      <div class="o"><b>チャンネル</b><p>名前 / 公開・非公開</p><p class="a">メッセージを送る / @メンション</p></div>
+      <div class="o"><b>メンバー</b><p>名前 / 役職</p><p class="a">DMを送る</p></div>
+      <p class="rel">関係: 部門 1:n 施策（親子）/ メンバー 1:n 施策（担当として参照）/ 通知ルール → チャンネル・メンバー（参照）/ アラート → 部門・勘定科目（参照）。上段はプロパティ、青字はアクション。閲覧は操作に数えない。</p>
+    </div>
+    <figure class="shot"><img src="img/cloutric-rules.jpg" alt="Cloutric の通知ルールの画面"><figcaption>通知ルールの画面。どのルールにも、今の該当数（現在 3 件 など）が出る。</figcaption></figure>
+  </div>
+</template>
+
+<template id="fig-layers">
+  <h3>硬い層と柔らかい層</h3>
+  <div class="lay">
+    <div class="hard"><b>硬い層</b><p>性別や学歴のように変わらない事実。書き換えずに写すだけ。</p></div>
+    <div><b>柔らかい層</b><p>自己PRのように、相手に合わせて毎回書くもの。硬い層とは混ぜない。</p></div>
+  </div>
+  <p class="cap"><b>分けた理由</b>混ぜると、事実のほうが言い回しに引っぱられて、少しずつずれていく。</p>
+  <p class="cap">性別や国籍は、聞かれたときだけ出す。</p>
+</template>
+
+<template id="fig-fields">
+  <h3>入力する側から見えたこと</h3>
+  <table class="tb">
+    <thead><tr><th>欄</th><th>会社ごとの違い</th></tr></thead>
+    <tbody>
+      <tr><td>電話番号</td><td>1つの欄でハイフンの有無を指定する会社と、3つの欄に分ける会社がある。3つの欄は組として読み取り、前・中・後に分けて入れる。</td></tr>
+      <tr><td>住所・氏名</td><td>郵便番号の上3桁と下4桁、都道府県から番地までの分け方、全角の指定、氏名のカナ・ひらがな・ローマ字。同じ値を何通りもの形で持っておく必要がある。</td></tr>
+      <tr><td>年月</td><td>「2023年4月」「2023年04月」「2023/04」と、欄ごとに書式が違う。</td></tr>
+    </tbody>
+  </table>
+</template>
+
+<template id="fig-flow">
+  <h3>進め方</h3>
+  <div class="flow">
+    <div class="me"><b>自分（企画・設計）</b><p>何を作るか / どういう体験にするか / 仕様書・タスク指示書</p></div>
+    <i>→</i>
+    <div><b>AI エージェント</b><p>規約を読んでから実装・記録</p></div>
+    <i>→</i>
+    <div class="me"><b>レビュー・統合</b><p>出力を読んで直す・採否を決める</p></div>
+    <i>→</i>
+    <div><b>使って直す</b><p>自分と友人が使い、止まったところを設計に戻す</p></div>
+  </div>
+</template>
+
+<script src="pd.js?v=20261105c"></script>
+</body>
+</html>
