@@ -1,0 +1,6 @@
+# GitHub Pages(Jekyll)設定(2026-11-05): 只送網站本身, 開發用的檔留在 repo, 不上線.
+exclude:
+  - README.md
+  - tools
+  - rituals
+  - push.command

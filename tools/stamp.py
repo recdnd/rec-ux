@@ -2,7 +2,7 @@
 # 這支把每支影片內容的雜湊寫進 data/cases.json 的 v, 頁面用 ?v=<雜湊> 去拿 -> 檔案一換, 網址就換.
 # 換影片後跑: python3 tools/stamp.py
 import hashlib, json, pathlib, subprocess
-root = pathlib.Path(__file__).resolve().parent.parent
+root = pathlib.Path(__file__).resolve().parent.parent / "uiux"   # 2026-11-05 搬家: 站在 uiux/
 p = root / "data" / "cases.json"
 cases = json.loads(p.read_text())
 for c in cases:

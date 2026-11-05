@@ -8,8 +8,9 @@ import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { scenarios } from "./scenarios.mjs";
 
-const ROOT = new URL("..", import.meta.url).pathname;
-const FRAMES = ROOT + "tools/_frames/";
+const REPO = new URL("..", import.meta.url).pathname;
+const ROOT = REPO + "uiux/";   // 2026-11-05 搬家: 站在 uiux/
+const FRAMES = REPO + "tools/_frames/";
 const DPR = 2;
 
 // cards.json の media.v に動画の雜湊を書く -> 頁は ?v= を付けて読むので, 撮り直すと必ず新しい方が出る

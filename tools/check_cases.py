@@ -7,7 +7,7 @@
 import json, re, sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent / "uiux"   # 2026-11-05 搬家: 站在 p.rec.ooo/uiux/, 資料跟著在 uiux/
 FIELDS = ("title", "line", "problem", "move", "outcome")
 # 長度上限: 英文算字數, 日文算字元. 一則卡片要能一眼掃完(2026-11-02 用通過的那幾則定)
 EN_MAX = {"line": 14, "problem": 32, "move": 50, "outcome": 32}

@@ -3,7 +3,7 @@
 # 本檔放在 ux-rec/rituals/ 內
 
 REC_PROJECT="ux-rec"
-REC_DEPLOY_URL="https://spiral.rec.ooo"
+REC_DEPLOY_URL="https://p.rec.ooo"
 
 # 專案根 = 本腳本目錄的上一層(rituals/ 在專案根下)
 REC_PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
