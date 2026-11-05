@@ -111,7 +111,7 @@ def main():
         if not p.get("group"):
             for f in ("line", "issue", "team"):
                 if not p.get(f): err.append(f"{f} 空")
-            if not st: err.append("stage 空")
+            # 舞台可以空: 沒有可玩頁、不是展示型的產品層不放圖(主筆 11-05「susdungeons沒有搖桿, 就不要放四張圖」「personal directory也不是展示型的，不用放」)
             if st.get("image") and not (PD / st["image"]).exists(): err.append(f"圖不存在 {st['image']}")
             if st.get("figure") and f'id="{st["figure"]}"' not in html: err.append(f"figure template 不存在 {st['figure']}")
         for f, m in P_MAX.items():
