@@ -14,7 +14,7 @@ from pd_code import CODE
 TR = 'rec-rec/home/dungeons/trade.js'
 allt = L(TR, 1, 400)
 half = (len(allt) + 1) // 2
-notes = CODE['dungeons-trade']['notes']
+notes = CODE['dungeons-genre']['notes']
 lens = [[n, t] + ([notes[n]] if n in notes else []) for n, t in L(TR, 139, 178)]
 data = {'wall': [allt[:half], allt[half:]], 'lens': lens, 'file': TR, 'total': len(open(os.path.join(R, TR), encoding='utf-8').read().split('\n')), 'kept': len(allt)}
 tpl = open(os.path.join(HERE, 'tpl.html'), encoding='utf-8').read().replace('/*DATA*/null', json.dumps(data, ensure_ascii=False))

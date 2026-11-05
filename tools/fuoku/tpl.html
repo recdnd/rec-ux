@@ -114,6 +114,43 @@ td.m{ font:11px var(--mono); color:var(--sub); }
 .how{ display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; }
 .how .card{ padding:8px 14px; }
 .how .t{ font-size:15px; }
+
+/* A4-A5 比較表(採用 = 濃い青の一行 / 一列)/ A6 方針の棒 */
+.cmp{ font-size:13px; }
+.cmp td{ line-height:1.5; }
+.cmp td:first-child{ width:150px; font-weight:700; }
+.cmp td:first-child b{ display:inline-block; width:22px; height:22px; margin-right:8px; border-radius:50%; background:var(--line); color:var(--ink); font:700 12px/22px var(--font); text-align:center; }
+.cmp tr.on td{ background:var(--pale); }
+.cmp tr.on td:first-child{ color:var(--blue); box-shadow:inset 4px 0 0 var(--blue); }
+.cmp tr.on td:first-child b{ background:var(--blue); color:#fff; }
+.cmp td.x{ color:var(--sub); }
+.cmp td.o{ color:var(--blue); font-weight:700; }
+.cmp.gen td:first-child{ width:130px; color:var(--blue); font-size:12px; }
+.cmp.gen th.on{ background:var(--blue); color:#fff; }
+.cmp.gen td.on{ background:var(--pale); }
+.lead{ margin:0; font-size:14px; }
+.rules{ display:flex; flex-direction:column; gap:2px; }
+.rule{ display:grid; grid-template-columns:26px 1fr 300px 46px; gap:10px; align-items:center; font-size:13.5px; }
+.rule i{ font-style:normal; color:var(--sub); font-weight:700; text-align:right; }
+.rule .tr{ height:12px; border-radius:6px; background:#f1f4fa; overflow:hidden; }
+.rule .tr span{ display:block; height:100%; border-radius:6px; background:#c7d5fb; }
+.rule b{ text-align:right; color:var(--sub); font-variant-numeric:tabular-nums; }
+.rule.hi .t{ font-weight:700; }
+.rule.hi .tr span{ background:var(--blue); }
+.rule.hi b{ color:var(--blue); }
+.after{ flex:1 1 0; min-height:0; overflow:hidden; display:grid; grid-template-columns:auto minmax(0,1fr); grid-template-rows:minmax(0,1fr); gap:14px; }
+.after .shots{ display:flex; gap:8px; min-height:0; height:100%; }
+.after .shot{ margin:0; min-height:0; height:100%; display:flex; flex-direction:column; gap:3px; }
+.after .shot img{ display:block; height:calc(100% - 20px); width:auto; max-width:520px; object-fit:contain; object-position:left top; border:1px solid var(--line); border-radius:6px; }
+.after .shot figcaption{ font-size:11px; color:var(--sub); white-space:nowrap; }
+.chk{ min-height:0; display:flex; flex-direction:column; gap:6px; justify-content:center; }
+.chk .card{ padding:6px 12px; }
+.chk .lab{ font-size:11px; }
+.chk .t{ font-size:14px; margin:1px 0; }
+.chk .s{ font-size:12px; line-height:1.45; }
+/* 16:9 は高さが足りないので, 確認カードを横に並べる */
+body:not(.a4) .chk{ display:grid; grid-auto-flow:column; grid-auto-columns:minmax(0,1fr); align-content:center; }
+body:not(.a4) .chk .s{ font-size:11.5px; }
 </style>
 </head>
 <body class="/*BODY*/">
@@ -197,44 +234,70 @@ td.m{ font:11px var(--mono); color:var(--sub); }
 </section>
 
 <section class="pg" id="p4">
-  <div class="hd"><span class="tag">付録</span><h2>比較案：ゲームの扉</h2><span class="pill">比較 → 採用</span></div>
+  <div class="hd"><span class="tag">付録</span><h2>比較案：Cloutric を誰に売るか</h2><span class="pill">比較 → 採用</span></div>
   <div class="how">
-    <div class="card"><div class="lab">色</div><div class="t">鍵 8 本の絵から主色を測る</div></div>
-    <div class="card"><div class="lab">形</div><div class="t">平板・箍釘・アーチの 3 案</div></div>
-    <div class="card"><div class="lab">並べ方</div><div class="t">24 枚を同じ大きさで一覧に</div></div>
+    <div class="card"><div class="lab">条件 1</div><div class="t">一度作れば、長く安定して動く</div></div>
+    <div class="card"><div class="lab">条件 2</div><div class="t">費用は、本当の利用者が出てから払う</div></div>
+    <div class="card"><div class="lab">条件 3</div><div class="t">移るときは、全データを持ち出せる</div></div>
   </div>
-  <div class="grid px" id="doors" style="grid-template-columns:3ch repeat(8,1fr)"></div>
-  <div class="band">A の黄銅を、絵のなかった黄色の扉に先に当てた。</div>
+  <table class="cmp">
+    <tr><th>案</th><th>売る相手</th><th>値段</th><th>売ったあとに要るもの</th><th>三つの条件</th></tr>
+    <tr><td><b>A</b>大きな会社に合わせる</td><td>情報システム部門のある 100〜1000 人の会社</td><td>年額の契約。試算は 50 人まで年 30 万円、200 人まで年 60 万円</td><td>シングルサインオン、データベースの選択、導入の代行、稟議の資料、セキュリティチェックシートへの回答</td><td class="x">条件 1 を守れない。一人では 30 社前後が上限</td></tr>
+    <tr><td><b>B</b>サーバーのない会社にも届ける</td><td>5〜50 人の会社</td><td>A と同じ年額</td><td>NAS や各社のクラウド口座で起動する雛形。導入の支援が、売ったあとの最大の負担になる</td><td class="x">支援する環境を限っても、導入の対応が残る</td></tr>
+    <tr class="on"><td><b>C</b>採用</td><td>自分で Docker を動かせる小さなチーム</td><td>9,800 円の一回払い。人数は無制限で、1 年分の更新を含む</td><td>価格はページに公開し、商談はしない。固定費は 0 円から始められる</td><td class="o">三つとも守れる</td></tr>
+  </table>
+  <p class="src">出典：Cloutric 開発書 05〈代価〉〈一人の規模〉〈三つの条件〉、06〈価格〉。A の金額は社数の試算に使った仮の値。</p>
+  <div class="after">
+    <figure class="shot"><img src="img/cmp-pricing.jpg" alt=""><figcaption>C の実物：cloutric.com/pricing</figcaption></figure>
+    <div class="chk">
+      <div class="card"><div class="lab">条件 1</div><div class="t">部品は 3 つと、Node 内蔵の SQLite だけ</div><p class="s">社内のネットワークで動かし、外には出さない。</p></div>
+      <div class="card"><div class="lab">条件 2</div><div class="t">固定費は 0 円</div><p class="s">配布は無料の置き場、支払いは決済リンクで受け、ライセンスの鍵は手で発行する。</p></div>
+      <div class="card"><div class="lab">条件 3</div><div class="t">期限が切れても、閲覧と書き出しは止めない</div><p class="s">移るときは、全データをいつでも書き出せる。</p></div>
+    </div>
+  </div>
+  <div class="band">売る相手を一人で回せる範囲に絞った。期限が切れても、閲覧と書き出しは止めない。</div>
   <div class="ft">セツ シュントウ　付録<b>A4</b></div>
 </section>
 
 <section class="pg" id="p5">
-  <div class="hd"><span class="tag">付録</span><h2>比較案：曲のジャケット</h2><span class="pill">比較 → 採用</span></div>
-  <div class="how">
-    <div class="card"><div class="lab">素材</div><div class="t">チーズ 6 種をドット絵に</div></div>
-    <div class="card"><div class="lab">構図</div><div class="t">同じ曲で 4 案、元の絵と並べる</div></div>
-    <div class="card"><div class="lab">再現</div><div class="t">素材と生成の設定（seed）を残す</div></div>
+  <div class="hd"><span class="tag">付録</span><h2>比較案：音楽の売り方を 3 回作り直した</h2><span class="pill">比較 → 採用</span></div>
+  <table class="cmp gen">
+    <tr><th></th><th>1 回目（一年前、別のサイト）</th><th>2 回目（2026年9月26日）</th><th class="on">3 回目（9月29日から、採用）</th></tr>
+    <tr><td>払い方</td><td>月額の購読と、サイト独自のコイン</td><td>単曲 1 ドル、全曲 10 ドルの買い切り</td><td class="on">2 回目と同じ買い切り</td></tr>
+    <tr><td>アカウント</td><td>要る</td><td>作らない</td><td class="on">作らない</td></tr>
+    <tr><td>買ったものの戻り道</td><td>アカウント</td><td>ブラウザに置いた記録だけ</td><td class="on">メールアドレス。入力されたアドレスにだけ、新しいリンクを送る</td></tr>
+    <tr><td>漏らさないこと</td><td>—</td><td>—</td><td class="on">返事は毎回同じにし、そのアドレスで買ったかどうかを答えない。同じアドレスには 10 分に 1 通まで</td></tr>
+    <tr><td>結果</td><td class="x">決済の組み込みが最後まで通らなかった</td><td class="x">お礼の画面を閉じた人が、リンクを取り戻せない</td><td class="on o">購入、ダウンロード、メールでの復元を、テストモードで最初から最後まで通した</td></tr>
+  </table>
+  <p class="src">出典：Rec Dungeons 開発書 32〈決済の作り直し〉。ダウンロードのリンクは 7 日間・1 回限りで、復元のたびに新しく発行する。</p>
+  <div class="after">
+    <div class="shots">
+      <figure class="shot"><img src="img/cmp-band-panel.jpg" alt=""><figcaption>CD の上の購入欄。単曲・全曲・メールでの復元</figcaption></figure>
+      <figure class="shot"><img src="img/cmp-band-checkout.jpg" alt=""><figcaption>支払い画面（テストモード）</figcaption></figure>
+    </div>
+    <div class="chk">
+      <div class="card"><div class="lab">復元の検査</div><div class="t">買っていないアドレスにも、同じ返事を返す</div><p class="s">送るのは、買ったことのあるアドレスにだけ。</p></div>
+      <div class="card"><div class="lab">復元の検査</div><div class="t">同じアドレスへの二通目は、すぐには送らない</div><p class="s">形の壊れたアドレスは受け付けない。</p></div>
+      <div class="card"><div class="lab">復元の検査</div><div class="t">届いたリンクは、一度使うと無効になる</div><p class="s">一つのアドレスで二曲買っていれば、一通に二曲分が入る。</p></div>
+    </div>
   </div>
-  <div class="grid px" style="grid-template-columns:repeat(5,1fr)">
-    <figure><img src="img/cover-old.jpg" alt=""><figcaption>元の絵</figcaption></figure>
-    <figure><img src="img/cover-cheese拼貼-滿版.jpg" alt=""><figcaption>A 一面に敷く</figcaption></figure>
-    <figure><img src="img/cover-cheese山巨型sus.jpg" alt=""><figcaption>B 山の上に巨大</figcaption></figure>
-    <figure><img src="img/cover-cheese拼貼-找sus.jpg" alt=""><figcaption>C 探させる</figcaption></figure>
-    <figure class="on"><img src="img/cover-cheese大顆-右下sus.jpg" alt=""><figcaption>D 大きく、右下に</figcaption></figure>
-  </div>
-  <div class="band">D：手描きの絵を 5 色のドット絵に起こし、手前のチーズで少しだけ隠す。公開版ではチーズをマウスで押しのけられる。</div>
+  <div class="band">曲一つを買う人に、会員登録をさせない。登録フォームは、購入の流れのどこにもない。</div>
   <div class="ft">セツ シュントウ　付録<b>A5</b></div>
 </section>
 
 <section class="pg" id="p6">
-  <div class="hd"><span class="tag">付録</span><h2>比較案：作品集のレイアウト</h2><span class="pill">比較 → 採用</span></div>
-  <div class="how">
-    <div class="card"><div class="lab">撮り方</div><div class="t">案ごとに 5 事例を 1440 × 900 で</div></div>
-    <div class="card"><div class="lab">見るところ</div><div class="t">事例を替えたとき右欄が動くか</div></div>
-    <div class="card"><div class="lab">結果</div><div class="t">B の固定の枠</div></div>
+  <div class="hd"><span class="tag">付録</span><h2>比較案：魔塔と何を変えるか</h2><span class="pill">比較 → 採用</span></div>
+  <p class="lead">魔塔という形のゲームは、攻撃・防御・金貨の数字を計算して詰める遊びになりやすい。2026年8月13日、定番と違える十一の方針を、こだわりの強さ（%）つきで決めた。</p>
+  <div class="rules" id="rules"></div>
+  <p class="src">出典：sus dungeons 開発書〈十一の方針〉の原文。あとから一つ加えた底線：戦うだけで進む人も、ほかの遊びを飛ばして最後まで行ける。</p>
+  <div class="after">
+    <figure class="shot"><img src="img/cmp-trade.jpg" alt=""><figcaption>鍛冶屋との取引。品物とコインを皿に載せる</figcaption></figure>
+    <div class="chk">
+      <div class="card"><div class="lab">8・9・11</div><div class="t">店は歩いて入る部屋。値段の代わりに重さを使う</div><p class="s">値段の一覧も倍率の道具もなく、天秤の傾きで払いが足りるかを見る。</p></div>
+      <div class="card"><div class="lab">実装</div><div class="t">天秤の動きは付録 A1</div><p class="s">梁の傾き、揺れ、皿の振り子を、乱数を使わずに計算している。</p></div>
+    </div>
   </div>
-  <div class="grid" id="ux" style="grid-template-columns:5ch repeat(5,1fr)"></div>
-  <div class="band">B：舞台を固定の大きさにし、事例を替えても右欄が動かない。その後、映像を枠の中央に寄せた。</div>
+  <div class="band">値段の数字は出さず、天秤の傾きで払う。重いものほど、皿に載せるコインが多い。</div>
   <div class="ft">セツ シュントウ　付録<b>A6</b></div>
 </section>
 
@@ -264,23 +327,25 @@ D.wall.forEach(ls => { const p = document.createElement("pre"); p.innerHTML = ro
 document.getElementById("lens").innerHTML = rows(D.lens);
 document.getElementById("lt").textContent = "trade.js  L" + a + "–" + b + "  step()";
 document.getElementById("meta").textContent = D.file + "  ·  " + D.total + " 行（註解を除くと " + D.kept + " 行）";
-// A4 扉: 3 形 x 8 色, 採用 = A 黄銅
+// A6 十一の方針(sus dungeons 開発書 00-prompt原文·分支 N2, 2026-08-13 主筆原文の %). 90% 以上だけ濃い青
 {
-  const C = [["brass","黄銅"],["iron","鉄"],["black_steel","黒鋼"],["red","赤"],["blue","青"],["jade","翡翠"],["agate","瑪瑙"],["old","古"]];
-  const g = document.getElementById("doors");
-  g.insertAdjacentHTML("beforeend", "<span></span>" + C.map(c => '<span class="collab">' + c[1] + "</span>").join(""));
-  ["A","B","C"].forEach(f => {
-    g.insertAdjacentHTML("beforeend", '<span class="rowlab">' + f + "</span>");
-    C.forEach(([k]) => g.insertAdjacentHTML("beforeend", '<figure' + (f === "A" && k === "brass" ? ' class="on"' : "") + '><img src="img/door-' + f + "_" + k + '.png" alt=""></figure>'));
-  });
-}
-// A6 作品集の版式: 以前 / A / B x 5 事例, 採用 = B(11-03)
-{
-  const K = ["talk-desk","rec-phone-box","dungeons-livehouse","cloutric-overview","braintank"], g = document.getElementById("ux");
-  [["now","以前"],["A","A"],["B","B"]].forEach(([r, lab]) => {
-    g.insertAdjacentHTML("beforeend", '<span class="rowlab">' + lab + "</span>");
-    K.forEach((k, i) => g.insertAdjacentHTML("beforeend", '<figure' + (r === "B" && i === 0 ? ' class="on"' : "") + (r === "B" ? ' style="outline:3px solid var(--blue);outline-offset:-3px"' : "") + '><img src="img/ux-' + r + "-" + k + '.jpg" alt=""></figure>'));
-  });
+  const R = [
+    ["死んだら、後室に落ちる仕組みにする", 90],
+    ["花を、育てても交換してもよい別の通貨にする", 60],
+    ["階は一直線。飛び越しはあるが、1d や 8a のような枝番は作らない", 60],
+    ["魔物を倒しきった階は、買って畑・釣り・自分の領地にできる", 90],
+    ["横の字幕画面を、日程や錬金炉などの機能画面に切り替えられる", 80],
+    ["教会から実験室まで主題を広げ、迷宮を一本道で終わらせない", 70],
+    ["データを増やすだけの飾りは作らない。物語は売りにしない", 50],
+    ["店や牧場はパネルにせず、歩いて入る", 90],
+    ["階を飛ばす道具・倍率の道具は作らない", 90],
+    ["探索・道順・収集と交換・純粋な技巧の階に寄せる", 55],
+    ["完全にランダムな階は作らない", 20],
+    ["抽象的な数値への依存を、できるだけ減らす", 20]
+  ];
+  const N = ["1","2","3","4","5","6","7","8","9","","10","11"];
+  document.getElementById("rules").innerHTML = R.map(([t, v], i) =>
+    '<div class="rule' + (v >= 90 ? " hi" : "") + '"><i>' + N[i] + '</i><span class="t">' + t + '</span><span class="tr"><span style="width:' + v + '%"></span></span><b>' + v + '%</b></div>').join("");
 }
 const only = location.hash.slice(1);
 if (only) document.querySelectorAll(".pg").forEach(p => p.hidden = p.id !== only);
