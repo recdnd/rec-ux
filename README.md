@@ -1,4 +1,18 @@
-# Rec UX(ux-rec)
+# Rec 作品集(ux-rec)➢ p.rec.ooo
+
+**2026-11-05 搬家**: 這個 repo(recdnd/rec-ux)= 作品集總站 **p.rec.ooo**. 一個版本一個子路徑, 互不連結:
+- `/` = 根頁: 名字 + https://rec.ooo. **不列出也不連到各版本**, 各版本之間也不互相連結.
+- `/uiux/` = 原本 ux.rec.ooo 的整站, 內容不改. ux.rec.ooo 已送出十幾份應募, 所以 **ux.rec.ooo/xxx -> https://p.rec.ooo/uiux/xxx 301 保留路徑**(Porkbun 轉址, 主筆設), `uiux/` 底下的路徑要跟舊站一一對得上, 不要搬動或改名.
+- `/product/` = PD(プロダクトデザイン)版: 同一批作品, 骨架換成 決定の記錄(課題 / 検討 / 決定 / 確認 / 次)+ プロダクト層(課題 / 提供 / 運営 / 体制). 全部相對路徑, 掛在任何子路徑都能動. 寫法標準在 b-rec(🎀 工表 ux-rec), 檢查 `python3 tools/check_pd.py`, 影片 `python3 tools/pd_media.py`(從 uiux/movies 複製, 同內容 git 只存一份).
+- `/ml/` 還沒有, 不放空頁.
+- 只上網站本身: `_config.yml` 把 README / tools / rituals / push.command 排除在 GitHub Pages 外.
+- 本機: repo 根起 `python3 -m http.server 2323`, 看 `/uiux/` 與 `/product/`.
+
+以下是搬家前(ux.rec.ooo 時期)的說明. 裡面的 `index.html` `css/` `js/` `data/` `movies/` `shots/` 現在都在 `uiux/` 底下, tools 照舊在 repo 根(已改成讀 `uiux/`).
+
+---
+
+## 搬家前: Rec UX(ux-rec)
 
 **2026-10-30 重做中(分支 `redo`)**: 主筆「ux.rec.ooo 重做作品集. 風格對齊 rec.ooo/band, 背景簡潔, 照前端契約, 先骨架, 之後走 15 秒影片一支一支做」. 新頁 = `index.html` + `css/ux.css` + `js/ux.js` + `data/cases.json`(一則 = 一支影片 + problem / move / outcome; `video` 為 null = 還沒做, 列表右邊不打 ▶; 影片不鎖比例, 顯示原寸(影片像素 / 2, 錄影是 @2x), 不放大, 盒放不下才縮; 還沒影片時用 `size` 欄如 "1792x1120", 沒有就 2320x1450. **錄影規格 1000x800(CSS px, 5:4, Retina 錄出 2000x1600; 1440 螢幕上剛好原寸). band 桌面例外 1160x725(排法要 1160 寬)**, 手機照原本). **🧊 Singles 板塊(2026-11-01 開, 11-02 雪藏)**: 主筆 11-02「決定不再採用singles這個操作」「singles這個功能和相關代碼雪藏comment out，以後我想做再說」. BraintankAI 改成自己的板塊(🕹️ 嵌 braintank.ai + 一則錄影). 相關程式在 js/ux.js 與 tools/check_cases.py 標 🧊 註解掉, boards.json 的 singles 留著(`_iced`, 沒有事例指到就不出現). Spiral 同日只留一則(session-stream)+ 🕹️, 另外三則收在 `data/iced-cases.json`(頁面不讀), 影片還在 movies/. **案例文案(2026-11-02, 主筆「每次都要檢查, 對齊ui/ux portfolio高級標準」)**: 寫 / 改 cases.json 照 b-rec `🎀 工表/ux-rec/案例寫法工表.md`, 改完跑 `python3 tools/check_cases.py`; `tools/pre-commit`(連到 .git/hooks)在 cases.json 有 ✗ 時擋 commit. **類型標(2026-11-02, 主筆選 A)**: 板塊名那一行最右邊灰字寫類型(`boards.json` 的 `kind` / `ja.kind`); 不用圖標. 平台不標(全是 Web, 手機那幾則有 📱). 本機 `python3 -m http.server 2323`. 合回 main 才上線; 網域回 ux.rec.ooo 要改 CNAME + DNS(主筆).
 
@@ -21,4 +35,4 @@ python3 -m http.server 8080
 
 ## Domain
 
-GitHub Pages, custom domain `ux.rec.ooo`(CNAME). DNS: ux.rec.ooo CNAME -> recdnd.github.io(主筆が DNS に追加). spiral.rec.ooo はこの repo からは配信されない.
+GitHub Pages, custom domain **`p.rec.ooo`**(CNAME, 2026-11-05). DNS: p.rec.ooo CNAME -> recdnd.github.io(主筆 11-05 在 Porkbun 建). ux.rec.ooo -> https://p.rec.ooo/uiux 301(Porkbun URL 轉址, 保留路徑, 主筆設). 更早: spiral.rec.ooo(10-30 前)-> ux.rec.ooo(10-30 ~ 11-05).
