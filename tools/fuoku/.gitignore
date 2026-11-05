@@ -1,4 +1,4 @@
 *.pdf
-付録.html
-付録-a4.html
+付録*.html
+*.png
 slices/代碼切片.html

@@ -6,157 +6,236 @@
 <title>付録</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📎</text></svg>">
 <style>
-/* 付録ページ(主筆 2026-11-06). 1 枚 1200x675(16:9), 作品集 PDF にそのまま入る大きさ. #1 #2 #3 で 1 枚だけ.
-   色は PD 版と同じ: 黒字 / 操作と見出しの印 = 系統藍 / 強調 = 系統紅, 底色框 = alpha 階. 枠線・角丸・影なし. */
+/* 作品集の付録(主筆 2026-11-06). 見せ方は 28F 二日間 s11 児玉さんの頁の型(b-rec 求職現場 共通/93〈五〉):
+   色は 1 系統(濃紺の字 + 青 1 色 + 薄青の面), 見出し = 札 + 太い題 + 右上の分類札 + 細線, 脚 = 細線 + 名前 + 太字の頁番号,
+   カード = 小さい青ラベル -> 太い一行 -> 灰の補足, 結論の数字だけ特大の青, 表は見出し行だけ薄青, 主役の 1 本だけ濃い青, 頁の下に締めの帯.
+   これは発表 / PDF の頁なので, 自用前端の契約(枠線・角丸なし)ではなく児玉さんの型に合わせる(主筆「就是要這些東西啊」).
+   1 枚 1200x675(16:9). body.a4 = 1123x794(作品集 PDF に足す A4 横). #p1..#p6 で 1 枚だけ. */
 :root{
-  --ink:#000; --op:#0000ff; --pick:#ff0000; --bg:#fff; --k:5,5,5; --note:#0010c0;
-  --ed:#0e0e10; --ed-ink:#cfcfd4; --ed-sub:#55555c; --kw:#ff5a4d; --str:#f2b8c6; --num:#ffd27a;
+  --ink:#141a3a; --sub:#5b6275; --blue:#1d4ed8; --pale:#eaf0ff; --line:#dde2ec; --bg:#fff; --dark:#1f2433; --red:#d61f1f;
+  --ed:#0e0e10; --ed-ink:#cfcfd4; --ed-sub:#55555c; --kw:#ff5a4d; --str:#f2b8c6; --num:#ffd27a; --note:#0010c0;
   --font:"Hiragino Sans","Noto Sans JP",system-ui,sans-serif;
   --mono:ui-monospace,"SF Mono",Menlo,"Hiragino Sans",monospace;
 }
 *{ box-sizing:border-box; }
 html,body{ margin:0; background:#e9e9ee; color:var(--ink); }
 body{ padding:16px; display:flex; flex-direction:column; align-items:center; gap:16px; font:14px/1.55 var(--font); }
-.pg{ position:relative; width:1200px; height:675px; background:var(--bg); padding:40px 56px 56px; overflow:hidden; display:flex; flex-direction:column; gap:14px; }
+.pg{ position:relative; width:1200px; height:675px; background:var(--bg); padding:30px 52px 58px; overflow:hidden; display:flex; flex-direction:column; gap:12px; }
 .pg[hidden]{ display:none; }
-/* A4 横(作品集 PDF に足す版): 297x210mm = 1123x794px. 中身は flex で縦に伸びる */
-body.a4 .pg{ width:1123px; height:794px; padding:40px 48px 56px; }
-body.a4 .ft{ left:48px; right:48px; }
+body.a4 .pg{ width:1123px; height:794px; padding:34px 48px 60px; }
 @page{ size:1200px 675px; margin:0; }
 /*A4*/
 @media print{ html,body{ background:var(--bg); } body{ padding:0; gap:0; display:block; } .pg{ break-after:page; } .pg:last-child{ break-after:auto; } }
-.hd{ display:flex; align-items:center; gap:14px; }
-.tag{ padding:2px 10px; background:rgba(0,0,255,.07); color:var(--op); font-size:18px; font-weight:700; }
-.hd h2{ margin:0; font-size:32px; line-height:1.2; }
-.ft{ position:absolute; left:56px; right:56px; bottom:18px; display:flex; font:12px var(--mono); color:#777; }
-.ft b{ margin-left:auto; color:var(--ink); }
-.lead{ margin:0; padding:8px 12px; background:rgba(0,0,255,.07); font-size:14px; }
-.lead i{ font-style:normal; color:var(--op); font-weight:700; margin-right:10px; }
 
-/* 1 壁 + ルーペ */
-.wall{ position:relative; flex:1; background:var(--ed); overflow:hidden; }
-.cols{ display:grid; grid-template-columns:repeat(2, 300px); gap:16px; padding:10px 14px; }
+/* 見出し / 脚 */
+.hd{ display:flex; align-items:center; gap:14px; padding-bottom:12px; border-bottom:1px solid var(--line); }
+.tag{ padding:3px 10px; border-radius:6px; background:var(--pale); color:var(--blue); font-size:17px; font-weight:700; }
+.hd h2{ margin:0; font-size:30px; line-height:1.2; font-weight:800; letter-spacing:.01em; }
+.pill{ margin-left:auto; padding:4px 14px; border-radius:999px; background:var(--blue); color:#fff; font-size:13px; font-weight:700; }
+.pill.dark{ background:var(--dark); }
+.ft{ position:absolute; left:52px; right:52px; bottom:16px; padding-top:10px; border-top:1px solid var(--line); display:flex; font-size:13px; color:var(--sub); }
+body.a4 .ft{ left:48px; right:48px; }
+.ft b{ margin-left:auto; color:var(--ink); font-size:14px; }
+.lab{ color:var(--blue); font-size:12px; font-weight:700; }
+.src{ font-size:11.5px; color:var(--sub); margin:0; }
+.band{ margin-top:auto; padding:10px 16px; border-radius:8px; background:var(--pale); font-weight:700; font-size:15px; }
+.band::before{ content:"→"; color:var(--blue); margin-right:10px; }
+.card{ border:1px solid var(--line); border-radius:8px; padding:12px 16px; background:#fff; }
+.card .t{ font-size:17px; font-weight:800; margin:2px 0 2px; }
+.card .s{ font-size:13px; color:var(--sub); margin:0; line-height:1.55; }
+
+/* A1 実装 */
+.imp{ flex:1; min-height:0; display:grid; grid-template-columns:330px 1fr; gap:14px; }
+.steps{ display:flex; flex-direction:column; gap:8px; }
+.step{ display:grid; grid-template-columns:30px 1fr; gap:10px; align-items:center; padding:9px 12px; }
+.step i{ width:28px; height:28px; border-radius:50%; background:var(--blue); color:#fff; font:700 14px/28px var(--font); text-align:center; font-style:normal; }
+.step .t{ font-size:15px; }
+.wall{ position:relative; background:var(--ed); border-radius:8px; overflow:hidden; }
+.cols{ display:grid; grid-template-columns:repeat(2, 230px); gap:12px; padding:10px 12px; }
 pre{ margin:0; font-family:var(--mono); white-space:pre; overflow:hidden; }
-.cols pre{ font-size:5.6px; line-height:1.18; color:var(--ed-ink); opacity:.8; }
+.cols pre{ font-size:4.6px; line-height:1.16; color:var(--ed-ink); opacity:.8; }
 .row{ display:block; }
-.row.lz{ background:rgba(255,90,77,.4); opacity:1; }
+.row.lz{ background:rgba(255,90,77,.45); opacity:1; }
 .ln{ display:inline-block; width:4ch; text-align:right; margin-right:1.2ch; color:var(--ed-sub); }
 .kw{ color:var(--kw); } .str{ color:var(--str); } .num{ color:var(--num); } .fn{ color:#fff; font-weight:700; }
-.lens{ position:absolute; right:16px; top:12px; bottom:12px; width:620px; background:var(--bg); outline:2px solid var(--kw); overflow:hidden; }
-.lens .lt{ padding:4px 10px; font:11px var(--mono); color:var(--note); background:rgba(0,16,192,.06); }
+.lens{ position:absolute; right:12px; top:12px; bottom:12px; width:calc(100% - 140px); background:#fff; border-radius:6px; outline:2px solid var(--kw); overflow:hidden; }
+.lens .lt{ padding:5px 12px; font:12px var(--mono); color:var(--blue); background:var(--pale); font-weight:700; }
 .lens pre{ font-size:10.5px; line-height:1.42; padding:4px 0; color:var(--ink); }
-.lens .ln{ width:4.5ch; color:#999; }
-.lens .kw{ color:#d40000; } .lens .str{ color:#b0306a; } .lens .num{ color:#a05a00; } .lens .fn{ color:#000; }
-.lens .nt{ display:block; white-space:normal; color:var(--note); font-family:var(--font); padding:0 10px 2px calc(5.7ch + 4px); font-size:11px; }
-.meta{ position:absolute; left:0; bottom:0; padding:4px 14px; font:11px var(--mono); color:var(--ed-sub); background:var(--ed); }
-.cap{ margin:0; font-size:13px; color:#555; }
+.lens .ln{ width:4.5ch; color:#9aa0ad; }
+.lens .kw{ color:#c0262d; } .lens .str{ color:#a02b63; } .lens .num{ color:#9a5800; } .lens .fn{ color:var(--ink); }
+.lens .nt{ display:block; white-space:normal; color:var(--note); font-family:var(--font); padding:0 10px 2px calc(5.7ch + 4px); font-size:11px; font-weight:700; }
+.lens .nt b{ display:inline-block; width:17px; height:17px; border-radius:50%; background:var(--blue); color:#fff; font:700 10px/17px var(--font); text-align:center; margin-right:6px; }
+.meta{ position:absolute; left:0; bottom:0; padding:4px 12px; font:10.5px var(--mono); color:var(--ed-sub); background:var(--ed); }
 
-/* 2 数字 / 3 進め方: 表は横線なし, 一行 .07 底 */
-table{ width:100%; border-collapse:separate; border-spacing:0 3px; font-size:14px; }
-th{ text-align:left; font-weight:400; color:var(--op); padding:4px 10px; background:rgba(0,0,255,.07); font-size:13px; }
-td{ padding:5px 10px; vertical-align:top; background:rgba(var(--k),.04); }
-td.n{ font:700 18px var(--mono); white-space:nowrap; text-align:right; }
-td.n small{ font:400 12px var(--font); color:#555; margin-left:4px; }
-td.s{ font:12px var(--mono); color:#666; }
-.cards{ flex:1; min-height:0; display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; }
-.card{ background:rgba(var(--k),.04); padding:12px 14px; display:flex; flex-direction:column; gap:6px; }
-.card h3{ margin:0; font-size:18px; display:flex; align-items:baseline; }
-.card h3 span{ margin-left:auto; font-size:12px; color:var(--op); font-weight:400; }
-.card b{ color:var(--op); font-size:12px; }
-.card p{ margin:0; font-size:13px; line-height:1.6; }
-.out{ background:var(--ed); color:var(--ed-ink); font:10.5px/1.45 var(--mono); padding:8px 12px; white-space:pre; overflow:hidden; }
-.out .ok{ color:#9fe0a8; } .out .ng{ color:var(--kw); } .out .d{ color:var(--ed-sub); }
+/* A2 規模 */
+.kpis{ display:grid; grid-template-columns:1.25fr 1fr 1fr; gap:12px; }
+.kpi{ padding:12px 16px; }
+.kpi.main{ background:var(--pale); border-color:var(--pale); }
+.kpi .v{ font-size:34px; font-weight:800; color:var(--blue); line-height:1.15; font-variant-numeric:tabular-nums; }
+.kpi .v small{ font-size:15px; margin-left:4px; }
+.kpi .s{ margin-top:2px; }
+.two{ flex:1; min-height:0; display:grid; grid-template-columns:1.35fr 1fr; gap:16px; }
+table{ width:100%; border-collapse:collapse; font-size:13px; }
+th{ text-align:left; font-weight:700; color:var(--blue); padding:6px 10px; background:var(--pale); font-size:12px; }
+td{ padding:6px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+td.n,th.n{ text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums; }
+td.n{ font-weight:700; }
+td.m{ font:11px var(--mono); color:var(--sub); }
+.chart{ display:flex; flex-direction:column; gap:6px; }
+.bars{ flex:1; display:grid; grid-template-columns:repeat(4, 1fr); gap:14px; align-items:end; padding:0 6px; border-bottom:1px solid var(--line); }
+.bar{ display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; }
+.bar b{ font-size:13px; color:var(--blue); margin-bottom:4px; }
+.bar span{ display:block; width:100%; border-radius:4px 4px 0 0; background:#c7d5fb; }
+.bar.on span{ background:var(--blue); }
+.bar.on b{ font-size:17px; }
+.xl{ display:grid; grid-template-columns:repeat(4, 1fr); gap:14px; padding:0 6px; text-align:center; font-size:12px; color:var(--sub); }
+
+/* A3 仕組み */
+.three{ flex:1; min-height:0; display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; }
+.three .card{ display:flex; flex-direction:column; gap:3px; }
+.three h3{ margin:0 0 4px; font-size:18px; display:flex; align-items:baseline; }
+.three h3 span{ margin-left:auto; font-size:12px; color:var(--blue); }
+.three .s{ margin-bottom:5px; color:var(--ink); }
+.three code{ font:11.5px var(--mono); background:var(--pale); padding:0 4px; border-radius:3px; }
+.out{ background:var(--ed); color:var(--ed-ink); font:10.5px/1.5 var(--mono); padding:8px 14px; border-radius:8px; white-space:pre; overflow:hidden; }
+.out .ok{ color:#9fe0a8; } .out .d{ color:var(--ed-sub); }
+
+/* A4-A6 比較 */
 .grid{ display:grid; gap:6px; }
-.grid figure{ margin:0; position:relative; background:rgba(var(--k),.04); }
+.grid figure{ margin:0; position:relative; border-radius:6px; overflow:hidden; background:#f3f5f9; }
 .grid img{ display:block; width:100%; height:auto; }
-.grid .px img{ image-rendering:pixelated; }
-.grid figcaption{ font:11px var(--mono); padding:2px 4px; color:#555; }
-.grid figure.on{ outline:3px solid var(--pick); outline-offset:-3px; }
-.grid figure.on figcaption{ color:var(--pick); font-weight:700; }
-.rowlab{ font:12px var(--mono); color:var(--op); align-self:center; }
-.card code{ font:12px var(--mono); background:rgba(0,0,255,.07); padding:0 3px; }
+.grid.px img{ image-rendering:pixelated; }
+.grid figcaption{ font-size:11px; padding:3px 6px; color:var(--sub); }
+.grid figure.on{ outline:3px solid var(--blue); outline-offset:-3px; }
+.grid figure.on::after{ content:"採用"; position:absolute; top:6px; right:6px; padding:1px 8px; border-radius:999px; background:var(--blue); color:#fff; font-size:11px; font-weight:700; }
+.grid figure.on figcaption{ color:var(--blue); font-weight:700; }
+.rowlab{ font-size:13px; font-weight:700; color:var(--blue); align-self:center; text-align:center; }
+.collab{ font-size:11px; font-weight:700; color:var(--sub); text-align:center; }
+.how{ display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; }
+.how .card{ padding:8px 14px; }
+.how .t{ font-size:15px; }
 </style>
 </head>
 <body class="/*BODY*/">
 
 <section class="pg" id="p1">
-  <div class="hd"><span class="tag">付録</span><h2>実装: 天秤の物理(sus dungeons)</h2></div>
-  <div class="wall"><div class="cols" id="cols"></div>
-    <div class="lens"><div class="lt" id="lt"></div><pre id="lens"></pre></div>
-    <div class="meta" id="meta"></div></div>
-  <p class="cap">左: trade.js の全体(註解を除く)。右: 梁の目標角 → 揺らぎ → ばね・減衰の運動方程式 → 皿の振り子 を毎フレーム解く部分。乱数を使わないので、同じ局面は毎回同じ動きになる。文字列はゲーム内の文言(原文のまま)。</p>
-  <div class="ft">Rec · p.rec.ooo<b>A1</b></div>
+  <div class="hd"><span class="tag">付録</span><h2>実装：天秤の物理（sus dungeons）</h2><span class="pill">実装</span></div>
+  <div class="imp">
+    <div class="steps">
+      <div class="card step"><i>1</i><div><div class="lab">目標角</div><div class="t">重さの差を傾きに</div><p class="s">差が大きいほど傾き、上限で頭打ち</p></div></div>
+      <div class="card step"><i>2</i><div><div class="lab">揺らぎ</div><div class="t">乱数を使わない</div><p class="s">二つの正弦で揺らす。同じ局面は毎回同じ動き</p></div></div>
+      <div class="card step"><i>3</i><div><div class="lab">運動方程式</div><div class="t">ばね + 減衰</div><p class="s">減衰は臨界より弱く、少し揺れてから止まる</p></div></div>
+      <div class="card step"><i>4</i><div><div class="lab">皿</div><div class="t">梁から吊った振り子</div><p class="s">梁とは別に動き、遅れて揺れる</p></div></div>
+      <div class="card step"><i>5</i><div><div class="lab">成立</div><div class="t">この瞬間の傾きだけ</div><p class="s">自分の皿が下がっていれば支払い完了</p></div></div>
+    </div>
+    <div class="wall"><div class="cols" id="cols"></div>
+      <div class="lens"><div class="lt" id="lt"></div><pre id="lens"></pre></div>
+      <div class="meta" id="meta"></div></div>
+  </div>
+  <div class="band">ショップ画面を作らず、天秤で払う。毎フレーム、運動方程式を解いて皿を動かす。</div>
+  <div class="ft">セツ シュントウ　付録<b>A1</b></div>
 </section>
 
 <section class="pg" id="p2">
-  <div class="hd"><span class="tag">付録</span><h2>数字で見る規模</h2></div>
-  <table>
-    <thead><tr><th>対象</th><th style="text-align:right">数</th><th>中身</th><th>測り方(2026-11-06)</th></tr></thead>
-    <tbody>
-      <tr><td>sus dungeons / rec.ooo</td><td class="n">765<small>コミット</small></td><td>2026-08-09 から。ゲーム本体・作業台・音楽ストアの公開側</td><td class="s">git rev-list --count</td></tr>
-      <tr><td>ゲーム本体の JS</td><td class="n">54,373<small>行</small></td><td>16 ファイル(移動・会話・天秤・音 など)</td><td class="s">wc -l dungeons/*.js</td></tr>
-      <tr><td>作業台</td><td class="n">41<small>個</small></td><td>NPC表・敵人表・掉落表 など、ゲームを作るための自分用ツール</td><td class="s">開発経験書 S0036</td></tr>
-      <tr><td>作業台の HTML / JS</td><td class="n">16,331<small>行</small></td><td>desks/ の分だけ</td><td class="s">wc -l desks/*</td></tr>
-      <tr><td>音楽ストア</td><td class="n">3,003<small>行</small></td><td>プレイヤー・購入・メールでの復元・互動封面 を 1 ページに</td><td class="s">wc -l band/index.html</td></tr>
-      <tr><td>デスクトップの相棒 sus</td><td class="n">8,136<small>行</small></td><td>Swift 48 ファイル、378 コミット(2026-10-06 から)</td><td class="s">wc -l / rev-list</td></tr>
-      <tr><td>デザイン規約</td><td class="n">21<small>モジュール</small></td><td>ボタン・ツールバー・ページ送り など、部品ごとの決まり 3,308 行</td><td class="s">rec-kit/design-modules</td></tr>
-      <tr><td>作業の手順書</td><td class="n">41<small>本</small></td><td>作業の種類ごと。依頼の文から該当の一本を引く</td><td class="s">工表の見出しを数えた</td></tr>
-    </tbody>
-  </table>
-  <div class="ft">Rec · p.rec.ooo<b>A2</b></div>
+  <div class="hd"><span class="tag">付録</span><h2>数字で見る規模</h2><span class="pill">規模</span></div>
+  <div class="kpis">
+    <div class="card kpi main"><div class="lab">sus dungeons / rec.ooo のコミット</div><div class="v">765<small>件</small></div><p class="s">2026-08-09 から（git rev-list）</p></div>
+    <div class="card kpi"><div class="lab">ゲーム本体の JS</div><div class="v">54,373<small>行</small></div><p class="s">16 ファイル</p></div>
+    <div class="card kpi"><div class="lab">ゲームを作る作業台</div><div class="v">41<small>個</small></div><p class="s">NPC表・敵人表・掉落表 など</p></div>
+  </div>
+  <div class="two">
+    <table>
+      <thead><tr><th>対象</th><th class="n">数</th><th>中身</th><th>測り方</th></tr></thead>
+      <tbody>
+        <tr><td>作業台の HTML / JS</td><td class="n">16,331 行</td><td>desks/ の分</td><td class="m">wc -l</td></tr>
+        <tr><td>音楽ストア</td><td class="n">3,003 行</td><td>再生・購入・メールでの復元</td><td class="m">wc -l</td></tr>
+        <tr><td>デスクトップの相棒 sus</td><td class="n">8,136 行</td><td>Swift 48 ファイル・378 コミット</td><td class="m">wc -l / rev-list</td></tr>
+        <tr><td>作品集 p.rec.ooo</td><td class="n">90 件</td><td>コミット（2026-04 から）</td><td class="m">rev-list</td></tr>
+        <tr><td>デザイン規約</td><td class="n">21 個</td><td>部品ごとの決まり 3,308 行</td><td class="m">design-modules</td></tr>
+        <tr><td>作業の手順書</td><td class="n">41 本</td><td>作業の種類ごとに一本</td><td class="m">見出しを数えた</td></tr>
+      </tbody>
+    </table>
+    <div class="card chart">
+      <div class="lab">sus dungeons / rec.ooo の月ごとのコミット</div>
+      <div class="bars">
+        <div class="bar"><b>42</b><span style="height:9%"></span></div>
+        <div class="bar"><b>206</b><span style="height:46%"></span></div>
+        <div class="bar on"><b>450</b><span style="height:100%"></span></div>
+        <div class="bar"><b>67</b><span style="height:15%"></span></div>
+      </div>
+      <div class="xl"><span>8 月</span><span>9 月</span><span>10 月</span><span>11 月*</span></div>
+      <p class="src">* 11 月は 6 日まで。数はすべて 2026-11-06 に測った値</p>
+    </div>
+  </div>
+  <div class="band">10 月は 1 か月で 450 コミット。ゲーム・作業台・音楽ストアを一人で並行して進めている。</div>
+  <div class="ft">セツ シュントウ　付録<b>A2</b></div>
 </section>
 
 <section class="pg" id="p3">
-  <div class="hd"><span class="tag">付録</span><h2>作業の決まりと自動検査</h2></div>
-  <p class="lead"><i>目的</i>一人で多くの作品を回しても、品質と記録がぶれないように。決まりは先に読ませ、守れたかは機械で数える。</p>
-  <div class="cards">
+  <div class="hd"><span class="tag">付録</span><h2>作業の決まりと自動検査</h2><span class="pill">仕組み</span></div>
+  <div class="three">
     <div class="card"><h3>作業の前<span>規約</span></h3>
-      <b>何を</b><p>共通の規約(デザイン・文章・記録の書き方)を、作業を始めるたびに自動で読み込む。</p>
-      <b>どう引くか</b><p>依頼の文から、41 本の手順書のうち該当する一本を引いてから着手する。</p>
-      <b>部品の決まり</b><p>デザイン規約 21 モジュール。色は <code>:root</code> だけ、説明文の hovertip は付けない など。</p></div>
+      <div class="lab">何を</div><p class="s">共通の規約（デザイン・文章・記録の書き方）を、作業を始めるたびに自動で読み込む。</p>
+      <div class="lab">どう引くか</div><p class="s">依頼の文から、41 本の手順書のうち該当する一本を引いてから着手する。</p>
+      <div class="lab">部品の決まり</div><p class="s">デザイン規約 21 個。色は <code>:root</code> だけ、説明用の hovertip は付けない など。</p></div>
     <div class="card"><h3>作業の中<span>自動検査</span></h3>
-      <b>画面</b><p>前端体検 19 項目: 枠線・角丸・影・アニメーション・4px を超える余白・文字サイズの種類 など。数えて返し、0 件を目標に直す。</p>
-      <b>文章</b><p>事例文は字数の上限、中身のない言い回し、鉤括弧の中が出典と一致するか。通らなければコミットが止まる。</p>
-      <b>句読点</b><p>文書を書くたびに句読点を検査して返す。</p></div>
+      <div class="lab">画面</div><p class="s">19 項目を数える：枠線・角丸・影・アニメーション・4px を超える余白・文字サイズの種類 など。</p>
+      <div class="lab">文章</div><p class="s">字数の上限、中身のない言い回し、鉤括弧の中が出典と一致するか。通らなければコミットが止まる。</p>
+      <div class="lab">句読点</div><p class="s">文書を書くたびに句読点を検査して返す。</p></div>
     <div class="card"><h3>作業の後<span>記録</span></h3>
-      <b>記録の義務</b><p>ファイルを変えたのに記録がなければ、作業の終了を一度止める。</p>
-      <b>残すもの</b><p>依頼の原文、判断、結果。知識庫は 3,948 章。次の作業の前提になる。</p>
-      <b>知らせ</b><p>終わったら、デスクトップの相棒 sus が一言で知らせ、成果物をくわえて持ってくる。</p></div>
+      <div class="lab">記録の義務</div><p class="s">ファイルを変えたのに記録がなければ、作業の終了を一度止める。</p>
+      <div class="lab">残すもの</div><p class="s">依頼の原文・判断・結果。知識庫は 3,948 章。次の作業の前提になる。</p>
+      <div class="lab">知らせ</div><p class="s">終わったら、デスクトップの相棒 sus が一言で知らせ、成果物を持ってくる。</p></div>
   </div>
   <div class="out"><span class="d">$ python3 rec-rec/tests/前端體檢.py p-rec/product/index.html   # 見出しは日本語に置き換えて表示</span>
 | 頁 | 枠線 | 角丸 | 影 | アニメ | 余白>4 | 入れ子枠 | 保険 | hover数 | 文字ボタン | 色付き底 | 文字サイズ | 文字色 | 下部バー | 閉じる× | h1 | icon | confirm |
 | product/index.html | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | 7 | <span class="ok">·</span> | 10 | 2 | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> |
 <span class="d">$ python3 p-rec/tools/check_pd.py</span>
 <span class="ok">✓</span> product band   <span class="ok">✓</span> product su   <span class="ok">✓</span> product dungeons   <span class="ok">✓</span> band-no-account   <span class="ok">✓</span> band-room   <span class="ok">✓</span> dungeons-livehouse   <span class="ok">✓</span> page</div>
-  <div class="ft">Rec · p.rec.ooo<b>A3</b></div>
+  <div class="band">決まりは作業の前に読ませ、守れたかは機械で数える。</div>
+  <div class="ft">セツ シュントウ　付録<b>A3</b></div>
 </section>
 
 <section class="pg" id="p4">
-  <div class="hd"><span class="tag">付録</span><h2>比較案: ゲームの扉</h2></div>
-  <p class="lead"><i>選び方</i>鍵 8 本の絵から主色を測り、扉の色にした。形 3 案 × 8 色を同じ大きさで並べ、全部を見てから一つ選ぶ。</p>
+  <div class="hd"><span class="tag">付録</span><h2>比較案：ゲームの扉</h2><span class="pill">比較 → 採用</span></div>
+  <div class="how">
+    <div class="card"><div class="lab">色</div><div class="t">鍵 8 本の絵から主色を測る</div></div>
+    <div class="card"><div class="lab">形</div><div class="t">平板・箍釘・アーチの 3 案</div></div>
+    <div class="card"><div class="lab">並べ方</div><div class="t">24 枚を同じ大きさで一覧に</div></div>
+  </div>
   <div class="grid px" id="doors" style="grid-template-columns:3ch repeat(8,1fr)"></div>
-  <div class="ft">Rec · p.rec.ooo<b>A4</b></div>
+  <div class="band">A の黄銅を、絵のなかった黄色の扉に先に当てた。</div>
+  <div class="ft">セツ シュントウ　付録<b>A4</b></div>
 </section>
 
 <section class="pg" id="p5">
-  <div class="hd"><span class="tag">付録</span><h2>比較案: 曲のジャケット</h2></div>
-  <p class="lead"><i>選び方</i>同じ曲で構図を 4 案作り、元の絵と並べて選ぶ。素材と生成の設定(seed)は残し、あとから同じ絵を作り直せる。</p>
+  <div class="hd"><span class="tag">付録</span><h2>比較案：曲のジャケット</h2><span class="pill">比較 → 採用</span></div>
+  <div class="how">
+    <div class="card"><div class="lab">素材</div><div class="t">チーズ 6 種をドット絵に</div></div>
+    <div class="card"><div class="lab">構図</div><div class="t">同じ曲で 4 案、元の絵と並べる</div></div>
+    <div class="card"><div class="lab">再現</div><div class="t">素材と生成の設定（seed）を残す</div></div>
+  </div>
   <div class="grid px" style="grid-template-columns:repeat(5,1fr)">
     <figure><img src="img/cover-old.jpg" alt=""><figcaption>元の絵</figcaption></figure>
     <figure><img src="img/cover-cheese拼貼-滿版.jpg" alt=""><figcaption>A 一面に敷く</figcaption></figure>
     <figure><img src="img/cover-cheese山巨型sus.jpg" alt=""><figcaption>B 山の上に巨大</figcaption></figure>
     <figure><img src="img/cover-cheese拼貼-找sus.jpg" alt=""><figcaption>C 探させる</figcaption></figure>
-    <figure class="on"><img src="img/cover-cheese大顆-右下sus.jpg" alt=""><figcaption>D 採用</figcaption></figure>
+    <figure class="on"><img src="img/cover-cheese大顆-右下sus.jpg" alt=""><figcaption>D 大きく、右下に</figcaption></figure>
   </div>
-  <p class="cap">D は、手描きの絵を 5 色のドット絵に起こし、手前のチーズで少しだけ隠した。公開版ではチーズをマウスで押しのけられる。</p>
-  <div class="ft">Rec · p.rec.ooo<b>A5</b></div>
+  <div class="band">D：手描きの絵を 5 色のドット絵に起こし、手前のチーズで少しだけ隠す。公開版ではチーズをマウスで押しのけられる。</div>
+  <div class="ft">セツ シュントウ　付録<b>A5</b></div>
 </section>
 
 <section class="pg" id="p6">
-  <div class="hd"><span class="tag">付録</span><h2>比較案: 作品集のレイアウト</h2></div>
-  <p class="lead"><i>選び方</i>案ごとに 5 つの事例を同じ 1440 × 900 で撮り、横に並べて、事例を切り替えたときに右欄が動くかを見た。</p>
+  <div class="hd"><span class="tag">付録</span><h2>比較案：作品集のレイアウト</h2><span class="pill">比較 → 採用</span></div>
+  <div class="how">
+    <div class="card"><div class="lab">撮り方</div><div class="t">案ごとに 5 事例を 1440 × 900 で</div></div>
+    <div class="card"><div class="lab">見るところ</div><div class="t">事例を替えたとき右欄が動くか</div></div>
+    <div class="card"><div class="lab">結果</div><div class="t">B の固定の枠</div></div>
+  </div>
   <div class="grid" id="ux" style="grid-template-columns:5ch repeat(5,1fr)"></div>
-  <div class="ft">Rec · p.rec.ooo<b>A6</b></div>
+  <div class="band">B：舞台を固定の大きさにし、事例を替えても右欄が動かない。その後、映像を枠の中央に寄せた。</div>
+  <div class="ft">セツ シュントウ　付録<b>A6</b></div>
 </section>
 
 <script>
@@ -175,29 +254,32 @@ function hl(t){
   }
   return o;
 }
-const rows = (ls, mark) => ls.map(([n, t, nt]) => '<span class="row' + (mark && mark(n) ? " lz" : "") + '"><span class="ln">' + n + "</span>" + hl(t) + "</span>" + (nt ? '<span class="nt">' + esc(nt) + "</span>" : "")).join("");
+// 注の番号 = 左の手順の番号(STEP: 行番号 -> 番号)
+const STEP = { 139: 1, 162: 2, 166: 3, 171: 4 };
+const rows = (ls, mark) => ls.map(([n, t, nt]) => '<span class="row' + (mark && mark(n) ? " lz" : "") + '"><span class="ln">' + n + "</span>" + hl(t) + "</span>"
+  + (nt ? '<span class="nt">' + (STEP[n] ? "<b>" + STEP[n] + "</b>" : "") + esc(nt) + "</span>" : "")).join("");
 const a = D.lens[0][0], b = D.lens[D.lens.length - 1][0];
 const cols = document.getElementById("cols");
-D.wall.forEach(ls => { const p = document.createElement("pre"); p.innerHTML = rows(ls, n => n >= a && n <= b); cols.append(p); });
+D.wall.forEach(ls => { const p = document.createElement("pre"); p.innerHTML = rows(ls.map(([n, t]) => [n, t]), n => n >= a && n <= b); cols.append(p); });
 document.getElementById("lens").innerHTML = rows(D.lens);
-document.getElementById("lt").textContent = "trade.js  L" + a + "–" + b + "  ·  step()";
-document.getElementById("meta").textContent = D.file + "  ·  " + D.total + " 行(註解を除くと " + D.kept + " 行)";
+document.getElementById("lt").textContent = "trade.js  L" + a + "–" + b + "  step()";
+document.getElementById("meta").textContent = D.file + "  ·  " + D.total + " 行（註解を除くと " + D.kept + " 行）";
 // A4 扉: 3 形 x 8 色, 採用 = A 黄銅
 {
   const C = [["brass","黄銅"],["iron","鉄"],["black_steel","黒鋼"],["red","赤"],["blue","青"],["jade","翡翠"],["agate","瑪瑙"],["old","古"]];
   const g = document.getElementById("doors");
-  g.insertAdjacentHTML("beforeend", "<span></span>" + C.map(c => '<span class="rowlab" style="font-size:11px">' + c[1] + "</span>").join(""));
+  g.insertAdjacentHTML("beforeend", "<span></span>" + C.map(c => '<span class="collab">' + c[1] + "</span>").join(""));
   ["A","B","C"].forEach(f => {
     g.insertAdjacentHTML("beforeend", '<span class="rowlab">' + f + "</span>");
     C.forEach(([k]) => g.insertAdjacentHTML("beforeend", '<figure' + (f === "A" && k === "brass" ? ' class="on"' : "") + '><img src="img/door-' + f + "_" + k + '.png" alt=""></figure>'));
   });
 }
-// A6 作品集の版式: 現在 / A / B x 5 事例, 採用 = B(11-03)
+// A6 作品集の版式: 以前 / A / B x 5 事例, 採用 = B(11-03)
 {
   const K = ["talk-desk","rec-phone-box","dungeons-livehouse","cloutric-overview","braintank"], g = document.getElementById("ux");
-  [["now","以前"],["A","A"],["B","B 採用"]].forEach(([r, lab]) => {
-    g.insertAdjacentHTML("beforeend", '<span class="rowlab"' + (r === "B" ? ' style="color:var(--pick);font-weight:700"' : "") + ">" + lab + "</span>");
-    K.forEach(k => g.insertAdjacentHTML("beforeend", '<figure' + (r === "B" ? ' class="on"' : "") + '><img src="img/ux-' + r + "-" + k + '.jpg" alt=""></figure>'));
+  [["now","以前"],["A","A"],["B","B"]].forEach(([r, lab]) => {
+    g.insertAdjacentHTML("beforeend", '<span class="rowlab">' + lab + "</span>");
+    K.forEach((k, i) => g.insertAdjacentHTML("beforeend", '<figure' + (r === "B" && i === 0 ? ' class="on"' : "") + (r === "B" ? ' style="outline:3px solid var(--blue);outline-offset:-3px"' : "") + '><img src="img/ux-' + r + "-" + k + '.jpg" alt=""></figure>'));
   });
 }
 const only = location.hash.slice(1);
