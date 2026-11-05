@@ -7,6 +7,8 @@
 (async () => {
   const [products, cases] = await Promise.all(
     ["data/products.json", "data/cases.json"].map((u) => fetch(u, { cache: "no-cache" }).then((r) => r.json())));
+  // コード枠(主筆 11-06): data/code.json = tools/pd_code.py が原始碼から抜いた実物. 無くても頁は動く
+  const code = await fetch("data/code.json", { cache: "no-cache" }).then((r) => r.json()).catch(() => ({}));
   const $ = (id) => document.getElementById(id);
   const list = $("list"), vid = $("vid"), frame = $("live"), pic = $("pic"), fig = $("fig"), dl = $("dl"), root = document.documentElement;
   const P_LABEL = [["issue", "課題"], ["offer", "提供"], ["run", "運営"], ["team", "体制"]];
@@ -76,6 +78,40 @@
     $("role").textContent = (role || []).join(" / ");
   };
 
+  // コード枠: 既定は閉. 開くと実物のコード(灰黒)+ 行の下に日本語の注(藍), scrib の閲覧器と同じ色. 別の一則に移ると閉じる
+  const cbox = $("code"), ct = $("code-t"), cb = $("code-b");
+  let codeOpen = "", shown = "";
+  const codeFill = (key) => {
+    const c = code[key];
+    cbox.hidden = !c;
+    if (!c) return;
+    const on = codeOpen === key;
+    ct.textContent = (on ? "▾ " : "▸ ") + c.name + "  " + c.span;
+    ct.setAttribute("aria-expanded", on ? "true" : "false");
+    ct.classList.toggle("on", on);
+    cb.hidden = !on;
+    if (!on || cb.dataset.key === key) return;
+    cb.dataset.key = key;
+    cb.textContent = "";
+    c.blocks.forEach((bl, i) => {
+      if (i) { const g = document.createElement("div"); g.className = "gap"; g.textContent = "⋯"; cb.appendChild(g); }
+      bl.forEach(([n, t, note]) => {
+        const ln = document.createElement("div");
+        ln.className = "ln" + (note ? " noted" : "");
+        ln.innerHTML = `<span class="no"></span><span class="src"></span>`;
+        ln.firstChild.textContent = n; ln.lastChild.textContent = t;
+        cb.appendChild(ln);
+        if (note) { const nt = document.createElement("div"); nt.className = "note"; nt.textContent = note; cb.appendChild(nt); }
+      });
+    });
+    cb.scrollTop = 0;
+  };
+  ct.addEventListener("click", () => {
+    const key = items[cur].key;
+    codeOpen = codeOpen === key ? "" : key;
+    codeFill(key);
+  });
+
   // 舞台: 一次只開一種, 其餘收起(影片停, iframe 清掉)
   const stage = (m) => {
     const isV = !!m.video, isL = !!m.live, isI = !!m.image, isF = !!m.figure;
@@ -110,6 +146,7 @@
       const rows = c.type === "note" ? c.notes : C_LABEL.map(([f, l]) => [l, c[f]]);
       text(c.title + (c.media && c.media.phone ? " 📱" : ""), null, rows, c.role);
     }
+    codeFill(it.kind === "case" ? it.ref.id : "");
   };
 
   // 右欄垂直置中(主筆 11-05「右側板垂直居中」), 但換則時不跳(11-03「走 B 固定盒」):
@@ -128,6 +165,8 @@
 
   function show(j) {
     const it = items[j];
+    if (it.key !== shown) codeOpen = "";   // 別の一則に移ったらコード枠は閉じる(cur は初回まだ無いので key で比べる)
+    shown = it.key;
     items.forEach((x, k) => x.el.classList.toggle("on", k === j));
     fill(it);
     stage((it.kind === "product" ? it.ref.stage : it.ref.media) || {});

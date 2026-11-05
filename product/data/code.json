@@ -1,0 +1,541 @@
+{
+ "dungeons-trade": {
+  "name": "trade.js",
+  "span": "110–181 / 202–213",
+  "blocks": [
+   [
+    [
+     110,
+     "  function step(st, dt, mL, mR, bias, opt) {"
+    ],
+    [
+     111,
+     "    var o = opt || {};"
+    ],
+    [
+     112,
+     "    var inert = (o.inert == null ? 0.45 : o.inert);"
+    ],
+    [
+     119,
+     "    var zeta  = (o.zeta  == null ? 0.58 : o.zeta);"
+    ],
+    [
+     120,
+     "    var tot = mL + mR;"
+    ],
+    [
+     121,
+     "    var diff = reading(mL, mR, bias);"
+    ],
+    [
+     122,
+     "    var soft = Math.max(2, (tot * 0.10) + 2);"
+    ],
+    [
+     139,
+     "    var tgt = -GEO.MAXT * Math.tanh(diff / soft);",
+     "左右の重さの差を、梁の傾きの目標にする。差が大きいほど傾き、上限で頭打ちになる。"
+    ],
+    [
+     143,
+     "    if (bias && bias.kind === 'stiction') {",
+     "引っかかりのある秤では、差が小さいうちは梁が動かない。"
+    ],
+    [
+     144,
+     "      var band = (+bias.amt || 0) * GEO.MAXT * 2;"
+    ],
+    [
+     145,
+     "      if (Math.abs(tgt - st.th) < band) tgt = st.th;"
+    ],
+    [
+     146,
+     "    }"
+    ],
+    [
+     161,
+     "    st.t = (st.t || 0) + dt;"
+    ],
+    [
+     162,
+     "    tgt += 0.014 * (Math.sin(st.t * 1.6 + 0.7) * 0.65 + Math.sin(st.t * 3.7 + 2.1) * 0.35)",
+     "二つの正弦でわずかに揺らす。乱数を使わないので、同じ局面は毎回同じ動きになる。"
+    ],
+    [
+     163,
+     "                 / (1 + tot / 200);"
+    ],
+    [
+     165,
+     "    var w0 = 7.4 / (1 + inert * Math.min(3.2, tot / 90));",
+     "載っている量が多いほど、ゆっくり揺れる。"
+    ],
+    [
+     166,
+     "    st.thV += (-(w0 * w0) * (st.th - tgt) - 2 * zeta * w0 * st.thV) * dt;",
+     "ばねと減衰の運動方程式。減衰は臨界より弱く、少し揺れてから止まる。"
+    ],
+    [
+     167,
+     "    st.th += st.thV * dt;"
+    ],
+    [
+     168,
+     "    if (st.th >  GEO.MAXT) { st.th =  GEO.MAXT; if (st.thV > 0) st.thV *= -0.18; }"
+    ],
+    [
+     169,
+     "    if (st.th < -GEO.MAXT) { st.th = -GEO.MAXT; if (st.thV < 0) st.thV *= -0.18; }"
+    ],
+    [
+     171,
+     "    for (var s = 0; s < 2; s++) {",
+     "皿は梁から吊った振り子として、梁とは別に動く。"
+    ],
+    [
+     172,
+     "      var sgn = s === 0 ? -1 : 1;"
+    ],
+    [
+     173,
+     "      var ax = -sgn * GEO.ARM * st.thV;"
+    ],
+    [
+     174,
+     "      var wp = 5.6, zp = 0.45;"
+    ],
+    [
+     175,
+     "      st.phV[s] += (-(wp * wp) * st.ph[s] - 2 * zp * wp * st.phV[s] - ax * 0.055) * dt;"
+    ],
+    [
+     176,
+     "      st.ph[s] += st.phV[s] * dt;"
+    ],
+    [
+     177,
+     "      st.squash[s] *= Math.pow(0.0025, dt);"
+    ],
+    [
+     178,
+     "    }"
+    ],
+    [
+     179,
+     "    return st;"
+    ],
+    [
+     180,
+     "  }"
+    ]
+   ],
+   [
+    [
+     202,
+     "  function judge(st, myLeft) {"
+    ],
+    [
+     205,
+     "    var mine = (myLeft === false) ? st.th : -st.th;"
+    ],
+    [
+     206,
+     "    var low = mine > EPS;",
+     "成立は、この瞬間に自分の皿が下がっているかだけで決める。"
+    ],
+    [
+     207,
+     "    return {"
+    ],
+    [
+     208,
+     "      ok: low,"
+    ],
+    [
+     209,
+     "      tilt: mine,"
+    ],
+    [
+     212,
+     "      say: low ? '成交.' : (mine < -EPS ? '他那邊還沉著.' : '還平著.')"
+    ],
+    [
+     213,
+     "    };"
+    ]
+   ]
+  ]
+ },
+ "band-no-account": {
+  "name": "band/index.html",
+  "span": "2537–2572",
+  "blocks": [
+   [
+    [
+     2538,
+     "{"
+    ],
+    [
+     2539,
+     "  const m = $('findMail'), row = $('sub');"
+    ],
+    [
+     2540,
+     "  const ok = () => /^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/.test(m.value.trim());",
+     "メールアドレスの形になったときだけ、次の行を出す。"
+    ],
+    [
+     2541,
+     "  const sync = () => { row.hidden = !ok(); row.classList.toggle('on', ok()); };"
+    ],
+    [
+     2542,
+     "  m.addEventListener('input', sync);"
+    ],
+    [
+     2543,
+     "  sync();"
+    ],
+    [
+     2544,
+     "}"
+    ],
+    [
+     2546,
+     "$('find').onsubmit = async e => {"
+    ],
+    [
+     2547,
+     "  e.preventDefault();"
+    ],
+    [
+     2548,
+     "  const res = await fetch(PAY + '?op=recover', { method: 'POST', headers: { 'content-type': 'application/json' },",
+     "買ったことがあるかどうかに関係なく、同じ返事を返す。リンクはメールで届く。"
+    ],
+    [
+     2549,
+     "                                                 body: JSON.stringify({ email: $('findMail').value,"
+    ],
+    [
+     2550,
+     "                                                                        sub: $('subOn').checked }) }).catch(() => null);"
+    ],
+    [
+     2551,
+     "  $('findGo').textContent = res && res.ok ? '✅' : '⚠️';"
+    ],
+    [
+     2552,
+     "  setTimeout(() => { $('findGo').textContent = '✉️'; }, 4000);"
+    ],
+    [
+     2553,
+     "};"
+    ],
+    [
+     2554,
+     "au.addEventListener('loadstart', paintBuy);"
+    ],
+    [
+     2555,
+     "paintBuy();"
+    ],
+    [
+     2557,
+     "{"
+    ],
+    [
+     2558,
+     "  const sid = new URLSearchParams(location.search).get('paid');"
+    ],
+    [
+     2559,
+     "  if (sid) {"
+    ],
+    [
+     2560,
+     "    history.replaceState(null, '', location.pathname + location.hash);"
+    ],
+    [
+     2561,
+     "    let n = 0;"
+    ],
+    [
+     2562,
+     "    const ask = async () => {"
+    ],
+    [
+     2563,
+     "      const res = await fetch(PAY + '?op=order&s=' + encodeURIComponent(sid)).catch(() => null);"
+    ],
+    [
+     2564,
+     "      if (res && res.ok) {"
+    ],
+    [
+     2565,
+     "        const o = await res.json();"
+    ],
+    [
+     2566,
+     "        saveGot(o, sid);",
+     "買ったものはブラウザに置き、すぐ聴けるようにする。"
+    ],
+    [
+     2567,
+     "        paintGot();"
+    ],
+    [
+     2568,
+     "      } else if (++n < 30) setTimeout(ask, 2000);",
+     "決済の通知が先に届くとは限らないので、2 秒おきに最大 1 分まで聞き直す。"
+    ],
+    [
+     2569,
+     "    };"
+    ],
+    [
+     2570,
+     "    ask();"
+    ],
+    [
+     2571,
+     "  }"
+    ],
+    [
+     2572,
+     "}"
+    ]
+   ]
+  ]
+ },
+ "dungeons-desks": {
+  "name": "NPC表.html",
+  "span": "2592–2632 / 3787–3798",
+  "blocks": [
+   [
+    [
+     2592,
+     "function pageText(st){"
+    ],
+    [
+     2593,
+     "  const L2 = [];"
+    ],
+    [
+     2594,
+     "  L2.push('# ' + (st.zh || st.id) + (st.called ? '(' + st.called + ')' : '') + '  (' + st.id + (st.no ? ' - #' + st.no : '') + (st.clan ? ' - ' + st.clan : '') + ')');",
+     "画面の文字を拾わず、データから引き継ぎ用のテキストを組み立てる。"
+    ],
+    [
+     2595,
+     "  const an = animalOf(st.animal);"
+    ],
+    [
+     2596,
+     "  L2.push('種族: ' + (an ? (an.a + ' - ' + st.animal) : (st.animal || '(未挑)')));"
+    ],
+    [
+     2597,
+     "  L2.push('立繪: ' + (st.skin ? ('皮 ' + st.skin + '(住民名冊)') : (st.face || '(無)')) + (st.overlay ? ' ＋ ' + st.overlay : ''));"
+    ],
+    [
+     2598,
+     "  const other = Array.isArray(st.other) ? st.other.join(' / ') : String(st.other || '');"
+    ],
+    [
+     2599,
+     "  if (other) L2.push('設定: ' + other);"
+    ],
+    [
+     2600,
+     "  const r = st.range || {};"
+    ],
+    [
+     2601,
+     "  L2.push('活動範圍: ' + ((r.sheets || []).join(' / ') || '(無)') + (r.note ? '  —— ' + r.note : ''));"
+    ],
+    [
+     2602,
+     "  if (st.strength) L2.push('sus的強度感覺: ' + st.strength);"
+    ],
+    [
+     2603,
+     "  if (st.plays && st.plays.length) L2.push('擅長樂器: ' + playsText(st.plays));"
+    ],
+    [
+     2604,
+     "  if ((st.gear || []).length) L2.push('裝備: ' + st.gear.map(g => (g && (g.zh || g.id)) || '').filter(Boolean).join(' / '));"
+    ],
+    [
+     2605,
+     "  const f = st.flow || {};"
+    ],
+    [
+     2606,
+     "  L2.push('');"
+    ],
+    [
+     2607,
+     "  L2.push('## NESI —— ' + ((f.desks || []).length) + ' 件事');"
+    ],
+    [
+     2608,
+     "  const who = k => k === 'sus' ? 'sus' : (k === 'npc' ? (st.zh || st.id) : (actorLabel(k) || k));"
+    ],
+    [
+     2609,
+     "  const dump = (b, pad) => {",
+     "会話のブロックを、入れ子のまま字下げして書き出す。"
+    ],
+    [
+     2610,
+     "    if (!b) return;"
+    ],
+    [
+     2611,
+     "    const K = (window.RecFlow && RecFlow.KINDS[b.t]) || null;"
+    ],
+    [
+     2612,
+     "    const g = K ? K.g : '?';"
+    ],
+    [
+     2613,
+     "    const nm = K ? K.n : b.t;"
+    ],
+    [
+     2614,
+     "    let head = pad + g + ' ' + nm;"
+    ],
+    [
+     2615,
+     "    if (b.q) head += ' 〈' + b.q + '〉';"
+    ],
+    [
+     2616,
+     "    if (b.t === 'say') head = pad + '💬 ' + who(b.w) + '「' + (b.p || '') + '」';"
+    ],
+    [
+     2617,
+     "    else if (b.p) head += ' ' + b.p;"
+    ],
+    [
+     2618,
+     "    if (b.c) head += '  ▒ ' + b.c;"
+    ],
+    [
+     2619,
+     "    if (b.once) head += '  [1×]';"
+    ],
+    [
+     2620,
+     "    L2.push(head);"
+    ],
+    [
+     2621,
+     "    const sl = b.s || {};"
+    ],
+    [
+     2622,
+     "    Object.keys(sl).forEach(k => {"
+    ],
+    [
+     2623,
+     "      if (!(sl[k] || []).length) return;"
+    ],
+    [
+     2624,
+     "      L2.push(pad + '  ' + k + ':');"
+    ],
+    [
+     2625,
+     "      sl[k].forEach(x => dump(x, pad + '    '));",
+     "分岐の中の分岐も、同じ関数でたどる。"
+    ],
+    [
+     2626,
+     "    });"
+    ],
+    [
+     2627,
+     "  };"
+    ],
+    [
+     2628,
+     "  (f.desks || []).forEach(d => {"
+    ],
+    [
+     2629,
+     "    L2.push('');"
+    ],
+    [
+     2630,
+     "    L2.push('### 📖 ' + (d.name || '未命名'));"
+    ],
+    [
+     2631,
+     "    (d.stacks || []).forEach(s2 => (s2.blocks || []).forEach(b => dump(b, '')));"
+    ],
+    [
+     2632,
+     "  });"
+    ]
+   ],
+   [
+    [
+     3787,
+     "document.getElementById('btnRules').addEventListener('click', () => {"
+    ],
+    [
+     3788,
+     "  const b2 = document.getElementById('btnRules');"
+    ],
+    [
+     3789,
+     "  copy(NESI_RULES).then(ok => { Bench.done(b2, ok); });"
+    ],
+    [
+     3790,
+     "});"
+    ],
+    [
+     3791,
+     "document.getElementById('btnPage').addEventListener('click', () => {"
+    ],
+    [
+     3792,
+     "  const b2 = document.getElementById('btnPage');"
+    ],
+    [
+     3793,
+     "  if (!sel) { Bench.done(b2, false); return; }",
+     "何も選んでいないときは、空の中身をコピーせず ❌ を返す。"
+    ],
+    [
+     3794,
+     "  copy(pageText(npcState(sel))).then(ok => { Bench.done(b2, ok); });"
+    ],
+    [
+     3795,
+     "});"
+    ],
+    [
+     3796,
+     "document.getElementById('btnAgent').addEventListener('click', () => {"
+    ],
+    [
+     3797,
+     "  Bench.copyOut(agentDiff(), document.getElementById('btnAgent'));"
+    ],
+    [
+     3798,
+     "});"
+    ]
+   ]
+  ]
+ }
+}
