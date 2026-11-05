@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>代碼切片</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧾</text></svg>">
+<style>
+/* 主筆 2026-11-06「很多時候別人看不出做的東西多硬核，就放一些代碼切片（靠文字密度給人印象）」. 作品集の最後に貼る切片 3 案.
+   #A / #B / #C で 1 案だけ出す(截圖用). 何もなければ 3 案を縦に並べる. コードは実物(行番号も実物), 1 文字も作らない. */
+:root{
+  --bg:#fff; --ink:#111; --sub:#888;
+  --ed:#0e0e10; --ed-ink:#cfcfd4; --ed-sub:#55555c; --ed-line:#1c1c21;
+  --kw:#ff5a4d; --str:#f2b8c6; --com:#6b6b74; --num:#ffd27a; --fn:#ffffff;
+  --hi:rgba(255,90,77,.13); --hi-bar:#ff5a4d;
+  --pp:#fafafa; --pp-ink:#222; --pp-sub:#aaa; --pp-line:#eee; --pp-kw:#d40000; --pp-str:#b0306a; --pp-com:#a0a0a8; --pp-num:#a05a00; --pp-fn:#000;
+  --mono:ui-monospace,"SF Mono",Menlo,"Hiragino Sans","PingFang TC",monospace;
+  --font:"Hiragino Sans","Noto Sans JP",system-ui,sans-serif;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; background:var(--bg); color:var(--ink); }
+body{ padding:24px 16px; font:14px/1.6 var(--font); }
+.v{ margin:0 auto 48px; width:max-content; max-width:100%; }
+.cap{ font:12px var(--mono); color:var(--sub); margin:0 0 8px; }
+pre{ margin:0; font:12px/1.55 var(--mono); white-space:pre; overflow:hidden; }
+.ln{ display:inline-block; width:4.5ch; text-align:right; margin-right:2ch; color:var(--ed-sub); user-select:none; }
+.row{ display:block; padding-right:16px; }
+.kw{ color:var(--kw); } .str{ color:var(--str); } .com{ color:var(--com); font-style:italic; } .num{ color:var(--num); } .fn{ color:var(--fn); font-weight:700; }
+
+/* A: エディタ 1 枚. タブ + 実ファイル名 + 総行数, 要の 17 行に赤い帯, 下はフェードで「まだ続く」 */
+#vA .ed{ width:760px; background:var(--ed); color:var(--ed-ink); position:relative; }
+#vA .tab{ display:flex; gap:16px; align-items:center; padding:8px 14px; font:11px var(--mono); color:var(--ed-sub); border-bottom:1px solid var(--ed-line); }
+#vA .tab b{ color:var(--ed-ink); font-weight:400; }
+#vA .tab .r{ margin-left:auto; }
+#vA pre{ padding:10px 0 40px; }
+#vA .row.hi{ background:var(--hi); box-shadow:inset 3px 0 var(--hi-bar); }
+#vA .fade{ position:absolute; left:0; right:0; bottom:0; height:90px; background:linear-gradient(transparent, var(--ed)); }
+
+/* B: 3 本の鍵 = 3 枚の紙. 明るい紙 + 鍵の emoji を見出しに. 文書のページと同じ並び */
+#vB .row3{ display:grid; grid-template-columns:repeat(3, 360px); gap:14px; }
+#vB .card{ background:var(--pp); color:var(--pp-ink); border-top:3px solid var(--pp-kw); }
+#vB .hd{ display:flex; align-items:baseline; gap:8px; padding:8px 12px 6px; }
+#vB .hd .k{ font-size:16px; }
+#vB .hd .n{ font:700 14px var(--font); }
+#vB .hd .f{ margin-left:auto; font:10px var(--mono); color:var(--pp-sub); }
+#vB pre{ font-size:10.5px; padding:4px 0 12px; }
+#vB .ln{ color:var(--pp-sub); width:4ch; margin-right:1.5ch; }
+#vB .kw{ color:var(--pp-kw); } #vB .str{ color:var(--pp-str); } #vB .com{ color:var(--pp-com); } #vB .num{ color:var(--pp-num); } #vB .fn{ color:var(--pp-fn); }
+
+/* C: 壁. 300 行を 3 段で小さく敷き詰め(読ませない, 量を見せる), 1 か所だけルーペで拡大 */
+#vC .wall{ position:relative; width:1100px; height:620px; background:var(--ed); overflow:hidden; }
+#vC .cols{ display:grid; grid-template-columns:repeat(3, 1fr); gap:18px; padding:14px 16px; }
+#vC .cols pre{ font-size:5.6px; line-height:1.0; color:var(--ed-ink); opacity:.75; }
+#vC .cols .ln{ width:4ch; margin-right:1ch; }
+#vC .cols .row.lz{ background:rgba(255,90,77,.35); opacity:1; }
+#vC .lens{ position:absolute; right:28px; bottom:28px; width:560px; background:var(--ed); outline:1px solid var(--hi-bar); box-shadow:0 0 0 8px rgba(14,14,16,.85); }
+#vC .lens .tab{ padding:6px 12px; font:10px var(--mono); color:var(--ed-sub); border-bottom:1px solid var(--ed-line); }
+#vC .lens pre{ font-size:11px; padding:8px 0 10px; color:var(--ed-ink); }
+#vC .meta{ position:absolute; left:16px; bottom:10px; font:10px var(--mono); color:var(--ed-sub); }
+</style>
+</head>
+<body>
+<section class="v" id="vA"></section>
+<section class="v" id="vB"></section>
+<section class="v" id="vC"></section>
+<script>
+"use strict";
+const D = /*DATA*/null;
+const KW = new Set("const let var function return if else for of in new try catch typeof null undefined true false this class await async throw switch case break continue default do while".split(" "));
+function esc(s){ return s.replace(/[&<>]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;" })[c]); }
+// 1 行ずつの簡単な色分け: コメント / 文字列 / 数 / 予約語 / 関数名. 行をまたぐ /* */ は状態で持つ
+function hl(lines){
+  let inCom = false;
+  return lines.map(([n, t]) => {
+    let o = "", i = 0;
+    while (i < t.length) {
+      if (inCom) { const e = t.indexOf("*/", i); const j = e < 0 ? t.length : e + 2; o += '<span class="com">' + esc(t.slice(i, j)) + "</span>"; i = j; if (e >= 0) inCom = false; continue; }
+      const r = t.slice(i);
+      let m;
+      if (r.startsWith("//")) { o += '<span class="com">' + esc(r) + "</span>"; break; }
+      if (r.startsWith("/*")) { inCom = true; continue; }
+      if ((m = /^(['"`])(?:\\.|(?!\1).)*\1?/.exec(r))) { o += '<span class="str">' + esc(m[0]) + "</span>"; i += m[0].length; continue; }
+      if ((m = /^\d+(\.\d+)?/.exec(r))) { o += '<span class="num">' + m[0] + "</span>"; i += m[0].length; continue; }
+      if ((m = /^[A-Za-z_$][\w$]*/.exec(r))) {
+        const w = m[0], next = r.slice(w.length);
+        o += KW.has(w) ? '<span class="kw">' + w + "</span>" : /^\s*\(/.test(next) ? '<span class="fn">' + w + "</span>" : w;
+        i += w.length; continue;
+      }
+      o += esc(t[i]); i++;
+    }
+    return { n, h: o };
+  });
+}
+function code(lines, mark){
+  const pre = document.createElement("pre");
+  pre.innerHTML = hl(lines).map(r => '<span class="row' + (mark && mark(r.n) ? " " + mark(r.n) : "") + '"><span class="ln">' + r.n + "</span>" + r.h + "</span>").join("");
+  return pre;
+}
+const fmt = n => n.toLocaleString("en");
+
+// A
+(() => {
+  const a = D.A, box = document.getElementById("vA");
+  const cap = document.createElement("div"); cap.className = "cap"; cap.textContent = "A  エディタ 1 枚 + 赤帯";
+  const ed = document.createElement("div"); ed.className = "ed";
+  ed.innerHTML = '<div class="tab"><b>' + a.file.split("/").pop() + '</b><span>' + a.file + '</span><span class="r">L' + a.lines[0][0] + "–" + a.lines[a.lines.length - 1][0] + " / " + fmt(a.total) + "</span></div>";
+  ed.append(code(a.lines, n => n >= a.hi[0] && n <= a.hi[1] ? "hi" : ""));
+  const f = document.createElement("div"); f.className = "fade"; ed.append(f);
+  box.append(cap, ed);
+})();
+// B
+(() => {
+  const box = document.getElementById("vB");
+  const cap = document.createElement("div"); cap.className = "cap"; cap.textContent = "B  3 本の鍵 = 3 枚";
+  const row = document.createElement("div"); row.className = "row3";
+  D.B.forEach(c => {
+    const el = document.createElement("div"); el.className = "card";
+    el.innerHTML = '<div class="hd"><span class="k">' + c.key + '</span><span class="n">' + c.name + '</span><span class="f">' + c.file + "</span></div>";
+    el.append(code(c.lines)); row.append(el);
+  });
+  box.append(cap, row);
+})();
+// C
+(() => {
+  const c = D.C, box = document.getElementById("vC");
+  const cap = document.createElement("div"); cap.className = "cap"; cap.textContent = "C  壁 + ルーペ";
+  const w = document.createElement("div"); w.className = "wall";
+  const cols = document.createElement("div"); cols.className = "cols";
+  c.cols.forEach(ls => cols.append(code(ls, n => n >= c.lens[0] && n <= c.lens[1] ? "lz" : "")));
+  const all = c.cols.flat();
+  const lens = document.createElement("div"); lens.className = "lens";
+  lens.innerHTML = '<div class="tab">L' + c.lens[0] + "–" + c.lens[1] + "</div>";
+  lens.append(code(all.filter(([n]) => n >= c.lens[0] && n <= c.lens[1])));
+  const meta = document.createElement("div"); meta.className = "meta"; meta.textContent = c.file + "  ·  " + fmt(c.total) + " lines";
+  w.append(cols, lens, meta);
+  box.append(cap, w);
+})();
+const only = location.hash.slice(1);
+if (only) document.querySelectorAll(".v").forEach(v => { v.hidden = v.id !== "v" + only; if (!v.hidden) v.querySelector(".cap").remove(); });
+</script>
+</body>
+</html>

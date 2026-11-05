@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>付録</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📎</text></svg>">
+<style>
+/* 付録ページ(主筆 2026-11-06). 1 枚 1200x675(16:9), 作品集 PDF にそのまま入る大きさ. #1 #2 #3 で 1 枚だけ.
+   色は PD 版と同じ: 黒字 / 操作と見出しの印 = 系統藍 / 強調 = 系統紅, 底色框 = alpha 階. 枠線・角丸・影なし. */
+:root{
+  --ink:#000; --op:#0000ff; --pick:#ff0000; --bg:#fff; --k:5,5,5; --note:#0010c0;
+  --ed:#0e0e10; --ed-ink:#cfcfd4; --ed-sub:#55555c; --kw:#ff5a4d; --str:#f2b8c6; --num:#ffd27a;
+  --font:"Hiragino Sans","Noto Sans JP",system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,"Hiragino Sans",monospace;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; background:#e9e9ee; color:var(--ink); }
+body{ padding:16px; display:flex; flex-direction:column; align-items:center; gap:16px; font:14px/1.55 var(--font); }
+.pg{ position:relative; width:1200px; height:675px; background:var(--bg); padding:40px 56px 56px; overflow:hidden; display:flex; flex-direction:column; gap:14px; }
+.pg[hidden]{ display:none; }
+/* A4 横(作品集 PDF に足す版): 297x210mm = 1123x794px. 中身は flex で縦に伸びる */
+body.a4 .pg{ width:1123px; height:794px; padding:40px 48px 56px; }
+body.a4 .ft{ left:48px; right:48px; }
+@page{ size:1200px 675px; margin:0; }
+/*A4*/
+@media print{ html,body{ background:var(--bg); } body{ padding:0; gap:0; display:block; } .pg{ break-after:page; } .pg:last-child{ break-after:auto; } }
+.hd{ display:flex; align-items:center; gap:14px; }
+.tag{ padding:2px 10px; background:rgba(0,0,255,.07); color:var(--op); font-size:18px; font-weight:700; }
+.hd h2{ margin:0; font-size:32px; line-height:1.2; }
+.ft{ position:absolute; left:56px; right:56px; bottom:18px; display:flex; font:12px var(--mono); color:#777; }
+.ft b{ margin-left:auto; color:var(--ink); }
+.lead{ margin:0; padding:8px 12px; background:rgba(0,0,255,.07); font-size:14px; }
+.lead i{ font-style:normal; color:var(--op); font-weight:700; margin-right:10px; }
+
+/* 1 壁 + ルーペ */
+.wall{ position:relative; flex:1; background:var(--ed); overflow:hidden; }
+.cols{ display:grid; grid-template-columns:repeat(2, 300px); gap:16px; padding:10px 14px; }
+pre{ margin:0; font-family:var(--mono); white-space:pre; overflow:hidden; }
+.cols pre{ font-size:5.6px; line-height:1.18; color:var(--ed-ink); opacity:.8; }
+.row{ display:block; }
+.row.lz{ background:rgba(255,90,77,.4); opacity:1; }
+.ln{ display:inline-block; width:4ch; text-align:right; margin-right:1.2ch; color:var(--ed-sub); }
+.kw{ color:var(--kw); } .str{ color:var(--str); } .num{ color:var(--num); } .fn{ color:#fff; font-weight:700; }
+.lens{ position:absolute; right:16px; top:12px; bottom:12px; width:620px; background:var(--bg); outline:2px solid var(--kw); overflow:hidden; }
+.lens .lt{ padding:4px 10px; font:11px var(--mono); color:var(--note); background:rgba(0,16,192,.06); }
+.lens pre{ font-size:10.5px; line-height:1.42; padding:4px 0; color:var(--ink); }
+.lens .ln{ width:4.5ch; color:#999; }
+.lens .kw{ color:#d40000; } .lens .str{ color:#b0306a; } .lens .num{ color:#a05a00; } .lens .fn{ color:#000; }
+.lens .nt{ display:block; white-space:normal; color:var(--note); font-family:var(--font); padding:0 10px 2px calc(5.7ch + 4px); font-size:11px; }
+.meta{ position:absolute; left:0; bottom:0; padding:4px 14px; font:11px var(--mono); color:var(--ed-sub); background:var(--ed); }
+.cap{ margin:0; font-size:13px; color:#555; }
+
+/* 2 数字 / 3 進め方: 表は横線なし, 一行 .07 底 */
+table{ width:100%; border-collapse:separate; border-spacing:0 3px; font-size:14px; }
+th{ text-align:left; font-weight:400; color:var(--op); padding:4px 10px; background:rgba(0,0,255,.07); font-size:13px; }
+td{ padding:5px 10px; vertical-align:top; background:rgba(var(--k),.04); }
+td.n{ font:700 18px var(--mono); white-space:nowrap; text-align:right; }
+td.n small{ font:400 12px var(--font); color:#555; margin-left:4px; }
+td.s{ font:12px var(--mono); color:#666; }
+.cards{ flex:1; min-height:0; display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; }
+.card{ background:rgba(var(--k),.04); padding:12px 14px; display:flex; flex-direction:column; gap:6px; }
+.card h3{ margin:0; font-size:18px; display:flex; align-items:baseline; }
+.card h3 span{ margin-left:auto; font-size:12px; color:var(--op); font-weight:400; }
+.card b{ color:var(--op); font-size:12px; }
+.card p{ margin:0; font-size:13px; line-height:1.6; }
+.out{ background:var(--ed); color:var(--ed-ink); font:10.5px/1.45 var(--mono); padding:8px 12px; white-space:pre; overflow:hidden; }
+.out .ok{ color:#9fe0a8; } .out .ng{ color:var(--kw); } .out .d{ color:var(--ed-sub); }
+.grid{ display:grid; gap:6px; }
+.grid figure{ margin:0; position:relative; background:rgba(var(--k),.04); }
+.grid img{ display:block; width:100%; height:auto; }
+.grid .px img{ image-rendering:pixelated; }
+.grid figcaption{ font:11px var(--mono); padding:2px 4px; color:#555; }
+.grid figure.on{ outline:3px solid var(--pick); outline-offset:-3px; }
+.grid figure.on figcaption{ color:var(--pick); font-weight:700; }
+.rowlab{ font:12px var(--mono); color:var(--op); align-self:center; }
+.card code{ font:12px var(--mono); background:rgba(0,0,255,.07); padding:0 3px; }
+</style>
+</head>
+<body class="/*BODY*/">
+
+<section class="pg" id="p1">
+  <div class="hd"><span class="tag">付録</span><h2>実装: 天秤の物理(sus dungeons)</h2></div>
+  <div class="wall"><div class="cols" id="cols"></div>
+    <div class="lens"><div class="lt" id="lt"></div><pre id="lens"></pre></div>
+    <div class="meta" id="meta"></div></div>
+  <p class="cap">左: trade.js の全体(註解を除く)。右: 梁の目標角 → 揺らぎ → ばね・減衰の運動方程式 → 皿の振り子 を毎フレーム解く部分。乱数を使わないので、同じ局面は毎回同じ動きになる。文字列はゲーム内の文言(原文のまま)。</p>
+  <div class="ft">Rec · p.rec.ooo<b>A1</b></div>
+</section>
+
+<section class="pg" id="p2">
+  <div class="hd"><span class="tag">付録</span><h2>数字で見る規模</h2></div>
+  <table>
+    <thead><tr><th>対象</th><th style="text-align:right">数</th><th>中身</th><th>測り方(2026-11-06)</th></tr></thead>
+    <tbody>
+      <tr><td>sus dungeons / rec.ooo</td><td class="n">765<small>コミット</small></td><td>2026-08-09 から。ゲーム本体・作業台・音楽ストアの公開側</td><td class="s">git rev-list --count</td></tr>
+      <tr><td>ゲーム本体の JS</td><td class="n">54,373<small>行</small></td><td>16 ファイル(移動・会話・天秤・音 など)</td><td class="s">wc -l dungeons/*.js</td></tr>
+      <tr><td>作業台</td><td class="n">41<small>個</small></td><td>NPC表・敵人表・掉落表 など、ゲームを作るための自分用ツール</td><td class="s">開発経験書 S0036</td></tr>
+      <tr><td>作業台の HTML / JS</td><td class="n">16,331<small>行</small></td><td>desks/ の分だけ</td><td class="s">wc -l desks/*</td></tr>
+      <tr><td>音楽ストア</td><td class="n">3,003<small>行</small></td><td>プレイヤー・購入・メールでの復元・互動封面 を 1 ページに</td><td class="s">wc -l band/index.html</td></tr>
+      <tr><td>デスクトップの相棒 sus</td><td class="n">8,136<small>行</small></td><td>Swift 48 ファイル、378 コミット(2026-10-06 から)</td><td class="s">wc -l / rev-list</td></tr>
+      <tr><td>デザイン規約</td><td class="n">21<small>モジュール</small></td><td>ボタン・ツールバー・ページ送り など、部品ごとの決まり 3,308 行</td><td class="s">rec-kit/design-modules</td></tr>
+      <tr><td>作業の手順書</td><td class="n">41<small>本</small></td><td>作業の種類ごと。依頼の文から該当の一本を引く</td><td class="s">工表の見出しを数えた</td></tr>
+    </tbody>
+  </table>
+  <div class="ft">Rec · p.rec.ooo<b>A2</b></div>
+</section>
+
+<section class="pg" id="p3">
+  <div class="hd"><span class="tag">付録</span><h2>作業の決まりと自動検査</h2></div>
+  <p class="lead"><i>目的</i>一人で多くの作品を回しても、品質と記録がぶれないように。決まりは先に読ませ、守れたかは機械で数える。</p>
+  <div class="cards">
+    <div class="card"><h3>作業の前<span>規約</span></h3>
+      <b>何を</b><p>共通の規約(デザイン・文章・記録の書き方)を、作業を始めるたびに自動で読み込む。</p>
+      <b>どう引くか</b><p>依頼の文から、41 本の手順書のうち該当する一本を引いてから着手する。</p>
+      <b>部品の決まり</b><p>デザイン規約 21 モジュール。色は <code>:root</code> だけ、説明文の hovertip は付けない など。</p></div>
+    <div class="card"><h3>作業の中<span>自動検査</span></h3>
+      <b>画面</b><p>前端体検 19 項目: 枠線・角丸・影・アニメーション・4px を超える余白・文字サイズの種類 など。数えて返し、0 件を目標に直す。</p>
+      <b>文章</b><p>事例文は字数の上限、中身のない言い回し、鉤括弧の中が出典と一致するか。通らなければコミットが止まる。</p>
+      <b>句読点</b><p>文書を書くたびに句読点を検査して返す。</p></div>
+    <div class="card"><h3>作業の後<span>記録</span></h3>
+      <b>記録の義務</b><p>ファイルを変えたのに記録がなければ、作業の終了を一度止める。</p>
+      <b>残すもの</b><p>依頼の原文、判断、結果。知識庫は 3,948 章。次の作業の前提になる。</p>
+      <b>知らせ</b><p>終わったら、デスクトップの相棒 sus が一言で知らせ、成果物をくわえて持ってくる。</p></div>
+  </div>
+  <div class="out"><span class="d">$ python3 rec-rec/tests/前端體檢.py p-rec/product/index.html   # 見出しは日本語に置き換えて表示</span>
+| 頁 | 枠線 | 角丸 | 影 | アニメ | 余白>4 | 入れ子枠 | 保険 | hover数 | 文字ボタン | 色付き底 | 文字サイズ | 文字色 | 下部バー | 閉じる× | h1 | icon | confirm |
+| product/index.html | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | 7 | <span class="ok">·</span> | 10 | 2 | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> |
+<span class="d">$ python3 p-rec/tools/check_pd.py</span>
+<span class="ok">✓</span> product band   <span class="ok">✓</span> product su   <span class="ok">✓</span> product dungeons   <span class="ok">✓</span> band-no-account   <span class="ok">✓</span> band-room   <span class="ok">✓</span> dungeons-livehouse   <span class="ok">✓</span> page</div>
+  <div class="ft">Rec · p.rec.ooo<b>A3</b></div>
+</section>
+
+<section class="pg" id="p4">
+  <div class="hd"><span class="tag">付録</span><h2>比較案: ゲームの扉</h2></div>
+  <p class="lead"><i>選び方</i>鍵 8 本の絵から主色を測り、扉の色にした。形 3 案 × 8 色を同じ大きさで並べ、全部を見てから一つ選ぶ。</p>
+  <div class="grid px" id="doors" style="grid-template-columns:3ch repeat(8,1fr)"></div>
+  <div class="ft">Rec · p.rec.ooo<b>A4</b></div>
+</section>
+
+<section class="pg" id="p5">
+  <div class="hd"><span class="tag">付録</span><h2>比較案: 曲のジャケット</h2></div>
+  <p class="lead"><i>選び方</i>同じ曲で構図を 4 案作り、元の絵と並べて選ぶ。素材と生成の設定(seed)は残し、あとから同じ絵を作り直せる。</p>
+  <div class="grid px" style="grid-template-columns:repeat(5,1fr)">
+    <figure><img src="img/cover-old.jpg" alt=""><figcaption>元の絵</figcaption></figure>
+    <figure><img src="img/cover-cheese拼貼-滿版.jpg" alt=""><figcaption>A 一面に敷く</figcaption></figure>
+    <figure><img src="img/cover-cheese山巨型sus.jpg" alt=""><figcaption>B 山の上に巨大</figcaption></figure>
+    <figure><img src="img/cover-cheese拼貼-找sus.jpg" alt=""><figcaption>C 探させる</figcaption></figure>
+    <figure class="on"><img src="img/cover-cheese大顆-右下sus.jpg" alt=""><figcaption>D 採用</figcaption></figure>
+  </div>
+  <p class="cap">D は、手描きの絵を 5 色のドット絵に起こし、手前のチーズで少しだけ隠した。公開版ではチーズをマウスで押しのけられる。</p>
+  <div class="ft">Rec · p.rec.ooo<b>A5</b></div>
+</section>
+
+<section class="pg" id="p6">
+  <div class="hd"><span class="tag">付録</span><h2>比較案: 作品集のレイアウト</h2></div>
+  <p class="lead"><i>選び方</i>案ごとに 5 つの事例を同じ 1440 × 900 で撮り、横に並べて、事例を切り替えたときに右欄が動くかを見た。</p>
+  <div class="grid" id="ux" style="grid-template-columns:5ch repeat(5,1fr)"></div>
+  <div class="ft">Rec · p.rec.ooo<b>A6</b></div>
+</section>
+
+<script>
+"use strict";
+const D = /*DATA*/null;
+const KW = new Set("const let var function return if else for of in new try catch typeof null undefined true false this class await async throw switch case break continue default do while".split(" "));
+function esc(s){ return s.replace(/[&<>]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;" })[c]); }
+function hl(t){
+  let o = "", i = 0, m;
+  while (i < t.length) {
+    const r = t.slice(i);
+    if ((m = /^(['"`])(?:\\.|(?!\1).)*\1?/.exec(r))) { o += '<span class="str">' + esc(m[0]) + "</span>"; i += m[0].length; continue; }
+    if ((m = /^\d+(\.\d+)?/.exec(r))) { o += '<span class="num">' + m[0] + "</span>"; i += m[0].length; continue; }
+    if ((m = /^[A-Za-z_$][\w$]*/.exec(r))) { const w = m[0]; o += KW.has(w) ? '<span class="kw">' + w + "</span>" : /^\s*\(/.test(r.slice(w.length)) ? '<span class="fn">' + w + "</span>" : w; i += w.length; continue; }
+    o += esc(t[i]); i++;
+  }
+  return o;
+}
+const rows = (ls, mark) => ls.map(([n, t, nt]) => '<span class="row' + (mark && mark(n) ? " lz" : "") + '"><span class="ln">' + n + "</span>" + hl(t) + "</span>" + (nt ? '<span class="nt">' + esc(nt) + "</span>" : "")).join("");
+const a = D.lens[0][0], b = D.lens[D.lens.length - 1][0];
+const cols = document.getElementById("cols");
+D.wall.forEach(ls => { const p = document.createElement("pre"); p.innerHTML = rows(ls, n => n >= a && n <= b); cols.append(p); });
+document.getElementById("lens").innerHTML = rows(D.lens);
+document.getElementById("lt").textContent = "trade.js  L" + a + "–" + b + "  ·  step()";
+document.getElementById("meta").textContent = D.file + "  ·  " + D.total + " 行(註解を除くと " + D.kept + " 行)";
+// A4 扉: 3 形 x 8 色, 採用 = A 黄銅
+{
+  const C = [["brass","黄銅"],["iron","鉄"],["black_steel","黒鋼"],["red","赤"],["blue","青"],["jade","翡翠"],["agate","瑪瑙"],["old","古"]];
+  const g = document.getElementById("doors");
+  g.insertAdjacentHTML("beforeend", "<span></span>" + C.map(c => '<span class="rowlab" style="font-size:11px">' + c[1] + "</span>").join(""));
+  ["A","B","C"].forEach(f => {
+    g.insertAdjacentHTML("beforeend", '<span class="rowlab">' + f + "</span>");
+    C.forEach(([k]) => g.insertAdjacentHTML("beforeend", '<figure' + (f === "A" && k === "brass" ? ' class="on"' : "") + '><img src="img/door-' + f + "_" + k + '.png" alt=""></figure>'));
+  });
+}
+// A6 作品集の版式: 現在 / A / B x 5 事例, 採用 = B(11-03)
+{
+  const K = ["talk-desk","rec-phone-box","dungeons-livehouse","cloutric-overview","braintank"], g = document.getElementById("ux");
+  [["now","以前"],["A","A"],["B","B 採用"]].forEach(([r, lab]) => {
+    g.insertAdjacentHTML("beforeend", '<span class="rowlab"' + (r === "B" ? ' style="color:var(--pick);font-weight:700"' : "") + ">" + lab + "</span>");
+    K.forEach(k => g.insertAdjacentHTML("beforeend", '<figure' + (r === "B" ? ' class="on"' : "") + '><img src="img/ux-' + r + "-" + k + '.jpg" alt=""></figure>'));
+  });
+}
+const only = location.hash.slice(1);
+if (only) document.querySelectorAll(".pg").forEach(p => p.hidden = p.id !== only);
+</script>
+</body>
+</html>
