@@ -1,11 +1,17 @@
 #!/bin/sh
-# ux-rec: cases.json 動了就跑案例檢查, 有 ✗ 擋 commit(主筆 2026-11-02「每次都要檢查」).
-# 裝法: ln -sf ../../tools/pre-commit .git/hooks/pre-commit . 標準正本 b-rec/docs/🎀 工表/p-rec/案例寫法工表.md
-if git diff --cached --name-only | grep -q '^uiux/data/cases.json$'; then
-  if ! python3 tools/check_cases.py >/tmp/ux-case-check.$$ 2>&1; then
-    cat /tmp/ux-case-check.$$; rm -f /tmp/ux-case-check.$$
-    echo "cases.json 沒過案例檢查, commit 擋下."
+# p-rec: 文案動了就跑檢查, 有 ✗ 擋 commit(主筆 2026-11-02「每次都要檢查」).
+#   uiux/data/cases.json -> check_cases.py(標準 b-rec 🎀 工表/p-rec/案例寫法工表.md)
+#   product/data/*.json / product/index.html -> check_pd.py(標準 🎀 工表/p-rec/PD版寫法工表.md, 2026-11-05 加)
+# 裝法: ln -sf ../../tools/pre-commit .git/hooks/pre-commit
+run() {
+  if ! python3 "$1" >/tmp/p-rec-check.$$ 2>&1; then
+    cat /tmp/p-rec-check.$$; rm -f /tmp/p-rec-check.$$
+    echo "$2 沒過檢查, commit 擋下."
     exit 1
   fi
-  rm -f /tmp/ux-case-check.$$
-fi
+  rm -f /tmp/p-rec-check.$$
+}
+staged=$(git diff --cached --name-only)
+echo "$staged" | grep -q '^uiux/data/cases.json$' && run tools/check_cases.py "uiux/data/cases.json"
+echo "$staged" | grep -qE '^product/(data/.*\.json|index\.html)$' && run tools/check_pd.py "product/"
+exit 0
