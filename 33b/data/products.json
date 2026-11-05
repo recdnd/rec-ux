@@ -19,6 +19,11 @@
     "name": "sus dungeons",
     "kind": "ブラウザゲーム",
     "url": "https://rec.ooo/dungeons/",
+    "stage": {
+      "video": "dungeons-livehouse.mp4",
+      "v": "d281bdd6",
+      "size": "1576x1138"
+    },
     "line": "ゲームエンジンを使わずに作ったブラウザの 2D RPG と、それを作るための道具。",
     "issue": "百階ほどのマップとアイテム千件以上を、一人で作り続けながら、最後まで遊べる状態に保つ。",
     "offer": "ブラウザで遊べる。日英中の 3 言語。スマホでも、別の版を作らずに同じゲームが動く。",
