@@ -109,23 +109,41 @@
     lang = LANGS[(LANGS.indexOf(lang) + 1) % LANGS.length];
     try { localStorage.setItem(LKEY, lang); } catch (e) {}
     paint();
-    if (typeof cur === "number") show(cur);
+    if (typeof cur === "number") { show(cur); reserve(); }
   });
   paint();
+
+  // 說明欄只填字(show 用, reserve 量高也用)
+  const fill = (it) => {
+    if (it.kind === "board") text(it.ref.name, tx(it.ref, "line"), null);
+    else text(tx(it.ref, "title") + (it.ref.phone ? " 📱" : ""), tx(it.ref, "line"), it.ref);
+  };
+  // 右欄垂直置中(主筆 11-05「右側板垂直居中」), 但換則時不跳(11-03「走 B 固定盒」):
+  // 說明欄的高先留到最長的那一則(放不下就留到右欄剩下的高), 整塊(列表 + 說明)再由 CSS 在右欄裡置中. 換語言 / 視窗大小要重量. 手機不留.
+  const side = $("side"), detail = $("detail"), desk = matchMedia("(min-width:761px)");
+  const reserve = () => {
+    detail.style.minHeight = "";
+    if (!desk.matches) return;
+    let h = 0;
+    items.forEach((it) => { fill(it); h = Math.max(h, detail.scrollHeight); });
+    const kids = [...side.children].filter((e) => e !== detail);
+    const rest = side.clientHeight - kids.reduce((s, e) => s + e.scrollHeight, 0) - 4 * kids.length;
+    detail.style.minHeight = Math.max(0, Math.min(h, rest)) + "px";
+    fill(items[cur]);
+  };
 
   function show(j) {
     const it = items[j];
     items.forEach((x, k) => x.el.classList.toggle("on", k === j));
     const bid = it.kind === "board" ? it.key : it.ref.board;
+    fill(it);
     if (it.kind === "board") {
       // 互動版: 真頁面鋪滿盒, 不縮放
-      text(it.ref.name, tx(it.ref, "line"), null);
       vid.hidden = true; frame.hidden = false;
       vid.removeAttribute("src"); vid.load();
       if (frame.getAttribute("src") !== liveOf[bid]) frame.src = liveOf[bid];
     } else {
       const c = it.ref;
-      text(tx(c, "title") + (c.phone ? " 📱" : ""), tx(c, "line"), c);
       // 大小: 先用 cases.json 的 size(影片像素, 如 "1792x1120"), 影片 metadata 到了再照實際寬高改; 都沒有 = 2000x1600(錄影規格 1000x800 @2x; band 例外 1160x725)
       size(...(c.size || "2000x1600").split("x").map(Number));
       vid.hidden = false; frame.hidden = true;
@@ -146,6 +164,8 @@
   };
 
   let cur = show(find(location.hash.slice(1)));
+  reserve();
+  addEventListener("resize", reserve);
   // 手打 / 貼上另一個 #id(同一頁不會重載)也要換過去
   addEventListener("hashchange", () => { cur = show(find(location.hash.slice(1))); });
   document.addEventListener("keydown", (e) => {

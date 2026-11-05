@@ -59,6 +59,8 @@ main{ display:flex; gap:4px; align-items:flex-start; }
 
 /* 右欄高 = 盒高, 固定(主筆 11-03「走 B 固定盒」). 10-31「內容容器居中」時是高 = 內容, 說明長短一變整組就上下移; 現在內容少時下方留白 */
 #side{ width:420px; max-width:100%; height:var(--stage-h); max-height:var(--stage-h); display:flex; flex-direction:column; gap:4px; }
+/* 右欄垂直置中(主筆 11-05「右側板垂直居中」): 整塊在固定高的右欄裡置中; 說明欄的最小高由 js reserve() 留到最長那一則, 換則時不跳 */
+@media (min-width:761px){ #side{ justify-content:center; } }
 
 /* 事例條: band 曲目條同一套 .07 / .14 / .22, 選中字換系統紅. 沒有可玩頁的板塊名(Spiral)是不可按的一行, 只有字 */
 #list{ display:flex; flex-direction:column; gap:1px; overflow:auto; flex:0 1 auto; }
@@ -99,7 +101,7 @@ main{ display:flex; gap:4px; align-items:flex-start; }
 .bd .k{ order:1; margin-left:auto; }   /* 板塊名的類型靠右; 🕹️🔗 仍貼著名字(主筆「在小標題右側」) */
 
 /* 說明: band 歌詞位. 一種字號, 黑字 + 標籤用 .55 */
-#detail{ flex:1 1 auto; overflow:auto; padding:1px; display:flex; flex-direction:column; gap:4px; }
+#detail{ flex:0 1 auto; overflow:auto; padding:1px; display:flex; flex-direction:column; gap:4px; }
 #detail dl{ display:grid; grid-template-columns:8ch 1fr; gap:4px 3px; }
 #detail dt,#role{ opacity:.55; }
 #detail dl[hidden]{ display:none; }

@@ -68,11 +68,6 @@ main{ display:flex; gap:4px; align-items:flex-start; }
 #fig .rel{ opacity:.55; }
 #fig .shot img{ display:block; width:100%; height:auto; }
 #fig .shot figcaption{ opacity:.55; }
-/* 一か所 -> 三份 */
-#fig .fan{ display:flex; align-items:center; gap:4px; }
-#fig .fan .src{ padding:1px 3px; background:rgba(var(--k),.22); }
-#fig .fan ul{ display:flex; flex-direction:column; gap:4px; }
-#fig .fan li{ padding:1px 3px; background:rgba(255,255,255,.7); }
 /* 硬い層 / 柔らかい層 */
 #fig .lay{ display:grid; grid-template-columns:1fr 1fr; gap:4px; }
 #fig .lay > div{ padding:1px 3px; background:rgba(255,255,255,.7); }
@@ -85,6 +80,8 @@ main{ display:flex; gap:4px; align-items:flex-start; }
 #live[hidden],#vid[hidden],#pic[hidden],#fig[hidden]{ display:none; }
 
 #side{ width:420px; max-width:100%; height:var(--stage-h); max-height:var(--stage-h); display:flex; flex-direction:column; gap:4px; }
+/* 右欄垂直置中(主筆 11-05「右側板垂直居中」): 整塊在固定高的右欄裡置中; 說明欄的最小高由 js reserve() 留到最長那一則, 換則時不跳 */
+@media (min-width:761px){ #side{ justify-content:center; } }
 #guide{ opacity:.55; padding:1px; }
 
 /* 列表: 產品名那一條(.bd)都可按 = プロダクト層; 有真頁面的標 🕹️. 進め方(group)只是一行字 */
@@ -115,7 +112,7 @@ main{ display:flex; gap:4px; align-items:flex-start; }
 .bd .k{ order:1; margin-left:auto; }
 
 /* 說明: 一種字號, 黑字 + 標籤 .55. 標籤欄寬 = 最長的標籤(使わない判断 這種長的也不折) */
-#detail{ flex:1 1 auto; overflow:auto; padding:1px; display:flex; flex-direction:column; gap:4px; }
+#detail{ flex:0 1 auto; overflow:auto; padding:1px; display:flex; flex-direction:column; gap:4px; }
 #detail dl{ display:grid; grid-template-columns:minmax(8ch, max-content) 1fr; gap:4px 3px; }
 #detail dt,#role{ opacity:.55; }
 #detail dl:empty{ display:none; }

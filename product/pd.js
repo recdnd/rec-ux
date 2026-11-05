@@ -100,19 +100,37 @@
     }
   };
 
-  function show(j) {
-    const it = items[j];
-    items.forEach((x, k) => x.el.classList.toggle("on", k === j));
+  // 說明欄只填字(show 用, reserve 量高也用)
+  const fill = (it) => {
     if (it.kind === "product") {
       const p = it.ref;
       text(p.name, p.line, P_LABEL.map(([f, l]) => [l, p[f]]), null);
-      stage(p.stage || {});
     } else {
       const c = it.ref;
       const rows = c.type === "note" ? c.notes : C_LABEL.map(([f, l]) => [l, c[f]]);
       text(c.title + (c.media && c.media.phone ? " 📱" : ""), null, rows, c.role);
-      stage(c.media || {});
     }
+  };
+
+  // 右欄垂直置中(主筆 11-05「右側板垂直居中」), 但換則時不跳(11-03「走 B 固定盒」):
+  // 說明欄的高先留到最長的那一則(放不下就留到右欄剩下的高), 整塊(引導 + 列表 + 說明)再由 CSS 在右欄裡置中. 手機不留.
+  const side = $("side"), detail = $("detail"), desk = matchMedia("(min-width:761px)");
+  const reserve = () => {
+    detail.style.minHeight = "";
+    if (!desk.matches) return;
+    let h = 0;
+    items.forEach((it) => { fill(it); h = Math.max(h, detail.scrollHeight); });
+    const kids = [...side.children].filter((e) => e !== detail);
+    const rest = side.clientHeight - kids.reduce((s, e) => s + e.scrollHeight, 0) - 4 * kids.length;
+    detail.style.minHeight = Math.max(0, Math.min(h, rest)) + "px";
+    fill(items[cur]);
+  };
+
+  function show(j) {
+    const it = items[j];
+    items.forEach((x, k) => x.el.classList.toggle("on", k === j));
+    fill(it);
+    stage((it.kind === "product" ? it.ref.stage : it.ref.media) || {});
     // 網址只換 #, 路徑照舊(有 <base> 時 "#x" 會被解到 base 上, 所以寫完整路徑)
     history.replaceState(null, "", location.pathname + location.search + "#" + it.key);
     it.el.scrollIntoView({ block: "nearest" });
@@ -127,6 +145,8 @@
   };
 
   let cur = show(find(decodeURIComponent(location.hash.slice(1))));
+  reserve();
+  addEventListener("resize", reserve);
   addEventListener("hashchange", () => { cur = show(find(decodeURIComponent(location.hash.slice(1)))); });
   document.addEventListener("keydown", (e) => {
     if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
