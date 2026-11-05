@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ux-rec 案例文案檢查(主筆 2026-11-02「案例寫法是否足夠好了, 每次都要檢查, 對齊ui/ux portfolio高級標準」).
 
-標準正本: b-rec/docs/🎀 工表/ux-rec/案例寫法工表.md. 這支只查機器查得出來的那一半, 另一半(畫面上有沒有 / 有沒有取捨)照工表的判斷題人工過.
+標準正本: b-rec/docs/🎀 工表/p-rec/案例寫法工表.md. 這支只查機器查得出來的那一半, 另一半(畫面上有沒有 / 有沒有取捨)照工表的判斷題人工過.
 用法: python3 tools/check_cases.py [id ...]   沒給 id = 全部. 有 ✗ 就 exit 1(.git/hooks/pre-commit 會擋 commit).
 """
 import json, re, sys
@@ -75,7 +75,7 @@ def main():
         for e in err: print(f"    ✗ {e}")
         for w in warn: print(f"    △ {w}")
         bad += bool(err)
-    print("\n判斷題(機器查不到, 每則人工過): 工表〈判斷題〉六條 -- b-rec/docs/🎀 工表/ux-rec/案例寫法工表.md")
+    print("\n判斷題(機器查不到, 每則人工過): 工表〈判斷題〉六條 -- b-rec/docs/🎀 工表/p-rec/案例寫法工表.md")
     sys.exit(1 if bad else 0)
 
 if __name__ == "__main__":

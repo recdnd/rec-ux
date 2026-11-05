@@ -1,8 +1,8 @@
 #!/bin/bash
-# ux-rec - localhost 薄殼(接 machine/specs/02-localhost.md)
-# 本檔放在 ux-rec/rituals/ 內
+# p-rec - localhost 薄殼(接 machine/specs/02-localhost.md)
+# 本檔放在 p-rec/rituals/ 內
 
-REC_PROJECT="ux-rec"
+REC_PROJECT="p-rec"
 REC_PORT="2323"
 # REC_LOCAL_PATH="/"
 # REC_BUILD_CMD="npm run build"

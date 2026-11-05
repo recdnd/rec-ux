@@ -1,8 +1,8 @@
 #!/bin/bash
-# ux-rec - push 薄殼(接 machine/specs/01-deploy.md)
-# 本檔放在 ux-rec/rituals/ 內
+# p-rec - push 薄殼(接 machine/specs/01-deploy.md)
+# 本檔放在 p-rec/rituals/ 內
 
-REC_PROJECT="ux-rec"
+REC_PROJECT="p-rec"
 REC_DEPLOY_URL="https://p.rec.ooo"
 
 # 專案根 = 本腳本目錄的上一層(rituals/ 在專案根下)

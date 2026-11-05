@@ -1,4 +1,4 @@
-# Rec 作品集(ux-rec)➢ p.rec.ooo
+# Rec 作品集(p-rec, 2026-11-05 以前叫 ux-rec)➢ p.rec.ooo
 
 **2026-11-05 搬家**: 這個 repo(recdnd/rec-ux)= 作品集總站 **p.rec.ooo**. 一個版本一個子路徑, 互不連結:
 - `/` = 根頁: 名字 + https://rec.ooo. **不列出也不連到各版本**, 各版本之間也不互相連結.

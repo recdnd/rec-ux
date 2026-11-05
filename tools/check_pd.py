@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """PD 版(product/)文案檢查(2026-11-05, 主筆「派席做一個pd版(product design)版, 文案和寫作方式, 都換一套」).
 
-標準正本: b-rec/docs/🎀 工表/ux-rec/PD版寫法工表.md. 這支只查機器查得出來的那一半, 判斷題照工表人工過.
+標準正本: b-rec/docs/🎀 工表/p-rec/PD版寫法工表.md. 這支只查機器查得出來的那一半, 判斷題照工表人工過.
 用法: python3 tools/check_pd.py [id ...]   沒給 id = 全部. 有 ✗ 就 exit 1.
 """
 import hashlib, json, re, sys
@@ -23,8 +23,8 @@ PD_BUZZ = ["最適化", "価値を最大化", "ユーザー中心", "寄り添",
 RED = ["ノーコード", "コードを書かず", "手で書いたコード", "一行も書", "GPA", "成績"]
 # 素材清單與每則的出處放在 b-rec 🎀(不部署): 這個 repo 是 Public, product/data 也會送出去, 所以不寫在這裡.
 #   「」裡的字要在素材裡找得到 = 工表〈素材〉列出的檔; 出處 = 開發書 04 每個 id 一節
-TABLE = DR / "b-rec/docs/🎀 工表/ux-rec/PD版寫法工表.md"
-SRC_BOOK = DR / "b-rec/docs/🎀 專案開發書/ux-rec/04-PD版出處.md"
+TABLE = DR / "b-rec/docs/🎀 工表/p-rec/PD版寫法工表.md"
+SRC_BOOK = DR / "b-rec/docs/🎀 專案開發書/p-rec/04-PD版出處.md"
 AI_PRODUCTS = {"spiral", "braintank"}   # AI 本身就是產品的: 課題 / 検討裡可以提 AI
 
 
@@ -181,7 +181,7 @@ def main():
         for seg in re.findall(r">([^<>]*[^\x00-\x7F][^<>]*)<", body):
             ja_checks(tid, seg.strip(), src_text, err, warn)
     report("page", err, warn)
-    print("\n判斷題(機器查不到, 每則人工過): 工表〈判斷題〉六條 -- b-rec/docs/🎀 工表/ux-rec/PD版寫法工表.md")
+    print("\n判斷題(機器查不到, 每則人工過): 工表〈判斷題〉六條 -- b-rec/docs/🎀 工表/p-rec/PD版寫法工表.md")
     sys.exit(1 if bad else 0)
 
 
