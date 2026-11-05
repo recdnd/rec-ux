@@ -34,14 +34,15 @@ ul{ padding:0; list-style:none; }
 main{ display:flex; gap:4px; align-items:flex-start; }
 @media (min-width:761px){
   body{ min-height:var(--vh); display:flex; align-items:center; justify-content:center; }
-  #stage{ width:min(var(--stage-w), 100vw - 436px); height:var(--stage-h); display:flex; align-items:flex-start; justify-content:flex-end; }
+  /* 片 / 圖在盒裡上下左右置中(主筆 11-05「固定右側導致…總是貼右上角」). 盒和右欄照舊固定, 換則時右欄不跳 */
+  #stage{ width:min(var(--stage-w), 100vw - 436px); height:var(--stage-h); display:flex; align-items:center; justify-content:center; }
 }
 #stage{ max-width:100%; }
 #vid{ display:block; aspect-ratio:var(--r); width:min(var(--nw), var(--stage-w), var(--stage-h) * (var(--r))); max-width:100%; height:auto; background:rgba(var(--k),.07); }
 #live{ display:block; width:var(--stage-w); max-width:100%; height:var(--stage-h); border:0; }
 
 /* 截圖: 盒裡照比例放到最大, 說明一行在下 */
-#pic{ display:flex; flex-direction:column; align-items:flex-end; gap:4px; width:100%; height:100%; }
+#pic{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; width:100%; height:100%; }
 #pic img{ display:block; max-width:100%; max-height:calc(100% - 40px); object-fit:contain; background:rgba(var(--k),.07); }
 #pic figcaption{ opacity:.55; max-width:100%; }
 

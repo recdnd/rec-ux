@@ -47,7 +47,8 @@ main{ display:flex; gap:4px; align-items:flex-start; }
 #stage{ max-width:100%; }
 @media (min-width:761px){
   /* 寬再跟 100vw - 436 取小: --stage-w 下限 560, 761..995 寬的視窗不取小會整頁橫捲(900 寬實測多 42) */
-  #stage{ width:min(var(--stage-w), 100vw - 436px); height:var(--stage-h); display:flex; align-items:flex-start; justify-content:flex-end; }
+  /* 11-05 主筆「固定右側導致…總是貼右上角」: 片改在盒裡上下左右置中(= 11-03 試版 A). 盒和右欄照舊固定, 右欄不跳; 「影片 + 列表貼著」這一條放掉 */
+  #stage{ width:min(var(--stage-w), 100vw - 436px); height:var(--stage-h); display:flex; align-items:center; justify-content:center; }
 }
 /* 寬 = 原寸, 盒放不下才縮(盒寬 / 盒高 x 比例); 高由 aspect-ratio 給. 還沒有影片時這一塊就是 .07 的空框, 大小照 size */
 #vid{ display:block; aspect-ratio:var(--r); width:min(var(--nw), var(--stage-w), var(--stage-h) * (var(--r))); max-width:100%; height:auto; background:rgba(var(--k),.07); }
