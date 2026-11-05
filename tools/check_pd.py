@@ -76,6 +76,8 @@ def overlap(a, b):
 def ja_checks(where, s, src_text, err, warn):
     if re.search(r"ね[。」）]|ね$", s): err.append(f"{where}: 句末「ね」")
     if re.search(r"(?<=[^\x00-\x7F])[,.]|(?<=[^\x00-\x7F])\s?[()]|[()](?=[^\x00-\x7F])", s): err.append(f"{where}: 日文裡有半形 , . ( ) -> 全角")
+    # 半形 : ; ! ? 接在日文後(1:n 這種兩邊都是 ASCII 的記法不算). 提出する日本語は全角(主筆 11-05, 本堂 10-03 / 10-05 差し戻し)
+    if re.search(r"(?<=[^\x00-\x7F])\s?[:;!?](?!\S*//)", s): err.append(f"{where}: 日文裡有半形 : ; ! ? -> 全角")
     for b in JA_BUZZ + PD_BUZZ:
         if b in s: err.append(f"{where}: 空話「{b}」")
     for r in RED:
