@@ -90,6 +90,19 @@ CODE = {
 }
 
 
+_STR = re.compile(r"(['\"`])([^'\"`]*?[\u4e00-\u9fff][^'\"`]*?)\1")
+_JA_KANJI_ONLY = ('全角',)   # かな無しでも日本語の文言
+
+
+def zh_line(t):
+    """主筆 11-06「再檢查還有沒有中文」: かなの無い漢字だけの文字列 = 中国語の画面文言. その行は枠に出さない(行番号はそのまま, 抜けは見える)."""
+    for m in _STR.finditer(t):
+        v = m.group(2)
+        if re.search(r'[\u3040-\u30ff]', v) or any(w in v for w in _JA_KANJI_ONLY): continue
+        return True
+    return False
+
+
 def strip_comments(lines):
     """[(no, text)] -> 註解を落とした [(no, text)]. 文字列の中の /* や // は落とさない(簡単な引用符追跡)."""
     out, inb = [], False
@@ -123,7 +136,7 @@ def main():
         src = open(os.path.join(ROOT, spec['file']), encoding='utf-8').read().split('\n')
         blocks = []
         for a, b in spec['ranges']:
-            blocks.append(strip_comments([(n, src[n - 1]) for n in range(a, b + 1)]))
+            blocks.append([x for x in strip_comments([(n, src[n - 1]) for n in range(a, b + 1)]) if not zh_line(x[1])])
         kept = {n for bl in blocks for n, _ in bl}
         for n in spec['notes']:
             if n not in kept: print(f'✗ {cid}: 注の行 {n} がコードに残っていない(行番号ずれ?)'); bad += 1

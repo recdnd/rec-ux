@@ -158,10 +158,6 @@
      "      tilt: mine,"
     ],
     [
-     212,
-     "      say: low ? '成交.' : (mine < -EPS ? '他那邊還沉著.' : '還平著.')"
-    ],
-    [
      213,
      "    };"
     ]
@@ -335,40 +331,12 @@
      "  const an = animalOf(st.animal);"
     ],
     [
-     2596,
-     "  L2.push('種族: ' + (an ? (an.a + ' - ' + st.animal) : (st.animal || '(未挑)')));"
-    ],
-    [
-     2597,
-     "  L2.push('立繪: ' + (st.skin ? ('皮 ' + st.skin + '(住民名冊)') : (st.face || '(無)')) + (st.overlay ? ' ＋ ' + st.overlay : ''));"
-    ],
-    [
      2598,
      "  const other = Array.isArray(st.other) ? st.other.join(' / ') : String(st.other || '');"
     ],
     [
-     2599,
-     "  if (other) L2.push('設定: ' + other);"
-    ],
-    [
      2600,
      "  const r = st.range || {};"
-    ],
-    [
-     2601,
-     "  L2.push('活動範圍: ' + ((r.sheets || []).join(' / ') || '(無)') + (r.note ? '  —— ' + r.note : ''));"
-    ],
-    [
-     2602,
-     "  if (st.strength) L2.push('sus的強度感覺: ' + st.strength);"
-    ],
-    [
-     2603,
-     "  if (st.plays && st.plays.length) L2.push('擅長樂器: ' + playsText(st.plays));"
-    ],
-    [
-     2604,
-     "  if ((st.gear || []).length) L2.push('裝備: ' + st.gear.map(g => (g && (g.zh || g.id)) || '').filter(Boolean).join(' / '));"
     ],
     [
      2605,
@@ -377,10 +345,6 @@
     [
      2606,
      "  L2.push('');"
-    ],
-    [
-     2607,
-     "  L2.push('## NESI —— ' + ((f.desks || []).length) + ' 件事');"
     ],
     [
      2608,
@@ -471,10 +435,6 @@
     [
      2629,
      "    L2.push('');"
-    ],
-    [
-     2630,
-     "    L2.push('### 📖 ' + (d.name || '未命名'));"
     ],
     [
      2631,

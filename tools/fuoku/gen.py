@@ -12,7 +12,8 @@ def L(f, a, b):
     return strip_comments([(i, t[i - 1]) for i in range(a, min(b, len(t)) + 1)])
 from pd_code import CODE
 TR = 'rec-rec/home/dungeons/trade.js'
-allt = L(TR, 1, 400)
+from pd_code import zh_line   # 中国語の画面文言の行は壁に出さない(pd_code と同じ判定)
+allt = [x for x in L(TR, 1, 400) if not zh_line(x[1])]
 half = (len(allt) + 1) // 2
 notes = CODE['dungeons-genre']['notes']
 lens = [[n, t] + ([notes[n]] if n in notes else []) for n, t in L(TR, 139, 178)]

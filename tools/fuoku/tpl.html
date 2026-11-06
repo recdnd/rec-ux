@@ -98,7 +98,10 @@ td.m{ font:11px var(--mono); color:var(--sub); }
 .three .s{ margin-bottom:5px; color:var(--ink); }
 .three code{ font:11.5px var(--mono); background:var(--pale); padding:0 4px; border-radius:3px; }
 .out{ background:var(--ed); color:var(--ed-ink); font:10.5px/1.5 var(--mono); padding:8px 14px; border-radius:8px; white-space:pre; overflow:hidden; }
-.out .ok{ color:#9fe0a8; } .out .d{ color:var(--ed-sub); }
+.out .ok{ color:#9fe0a8; } .out .d{ color:var(--ed-sub); } .out .x{ color:#ff8f8f; }
+#p3 .three{ flex:none; }
+#p3 .three .s{ font-size:14px; line-height:1.6; }
+#p3 .out{ font-size:11px; }
 
 /* A4-A6 比較 */
 .grid{ display:grid; gap:6px; }
@@ -178,7 +181,7 @@ body:not(.a4) .chk .s{ font-size:11.5px; }
   <div class="kpis">
     <div class="card kpi main"><div class="lab">sus dungeons / rec.ooo のコミット</div><div class="v">765<small>件</small></div><p class="s">2026-08-09 から（git rev-list）</p></div>
     <div class="card kpi"><div class="lab">ゲーム本体の JS</div><div class="v">54,373<small>行</small></div><p class="s">16 ファイル</p></div>
-    <div class="card kpi"><div class="lab">ゲームを作る作業台</div><div class="v">41<small>個</small></div><p class="s">NPC表・敵人表・掉落表 など</p></div>
+    <div class="card kpi"><div class="lab">ゲームを作る作業台</div><div class="v">41<small>個</small></div><p class="s">NPC表・敵の表・ドロップ表 など</p></div>
   </div>
   <div class="two">
     <table>
@@ -224,11 +227,18 @@ body:not(.a4) .chk .s{ font-size:11.5px; }
       <div class="lab">残すもの</div><p class="s">依頼の原文・判断・結果。知識庫は 3,948 章。次の作業の前提になる。</p>
       <div class="lab">知らせ</div><p class="s">終わったら、デスクトップの相棒 sus が一言で知らせ、成果物を持ってくる。</p></div>
   </div>
-  <div class="out"><span class="d">$ python3 rec-rec/tests/前端體檢.py p-rec/product/index.html   # 見出しは日本語に置き換えて表示</span>
+  <div class="out"><span class="d"># デザイン規約の検査（画面のファイル 1 枚。見出しは日本語に置き換えて表示）</span>
 | 頁 | 枠線 | 角丸 | 影 | アニメ | 余白>4 | 入れ子枠 | 保険 | hover数 | 文字ボタン | 色付き底 | 文字サイズ | 文字色 | 下部バー | 閉じる× | h1 | icon | confirm |
-| product/index.html | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | 7 | <span class="ok">·</span> | 10 | 2 | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> |
+| product/index.html | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | 7 | <span class="ok">·</span> | 10 | 2 | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> |
 <span class="d">$ python3 p-rec/tools/check_pd.py</span>
-<span class="ok">✓</span> product band   <span class="ok">✓</span> product su   <span class="ok">✓</span> product dungeons   <span class="ok">✓</span> band-no-account   <span class="ok">✓</span> band-room   <span class="ok">✓</span> dungeons-livehouse   <span class="ok">✓</span> page</div>
+<span class="ok">✓</span> product band   <span class="ok">✓</span> product su   <span class="ok">✓</span> product dungeons   <span class="ok">✓</span> product rec   <span class="ok">✓</span> product braintank   <span class="ok">✓</span> product spiral   <span class="ok">✓</span> product cloutric   <span class="ok">✓</span> product pdir
+<span class="ok">✓</span> product process   <span class="ok">✓</span> band-sell   <span class="ok">✓</span> band-room   <span class="ok">✓</span> dungeons-livehouse   <span class="ok">✓</span> dungeons-interface   <span class="ok">✓</span> dungeons-genre   <span class="ok">✓</span> dungeons-phone   <span class="ok">✓</span> dungeons-desks
+<span class="ok">✓</span> cloutric-what   <span class="ok">✓</span> cloutric-scale   <span class="ok">✓</span> cloutric-alert   <span class="ok">✓</span> cloutric-offer   <span class="ok">✓</span> pdir-layers   <span class="ok">✓</span> pdir-fields   <span class="ok">✓</span> rec-phone-box   <span class="ok">✓</span> talk-desk
+<span class="ok">✓</span> braintank-modes   <span class="ok">✓</span> session-stream   <span class="ok">✓</span> process-team   <span class="ok">✓</span> process-ai   <span class="ok">✓</span> page
+<span class="d"># 11月6日、決定の文に中身のない言い回しを一語足して試した（文言は日本語に置き換えて表示）</span>
+<span class="x">✗</span> band-sell
+    <span class="x">✗</span> decision: 中身のない言い回し「ユーザー中心」
+<span class="d">exit 1 → pre-commit がコミットを止める。一語を戻すと通る。</span></div>
   <div class="band">決まりは作業の前に読ませ、守れたかは機械で数える。</div>
   <div class="ft">セツ シュントウ　付録<b>A3</b></div>
 </section>
@@ -286,8 +296,8 @@ body:not(.a4) .chk .s{ font-size:11.5px; }
 </section>
 
 <section class="pg" id="p6">
-  <div class="hd"><span class="tag">付録</span><h2>比較案：魔塔と何を変えるか</h2><span class="pill">比較 → 採用</span></div>
-  <p class="lead">魔塔という形のゲームは、攻撃・防御・金貨の数字を計算して詰める遊びになりやすい。2026年8月13日、定番と違える十一の方針を、こだわりの強さ（%）つきで決めた。</p>
+  <div class="hd"><span class="tag">付録</span><h2>比較案：定番の塔の RPG と何を変えるか</h2><span class="pill">比較 → 採用</span></div>
+  <p class="lead">『魔法の塔』（1996）型の RPG は、攻撃・防御・金貨の数字を計算して詰める遊びになりやすい。2026年8月13日、この型の定番と違える十一の方針を、こだわりの強さ（%）つきで決めた。</p>
   <div class="rules" id="rules"></div>
   <p class="src">出典：sus dungeons 開発書〈十一の方針〉の原文。あとから一つ加えた底線：戦うだけで進む人も、ほかの遊びを飛ばして最後まで行ける。</p>
   <div class="after">
@@ -326,7 +336,7 @@ const cols = document.getElementById("cols");
 D.wall.forEach(ls => { const p = document.createElement("pre"); p.innerHTML = rows(ls.map(([n, t]) => [n, t]), n => n >= a && n <= b); cols.append(p); });
 document.getElementById("lens").innerHTML = rows(D.lens);
 document.getElementById("lt").textContent = "trade.js  L" + a + "–" + b + "  step()";
-document.getElementById("meta").textContent = D.file + "  ·  " + D.total + " 行（註解を除くと " + D.kept + " 行）";
+document.getElementById("meta").textContent = D.file + "  ·  " + D.total + " 行（表示は、註解と画面の文言の行を除いた " + D.kept + " 行）";
 // A6 十一の方針(sus dungeons 開発書 00-prompt原文·分支 N2, 2026-08-13 主筆原文の %). 90% 以上だけ濃い青
 {
   const R = [
