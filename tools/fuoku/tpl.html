@@ -69,8 +69,12 @@ pre{ margin:0; font-family:var(--mono); white-space:pre; overflow:hidden; }
 .a2 table{ border-spacing:0 .35mm; }
 .a2 td{ padding:.55mm 2mm; line-height:1.36; }
 .a2 th{ padding:0 2mm; }
-.a2 td:nth-child(1){ width:19mm; color:var(--mute); }
-.a2 td:nth-child(2){ width:44mm; }
+/* 11-06 主筆「這個表可讀性差，每欄做一下染色或透明度區別呀」: 列ごとに底の濃さを変える(同じ色の alpha の段). 決めたこと = rec藍 で一番濃く, 選ばなかった案 = 一番薄く字も灰 */
+.a2 td:nth-child(1){ width:19mm; color:var(--mute); background:rgba(0,0,0,.06); }
+.a2 td:nth-child(2){ width:44mm; background:rgba(64,0,255,.11); font-weight:600; }
+.a2 td:nth-child(3){ background:rgba(0,0,0,.02); color:var(--mute); }
+.a2 td:nth-child(4){ background:rgba(64,0,255,.045); }
+.a2 th:nth-child(2){ color:var(--rec); }
 
 /* A3: 4 段の決まり + 実際の出力 */
 .a3{ grid-template-columns:1fr 1fr; }
@@ -79,10 +83,12 @@ pre{ margin:0; font-family:var(--mono); white-space:pre; overflow:hidden; }
 .out .d{ color:rgba(255,255,255,.5); } .out .ok{ color:#00ff00; } .out .x{ color:#ea00ff; }
 .side{ display:flex; flex-direction:column; gap:3mm; min-height:0; }
 
-/* A4-A6 比較: 下段 = 採用案の実物(左, 残りの高さに収める)+ 確かめたこと(右 86mm) */
-.after{ grid-template-columns:minmax(0,1fr) 86mm; grid-template-rows:minmax(0,1fr); }
-.after .shots{ display:flex; gap:3mm; min-height:0; height:100%; }
-.after .shot{ height:100%; }
+/* A4-A5 比較: 下段 = 採用案の実物(左, 残りの高さに収める)+ 確かめたこと(画像のすぐ右, 最大 96mm).
+   11-06 主筆「這一段太靠右沒有利用空間，移動的截圖的右邊一些」: 右端に寄せず, 画像の右に詰める */
+.after{ display:flex; gap:7mm; align-items:flex-start; }
+.after > dl{ flex:0 1 96mm; }
+.after .shots{ display:flex; gap:3mm; min-height:0; height:100%; flex:none; }
+.after .shot{ height:100%; flex:none; }
 .after .shot img{ height:calc(100% - 5mm); max-width:100%; }
 .cmp td:first-child{ width:40mm; }
 .gen th.on{ color:var(--pick); }
