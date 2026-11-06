@@ -89,9 +89,11 @@ pre{ margin:0; font-family:var(--mono); white-space:pre; overflow:hidden; }
 .gen td.on{ background:rgba(64,0,255,.10); }
 .gen td:first-child{ width:32mm; color:var(--mute); }
 .rules{ display:flex; flex-direction:column; gap:.8mm; font-size:9pt; }
-.rule{ display:grid; grid-template-columns:6mm 1fr 70mm 10mm; gap:3mm; align-items:center; }
+.rule{ display:grid; grid-template-columns:6mm 1fr 32mm 9mm; gap:3mm; align-items:center; }
+.rule.th{ font-size:7.5pt; color:var(--mute); font-weight:600; }
+.rule.th span:last-child{ grid-column:3 / 5; }
 .rule i{ font-style:normal; color:var(--mute); text-align:right; }
-.rule .tr{ height:2.2mm; background:rgba(64,0,255,.07); }
+.rule .tr{ height:1.4mm; background:rgba(64,0,255,.07); }
 .rule .tr span{ display:block; height:100%; background:rgba(64,0,255,.30); }
 .rule.hi .tr span{ background:var(--rec); }
 .rule.hi .t{ font-weight:700; }
@@ -245,7 +247,7 @@ document.getElementById("dec").insertAdjacentHTML("beforeend", D.decisions.map((
 document.getElementById("out").innerHTML = document.getElementById("out").innerHTML.replace("/*OKS*/",
   D.oks.reduce((a, id, i) => a + (i % 3 ? "   " : (i ? "\n" : "")) + '<span class="ok">✓</span> ' + esc(id), ""));
 // A6 十一の方針(sus dungeons 開発書 00-prompt原文·分支 N2, 2026-08-13 主筆原文の %). 90% 以上だけ濃く
-document.getElementById("rules").innerHTML = D.rules.map(([no, t, v]) =>
+document.getElementById("rules").innerHTML = '<div class="rule th"><i></i><span>方針</span><span>こだわりの強さ（自分で付けた %）</span></div>' + D.rules.map(([no, t, v]) =>
   '<div class="rule' + (v >= 90 ? " hi" : "") + '"><i>' + no + '</i><span class="t">' + esc(t) + '</span><span class="tr"><span style="width:' + v + '%"></span></span><b>' + v + "%</b></div>").join("");
 const only = location.hash.slice(1);
 if (only) document.querySelectorAll(".pg").forEach((p) => { p.hidden = p.id !== only; });
