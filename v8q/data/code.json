@@ -1,0 +1,843 @@
+{
+ "dungeons-genre": {
+  "name": "trade.js",
+  "span": "110–181 / 202–213",
+  "blocks": [
+   [
+    [
+     110,
+     "  function step(st, dt, mL, mR, bias, opt) {"
+    ],
+    [
+     111,
+     "    var o = opt || {};"
+    ],
+    [
+     112,
+     "    var inert = (o.inert == null ? 0.45 : o.inert);"
+    ],
+    [
+     119,
+     "    var zeta  = (o.zeta  == null ? 0.58 : o.zeta);"
+    ],
+    [
+     120,
+     "    var tot = mL + mR;"
+    ],
+    [
+     121,
+     "    var diff = reading(mL, mR, bias);"
+    ],
+    [
+     122,
+     "    var soft = Math.max(2, (tot * 0.10) + 2);"
+    ],
+    [
+     139,
+     "    var tgt = -GEO.MAXT * Math.tanh(diff / soft);",
+     "左右の重さの差を、竿の傾きの目標にする。差が大きいほど傾き、上限で頭打ちになる。"
+    ],
+    [
+     143,
+     "    if (bias && bias.kind === 'stiction') {",
+     "引っかかりのある秤では、差が小さいうちは竿が動かない。"
+    ],
+    [
+     144,
+     "      var band = (+bias.amt || 0) * GEO.MAXT * 2;"
+    ],
+    [
+     145,
+     "      if (Math.abs(tgt - st.th) < band) tgt = st.th;"
+    ],
+    [
+     146,
+     "    }"
+    ],
+    [
+     161,
+     "    st.t = (st.t || 0) + dt;"
+    ],
+    [
+     162,
+     "    tgt += 0.014 * (Math.sin(st.t * 1.6 + 0.7) * 0.65 + Math.sin(st.t * 3.7 + 2.1) * 0.35)",
+     "二つの正弦でわずかに揺らす。乱数を使わないので、同じ局面は毎回同じ動きになる。"
+    ],
+    [
+     163,
+     "                 / (1 + tot / 200);"
+    ],
+    [
+     165,
+     "    var w0 = 7.4 / (1 + inert * Math.min(3.2, tot / 90));",
+     "載っている量が多いほど、ゆっくり揺れる。"
+    ],
+    [
+     166,
+     "    st.thV += (-(w0 * w0) * (st.th - tgt) - 2 * zeta * w0 * st.thV) * dt;",
+     "ばねと減衰の運動方程式。減衰は臨界より弱く、少し揺れてから止まる。"
+    ],
+    [
+     167,
+     "    st.th += st.thV * dt;"
+    ],
+    [
+     168,
+     "    if (st.th >  GEO.MAXT) { st.th =  GEO.MAXT; if (st.thV > 0) st.thV *= -0.18; }"
+    ],
+    [
+     169,
+     "    if (st.th < -GEO.MAXT) { st.th = -GEO.MAXT; if (st.thV < 0) st.thV *= -0.18; }"
+    ],
+    [
+     171,
+     "    for (var s = 0; s < 2; s++) {",
+     "皿は竿から吊った振り子として、竿とは別に動く。"
+    ],
+    [
+     172,
+     "      var sgn = s === 0 ? -1 : 1;"
+    ],
+    [
+     173,
+     "      var ax = -sgn * GEO.ARM * st.thV;"
+    ],
+    [
+     174,
+     "      var wp = 5.6, zp = 0.45;"
+    ],
+    [
+     175,
+     "      st.phV[s] += (-(wp * wp) * st.ph[s] - 2 * zp * wp * st.phV[s] - ax * 0.055) * dt;"
+    ],
+    [
+     176,
+     "      st.ph[s] += st.phV[s] * dt;"
+    ],
+    [
+     177,
+     "      st.squash[s] *= Math.pow(0.0025, dt);"
+    ],
+    [
+     178,
+     "    }"
+    ],
+    [
+     179,
+     "    return st;"
+    ],
+    [
+     180,
+     "  }"
+    ]
+   ],
+   [
+    [
+     202,
+     "  function judge(st, myLeft) {"
+    ],
+    [
+     205,
+     "    var mine = (myLeft === false) ? st.th : -st.th;"
+    ],
+    [
+     206,
+     "    var low = mine > EPS;",
+     "成立は、この瞬間に自分の皿が下がっているかだけで決める。"
+    ],
+    [
+     207,
+     "    return {"
+    ],
+    [
+     208,
+     "      ok: low,"
+    ],
+    [
+     209,
+     "      tilt: mine,"
+    ],
+    [
+     213,
+     "    };"
+    ]
+   ]
+  ]
+ },
+ "band-sell": {
+  "name": "band/index.html",
+  "span": "2537–2572",
+  "blocks": [
+   [
+    [
+     2538,
+     "{"
+    ],
+    [
+     2539,
+     "  const m = $('findMail'), row = $('sub');"
+    ],
+    [
+     2540,
+     "  const ok = () => /^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/.test(m.value.trim());",
+     "メールアドレスの形になったときだけ、次の行を出す。"
+    ],
+    [
+     2541,
+     "  const sync = () => { row.hidden = !ok(); row.classList.toggle('on', ok()); };"
+    ],
+    [
+     2542,
+     "  m.addEventListener('input', sync);"
+    ],
+    [
+     2543,
+     "  sync();"
+    ],
+    [
+     2544,
+     "}"
+    ],
+    [
+     2546,
+     "$('find').onsubmit = async e => {"
+    ],
+    [
+     2547,
+     "  e.preventDefault();"
+    ],
+    [
+     2548,
+     "  const res = await fetch(PAY + '?op=recover', { method: 'POST', headers: { 'content-type': 'application/json' },",
+     "買ったことがあるかどうかに関係なく、同じ返事を返す。リンクはメールで届く。"
+    ],
+    [
+     2549,
+     "                                                 body: JSON.stringify({ email: $('findMail').value,"
+    ],
+    [
+     2550,
+     "                                                                        sub: $('subOn').checked }) }).catch(() => null);"
+    ],
+    [
+     2551,
+     "  $('findGo').textContent = res && res.ok ? '✅' : '⚠️';"
+    ],
+    [
+     2552,
+     "  setTimeout(() => { $('findGo').textContent = '✉️'; }, 4000);"
+    ],
+    [
+     2553,
+     "};"
+    ],
+    [
+     2554,
+     "au.addEventListener('loadstart', paintBuy);"
+    ],
+    [
+     2555,
+     "paintBuy();"
+    ],
+    [
+     2557,
+     "{"
+    ],
+    [
+     2558,
+     "  const sid = new URLSearchParams(location.search).get('paid');"
+    ],
+    [
+     2559,
+     "  if (sid) {"
+    ],
+    [
+     2560,
+     "    history.replaceState(null, '', location.pathname + location.hash);"
+    ],
+    [
+     2561,
+     "    let n = 0;"
+    ],
+    [
+     2562,
+     "    const ask = async () => {"
+    ],
+    [
+     2563,
+     "      const res = await fetch(PAY + '?op=order&s=' + encodeURIComponent(sid)).catch(() => null);"
+    ],
+    [
+     2564,
+     "      if (res && res.ok) {"
+    ],
+    [
+     2565,
+     "        const o = await res.json();"
+    ],
+    [
+     2566,
+     "        saveGot(o, sid);",
+     "買ったものはブラウザに置き、すぐ聴けるようにする。"
+    ],
+    [
+     2567,
+     "        paintGot();"
+    ],
+    [
+     2568,
+     "      } else if (++n < 30) setTimeout(ask, 2000);",
+     "決済の通知が先に届くとは限らないので、2 秒おきに最大 1 分まで聞き直す。"
+    ],
+    [
+     2569,
+     "    };"
+    ],
+    [
+     2570,
+     "    ask();"
+    ],
+    [
+     2571,
+     "  }"
+    ],
+    [
+     2572,
+     "}"
+    ]
+   ]
+  ]
+ },
+ "dungeons-desks": {
+  "name": "NPC表.html",
+  "span": "2592–2632 / 3787–3798",
+  "blocks": [
+   [
+    [
+     2592,
+     "function pageText(st){"
+    ],
+    [
+     2593,
+     "  const L2 = [];"
+    ],
+    [
+     2594,
+     "  L2.push('# ' + (st.zh || st.id) + (st.called ? '(' + st.called + ')' : '') + '  (' + st.id + (st.no ? ' - #' + st.no : '') + (st.clan ? ' - ' + st.clan : '') + ')');",
+     "画面の文字を拾わず、データから引き継ぎ用のテキストを組み立てる。"
+    ],
+    [
+     2595,
+     "  const an = animalOf(st.animal);"
+    ],
+    [
+     2598,
+     "  const other = Array.isArray(st.other) ? st.other.join(' / ') : String(st.other || '');"
+    ],
+    [
+     2600,
+     "  const r = st.range || {};"
+    ],
+    [
+     2605,
+     "  const f = st.flow || {};"
+    ],
+    [
+     2606,
+     "  L2.push('');"
+    ],
+    [
+     2608,
+     "  const who = k => k === 'sus' ? 'sus' : (k === 'npc' ? (st.zh || st.id) : (actorLabel(k) || k));"
+    ],
+    [
+     2609,
+     "  const dump = (b, pad) => {",
+     "会話のブロックを、入れ子のまま字下げして書き出す。"
+    ],
+    [
+     2610,
+     "    if (!b) return;"
+    ],
+    [
+     2611,
+     "    const K = (window.RecFlow && RecFlow.KINDS[b.t]) || null;"
+    ],
+    [
+     2612,
+     "    const g = K ? K.g : '?';"
+    ],
+    [
+     2613,
+     "    const nm = K ? K.n : b.t;"
+    ],
+    [
+     2614,
+     "    let head = pad + g + ' ' + nm;"
+    ],
+    [
+     2615,
+     "    if (b.q) head += ' 〈' + b.q + '〉';"
+    ],
+    [
+     2616,
+     "    if (b.t === 'say') head = pad + '💬 ' + who(b.w) + '「' + (b.p || '') + '」';"
+    ],
+    [
+     2617,
+     "    else if (b.p) head += ' ' + b.p;"
+    ],
+    [
+     2618,
+     "    if (b.c) head += '  ▒ ' + b.c;"
+    ],
+    [
+     2619,
+     "    if (b.once) head += '  [1×]';"
+    ],
+    [
+     2620,
+     "    L2.push(head);"
+    ],
+    [
+     2621,
+     "    const sl = b.s || {};"
+    ],
+    [
+     2622,
+     "    Object.keys(sl).forEach(k => {"
+    ],
+    [
+     2623,
+     "      if (!(sl[k] || []).length) return;"
+    ],
+    [
+     2624,
+     "      L2.push(pad + '  ' + k + ':');"
+    ],
+    [
+     2625,
+     "      sl[k].forEach(x => dump(x, pad + '    '));",
+     "分岐の中の分岐も、同じ関数でたどる。"
+    ],
+    [
+     2626,
+     "    });"
+    ],
+    [
+     2627,
+     "  };"
+    ],
+    [
+     2628,
+     "  (f.desks || []).forEach(d => {"
+    ],
+    [
+     2629,
+     "    L2.push('');"
+    ],
+    [
+     2631,
+     "    (d.stacks || []).forEach(s2 => (s2.blocks || []).forEach(b => dump(b, '')));"
+    ],
+    [
+     2632,
+     "  });"
+    ]
+   ],
+   [
+    [
+     3787,
+     "document.getElementById('btnRules').addEventListener('click', () => {"
+    ],
+    [
+     3788,
+     "  const b2 = document.getElementById('btnRules');"
+    ],
+    [
+     3789,
+     "  copy(NESI_RULES).then(ok => { Bench.done(b2, ok); });"
+    ],
+    [
+     3790,
+     "});"
+    ],
+    [
+     3791,
+     "document.getElementById('btnPage').addEventListener('click', () => {"
+    ],
+    [
+     3792,
+     "  const b2 = document.getElementById('btnPage');"
+    ],
+    [
+     3793,
+     "  if (!sel) { Bench.done(b2, false); return; }",
+     "何も選んでいないときは、空の中身をコピーせず ❌ を返す。"
+    ],
+    [
+     3794,
+     "  copy(pageText(npcState(sel))).then(ok => { Bench.done(b2, ok); });"
+    ],
+    [
+     3795,
+     "});"
+    ],
+    [
+     3796,
+     "document.getElementById('btnAgent').addEventListener('click', () => {"
+    ],
+    [
+     3797,
+     "  Bench.copyOut(agentDiff(), document.getElementById('btnAgent'));"
+    ],
+    [
+     3798,
+     "});"
+    ]
+   ]
+  ]
+ },
+ "pdir": {
+  "name": "injectPanel.ts",
+  "span": "470–499",
+  "blocks": [
+   [
+    [
+     470,
+     "    for (const field of classified) {"
+    ],
+    [
+     471,
+     "      const sig = fieldSignature(field.element);"
+    ],
+    [
+     472,
+     "      const learnedVal = activeSet ? activeSet.fields[sig] : undefined;",
+     "このサイトで自分の手で直して覚えさせた値を、欄の形から引く。"
+    ],
+    [
+     473,
+     "      const snapCandidate = repeatKeys.has(field.key)",
+     "学歴の欄が何行も並ぶときは、2 行目から先に同じ学校を入れない。"
+    ],
+    [
+     474,
+     "        ? { value: \"\", source: \"repeat\", confidence: \"low\" }"
+    ],
+    [
+     475,
+     "        : resolveCandidate(field.fieldType, { profile, answerBank, links });"
+    ],
+    [
+     476,
+     "      const isLearned = learnedVal !== undefined;"
+    ],
+    [
+     477,
+     "      if (isLearned) learnedMatches++;"
+    ],
+    [
+     481,
+     "      const addrHit = !isLearned ? addrGroups.assigned.get(field.key) : undefined;",
+     "覚えさせた値がある欄は、住所や電話の推定を通さない。"
+    ],
+    [
+     482,
+     "      const addrRejected = !isLearned && !addrHit && addrGroups.rejected.has(field.key);",
+     "住所の欄なのに組の形がわからなければ、埋めずにコピー用に回す。"
+    ],
+    [
+     483,
+     "      const phoneHit = !isLearned && !addrHit && !addrRejected ? phoneGroups.assigned.get(field.key) : undefined;"
+    ],
+    [
+     484,
+     "      const phoneRejected = !isLearned && !addrHit && !addrRejected && !phoneHit && phoneGroups.rejected.has(field.key);"
+    ],
+    [
+     486,
+     "      const candidate = isLearned"
+    ],
+    [
+     487,
+     "        ? { value: learnedVal as string, source: \"learned\", confidence: \"high\" }",
+     "候補には、出どころと確かさを必ず付ける。"
+    ],
+    [
+     488,
+     "        : addrHit"
+    ],
+    [
+     489,
+     "          ? { value: addrHit.value, source: `addr·${addrHit.slot}${addrHit.zen ? \"·全角\" : \"\"}`, confidence: \"high\" }"
+    ],
+    [
+     490,
+     "          : addrRejected"
+    ],
+    [
+     491,
+     "            ? { value: (addressParts as AddressParts).full || \"\", source: \"addr·pattern?\", confidence: \"low\" }",
+     "形のわからない住所は、全住所をコピー用に出すだけにし、確かさは低くする。"
+    ],
+    [
+     492,
+     "            : phoneHit"
+    ],
+    [
+     493,
+     "              ? { value: phoneHit.value, source: `phone·${phoneHit.slot}`, confidence: \"high\" }"
+    ],
+    [
+     494,
+     "              : phoneRejected"
+    ],
+    [
+     495,
+     "                ? { value: (splitPhone(String(profile.phone || \"\")) || [String(profile.phone || \"\")]).join(\"-\"), source: \"phone·pattern?\", confidence: \"low\" }"
+    ],
+    [
+     496,
+     "                : snapCandidate;",
+     "どれにも当たらない欄だけが、原本の候補になる。"
+    ],
+    [
+     498,
+     "      const isUnknown =",
+     "読み取れなかった欄には、候補を出さない。"
+    ],
+    [
+     499,
+     "        field.fieldType === \"free_text_unknown\" && !isLearned && !addrHit && !addrRejected && !phoneHit && !phoneRejected;"
+    ]
+   ]
+  ]
+ },
+ "pdir-fields": {
+  "name": "phoneGroup.ts",
+  "span": "37–41 / 90–110 / 129–132",
+  "blocks": [
+   [
+    [
+     37,
+     "export function splitPhone(phone: string): string[] | null {"
+    ],
+    [
+     38,
+     "  const d = (phone || \"\").replace(/\\D/g, \"\");"
+    ],
+    [
+     39,
+     "  if (/^0[5789]0\\d{8}$/.test(d)) return [d.slice(0, 3), d.slice(3, 7), d.slice(7)];",
+     "携帯の 11 桁だけを 3・4・4 に割る。固定電話は市外局番の長さが決まらないため割らない。"
+    ],
+    [
+     40,
+     "  return null;"
+    ],
+    [
+     41,
+     "}"
+    ]
+   ],
+   [
+    [
+     90,
+     "  for (const group of byBase.values()) {"
+    ],
+    [
+     91,
+     "    if (group.length < 2 || !group.some((f) => f.fieldType === \"phone\")) continue;",
+     "欄が一つしかなければ、組とはみなさない。"
+    ],
+    [
+     92,
+     "    const sufs = group.map(sufOf);"
+    ],
+    [
+     93,
+     "    const order = ORDERS.find((o) => o.length === sufs.length && o.every((x) => sufs.includes(x)));"
+    ],
+    [
+     95,
+     "    const split = group.some(isShort) || (order !== undefined && group.length === 3 && group.every((f) => maxLen(f) < 10));",
+     "全桁が入る欄が二つ並ぶだけ（自宅と携帯など）なら、組にしない。"
+    ],
+    [
+     96,
+     "    if (!split) continue;"
+    ],
+    [
+     97,
+     "    for (const f of group) grouped.add(f.key);"
+    ],
+    [
+     98,
+     "    const ok = parts && order && group.every((f) => {"
+    ],
+    [
+     99,
+     "      const ml = maxLen(f);"
+    ],
+    [
+     100,
+     "      return ml === 0 || ml >= parts[order.indexOf(sufOf(f))].length;"
+    ],
+    [
+     101,
+     "    });"
+    ],
+    [
+     102,
+     "    if (!ok || !parts || !order) {",
+     "欄の長さが足りない、または並びがわからなければ、三つとも埋めない。"
+    ],
+    [
+     103,
+     "      for (const f of group) rejected.add(f.key);"
+    ],
+    [
+     104,
+     "      continue;"
+    ],
+    [
+     105,
+     "    }"
+    ],
+    [
+     106,
+     "    for (const f of group) {"
+    ],
+    [
+     107,
+     "      const i = order.indexOf(sufOf(f));"
+    ],
+    [
+     108,
+     "      assigned.set(f.key, { value: parts[i], slot: SLOT_NAMES[i] });",
+     "前・中・後に分けて入れる。"
+    ],
+    [
+     109,
+     "    }"
+    ],
+    [
+     110,
+     "  }"
+    ]
+   ],
+   [
+    [
+     129,
+     "  for (const f of phones) {"
+    ],
+    [
+     130,
+     "    if (grouped.has(f.key) || !wantsHyphen(f) || !parts) continue;"
+    ],
+    [
+     131,
+     "    assigned.set(f.key, { value: parts.join(\"-\"), slot: \"ハイフン\" });",
+     "一つの欄には、ハイフン入りの例や指示があるときだけハイフンを入れる。"
+    ],
+    [
+     132,
+     "  }"
+    ]
+   ]
+  ]
+ },
+ "pdir-layers": {
+  "name": "buildSnapshots.ts",
+  "span": "28–33 / 35–36 / 41–42 / 49–56",
+  "blocks": [
+   [
+    [
+     28,
+     "function headValue(md: string, key: string): string {",
+     "ハード層の原本（HEAD.md）から、値を書き換えずにそのまま取り出す。"
+    ],
+    [
+     29,
+     "  const block = md.match(new RegExp(`^${key}:\\\\n((?:[ \\\\t]+.*\\\\n?)*)`, \"m\"));"
+    ],
+    [
+     30,
+     "  if (!block) throw new Error(`HEAD.md に ${key} がない`);",
+     "原本に項目がなければ、推測せずにそこで止める。"
+    ],
+    [
+     31,
+     "  const v = block[1].match(/^\\s+value:\\s*(.*)$/m);"
+    ],
+    [
+     32,
+     "  return v ? v[1].trim().replace(/^\"|\"$/g, \"\") : \"\";"
+    ],
+    [
+     33,
+     "}"
+    ]
+   ],
+   [
+    [
+     35,
+     "const toHira = (s: string): string =>",
+     "ひらがな版は、カタカナから機械で作る。"
+    ],
+    [
+     36,
+     "  s.replace(/[\\u30a1-\\u30f6]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0x60));"
+    ]
+   ],
+   [
+    [
+     41,
+     "const zen = (s: string): string =>",
+     "全角版も、同じ値から機械で作る。"
+    ],
+    [
+     42,
+     "  s.replace(/[0-9]/g, (c) => String.fromCharCode(c.charCodeAt(0) + 0xfee0)).replace(/-/g, \"ー\").replace(/ /g, \"\\u3000\");"
+    ]
+   ],
+   [
+    [
+     49,
+     "function splitAddress(md: string): AddrParts {"
+    ],
+    [
+     50,
+     "  const raw = headValue(md, \"address_current\");"
+    ],
+    [
+     51,
+     "  const am = raw.normalize(\"NFKC\")"
+    ],
+    [
+     52,
+     "    .match(/^〒(\\d{3})-(\\d{4})\\s*(東京都|北海道|(?:京都|大阪)府|.{2,3}県)(.+?[市区町村])(\\D+?)(\\d+(?:-\\d+)*)\\s+(.+)$/);",
+     "住所は原本の一行を、郵便番号・都道府県・市区町村・番地・建物に割る。"
+    ],
+    [
+     53,
+     "  if (!am) throw new Error(\"address_current を割れない: \" + raw);",
+     "割れなければ書き出しを止め、間違った値を黙って作らない。"
+    ],
+    [
+     54,
+     "  const [, zip3, zip4, pref, city, town, banchi, building] = am;"
+    ],
+    [
+     55,
+     "  return { zip3, zip4, pref, city, town, banchi, building };"
+    ],
+    [
+     56,
+     "}"
+    ]
+   ]
+  ]
+ }
+}
