@@ -74,7 +74,7 @@ pre{ margin:0; font-family:var(--mono); white-space:pre; overflow:hidden; }
 
 /* A3: 4 段の決まり + 実際の出力 */
 .a3{ grid-template-columns:1fr 1fr; }
-.a3 table td:first-child{ width:20mm; color:var(--rec); }
+.a3 table td:first-child{ width:20mm; color:var(--rec); white-space:nowrap; }
 .out{ align-self:start; background:#000; color:rgba(255,255,255,.85); font:7.5pt/1.6 var(--mono); padding:2.5mm 3mm; white-space:pre; overflow:hidden; }
 .out .d{ color:rgba(255,255,255,.5); } .out .ok{ color:#00ff00; } .out .x{ color:#ea00ff; }
 .side{ display:flex; flex-direction:column; gap:3mm; min-height:0; }
@@ -88,17 +88,43 @@ pre{ margin:0; font-family:var(--mono); white-space:pre; overflow:hidden; }
 .gen th.on{ color:var(--pick); }
 .gen td.on{ background:rgba(64,0,255,.10); }
 .gen td:first-child{ width:32mm; color:var(--mute); }
-.rules{ display:flex; flex-direction:column; gap:.8mm; font-size:9pt; }
-.rule{ display:grid; grid-template-columns:6mm 1fr 32mm 9mm; gap:3mm; align-items:center; }
-.rule.th{ font-size:7.5pt; color:var(--mute); font-weight:600; }
-.rule.th span:last-child{ grid-column:3 / 5; }
-.rule i{ font-style:normal; color:var(--mute); text-align:right; }
-.rule .tr{ height:1.4mm; background:rgba(64,0,255,.07); }
-.rule .tr span{ display:block; height:100%; background:rgba(64,0,255,.30); }
-.rule.hi .tr span{ background:var(--rec); }
-.rule.hi .t{ font-weight:700; }
-.rule b{ text-align:right; font-weight:600; color:var(--mute); }
-.rule.hi b{ color:var(--rec); }
+/* A6(11-06 主筆「“こだわりの強さ（自分で付けた %）”這個什麼意思呢？這個如果是信心低的，就寫（要相談）才有下一步 你這頁意義不明 看不出作業流和決定目的」
+   「多一點箭頭來表達」「別人看了也不知道這裏backroom是啥，要寫一個小卡簡單說明」):
+   上 = 作業の流れ(矢印), 中 = 十一の方針と次の一手 + バックルームの小さな説明, 下 = 次の一手ごとの実例(矢印). */
+.flow{ display:flex; align-items:stretch; gap:2mm; font-size:7.5pt; line-height:1.45; }
+.flow > div{ background:rgba(0,0,0,.04); padding:1.4mm 2.4mm; display:flex; flex-direction:column; justify-content:center; }
+.flow b{ font-weight:700; }
+.flow .go{ background:none; padding:0; color:var(--rec); font-size:9pt; font-weight:700; }
+.flow .fork{ flex:1; display:grid; grid-template-columns:auto 1fr; gap:.5mm 2.4mm; align-content:center; }
+.flow .fork b{ color:var(--rec); }
+.a6{ grid-template-columns:minmax(0,1fr) 64mm; gap:5mm; }
+table.t6{ font-size:7.5pt; border-spacing:0 .35mm; }
+.t6 td{ padding:.5mm 2mm; line-height:1.38; vertical-align:middle; white-space:nowrap; }
+.t6 th{ padding:0 2mm; }
+.t6 td:first-child{ width:6mm; text-align:right; }
+.t6 td.pc{ width:30mm; }
+.t6 td.pc i{ display:inline-block; vertical-align:middle; width:19mm; height:1.2mm; background:rgba(64,0,255,.07); margin-right:1.6mm; }
+.t6 td.pc i span{ display:block; height:100%; background:rgba(64,0,255,.35); }
+.t6 td.nx{ width:112mm; }
+.t6 td.nx b{ color:var(--rec); margin-right:1.6mm; }
+.t6 tr.ask td{ background:rgba(0,0,0,.09); }
+.t6 tr.ask td.nx b{ color:var(--ink); }
+.card{ background:rgba(64,0,255,.07); padding:2.4mm 3mm; display:flex; flex-direction:column; gap:1.4mm; font-size:7.5pt; line-height:1.55; align-self:start; }
+.card h3{ font-size:9pt; color:var(--rec); }
+.card ol{ list-style:none; display:flex; flex-direction:column; gap:.4mm; }
+.card ol li::before{ content:"↓ "; color:var(--rec); font-weight:700; }
+.card ol li:first-child::before{ content:""; }
+.ex{ display:flex; flex-direction:column; gap:1.2mm; min-width:0; font-size:7.5pt; line-height:1.4; }
+.ex .row{ display:grid; grid-template-columns:19mm minmax(0,1fr); gap:2mm; align-items:stretch; }
+.ex .k{ font-weight:700; color:var(--rec); display:flex; align-items:center; }
+.ex .k.ask{ color:var(--ink); }
+.ex .ch{ display:flex; align-items:stretch; gap:1.4mm; }
+.ex .ch > span{ flex:1; background:rgba(0,0,0,.04); padding:1mm 2mm; display:flex; align-items:center; }
+.ex .ch > i{ font-style:normal; color:var(--rec); font-weight:700; display:flex; align-items:center; font-size:9pt; }
+.ex .ch > span.end{ background:rgba(64,0,255,.10); }
+.ex .ch > span.w{ flex:1.8; }
+.ex .ch > span.opts{ flex:2.3; display:grid; grid-template-columns:auto 1fr; gap:0 1.6mm; align-content:center; }
+.ex .opts .pick, .ex .pick{ color:var(--pick); font-weight:700; white-space:nowrap; }
 </style>
 </head>
 <body>
@@ -112,7 +138,7 @@ pre{ margin:0; font-family:var(--mono); white-space:pre; overflow:hidden; }
       <dt>1</dt><dd><b>重さの差を、傾きの目標にする</b>差が大きいほど傾き、上限で頭打ちになる。</dd>
       <dt>2</dt><dd><b>乱数を使わずに揺らす</b>二つの正弦を重ねる。同じ局面は、毎回同じ動きになる。</dd>
       <dt>3</dt><dd><b>ばねと減衰</b>減衰は臨界より弱く、少し揺れてから止まる。</dd>
-      <dt>4</dt><dd><b>皿は梁から吊った振り子</b>梁とは別に動き、遅れて揺れる。</dd>
+      <dt>4</dt><dd><b>皿は竿から吊った振り子</b>竿とは別に動き、遅れて揺れる。</dd>
       <dt>5</dt><dd><b>成立はこの瞬間の傾きだけ</b>自分の皿が下がっていれば、払いは足りている。</dd>
     </dl>
     <div class="wall" id="wall"></div>
@@ -135,20 +161,20 @@ pre{ margin:0; font-family:var(--mono); white-space:pre; overflow:hidden; }
     <div class="side">
       <table>
         <tr><th>段</th><th>何をするか</th></tr>
-        <tr><td>作業の前</td><td>共通の規約（デザイン・文章・記録の書き方）を自動で読み込む。作業の種類ごとの手順書 41 本から、該当する一本を引いてから着手する。</td></tr>
+        <tr><td>作業の前</td><td>共通の規約（デザイン・文章・記録の書き方）を自動で読み込む。作業の種類ごとの手順書 40 本から、該当する一本を引いてから着手する。</td></tr>
         <tr><td>編集のたび</td><td>画面のファイルが変わると、枠線・角丸・影・アニメーション・4px を超える余白・規定外の文字色など 19 項目を数える。目標はすべて 0 件。</td></tr>
-        <tr><td>終わる前</td><td>ファイルを変えたのに知識庫への記録がなければ、作業の終了を一度止めて記録を求める。知識庫は 3,948 章。</td></tr>
+        <tr><td>終わる前</td><td>ファイルを変えたのにナレッジベースへの記録がなければ、作業の終了を一度止めて記録を求める。ナレッジベースの文書は 3,948 件。</td></tr>
         <tr><td>公開の前</td><td>事例文の字数の上限、中身のない言い回し、鉤括弧の中が出典にあるかを確かめる。✗ が一つでもあればコミットが止まる。</td></tr>
       </table>
       <dl>
         <dt>使わない判断</dt><dd>文章整形ツール kiln は、生成 AI に直させると内容まで変わるため、実行時には AI を使わず、同じ入力なら必ず同じ結果になるルール方式にした。</dd>
       </dl>
     </div>
-    <div class="out" id="out"><span class="d"># 編集のたび：デザイン規約の検査（画面のファイル 1 枚。見出しは日本語に置き換えて表示）</span>
-| 頁 | 枠線 | 角丸 | 影 | アニメ | 余白>4 | 入れ子枠 | 保険 | hover数 | 文字ボタン |
-| product/index.html | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | 7 | <span class="ok">·</span> |
-| 色付き底 | 文字サイズ | 文字色 | 下部バー | 閉じる× | h1 | icon | confirm |
-| 10 | 2 | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> | <span class="ok">·</span> |
+    <div class="out" id="out"><span class="d"># 編集のたび：デザイン規約の検査（product/index.html。項目名は日本語に置き換えて表示）</span>
+<span class="ok">✓</span> 0 件　枠線・角丸・影・アニメ・余白&gt;4px・入れ子の枠・部品の初期化漏れ
+        文字だけのボタン・文字色・下部バー・閉じる×・h1・アイコン・確認ダイアログ
+<span class="d">·</span> 数　　hover の数 7・文字サイズの種類 2（2 種まで）
+<span class="x">✗</span> 残り　原色の背景 10
 
 <span class="d"># 公開の前：事例文の検査</span>
 <span class="d">$ python3 p-rec/tools/check_pd.py</span>
@@ -163,19 +189,19 @@ pre{ margin:0; font-family:var(--mono); white-space:pre; overflow:hidden; }
 <section class="pg" id="p4">
   <header><span>付録　セツ シュントウ</span><span class="tag" data-tag="4"></span><span class="no">A4</span></header>
   <h2>比較案：Cloutric を誰に売るか</h2>
-  <p class="intro">三つの条件で切った。一度作れば長く安定して動くこと、費用は本当の利用者が出てから払うこと、移るときは全データを持ち出せること。三つとも守れるのは C だけだった。</p>
+  <p class="intro">三つの条件で絞った。一度作れば長く安定して動くこと、費用は本当の利用者が出てから払うこと、移るときは全データを持ち出せること。三つとも守れるのは C だけだった。</p>
   <table class="cmp">
     <tr><th>案</th><th>売る相手</th><th>値段</th><th>売ったあとに要るもの</th><th>三つの条件</th></tr>
     <tr><td>A 大きな会社に合わせる</td><td>情報システム部門のある 100〜1000 人の会社</td><td>年額の契約。試算は 50 人まで年 30 万円、200 人まで年 60 万円</td><td>シングルサインオン、データベースの選択、導入の代行、稟議の資料、セキュリティチェックシートへの回答</td><td>条件 1 を守れない。一人では 30 社前後が上限</td></tr>
-    <tr><td>B サーバーのない会社にも届ける</td><td>5〜50 人の会社</td><td>A と同じ年額</td><td>NAS や各社のクラウド口座で起動する雛形。導入の支援が、売ったあとの最大の負担になる</td><td>支援する環境を限っても、導入の対応が残る</td></tr>
+    <tr><td>B サーバーのない会社にも届ける</td><td>5〜50 人の会社</td><td>A と同じ年額</td><td>NAS や各社のクラウドのアカウントで起動する雛形。導入の支援が、売ったあとの最大の負担になる</td><td>支援する環境を限っても、導入の対応が残る</td></tr>
     <tr class="on"><td>C 採用</td><td>自分で Docker を動かせる小さなチーム</td><td>9,800 円の一回払い。人数は無制限で、1 年分の更新を含む</td><td>価格はページに公開し、商談はしない</td><td class="pick">三つとも守れる</td></tr>
   </table>
-  <p class="src">出典：Cloutric 開発書 05〈代価〉〈一人の規模〉〈三つの条件〉、06〈価格〉。A の金額は社数の試算に使った仮の値。</p>
+  <p class="src">出典：Cloutric の開発ドキュメント（代価、一人で回せる規模、三つの条件、価格の章）。A の金額は社数の試算に使った仮の値。</p>
   <div class="cols after">
     <figure class="shot"><img src="img/cmp-pricing.jpg" alt=""><figcaption>C の実物：cloutric.com/pricing</figcaption></figure>
     <dl>
-      <dt>条件 1</dt><dd>部品は 3 つと、Node 内蔵の SQLite だけ。社内のネットワークで動かし、外には出さない。</dd>
-      <dt>条件 2</dt><dd>固定費は 0 円。配布は無料の置き場、支払いは決済リンクで受け、ライセンスの鍵は手で発行する。</dd>
+      <dt>条件 1</dt><dd>依存するパッケージは 3 つと、Node 内蔵の SQLite だけ。社内のネットワークで動かし、外には出さない。</dd>
+      <dt>条件 2</dt><dd>固定費は 0 円。配布は無料のサービスで行い、支払いは決済リンクで受け、ライセンスキーは手で発行する。</dd>
       <dt>条件 3</dt><dd>期限が切れても、閲覧と書き出しは止めない。移るときは、全データをいつでも書き出せる。</dd>
     </dl>
   </div>
@@ -189,11 +215,11 @@ pre{ margin:0; font-family:var(--mono); white-space:pre; overflow:hidden; }
     <tr><th></th><th>1 回目（一年前、別のサイト）</th><th>2 回目（2026年9月26日）</th><th class="on">3 回目（9月29日から、採用）</th></tr>
     <tr><td>払い方</td><td>月額の購読と、サイト独自のコイン</td><td>単曲 1 ドル、全曲 10 ドルの買い切り</td><td class="on">2 回目と同じ買い切り</td></tr>
     <tr><td>アカウント</td><td>要る</td><td>作らない</td><td class="on">作らない</td></tr>
-    <tr><td>買ったものの戻り道</td><td>アカウント</td><td>ブラウザに置いた記録だけ</td><td class="on">メールアドレス。入力されたアドレスにだけ、新しいリンクを送る</td></tr>
+    <tr><td>買ったものを取り戻す手段</td><td>アカウント</td><td>ブラウザに置いた記録だけ</td><td class="on">メールアドレス。入力されたアドレスにだけ、新しいリンクを送る</td></tr>
     <tr><td>漏らさないこと</td><td>—</td><td>—</td><td class="on">返事は毎回同じにし、そのアドレスで買ったかどうかを答えない。同じアドレスには 10 分に 1 通まで</td></tr>
     <tr><td>結果</td><td>決済の組み込みが最後まで通らなかった</td><td>お礼の画面を閉じた人が、リンクを取り戻せない</td><td class="on pick">購入、ダウンロード、メールでの復元を、テストモードで最初から最後まで通した</td></tr>
   </table>
-  <p class="src">出典：Rec Dungeons 開発書 32〈決済の作り直し〉。ダウンロードのリンクは 7 日間・1 回限りで、復元のたびに新しく発行する。</p>
+  <p class="src">出典：Rec Dungeons の開発ドキュメント（決済の作り直しの章）。ダウンロードのリンクは 7 日間・1 回限りで、復元のたびに新しく発行する。</p>
   <div class="cols after">
     <div class="shots">
       <figure class="shot"><img src="img/cmp-band-panel.jpg" alt=""><figcaption>CD の上の購入欄。単曲・全曲・メールでの復元</figcaption></figure>
@@ -209,17 +235,52 @@ pre{ margin:0; font-family:var(--mono); white-space:pre; overflow:hidden; }
 
 <section class="pg" id="p6">
   <header><span>付録　セツ シュントウ</span><span class="tag" data-tag="6"></span><span class="no">A6</span></header>
-  <h2>比較案：定番の塔の RPG と何を変えるか</h2>
-  <p class="intro">『魔法の塔』（1996）型の RPG は、攻撃・防御・金貨の数字を計算して詰める遊びになりやすい。2026年8月13日、この型の定番と違える十一の方針を、こだわりの強さ（%）つきで決めた。</p>
-  <div class="rules" id="rules"></div>
-  <p class="src">出典：sus dungeons 開発書〈十一の方針〉の原文。あとから一つ加えた底線：戦うだけで進む人も、ほかの遊びを飛ばして最後まで行ける。</p>
-  <div class="cols after">
-    <figure class="shot"><img src="img/cmp-trade.jpg" alt=""><figcaption>鍛冶屋との取引。品物とコインを皿に載せる</figcaption></figure>
-    <dl>
-      <dt>8・9・11</dt><dd>店は歩いて入る部屋にした。値段の一覧も倍率の道具もなく、値段の代わりに重さを使う。</dd>
-      <dt>実装</dt><dd>天秤の動きは A1。梁の傾き、揺れ、皿の振り子を、乱数を使わずに計算している。</dd>
-    </dl>
+  <h2>比較案：譲れない度合いで、方針の進め方を分ける（sus dungeons）</h2>
+  <p class="intro">定番の塔の RPG（『魔法の塔』1996 型）は、攻撃・防御・金貨の数字を計算して詰める遊びになりやすい。2026年8月13日、そこから外れる十一の方針を出し、それぞれにどこまで譲れないかを % で付けた。% は、次に何をするかを決めるための値で、低い方針は「要相談」として案を並べてから決めた。</p>
+  <div class="flow">
+    <div><b>十一の方針を出す</b>定番と違えるところ</div><div class="go">→</div>
+    <div><b>% を付ける</b>どこまで譲れないか</div><div class="go">→</div>
+    <div class="fork">
+      <b>80〜90%</b><span>そのまま仕様にし、守れているかを検査にする</span>
+      <b>50〜70%</b><span>作りながら詰める。必要なら条件を足す</span>
+      <b>20%</b><span>要相談。AI エージェントに案を並べさせ、自分が選ぶ</span>
+    </div><div class="go">→</div>
+    <div><b>決めたことを確かめる</b>下の例 1〜4</div>
   </div>
+  <table class="t6" id="rules"><tr><th></th><th>方針</th><th>譲れない度合い</th><th>次の一手</th></tr></table>
+  <div class="cols a6">
+    <div class="ex">
+      <div class="row"><div class="k">例 1<br>80〜90%</div><div class="ch">
+        <span>4 倒しきった階は、買って領地にできる（90%）</span><i>→</i>
+        <span>気づく：倒せない魔物が一体いると、その階は永遠に買えない</span><i>→</i>
+        <span>検査を足す：どの魔物も、いつかは倒せること</span><i>→</i>
+        <span class="end">倒せない魔物 0 体。テスト 29 本 → 42 本</span></div></div>
+      <div class="row"><div class="k">例 2<br>50〜70%</div><div class="ch">
+        <span>2 花を、別の通貨にする（60%）</span><i>→</i>
+        <span class="w">条件を足す：単位を膨らませない（花 3 本で上の花 1 本、のような換算はしない）</span><i>→</i>
+        <span class="end">鍵と同じく一種ずつ数え、深い階でも数を増やさない</span></div></div>
+      <div class="row"><div class="k ask">例 3<br>20%・要相談</div><div class="ch">
+        <span>10 完全にランダムな階は作らない（20%）</span><i>→</i>
+        <span>相談：階を自動で作る仕組みを、まだ残すか</span><i>→</i>
+        <span class="opts"><b>A</b><span>全部の階を自動で作る（方針に反する）</span><b>B</b><span>自動は下書き。手で仕上げて固定する</span><b>C</b><span>戦う階は手で作り、自動は空の階だけ</span></span><i>→</i>
+        <span class="end"><span><b class="pick">B から始めて C へ移る</b>（採用）</span></span></div></div>
+      <div class="row"><div class="k">例 4<br>最低ライン</div><div class="ch">
+        <span>戦うだけで進む人も、ほかの遊びを飛ばして最後まで行ける</span><i>→</i>
+        <span>自動で解く手順は、畑・店・花を使わない</span><i>→</i>
+        <span class="end">手順の中に畑・店・花の処理がないことまで検査する</span></div></div>
+    </div>
+    <div class="card">
+      <h3>バックルームとは（方針 1）</h3>
+      <ol>
+        <li>体力が 0 になって死ぬ</li>
+        <li>持ち物はすべて予備の心臓に預けられ、塔の裏の「負の階」に落ちる</li>
+        <li>心臓を拾うと、持ち物が全部戻る</li>
+        <li>歩いて元の階まで帰る</li>
+      </ol>
+      <p>塔の地図は作り直さないので、死んで失うのは帰り道の時間だけ。名前は、ネットで知られる The Backrooms（どこまでも続く無人の部屋）から。</p>
+    </div>
+  </div>
+  <p class="src">出典：sus dungeons の開発ドキュメント（十一の方針の原文と、それを階の設計に落とした章）。</p>
 </section>
 
 <script>
@@ -239,15 +300,17 @@ D.wall.forEach((ls) => {
 document.getElementById("lens").innerHTML = D.lens.map((bl) => bl.map(([n, t, nt]) =>
   '<span class="ln">' + n + "</span>" + esc(t) + "\n" + (nt ? '<span class="nt">' + (STEP[n] ? "<b>" + STEP[n] + "</b>" : "") + esc(nt) + "</span>" : "")).join("")).join('<span class="gap">  ⋯</span>\n');
 document.getElementById("lt").textContent = D.name + "　" + D.span;
-document.getElementById("meta").textContent = D.file + "　全 " + D.total + " 行。表示は、註解と画面の文言の行を除いた " + D.kept + " 行。";
+document.getElementById("meta").textContent = D.file + "　全 " + D.total + " 行。表示は、コメントと画面の文言の行を除いた " + D.kept + " 行。";
 // A2 決定の全件
 document.getElementById("dec").insertAdjacentHTML("beforeend", D.decisions.map((r) => "<tr>" + r.map((c) => "<td>" + esc(c) + "</td>").join("") + "</tr>").join(""));
 // A3 check_pd の ✓ 一覧(実際の出力の順)
 document.getElementById("out").innerHTML = document.getElementById("out").innerHTML.replace("/*OKS*/",
   D.oks.reduce((a, id, i) => a + (i % 3 ? "   " : (i ? "\n" : "")) + '<span class="ok">✓</span> ' + esc(id), ""));
-// A6 十一の方針(sus dungeons 開発書 00-prompt原文·分支 N2, 2026-08-13 主筆原文の %). 90% 以上だけ濃く
-document.getElementById("rules").innerHTML = '<div class="rule th"><i></i><span>方針</span><span>こだわりの強さ（自分で付けた %）</span></div>' + D.rules.map(([no, t, v]) =>
-  '<div class="rule' + (v >= 90 ? " hi" : "") + '"><i>' + no + '</i><span class="t">' + esc(t) + '</span><span class="tr"><span style="width:' + v + '%"></span></span><b>' + v + "%</b></div>").join("");
+// A6 十一の方針(sus dungeons 開発書 branch-關卡設計與研究 00-prompt原文·分支 N2 = 2026-08-13 主筆原文の %, 次の一手は同 20 章). 要相談の行は底を一段深く
+const KIND = { spec: "仕様と検査", tune: "作りながら詰める", ask: "要相談", floor: "検査にした" };
+document.getElementById("rules").insertAdjacentHTML("beforeend", D.rules.map(([no, t, v, k, nt]) =>
+  '<tr class="' + k + '"><td>' + no + "</td><td>" + esc(t) + '</td><td class="pc">' + (v == null ? "最低ライン" : '<i><span style="width:' + v + '%"></span></i>' + v + "%") +
+  '</td><td class="nx"><b>' + KIND[k] + "</b>" + esc(nt) + "</td></tr>").join(""));
 const only = location.hash.slice(1);
 if (only) document.querySelectorAll(".pg").forEach((p) => { p.hidden = p.id !== only; });
 </script>
