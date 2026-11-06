@@ -1,5 +1,6 @@
 [
-  {"path": "product/", "name": "PD 版 正本", "note": "創作者向的排前面, 有死の巣の劇(su)", "data": "pd"},
+  {"path": "product/", "name": "PD 版 正本", "note": "正本. 外には出さない(各社へは代號の版を複製して出す)", "data": "pd"},
+  {"path": "9a5/", "name": "PD 版", "note": "創作者向けを前に, 死の巣の劇(su)あり", "data": "pd"},
   {"path": "33b/", "name": "PD 版", "note": "業務向, オブジェクトモデル / 欄の形, 沒有 su", "data": "pd"},
   {"path": "uiux/", "name": "UI/UX 版", "note": "英 / 日, 舊 ux.rec.ooo 整站", "data": "ux"},
   {"url": "https://su.rec.ooo/", "name": "画庫", "note": "死の巣の劇, ファンアートとオリジナル"}

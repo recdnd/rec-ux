@@ -1,0 +1,149 @@
+/* Rec Product Design(2026-11-05). 色與字照 rec.ooo/band 那一套:
+   系統黑字, 選中系統紅, 連結 / 操作系統藍, 底色框 = 主題黑 k 的 alpha 階 .07 / .14 / .22.
+   前端契約: 無框 / 無圓角 / 無陰影 / 無漸進動畫, 外距與內距最多 4px, 一個模組最多兩種字色. 背景純白.
+   產品名那一條都可按(プロダクト層), 舞台有影片 / 真頁面 / 截圖 #pic / 示意圖 #fig, 說明欄的標籤欄寬跟著標籤走. */
+:root{
+  --ink:#000;
+  --op:#0000ff;          /* 系統藍 - 連結 / 操作 */
+  --pick:#ff0000;        /* 系統紅 - 選中 */
+  --note:#0010c0;        /* コード枠の注(scrib 閲覧器と同じ藍) */
+  --bg:#fff;
+  --k:5,5,5;             /* 主題黑, 只當底色框 */
+  --vh:100vh;
+  /* 舞台 = 固定的盒(換則時右欄不跳) */
+  --stage-w: clamp(560px, 100vw - 436px, 1200px);
+  --stage-h: min(var(--vh) - 40px, var(--stage-w) / 1.25);
+  --r: 16/10;            /* 影片比例, js 讀影片 metadata 或 cases.json 的 size 改寫 */
+  --nw: 960px;           /* 影片原寸寬(錄影 @2x -> 影片像素 / 2). 不放大, 盒放不下才縮 */
+  --font: ui-monospace,"SF Mono",Menlo,"Courier New","Hiragino Sans","PingFang TC",monospace;
+}
+@supports (height:100svh){ :root{ --vh:100svh; } }
+*{ box-sizing:border-box; }
+html{ background:var(--bg); }
+html,body{ margin:0; padding:0; color:var(--ink); }
+body{ font:12px/1.35 var(--font); padding:4px; }
+button,input,select,textarea{ border:0; border-radius:0; margin:0; padding:0; background:none; color:inherit; font:inherit; outline:none; }
+a{ color:inherit; text-decoration:none; }
+p,dl,dd,figure,h3,ul,table{ margin:0; font:inherit; }
+ul{ padding:0; list-style:none; }
+
+#tools{ position:fixed; top:4px; right:4px; z-index:5; display:flex; gap:3px; }
+#tools a{ padding:1px 3px; background:rgba(255,255,255,.50); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); }
+#tools a:hover,#tools a:focus-visible{ background:rgba(var(--k),.10); }
+#tools a:active{ background:rgba(var(--k),.18); }
+
+main{ display:flex; gap:4px; align-items:flex-start; }
+@media (min-width:761px){
+  body{ min-height:var(--vh); display:flex; align-items:center; justify-content:center; }
+  /* 片 / 圖在盒裡上下左右置中(主筆 11-05「固定右側導致…總是貼右上角」). 盒和右欄照舊固定, 換則時右欄不跳 */
+  #stage{ width:min(var(--stage-w), 100vw - 436px); height:var(--stage-h); display:flex; align-items:center; justify-content:center; }
+}
+#stage{ max-width:100%; }
+#vid{ display:block; aspect-ratio:var(--r); width:min(var(--nw), var(--stage-w), var(--stage-h) * (var(--r))); max-width:100%; height:auto; background:rgba(var(--k),.07); }
+#live{ display:block; width:var(--stage-w); max-width:100%; height:var(--stage-h); border:0; }
+
+/* 截圖: 盒裡照比例放到最大, 說明一行在下 */
+#pic{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; width:100%; height:100%; }
+#pic img{ display:block; max-width:100%; max-height:calc(100% - 40px); object-fit:contain; background:rgba(var(--k),.07); }
+#pic figcaption{ opacity:.55; max-width:100%; }
+
+/* 示意圖: 寬 = 盒寬, 高 = 內容(跟影片一樣不撐滿盒), 盒放不下才在盒裡捲. 字大一級(14px, 舞台是自己的模組) */
+#fig{ width:100%; max-height:100%; overflow:auto; padding:4px; font-size:14px; line-height:1.45; display:flex; flex-direction:column; gap:4px; background:rgba(var(--k),.07); }
+#fig h3{ font-weight:normal; }
+#fig .cap{ opacity:.55; }
+#fig .cap b{ font-weight:normal; }
+#fig b{ font-weight:normal; display:block; }
+/* 表: 沒有框線, 一行一條 .07 底(跟事例條同一階) */
+#fig .tb{ border-collapse:separate; border-spacing:0 1px; width:100%; }
+#fig .tb th{ text-align:left; font-weight:normal; opacity:.55; padding:1px 3px; }
+#fig .tb td{ vertical-align:top; padding:1px 3px; background:rgba(255,255,255,.7); }
+#fig .tb td:first-child{ width:30%; }
+/* オブジェクトモデル: オブジェクト = 一塊白底, 名字一行 .14 底, アクション系統藍(操作). 選中的(アラート)名字系統紅 */
+#fig .om{ display:grid; grid-template-columns:1fr 1fr; gap:4px; align-items:start; }
+#fig .objs{ display:flex; flex-direction:column; gap:4px; }
+#fig .o{ background:rgba(255,255,255,.7); }
+#fig .o b{ padding:1px 3px; background:rgba(var(--k),.14); }
+#fig .o.on b{ color:var(--pick); }
+#fig .o p{ padding:1px 3px; }
+#fig .o .a{ color:var(--op); }
+#fig .rel{ opacity:.55; }
+#fig .shot img{ display:block; width:100%; height:auto; }
+#fig .shot figcaption{ opacity:.55; }
+/* 硬い層 / 柔らかい層 */
+#fig .lay{ display:grid; grid-template-columns:1fr 1fr; gap:4px; }
+#fig .lay > div{ padding:1px 3px; background:rgba(255,255,255,.7); }
+#fig .lay .hard{ background:rgba(var(--k),.22); }
+/* 進め方: 四格一列, 自己做的格 .22 底 */
+#fig .flow{ display:flex; align-items:stretch; gap:4px; }
+#fig .flow > div{ flex:1; padding:1px 3px; background:rgba(255,255,255,.7); }
+#fig .flow .me{ background:rgba(var(--k),.22); }
+#fig .flow i{ font-style:normal; align-self:center; }
+#live[hidden],#vid[hidden],#pic[hidden],#fig[hidden]{ display:none; }
+
+#side{ width:420px; max-width:100%; height:var(--stage-h); max-height:var(--stage-h); display:flex; flex-direction:column; gap:4px; }
+/* 右欄垂直置中(主筆 11-05「右側板垂直居中」): 整塊在固定高的右欄裡置中; 說明欄的最小高由 js reserve() 留到最長那一則, 換則時不跳 */
+@media (min-width:761px){ #side{ justify-content:center; } }
+#guide{ opacity:.55; padding:1px; }
+
+/* 列表: 產品名那一條(.bd)都可按 = プロダクト層; 有真頁面的標 🕹️. 進め方(group)只是一行字 */
+#list{ display:flex; flex-direction:column; gap:1px; overflow:auto; flex:0 1 auto; }
+.bd{ display:flex; gap:3px; align-items:center; padding:1px; margin-top:3px; }
+.bd:first-child{ margin-top:0; }
+.bd.go{ width:100%; cursor:pointer; outline:none; background:rgba(0,0,255,.07); }
+.bd.go:hover,.bd.go:focus-visible{ background:rgba(0,0,255,.14); }
+.bd.go:active,.bd.go.on{ background:rgba(0,0,255,.22); }
+.bd.go.on{ color:var(--pick); }
+.lk{ display:inline-flex; align-items:center; gap:3px; padding:1px; color:var(--op); text-decoration:none; white-space:nowrap; }
+.lk span{ display:none; }
+.lk:hover,.lk:focus-visible{ background:rgba(0,0,255,.14); }
+.lk:hover span,.lk:focus-visible span{ display:inline; }
+.lk:active{ background:rgba(0,0,255,.22); }
+@media (max-width:760px), (hover:none){
+  .lk{ background:rgba(0,0,255,.07); }
+  .lk span{ display:inline; }
+  .lk:hover{ background:rgba(0,0,255,.07); }
+}
+.row{ display:flex; gap:3px; width:100%; padding:1px; text-align:left; cursor:pointer; background:rgba(var(--k),.07); }
+.row:hover,.row:focus-visible{ background:rgba(var(--k),.14); }
+.row:active,.row.on{ background:rgba(var(--k),.22); }
+.row.on{ color:var(--pick); }
+.row .n{ width:2ch; text-align:right; }
+.row .t{ flex:1; }
+.k{ opacity:.55; white-space:nowrap; }
+.bd .k{ order:1; margin-left:auto; }
+
+/* 說明: 一種字號, 黑字 + 標籤 .55. 標籤欄寬 = 最長的標籤(使わない判断 這種長的也不折) */
+#detail{ flex:0 1 auto; overflow:auto; padding:1px; display:flex; flex-direction:column; gap:4px; }
+#detail dl{ display:grid; grid-template-columns:minmax(8ch, max-content) 1fr; gap:4px 3px; }
+#detail dt,#role{ opacity:.55; }
+#detail dl:empty{ display:none; }
+
+/* コード枠(主筆 2026-11-06「點擊就可以顯示一部分, 可以收起來 ... 白底藍字那種感覺(scrib的itoa提詞版)」).
+   開閉の一条 = 操作なので系統藍の .07 / .14 / .22 階(🔗 と同じ). 中身 = scrib 閲覧器の色: 白底 / コード = 頁の黒 / 注 藍 #0010C0(前端体検の字色を増やさないよう灰黒はやめた).
+   行番号は原ファイルの番号, 注のある行に ▸. 横に長い行は枠の中で横に送る(折り返さない). */
+#code{ display:flex; flex-direction:column; }
+#code[hidden],#code-b[hidden]{ display:none; }
+#code-t{ width:100%; padding:1px; text-align:left; white-space:pre; color:var(--op); background:rgba(0,0,255,.07); cursor:pointer; }
+#code-t:hover,#code-t:focus-visible{ background:rgba(0,0,255,.14); }
+#code-t:active,#code-t.on{ background:rgba(0,0,255,.22); }
+#code-b{ max-height:min(56vh, 520px); overflow:auto; padding:3px 4px; line-height:1.45; scrollbar-width:thin; }
+#code-b .ln{ display:flex; white-space:pre; }
+#code-b .no{ flex:none; width:4ch; margin-right:4px; text-align:right; opacity:.35; user-select:none; }
+#code-b .ln.noted .no::after{ content:"▸"; color:var(--note); }
+#code-b .note{ margin:0 0 3px calc(4ch + 4px); white-space:normal; color:var(--note); }
+#code-b .gap{ padding-left:calc(4ch + 4px); opacity:.35; }
+
+@media (max-width:760px){
+  :root{ --stage-w: calc(100vw - 8px); --stage-h: min(70vh, calc(100vw - 8px) / (var(--r))); }
+  main{ flex-direction:column; }
+  #stage{ align-self:center; width:100%; }
+  #live{ height:70vh; }
+  /* 截圖與示意圖在手機上不鎖高, 照內容長 */
+  #pic{ height:auto; align-items:stretch; }
+  #pic img{ max-height:none; width:100%; }
+  #fig{ height:auto; overflow:visible; font-size:12px; }
+  #fig .om, #fig .lay{ grid-template-columns:1fr; }
+  #fig .flow{ flex-direction:column; }
+  #fig .flow i{ transform:rotate(90deg); }
+  #side{ width:100%; height:auto; max-height:none; }
+}
