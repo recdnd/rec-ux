@@ -2,6 +2,9 @@
 
 **2026-11-05 搬家**: 這個 repo(recdnd/rec-ux)= 作品集總站 **p.rec.ooo**. 一個版本一個子路徑, 互不連結:
 - `/` = 根頁: 名字 + https://rec.ooo. **不列出也不連到各版本**, 各版本之間也不互相連結.
+- `/resume/` = 通用 resume(2026-11-08 主筆「根頁連到resume的一個通用版本, 擔任“別人來找我”的位置」). 根頁**只連這一個**. 英 `/resume/` + 日 `/resume/ja/`, 日語瀏覽器自動轉 ja(網址帶 `?hl=` 不轉). 事實只在 `tools/resume/data.json`, 改完跑 `python3 tools/resume/build.py`(兩張頁是產物, 不手改). 日語版作品集連 `/aeu/`, 英語版連 `/uiux/`.
+- `/aeu/` = 通用作品集(11-08 從 8j5 複製), resume 連過來, **不加 noindex**. 其他代號站照舊 noindex.
+- 給某一家交 resume 時: `/<代號>/resume/`, 從 `/resume/` 複製凍結(同 product -> 代號的做法).
 - `/uiux/` = 原本 ux.rec.ooo 的整站, 內容不改. ux.rec.ooo 已送出十幾份應募, 所以 **ux.rec.ooo/xxx -> https://p.rec.ooo/uiux/xxx 301 保留路徑**(Porkbun 轉址, 主筆設), `uiux/` 底下的路徑要跟舊站一一對得上, 不要搬動或改名.
 - `/product/` = PD(プロダクトデザイン)版: 同一批作品, 骨架換成 決定の記錄(課題 / 検討 / 決定 / 確認 / 次)+ プロダクト層(課題 / 提供 / 運営 / 体制). 全部相對路徑, 掛在任何子路徑都能動. 寫法標準在 b-rec(🎀 工表 ux-rec), 檢查 `python3 tools/check_pd.py`, 影片 `python3 tools/pd_media.py`(從 uiux/movies 複製, 同內容 git 只存一份).
 - `/ml/` 還沒有, 不放空頁.

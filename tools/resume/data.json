@@ -1,0 +1,54 @@
+{
+  "_": "p.rec.ooo/resume/ 的事實正本(2026-11-08). 改這裡, 再跑 python3 tools/resume/build.py 產出 resume/index.html(en)與 resume/ja/index.html. 事實出處: 履歴書(PD+FC/Personal-Directory/outbox/SmartHR-書類-2026-11) / 8j5 products.json / uiux boards.json. 住所・電話・生年・性別不放(公開頁).",
+  "portfolio": {"ja": "../../aeu/", "en": "../uiux/"},
+  "name": {"ja": "XUE JUNTAO（セツ シュントウ）", "en": "Xue Juntao"},
+  "alias": "Rec",
+  "place": {"ja": "東京", "en": "Tokyo, Japan"},
+  "email": "r@rec.ooo",
+  "site": "https://rec.ooo",
+  "label": {
+    "work":  {"ja": "作品", "en": "Work"},
+    "role":  {"ja": "担当", "en": "Role"},
+    "edu":   {"ja": "学歴", "en": "Education"},
+    "lang":  {"ja": "語学", "en": "Languages"},
+    "pf":    {"ja": "作品集", "en": "Portfolio"}
+  },
+  "work": [
+    {"name": "BraintankAI", "url": "https://braintank.ai/",
+     "kind": {"ja": "Web メディア", "en": "Web media"},
+     "line": {"ja": "最先端の技術と AI 研究のニュース。どの記事も元の論文につながっている。", "en": "Frontier technology and AI research news, every story linked to its paper."}},
+    {"name": "Rec Dungeons", "url": "https://rec.ooo/band/",
+     "kind": {"ja": "音楽ストア", "en": "Music store"},
+     "line": {"ja": "音楽サイト。聴いて、アカウントなしで買って、買ったものを持っておく。YouTube 登録者 100 人超。", "en": "Music site: listen, buy without an account, keep what you own. 100+ YouTube subscribers."}},
+    {"name": "sus dungeons", "url": "https://rec.ooo/dungeons/",
+     "kind": {"ja": "ブラウザゲーム", "en": "Browser game"},
+     "line": {"ja": "ゲームエンジンを使わずに作ったブラウザの 2D RPG と、それを作るための道具 41 個。", "en": "Browser 2D RPG built without a game engine, and the 41 tools that make it."}},
+    {"name": "Cloutric", "url": "https://cloutric.com/",
+     "kind": {"ja": "B2B SaaS", "en": "B2B SaaS"},
+     "line": {"ja": "予実管理と経営アラートを、チームの会話につなぐ経営管理クラウド。", "en": "Budget vs. actual and management alerts, wired into team chat."}},
+    {"name": "kiln", "url": "https://kiln.ooo/",
+     "kind": {"ja": "ツール", "en": "Tool"},
+     "line": {"ja": "ルールで決まる文章の整形。", "en": "Rule-based text formatting."}},
+    {"name": "Ruvia", "url": "https://ruvia.dev/",
+     "kind": {"ja": "ツール", "en": "Tool"},
+     "line": {"ja": "アイデアを木の形に。保存はただのファイル。", "en": "Ideas as a tree, saved as plain files."}}
+  ],
+  "role": [
+    {"ja": "個人開発。企画、設計、実装、運営。", "en": "Independent development: planning, design, build, operation."},
+    {"ja": "イラスト（手描き）。ジャケットとグッズの絵はすべて手描き。", "en": "Illustration, hand-drawn. All cover art and merch artwork."},
+    {"ja": "制作用の業務ツールと開発環境を自作し、毎日使っている。", "en": "Builds the production tools and the dev environment, used daily."}
+  ],
+  "edu": [
+    {"when": {"ja": "2023.04 - 2027.09（見込み）", "en": "Apr 2023 - Sep 2027 (expected)"},
+     "what": {"ja": "立教大学 文学部 史学科", "en": "Rikkyo University, College of Arts, Department of History"}},
+    {"when": {"ja": "2019.09 - 2021.03", "en": "Sep 2019 - Mar 2021"},
+     "what": {"ja": "バージニア工科大学 工学部 コンピュータサイエンス 在籍終了（コロナ禍）", "en": "Virginia Tech, College of Engineering, Computer Science (left, COVID-19)"}},
+    {"when": {"ja": "2015.10 - 2019.05", "en": "Oct 2015 - May 2019"},
+     "what": {"ja": "ロックフォード・クリスチャン高等学校（アメリカ）", "en": "Rockford Christian High School (USA)"}}
+  ],
+  "lang": [
+    {"ja": "中国語（母語）", "en": "Chinese (native)"},
+    {"ja": "英語（TOEFL iBT 110）", "en": "English (TOEFL iBT 110)"},
+    {"ja": "日本語（日本語能力試験 N1）", "en": "Japanese (JLPT N1)"}
+  ]
+}
