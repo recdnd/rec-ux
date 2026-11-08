@@ -1,4 +1,7 @@
 [
+  {"path": "resume/", "name": "resume", "note": "通用. 英(x-default)/ 日は ja/, 日本語ブラウザは自動で ja. 根頁からここだけ連結. pf.rec.ooo は 301 でここへ"},
+  {"path": "resume/ja/", "name": "resume 日本語", "note": "tools/resume/data.json から build.py で生成. 作品集は aeu/ へ"},
+  {"path": "aeu/", "name": "PD 版", "note": "通用(別人來找). 8j5 から複製, indexed, 前端密碼あり", "data": "pd"},
   {"path": "product/", "name": "PD 版 正本", "note": "正本. 外には出さない(各社へは代號の版を複製して出す)", "data": "pd"},
   {"path": "9a5/", "name": "PD 版", "note": "創作者向けを前に", "data": "pd"},
   {"path": "33b/", "name": "PD 版", "note": "業務向, オブジェクトモデル / 欄の形, 沒有 su", "data": "pd"},

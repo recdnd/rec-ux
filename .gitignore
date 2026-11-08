@@ -2,4 +2,4 @@
 tools/node_modules/
 tools/_frames/
 tools/save/
-admin/names.json
+versions/names.json

@@ -7,6 +7,7 @@
 - 給某一家交 resume 時: `/<代號>/resume/`, 從 `/resume/` 複製凍結(同 product -> 代號的做法).
 - `/uiux/` = 原本 ux.rec.ooo 的整站, 內容不改. ux.rec.ooo 已送出十幾份應募, 所以 **ux.rec.ooo/xxx -> https://p.rec.ooo/uiux/xxx 301 保留路徑**(Porkbun 轉址, 主筆設), `uiux/` 底下的路徑要跟舊站一一對得上, 不要搬動或改名.
 - `/product/` = PD(プロダクトデザイン)版: 同一批作品, 骨架換成 決定の記錄(課題 / 検討 / 決定 / 確認 / 次)+ プロダクト層(課題 / 提供 / 運営 / 体制). 全部相對路徑, 掛在任何子路徑都能動. 寫法標準在 b-rec(🎀 工表 ux-rec), 檢查 `python3 tools/check_pd.py`, 影片 `python3 tools/pd_media.py`(從 uiux/movies 複製, 同內容 git 只存一份).
+- `/versions/` = 所有版本一覽(作品集 / resume / 画庫), 整行點了開新分頁. 清單 `versions/versions.json`, 加一版就加一行. 「給哪一家」= `versions/names.json`(本機才有, .gitignore; `python3 tools/versions_names.py` 從 b-rec 05 產生). noindex, 根頁不連. 2026-11-08 從 `/admin` 改名(主筆「p-rec/versions做成所有存在的作品集/簡歷等的版本列表集」), `/admin` 留 meta refresh 轉過去.
 - `/ml/` 還沒有, 不放空頁.
 - 只上網站本身: `_config.yml` 把 README / tools / rituals / push.command 排除在 GitHub Pages 外.
 - 本機: repo 根起 `python3 -m http.server 2323`, 看 `/uiux/` 與 `/product/`.
