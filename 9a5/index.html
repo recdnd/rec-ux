@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<script src="/lock.js"></script>
 <!-- 掛在哪個子路徑都能動: 不寫死網域或根路徑, 全部相對路徑.
      沒有結尾斜線的網址會讓相對路徑解到上一層, 所以第一件事照現在的網址補一個 <base>(不是寫死的路徑). -->
 <script>(function(){var p=location.pathname;if(!/\/$/.test(p))p=/\.html?$/.test(p)?p.replace(/[^\/]*$/,""):p+"/";var b=document.createElement("base");b.href=p;document.head.appendChild(b);})();</script>
