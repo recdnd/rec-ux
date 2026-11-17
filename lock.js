@@ -4,7 +4,7 @@
    樣式照 aeu 那一個(藍細線中心小框). 內容沒抽掉(前端鎖), 只擋直接走進來的人. */
 (function(){var H="0dcd981920a7f422b950a04a6f9ae78f785efb347d53d4586e12d6558d325898",K="p-rec.gate";
 try{if(localStorage.getItem(K)===H)return}catch(e){}
-var st=document.createElement("style");st.textContent='html.lk body>*:not(#lk){display:none!important}#lk{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999;width:96px;height:18px;box-sizing:border-box;padding:0 4px;border:1px solid #0000ff;background:transparent;outline:0;font:11px/16px ui-monospace,Menlo,monospace;letter-spacing:3px;color:#000;caret-color:#0000ff;border-radius:0}#lk.ng{border-color:#ff0000;caret-color:#ff0000}#lk:hover{box-shadow:0 0 6px rgba(0,0,255,.18)}';
+var st=document.createElement("style");st.textContent='html.lk body>*:not(#lk){display:none!important}#lk{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999;width:96px;height:18px;box-sizing:border-box;padding:0 4px;border:1px solid #0000ff;background:transparent;outline:0;font:11px/16px ui-monospace,Menlo,monospace;letter-spacing:3px;color:#000;caret-color:#0000ff;border-radius:0}#lk.ng{border-color:#ff0000;caret-color:#ff0000}#lk:hover{background:rgba(0,0,255,.06)}';
 document.head.appendChild(st);document.documentElement.classList.add("lk");
 function sha(t){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(t)).then(function(b){return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0")}).join("")})}
 function ok(){try{localStorage.setItem(K,H)}catch(e){}document.documentElement.classList.remove("lk");var g=document.getElementById("lk");if(g)g.remove();dispatchEvent(new Event("resize"))}

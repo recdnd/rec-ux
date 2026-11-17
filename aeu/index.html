@@ -8,7 +8,7 @@
 <!-- 前端密碼框(2026-11-08 主筆「直接從p-rec進標準作品集的要前端輸入密碼, 極簡的, 就一個藍細線中心小框, 密碼rec-rec career直接給」).
      碼由 claude法師 定, 記在 b-rec 🎀 專案開發書/p-rec/05(這個 repo 是 Public, 只放 SHA-256). rec.ooo career 📋 profile 的說明裡寫著碼.
      過一次存 localStorage, 之後不再問. 網址帶 ?k=碼 也直接放行. 內容沒抽掉(前端鎖), 只擋直接走進來的人. -->
-<style>html.lk body>*:not(#lk){display:none!important}#lk{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999;width:96px;height:18px;box-sizing:border-box;padding:0 4px;border:1px solid #0000ff;background:transparent;outline:0;font:11px/16px ui-monospace,Menlo,monospace;letter-spacing:3px;color:#000;caret-color:#0000ff;border-radius:0}#lk.ng{border-color:#ff0000;caret-color:#ff0000}#lk:hover{box-shadow:0 0 6px rgba(0,0,255,.18)}</style>
+<style>html.lk body>*:not(#lk){display:none!important}#lk{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999;width:96px;height:18px;box-sizing:border-box;padding:0 4px;border:1px solid #0000ff;background:transparent;outline:0;font:11px/16px ui-monospace,Menlo,monospace;letter-spacing:3px;color:#000;caret-color:#0000ff;border-radius:0}#lk.ng{border-color:#ff0000;caret-color:#ff0000}#lk:hover{background:rgba(0,0,255,.06)}</style>
 <script>(function(){var H="7e48e31a8336e0d00c52af196e61d7dbcc4f23956ca66554093b59248f17d2e2",K="p-rec.key";
 function sha(t){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(t)).then(function(b){return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0")}).join("")})}
 function ok(){try{localStorage.setItem(K,H)}catch(e){}document.documentElement.classList.remove("lk");var g=document.getElementById("lk");if(g)g.remove();dispatchEvent(new Event("resize"))}
