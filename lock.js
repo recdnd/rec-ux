@@ -1,5 +1,5 @@
 /* p-rec 全站前端密碼框(2026-11-15 主筆「p-rec全站和各子頁改為新訪問（只輸入一次後記憶）做一個前端密碼框，那種極簡密碼框的。再設定一個密碼」->「這兩包之外的鎖上，ok」).
-   不鎖: 33b(SmartHR 選考中)/ v8q(MIXI 選考中)/ uiux(Mercari 選考中: 10-31 應募時填的 ux.rec.ooo = 舊整站, 11-15 解鎖)/ aeu(自己的鎖, rec7, 鍵名不同). 選考結束再把 33b / v8q 加上 <script src="/lock.js">.
+   不鎖: 33b(SmartHR 選考中)/ v8q(MIXI 選考中)/ uiux(Mercari 選考中: 10-31 應募時填的 ux.rec.ooo = 舊整站, 11-15 解鎖)/ aeu(自己的鎖, rec7, 鍵名不同). resume/ + resume/ja/(2026-11-20 主筆 ok: 給搜名字的招募人員, 進 sitemap). 選考結束再把 33b / v8q 加上 <script src="/lock.js">.
    這個 repo 是 Public, 這裡只放 SHA-256, 碼不寫進 repo / 書. 過一次存 localStorage(全站同一個鍵, 輸入一次全站都開); 網址帶 ?k=碼 直接放行.
    樣式照 aeu 那一個(藍細線中心小框). 內容沒抽掉(前端鎖), 只擋直接走進來的人. */
 (function(){var H="0dcd981920a7f422b950a04a6f9ae78f785efb347d53d4586e12d6558d325898",K="p-rec.gate";

@@ -25,3 +25,5 @@ Disallow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://p.rec.ooo/sitemap.xml
