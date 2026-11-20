@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- 掛在哪個子路徑都能動: 沒有結尾斜線時照現在的網址補 <base>(同 aeu). -->
+<script>(function(){var p=location.pathname;if(!/\/$/.test(p))p=/\.html?$/.test(p)?p.replace(/[^\/]*$/,""):p+"/";var b=document.createElement("base");b.href=p;document.head.appendChild(b);})();</script>
+<!-- 前端密碼框: 同 aeu(碼同 aeu, 鍵 p-rec.key, 過一次記住; ?k=碼 直接放行). 碼只在 rec.ooo 的 portfolio 那一條: 點了自動複製碼再開這頁(主筆 11-20「從recooo站才知道，自動複製進密碼」). -->
+<style>html.lk body>*:not(#lk){display:none!important}#lk{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999;width:96px;height:18px;box-sizing:border-box;padding:0 4px;border:1px solid #0000ff;background:transparent;outline:0;font:11px/16px ui-monospace,Menlo,monospace;letter-spacing:3px;color:#000;caret-color:#0000ff;border-radius:0}#lk.ng{border-color:#ff0000;caret-color:#ff0000}#lk:hover{background:rgba(0,0,255,.06)}</style>
+<script>(function(){var H="7e48e31a8336e0d00c52af196e61d7dbcc4f23956ca66554093b59248f17d2e2",K="p-rec.key";
+function sha(t){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(t)).then(function(b){return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0")}).join("")})}
+function ok(){try{localStorage.setItem(K,H)}catch(e){}document.documentElement.classList.remove("lk");var g=document.getElementById("lk");if(g)g.remove();dispatchEvent(new Event("resize"))}
+try{if(localStorage.getItem(K)===H)return}catch(e){}
+document.documentElement.classList.add("lk");
+var q=new URLSearchParams(location.search).get("k");
+if(q)sha(q).then(function(h){if(h===H)ok()});
+document.addEventListener("DOMContentLoaded",function(){if(!document.documentElement.classList.contains("lk"))return;
+var i=document.createElement("input");i.id="lk";i.type="password";i.autocomplete="off";i.spellcheck=false;i.setAttribute("aria-label","key");
+document.body.appendChild(i);setTimeout(function(){i.focus()},0);
+i.addEventListener("keydown",function(e){if(e.key!=="Enter")return;sha(i.value).then(function(h){if(h===H)return ok();i.value="";i.classList.add("ng");setTimeout(function(){i.classList.remove("ng")},200)})})})})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Rec Portfolio</title>
+<meta name="description" content="Portfolio of Rec, a UI/UX designer, product engineer and illustrator in Tokyo: what each product is for, how it runs, and the design decisions behind it. sus dungeons, Rec Dungeons, rec.ooo, Cloutric, BraintankAI, Spiral, kiln and Ruvia.">
+<link rel="canonical" href="https://p.rec.ooo/y2p/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎞️</text></svg>">
+<link rel="stylesheet" href="css/ux.css?v=20261120a">
+</head>
+<body>
+<!-- 2026-10-30 重做骨架(主筆: 風格對齊 rec.ooo/band, 背景簡潔, 照前端契約; 之後一支一支補 15 秒影片).
+     版面照 band: 左 = 舞台(band 的封面位 -> 16:10 影片), 右 = 板塊與事例條(band 的曲目條) + 說明(band 的歌詞位).
+     資料 data/cases.json, 影片 movies/<id>.mp4; video 為 null 時舞台是空框. 舊版(spiral.rec.ooo)= main 分支的 portfolio.css / portfolio.js. -->
+<nav id="tools">
+  <button type="button" class="bulb" id="lang">EN</button>
+  <a href="https://rec.ooo/" aria-label="rec.ooo">🏠</a>
+</nav>
+<main>
+  <section id="stage"><video id="vid" muted loop playsinline preload="metadata"></video><iframe id="live" hidden title="live page"></iframe></section>
+  <aside id="side">
+    <div id="list"></div>
+    <article id="detail">
+      <p id="t"></p>
+      <p id="line"></p>
+      <dl>
+        <dt>Problem</dt><dd id="problem"></dd>
+        <dt>Design</dt><dd id="move"></dd>
+        <dt>Outcome</dt><dd id="outcome"></dd>
+      </dl>
+      <dl id="prod" hidden>
+        <dt>Problem</dt><dd id="p-issue"></dd>
+        <dt>Offer</dt><dd id="p-offer"></dd>
+        <dt>Operation</dt><dd id="p-run"></dd>
+        <dt>Team</dt><dd id="p-team"></dd>
+      </dl>
+      <p id="role"></p>
+    </article>
+  </aside>
+</main>
+<script src="js/ux.js?v=20261120a"></script>
+<script src="/track.js" defer></script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 {
   "_": "p.rec.ooo/resume/ 的事實正本(2026-11-08). 改這裡, 再跑 python3 tools/resume/build.py 產出 resume/index.html(en)與 resume/ja/index.html. 事實出處: 履歴書(PD+FC/Personal-Directory/outbox/SmartHR-書類-2026-11) / 8j5 products.json / uiux boards.json. 住所・電話・生年・性別不放(公開頁).",
-  "portfolio": {"ja": "../../aeu/", "en": "../uiux/"},
+  "portfolio": {"ja": "../../y2p/", "en": "../y2p/"},
   "name": {"ja": "XUE JUNTAO（セツ シュントウ）", "en": "Xue Juntao"},
   "alias": "Rec",
   "place": {"ja": "東京", "en": "Tokyo, Japan"},

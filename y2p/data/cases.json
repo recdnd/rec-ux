@@ -1,0 +1,375 @@
+[
+  {
+    "id": "dungeons-livehouse",
+    "board": "dungeons",
+    "title": "A Livehouse in the Tower",
+    "line": "The game and the music are one world, not two products.",
+    "problem": "The game had 34 tracks made only for it, released nowhere else, so a player who liked a song could not find it on the band's music site.",
+    "move": "Replace game-only music with released songs played through an in-game player, and turn listening into a place: a ticketed livehouse inside the tower.",
+    "outcome": "Game and music now share one catalog, and an in-game ticket ($1.99) connects playing the game to the band.",
+    "role": [
+      "Experience design",
+      "Game UI",
+      "Music"
+    ],
+    "video": "movies/dungeons-livehouse.mp4",
+    "start": true,
+    "v": "d281bdd6",
+    "ja": {
+      "title": "塔の中のライブハウス",
+      "line": "ゲームと音楽を、別々のプロダクトではなく一つの世界に。",
+      "problem": "ゲームのためだけに作った BGM が 34 曲あり、どこにも出していなかった。気に入った曲があっても、プレイヤーは band の音楽サイトで見つけられない。",
+      "move": "ゲーム専用の BGM を、発表済みの曲に置き換えて、ゲーム内のプレイヤーで流す。聴くこと自体を場所にした。塔の中に、チケットで入るライブハウスがある。",
+      "outcome": "ゲームと音楽が一つのカタログを共有し、ゲーム内のチケット（$1.99）が、遊ぶことと band をつないでいる。",
+      "role": [
+        "体験設計",
+        "ゲーム UI",
+        "音楽"
+      ]
+    }
+  },
+  {
+    "id": "dungeons-trade",
+    "board": "dungeons",
+    "title": "Pay on a Scale",
+    "line": "Buying happens on the map, not in a shop menu.",
+    "problem": "A shop window pulls the player out of the world into a list of prices and buttons.",
+    "move": "Pick the item up and carry it, unpaid. At the scale, put coins on the pan until it balances; the item is yours. The same hands that walk and pick things up also pay.",
+    "outcome": "There is no separate shop screen to learn, and the price is something you can see: a heavier item needs more coins on the pan.",
+    "role": [
+      "Game UI",
+      "Interaction design"
+    ],
+    "video": "movies/dungeons-trade.mp4",
+    "v": "783a9ebd",
+    "ja": {
+      "title": "天秤で払う",
+      "line": "買い物は、ショップのメニューではなく地図の上で。",
+      "problem": "ショップ画面を開くと、プレイヤーは世界から、値段とボタンの一覧に引き戻される。",
+      "move": "欲しいものを拾って、支払わずに持ち歩く。天秤のところで、皿が釣り合うまでコインを載せると、自分のものになる。歩く、拾うと同じ手で払う。",
+      "outcome": "覚えるショップ画面がなく、値段が目に見える。重いものほど、皿に載せるコインが多い。",
+      "role": [
+        "ゲーム UI",
+        "インタラクションデザイン"
+      ]
+    }
+  },
+  {
+    "id": "dungeons-job-card",
+    "board": "dungeons",
+    "title": "A Job and a Bank Card",
+    "line": "Money is earned in town, and kept in the town's bank.",
+    "problem": "When gold only drops from monsters, money says nothing about the place the player is in.",
+    "move": "Put money into the town: sit down and fix the church chairs to earn a coin, ask the priest to make a card, then type a name at the church bank's ATM. Every step happens on the map, in the same small boxes as the rest of the game.",
+    "outcome": "The church is a workplace and a bank, not only scenery, and the coin in the bag has a story behind it.",
+    "role": [
+      "Game design",
+      "Game UI"
+    ],
+    "video": "movies/dungeons-job-card.mp4",
+    "v": "a528af9d",
+    "ja": {
+      "title": "仕事と銀行のカード",
+      "line": "お金は町で稼いで、町の銀行に預ける。",
+      "problem": "お金がモンスターから落ちるだけだと、お金とプレイヤーのいる場所に関係がない。",
+      "move": "お金を町の中に置く。教会の椅子に座って直すとコインが一枚もらえ、神父にカードを作ってもらい、教会銀行の ATM で名前を入れる。どの手順も地図の上で、ゲームのほかの場面と同じ小さな枠の中で起きる。",
+      "outcome": "教会は背景ではなく、働く場所であり、銀行でもある。袋の中のコインに、手に入れた経緯がある。",
+      "role": [
+        "ゲームデザイン",
+        "ゲーム UI"
+      ]
+    }
+  },
+  {
+    "id": "dungeons-phone",
+    "board": "dungeons",
+    "title": "The Tower on a Phone",
+    "line": "The whole game fits one thumb: map on top, bag and controls below.",
+    "problem": "A desktop RPG puts the map, the bag and the message screen side by side; on a phone, the player has room for one of them.",
+    "move": "Stack them: the map on top, then the bag on the left and the message screen with a d-pad on the right. Tapping a monster opens the same small menu as on desktop (fight, turn battle, talk), and items explain themselves in the message screen.",
+    "outcome": "Fights, items and the live ticket all work on a phone without a separate mobile version of the game.",
+    "role": [
+      "Responsive design",
+      "Game UI"
+    ],
+    "video": "movies/dungeons-phone.mp4",
+    "v": "ad12b058",
+    "phone": true,
+    "ja": {
+      "title": "スマホで遊ぶ塔",
+      "line": "地図は上、袋と操作は下。片手の親指で全部遊べる。",
+      "problem": "PC 版は地図、袋、メッセージ画面を横に並べている。スマホには、そのうち一つ分の幅しかない。",
+      "move": "縦に積む。上に地図、その下の左に袋、右にメッセージ画面と十字キー。モンスターをタップすると PC 版と同じ小さなメニュー（戦う / ターン戦 / 話す）が出て、アイテムの説明はメッセージ画面に出る。",
+      "outcome": "戦闘も、アイテムも、ライブのチケットも、別のスマホ版を作らずにスマホで動く。",
+      "role": [
+        "レスポンシブデザイン",
+        "ゲーム UI"
+      ]
+    }
+  },
+  {
+    "id": "band-no-account",
+    "board": "band",
+    "title": "Buy Without an Account",
+    "line": "Buying a song should take one step, and losing it should not be possible.",
+    "problem": "Asking a listener to sign up before paying puts a form in front of a one-song purchase. Without accounts, though, clearing the browser would lose what they bought.",
+    "move": "Keep ownership in the browser for instant access, and make email the way back: one address restores every purchase.",
+    "outcome": "No password and no sign-up form anywhere in the flow. Purchase, download and email recovery pass end to end in test mode.",
+    "role": [
+      "UX flow",
+      "Commerce",
+      "Front-end"
+    ],
+    "video": "movies/band-buy.mp4",
+    "live": "https://rec.ooo/band/",
+    "v": "fcb1fef5",
+    "ja": {
+      "title": "アカウントなしで買う",
+      "line": "曲を買うのは一手で済み、なくすことはできないように。",
+      "problem": "払う前にアカウント作成を求めると、曲一つの買い物の前にフォームが立ちはだかる。かといってアカウントがないと、ブラウザを消した時に買ったものもなくなる。",
+      "move": "持っているものはブラウザに置いてすぐ聴けるようにし、メールを戻り道にした。メールアドレス一つで、買ったものが全部戻る。",
+      "outcome": "パスワードも登録フォームも、流れのどこにもない。購入、ダウンロード、メールでの復元を、テストモードで最初から最後まで通した。",
+      "role": [
+        "UX フロー",
+        "コマース",
+        "フロントエンド"
+      ]
+    }
+  },
+  {
+    "id": "band-room",
+    "board": "band",
+    "title": "Hold What You Bought",
+    "line": "A bought CD is a box you can turn in your hands.",
+    "problem": "For a listener, owning a digital album usually means one more row in a list, with nothing to look at or touch.",
+    "move": "Give each owned release its own room: the case floats over a CD deck and turns in every direction; the disc comes out of it. Back, spine and disc are drawn in code until the hand-made art is ready.",
+    "outcome": "Only people who bought something load this room, so the player page stays light for everyone else.",
+    "role": [
+      "Interaction design",
+      "3D in the browser",
+      "Illustration"
+    ],
+    "video": "movies/band-room.mp4",
+    "live": "https://rec.ooo/band/shelf.html",
+    "default": "video",
+    "v": "cadf4a23",
+    "ja": {
+      "title": "買ったものを手に取る",
+      "line": "買った CD は、手の中で回せる箱になる。",
+      "problem": "デジタルのアルバムを持っていても、たいていは一覧に一行増えるだけで、見るものも触るものもない。",
+      "move": "持っている作品ごとに部屋を用意した。CD デッキの上にケースが浮かび、どの向きにも回せて、中から盤が出てくる。裏面、背、盤面は、手描きの絵ができるまでコードで描いている。",
+      "outcome": "この部屋を読み込むのは何か買った人だけなので、ほかの人にとって、プレイヤーのページは軽いまま。",
+      "role": [
+        "インタラクションデザイン",
+        "ブラウザの 3D",
+        "イラスト"
+      ]
+    }
+  },
+  {
+    "id": "band-phone",
+    "board": "band",
+    "title": "Same Store on a Phone",
+    "line": "Pick, buy and reach the listening room with one thumb.",
+    "problem": "The desktop player puts cover, tracks and lyrics side by side; a phone has room for one of them.",
+    "move": "Pin the cover on top, let the release shelf and track list scroll under it, and keep the player controls in the bottom corner where the thumb is.",
+    "outcome": "The whole flow, from choosing a release to the thank-you note and the listening-room link, works without leaving the page.",
+    "role": [
+      "Responsive design",
+      "UI design"
+    ],
+    "video": "movies/band-phone.mp4",
+    "live": "https://rec.ooo/band/",
+    "v": "f2612bbd",
+    "phone": true,
+    "ja": {
+      "title": "スマホでも同じお店",
+      "line": "選ぶ、買う、試聴室に行く、を片手の親指で。",
+      "problem": "PC のプレイヤーは、ジャケット、曲、歌詞を横に並べている。スマホには、そのうち一つ分の幅しかない。",
+      "move": "ジャケットを上に固定し、作品の棚と曲の一覧をその下でスクロールさせ、再生ボタンは親指のある右下の角に置いた。",
+      "outcome": "作品を選ぶところから、お礼のメッセージと試聴室への入口まで、ページを移らずに一通りできる。",
+      "role": [
+        "レスポンシブデザイン",
+        "UI デザイン"
+      ]
+    }
+  },
+  {
+    "id": "cloutric-overview",
+    "board": "cloutric",
+    "title": "From Variance to What Needs Action",
+    "line": "A budget review that starts from the alerts, not the whole grid.",
+    "problem": "A budget-vs-actual grid gives every cell the same weight. The planning team scans departments, accounts and months to find the few numbers someone has to act on.",
+    "move": "The overview leads with four totals against budget and a monthly chart: actuals solid, forecast hatched. Beside it, a \"needs action\" list holds 17 alerts written as sentences (\"Marketing ad spend is 14% over budget\"). Initiatives get the same filter: a \"needs action\" tab with 6, rows over their hours marked red.",
+    "outcome": "A review starts from 17 alerts and 6 initiatives instead of the whole grid, and each alert already says which department, which account and by how much.",
+    "role": [
+      "UI design",
+      "Information design",
+      "Front-end"
+    ],
+    "video": "movies/cloutric-overview.mp4",
+    "ja": {
+      "title": "差異から、やることへ",
+      "line": "予実の確認を、表全体ではなくアラートから始める。",
+      "problem": "予実の表は、どのセルも同じ重さで並ぶ。経営企画は、部門と勘定科目と月を見渡して、誰かが手を打つべき数字を探すことになる。",
+      "move": "概要は、予算比つきの四つの合計と月次グラフから始まる（実績は塗り、見込は斜線）。横の「要対応」には 17 件のアラートが文で並ぶ。施策にも同じ「要対応」の絞り込み（6 件）があり、工数を超えた行は赤くなる。",
+      "outcome": "確認は、表全体ではなく 17 件のアラートと 6 件の施策から始まる。どのアラートも、どの部門のどの科目がどれだけ外れたかを最初から書いている。",
+      "role": [
+        "UI デザイン",
+        "情報設計",
+        "フロントエンド"
+      ]
+    },
+    "v": "190b7c18"
+  },
+  {
+    "id": "cloutric-chat",
+    "board": "cloutric",
+    "title": "Alerts Reach the Right Person",
+    "line": "Chat lives next to the numbers, and alerts arrive where the team already talks.",
+    "problem": "When the numbers live in one tool and the talk in another, someone screenshots an overrun, pastes it into chat and tags the owner by hand, every time.",
+    "move": "Chat is built in: a member's row opens a DM, @ shows each person's role, and ⌘K finds any page, channel or initiative. On the rules page, each alert type picks a channel and whether to mention the owner; Slack, Teams and mail connect there.",
+    "outcome": "Each rule shows how many alerts it matches right now, so routing is set on live numbers, and nobody copies a screenshot into another app.",
+    "role": [
+      "UI design",
+      "Interaction design",
+      "Front-end"
+    ],
+    "video": "movies/cloutric-chat.mp4",
+    "ja": {
+      "title": "アラートを、届くべき人へ",
+      "line": "会話を数字の隣に置き、アラートはチームがもう話している場所に届く。",
+      "problem": "数字は一つのツール、会話は別のツールにあると、誰かが超過をスクショしてチャットに貼り、担当者を手でメンションすることになる。毎回。",
+      "move": "チャットは内蔵。メンバーの行から DM、@ で役職も見え、⌘K でページ、チャンネル、施策へ飛ぶ。通知ルールでは、アラートの種類ごとにチャンネルと担当者メンションを選び、Slack、Teams、メールもここでつなぐ。",
+      "outcome": "どのルールにも「現在 3 件」のように今の該当数が出るので、本物の数字を見ながら届け先を決められる。スクショを別のアプリに貼る人はいない。",
+      "role": [
+        "UI デザイン",
+        "インタラクションデザイン",
+        "フロントエンド"
+      ]
+    },
+    "v": "c4ece390"
+  },
+  {
+    "id": "session-stream",
+    "board": "spiral",
+    "title": "All Work on One Board",
+    "line": "Every document is a card on one board; leaving one does not close it.",
+    "problem": "In a chat-style AI tool, each session is a thread in a sidebar. To switch, the writer leaves one conversation, and work in progress hides behind a list of titles.",
+    "move": "All documents sit as cards on one scrolling board, each labeled (Personal, Record, Open, Protected). Tap one to open it full screen; back on the board, every document you opened is still marked edit: active. Protected ones are wrapped in red.",
+    "outcome": "Which documents exist, which are still open and which are locked can be read from one screen, before opening anything.",
+    "role": [
+      "Interaction model",
+      "UX concept",
+      "Prototype implementation"
+    ],
+    "video": "movies/session-stream.mp4",
+    "v": "6e39ee71",
+    "live": "https://spiral.ooo/",
+    "phone": true,
+    "ja": {
+      "title": "一枚のボードに並ぶ作業",
+      "line": "文書は全部、一枚のボードのカード。離れても閉じない。",
+      "problem": "チャット型の AI ツールでは、セッションがサイドバーのスレッドに分かれている。切り替えるたびに会話を離れ、途中の作業はタイトルの一覧の奥に隠れる。",
+      "move": "スクロールするボードに、文書がラベル付きのカードで並ぶ。タップで全画面に開き、戻ると、開いた文書には edit: active の印が残っている。Protected の文書は赤く包まれる。",
+      "outcome": "どの文書があり、どれが開いたままで、どれがロックされているかが、何も開かずに一画面で読める。",
+      "role": [
+        "インタラクションモデル",
+        "UX コンセプト",
+        "プロトタイプ実装"
+      ]
+    }
+  },
+  {
+    "id": "braintank-modes",
+    "board": "braintank",
+    "title": "Lively to Browse, Quiet to Read",
+    "line": "The front page invites a click; the article page gets out of the way.",
+    "problem": "The front page must make dense papers look worth opening to readers; the article page must stay calm for a long read on methods and limits. One style cannot do both.",
+    "move": "Two modes. Browsing moves: a full-screen lead story; cards and section tiles stay gray until pointed at, then turn color with a pink line. Reading is still: the header hides on scroll, one serif column, a thin pink progress line, the paper card (venue, link, code) last.",
+    "outcome": "Color and motion only ever mean \"this can be opened\", so the front page needs no extra buttons, and once a story is open, nothing on screen competes with the text.",
+    "role": [
+      "UI design",
+      "Interaction design",
+      "Front-end"
+    ],
+    "video": "movies/braintank.mp4",
+    "ja": {
+      "title": "にぎやかに見て、静かに読む",
+      "line": "トップは開きたくさせ、記事ページは邪魔をしない。",
+      "problem": "トップは難しい論文を開きたくなるように見せ、記事ページは方法や限界の長い説明を落ち着いて読めるようにしたい。一つのスタイルでは両方はできない。",
+      "move": "二つのモード。見て回るときは動く。全画面のトップ記事、カードとタイルはポインタが来ると灰色から色に変わり、ピンクの線が伸びる。読むときは止まる。ヘッダーは引っ込み、セリフ体の一段組み、細い進捗線、論文カードは最後。",
+      "outcome": "色と動きは「ここを開ける」という意味にだけ使うので、トップに余計なボタンがいらず、記事を開いたあとは本文と競うものが画面にない。",
+      "role": [
+        "UI デザイン",
+        "インタラクションデザイン",
+        "フロントエンド"
+      ]
+    },
+    "v": "cfbc8170",
+    "live": "https://braintank.ai/"
+  },
+  {
+    "id": "rec-phone-box",
+    "board": "rec",
+    "title": "Read Before You Leave",
+    "line": "On a phone, a tap explains the icon; only the rocket button leaves.",
+    "problem": "The desktop site explains each icon on hover. A phone has no hover, so a visitor tapping an unfamiliar emoji would land on another site before knowing what it was.",
+    "move": "A tap opens the black box at the top in short lines written for the phone (Kiln: tidies punctuation and formatting in one click), and a -Ok. 🚀 button appears; only that button leaves. Icons are scattered, not a grid, and can be dragged anywhere.",
+    "outcome": "18 icons on one 375 × 667 screen, with no menu and no scrolling. Every way out to another site passes through the box first.",
+    "role": [
+      "UI design",
+      "Interaction design",
+      "Copywriting",
+      "Front-end"
+    ],
+    "video": "movies/rec-phone-box.mp4",
+    "live": "https://rec.ooo/",
+    "ja": {
+      "title": "行き先を読んでから進む",
+      "line": "スマホでは、タップで説明が出る。出かけるのは 🚀 のボタンだけ。",
+      "problem": "PC 版はアイコンにカーソルを乗せると説明が出る。スマホにはホバーがないので、知らない絵文字をタップした人は、それが何かを知る前に別のサイトへ飛ばされる。",
+      "move": "タップすると上の黒い枠に、スマホ用に短く書いた説明が出る（Kiln なら「句読点や書式の乱れを、ワンクリックで整える。」）。出かけるのは -Ok. 🚀 のボタンだけ。アイコンは格子に並べず散らし、ドラッグで動かせる。",
+      "outcome": "375 × 667 の一画面に 18 個のアイコン。メニューもスクロールもない。別のサイトへ出る道は、どれも先に黒い枠を通る。",
+      "role": [
+        "UI デザイン",
+        "インタラクションデザイン",
+        "コピーライティング",
+        "フロントエンド"
+      ]
+    },
+    "v": "405067b0",
+    "phone": true
+  },
+  {
+    "id": "talk-desk",
+    "board": "talk",
+    "title": "A Desk Instead of an Email",
+    "line": "Commissioning by answering questions, not by writing an email.",
+    "problem": "Someone with an idea but no spec has to write a cold email and guess what to include: scope, rights, budget, deadline.",
+    "move": "The desk asks one thing at a time (scope, rights, budget, deadline, the idea, a reply address) and keeps the whole exchange on screen. A line above the input says how the price works: design work is quoted after reading, not with a made-up number on the spot.",
+    "outcome": "The answers come back as one summary card. A failed send is never silent: the video shows http 501 next to a button that copies the whole request.",
+    "role": [
+      "UI design",
+      "Conversation design",
+      "Front-end",
+      "Back-end"
+    ],
+    "video": "movies/talk-desk.mp4",
+    "live": "https://rec.ooo/talk",
+    "ja": {
+      "title": "メールではなく、窓口で",
+      "line": "メールを書くかわりに、質問に答えて依頼する。",
+      "problem": "アイデアはあっても仕様はない人が、いきなりメールを書くことになる。範囲、権利、予算、締め切りのうち何を書けばいいかは、自分で考えるしかない。",
+      "move": "窓口は一つずつ聞く（範囲、権利、予算、締め切り、内容、返信先）。やりとりは全部画面に残る。入力欄の上の一行が金額の決まり方を示す。設計の仕事は、その場で適当な数字を出さず、内容を見てから見積もる。",
+      "outcome": "答えは一枚のまとめになって返ってくる。送信に失敗しても黙らない。動画では http 501 と出て、依頼内容をまるごとコピーするボタンが残る。",
+      "role": [
+        "UI デザイン",
+        "会話設計",
+        "フロントエンド",
+        "バックエンド"
+      ]
+    },
+    "v": "39e33c5b"
+  }
+]
