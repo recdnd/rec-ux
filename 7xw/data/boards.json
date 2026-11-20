@@ -2,10 +2,10 @@
  {
   "id": "dungeons",
   "name": "sus dungeons",
-  "line": "Browser 2D RPG built without a game engine, and the tools that make it.",
+  "line": "Browser 2D RPG built without a game engine. Money is earned, banked and paid on the map.",
   "url": "https://rec.ooo/dungeons/",
   "ja": {
-   "line": "ゲームエンジンを使わずに作ったブラウザの 2D RPG と、それを作るための道具。",
+   "line": "ゲームエンジンを使わずに作ったブラウザの 2D RPG。お金は地図の上で稼ぎ、預け、払う。",
    "kind": "ブラウザゲーム"
   },
   "kind": "Browser game"

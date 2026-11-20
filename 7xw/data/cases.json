@@ -3,13 +3,13 @@
   "id": "band-no-account",
   "board": "band",
   "title": "Buy Without an Account",
-  "line": "Buying a song should take one step, and losing it should not be possible.",
+  "line": "No sign-up wall before a one-song purchase; email is the way back.",
   "problem": "Asking a listener to sign up before paying puts a form in front of a one-song purchase. Without accounts, though, clearing the browser would lose what they bought.",
   "move": "Keep ownership in the browser for instant access, and make email the way back: one address restores every purchase.",
   "outcome": "No password and no sign-up form anywhere in the flow. Purchase, download and email recovery pass end to end in test mode.",
   "role": [
-   "UX flow",
-   "Commerce",
+   "User flow",
+   "Checkout",
    "Front-end"
   ],
   "video": "movies/band-buy.mp4",
@@ -17,13 +17,13 @@
   "v": "fcb1fef5",
   "ja": {
    "title": "アカウントなしで買う",
-   "line": "曲を買うのは一手で済み、なくすことはできないように。",
+   "line": "曲一つの買い物の前に登録の壁を置かず、メールを戻り道にする。",
    "problem": "払う前にアカウント作成を求めると、曲一つの買い物の前にフォームが立ちはだかる。かといってアカウントがないと、ブラウザを消した時に買ったものもなくなる。",
    "move": "持っているものはブラウザに置いてすぐ聴けるようにし、メールを戻り道にした。メールアドレス一つで、買ったものが全部戻る。",
    "outcome": "パスワードも登録フォームも、流れのどこにもない。購入、ダウンロード、メールでの復元を、テストモードで最初から最後まで通した。",
    "role": [
-    "UX フロー",
-    "コマース",
+    "ユーザーフロー",
+    "購入フロー",
     "フロントエンド"
    ]
   },
@@ -68,8 +68,8 @@
   "move": "Pin the cover on top, let the release shelf and track list scroll under it, and keep the player controls in the bottom corner where the thumb is.",
   "outcome": "The whole flow, from choosing a release to the thank-you note and the listening-room link, works without leaving the page.",
   "role": [
-   "Responsive design",
-   "UI design"
+   "Mobile UI",
+   "Responsive design"
   ],
   "video": "movies/band-phone.mp4",
   "live": "https://rec.ooo/band/",
@@ -82,8 +82,8 @@
    "move": "ジャケットを上に固定し、作品の棚と曲の一覧をその下でスクロールさせ、再生ボタンは親指のある右下の角に置いた。",
    "outcome": "作品を選ぶところから、お礼のメッセージと試聴室への入口まで、ページを移らずに一通りできる。",
    "role": [
-    "レスポンシブデザイン",
-    "UI デザイン"
+    "モバイル UI",
+    "レスポンシブデザイン"
    ]
   }
  },
@@ -91,24 +91,24 @@
   "id": "dungeons-trade",
   "board": "dungeons",
   "title": "Pay on a Scale",
-  "line": "Buying happens on the map, not in a shop menu.",
+  "line": "Paying is a move on the map, and the price has weight.",
   "problem": "A shop window pulls the player out of the world into a list of prices and buttons.",
   "move": "Pick the item up and carry it, unpaid. At the scale, put coins on the pan until it balances; the item is yours. The same hands that walk and pick things up also pay.",
   "outcome": "There is no separate shop screen to learn, and the price is something you can see: a heavier item needs more coins on the pan.",
   "role": [
-   "Game UI",
+   "Payment UI",
    "Interaction design"
   ],
   "video": "movies/dungeons-trade.mp4",
   "v": "783a9ebd",
   "ja": {
    "title": "天秤で払う",
-   "line": "買い物は、ショップのメニューではなく地図の上で。",
+   "line": "払うことを地図の上の動作にし、値段に重さを持たせる。",
    "problem": "ショップ画面を開くと、プレイヤーは世界から、値段とボタンの一覧に引き戻される。",
    "move": "欲しいものを拾って、支払わずに持ち歩く。天秤のところで、皿が釣り合うまでコインを載せると、自分のものになる。歩く、拾うと同じ手で払う。",
    "outcome": "覚えるショップ画面がなく、値段が目に見える。重いものほど、皿に載せるコインが多い。",
    "role": [
-    "ゲーム UI",
+    "支払い UI",
     "インタラクションデザイン"
    ]
   }
@@ -117,25 +117,25 @@
   "id": "dungeons-job-card",
   "board": "dungeons",
   "title": "A Job and a Bank Card",
-  "line": "Money is earned in town, and kept in the town's bank.",
+  "line": "Earning and banking happen inside the town, not in a menu.",
   "problem": "When gold only drops from monsters, money says nothing about the place the player is in.",
   "move": "Put money into the town: sit down and fix the church chairs to earn a coin, ask the priest to make a card, then type a name at the church bank's ATM. Every step happens on the map, in the same small boxes as the rest of the game.",
   "outcome": "The church is a workplace and a bank, not only scenery, and the coin in the bag has a story behind it.",
   "role": [
    "Game design",
-   "Game UI"
+   "Payment UI"
   ],
   "video": "movies/dungeons-job-card.mp4",
   "v": "a528af9d",
   "ja": {
    "title": "仕事と銀行のカード",
-   "line": "お金は町で稼いで、町の銀行に預ける。",
+   "line": "稼ぐことも預けることも、メニューではなく町の中で。",
    "problem": "お金がモンスターから落ちるだけだと、お金とプレイヤーのいる場所に関係がない。",
    "move": "お金を町の中に置く。教会の椅子に座って直すとコインが一枚もらえ、神父にカードを作ってもらい、教会銀行の ATM で名前を入れる。どの手順も地図の上で、ゲームのほかの場面と同じ小さな枠の中で起きる。",
    "outcome": "教会は背景ではなく、働く場所であり、銀行でもある。袋の中のコインに、手に入れた経緯がある。",
    "role": [
     "ゲームデザイン",
-    "ゲーム UI"
+    "支払い UI"
    ]
   }
  },
@@ -148,7 +148,7 @@
   "move": "Stack them: the map on top, then the bag on the left and the message screen with a d-pad on the right. Tapping a monster opens the same small menu as on desktop (fight, turn battle, talk), and items explain themselves in the message screen.",
   "outcome": "Fights, items and the live ticket all work on a phone without a separate mobile version of the game.",
   "role": [
-   "Responsive design",
+   "Mobile UI",
    "Game UI"
   ],
   "video": "movies/dungeons-phone.mp4",
@@ -161,7 +161,7 @@
    "move": "縦に積む。上に地図、その下の左に袋、右にメッセージ画面と十字キー。モンスターをタップすると PC 版と同じ小さなメニュー（戦う / ターン戦 / 話す）が出て、アイテムの説明はメッセージ画面に出る。",
    "outcome": "戦闘も、アイテムも、ライブのチケットも、別のスマホ版を作らずにスマホで動く。",
    "role": [
-    "レスポンシブデザイン",
+    "モバイル UI",
     "ゲーム UI"
    ]
   }
@@ -198,12 +198,12 @@
   "id": "talk-desk",
   "board": "talk",
   "title": "A Desk Instead of an Email",
-  "line": "Commissioning by answering questions, not by writing an email.",
+  "line": "A request form that asks one thing at a time, not a blank email.",
   "problem": "Someone with an idea but no spec has to write a cold email and guess what to include: scope, rights, budget, deadline.",
   "move": "The desk asks one thing at a time (scope, rights, budget, deadline, the idea, a reply address) and keeps the whole exchange on screen. A line above the input says how the price works: design work is quoted after reading, not with a made-up number on the spot.",
   "outcome": "The answers come back as one summary card. A failed send is never silent: the video shows http 501 next to a button that copies the whole request.",
   "role": [
-   "UI design",
+   "Form design",
    "Conversation design",
    "Front-end",
    "Back-end"
@@ -212,12 +212,12 @@
   "live": "https://rec.ooo/talk",
   "ja": {
    "title": "メールではなく、窓口で",
-   "line": "メールを書くかわりに、質問に答えて依頼する。",
+   "line": "白紙のメールではなく、一つずつ聞く依頼フォーム。",
    "problem": "アイデアはあっても仕様はない人が、いきなりメールを書くことになる。範囲、権利、予算、締め切りのうち何を書けばいいかは、自分で考えるしかない。",
    "move": "窓口は一つずつ聞く（範囲、権利、予算、締め切り、内容、返信先）。やりとりは全部画面に残る。入力欄の上の一行が金額の決まり方を示す。設計の仕事は、その場で適当な数字を出さず、内容を見てから見積もる。",
    "outcome": "答えは一枚のまとめになって返ってくる。送信に失敗しても黙らない。動画では http 501 と出て、依頼内容をまるごとコピーするボタンが残る。",
    "role": [
-    "UI デザイン",
+    "フォーム設計",
     "会話設計",
     "フロントエンド",
     "バックエンド"
@@ -234,7 +234,7 @@
   "move": "A tap opens the black box at the top in short lines written for the phone (Kiln: tidies punctuation and formatting in one click), and a -Ok. 🚀 button appears; only that button leaves. Icons are scattered, not a grid, and can be dragged anywhere.",
   "outcome": "18 icons on one 375 × 667 screen, with no menu and no scrolling. Every way out to another site passes through the box first.",
   "role": [
-   "UI design",
+   "Mobile UI",
    "Interaction design",
    "Copywriting",
    "Front-end"
@@ -248,7 +248,7 @@
    "move": "タップすると上の黒い枠に、スマホ用に短く書いた説明が出る（Kiln なら「句読点や書式の乱れを、ワンクリックで整える。」）。出かけるのは -Ok. 🚀 のボタンだけ。アイコンは格子に並べず散らし、ドラッグで動かせる。",
    "outcome": "375 × 667 の一画面に 18 個のアイコン。メニューもスクロールもない。別のサイトへ出る道は、どれも先に黒い枠を通る。",
    "role": [
-    "UI デザイン",
+    "モバイル UI",
     "インタラクションデザイン",
     "コピーライティング",
     "フロントエンド"
@@ -295,8 +295,8 @@
   "move": "The overview leads with four totals against budget and a monthly chart: actuals solid, forecast hatched. Beside it, a \"needs action\" list holds 17 alerts written as sentences (\"Marketing ad spend is 14% over budget\"). Initiatives get the same filter: a \"needs action\" tab with 6, rows over their hours marked red.",
   "outcome": "A review starts from 17 alerts and 6 initiatives instead of the whole grid, and each alert already says which department, which account and by how much.",
   "role": [
+   "Information architecture",
    "UI design",
-   "Information design",
    "Front-end"
   ],
   "video": "movies/cloutric-overview.mp4",
@@ -307,8 +307,8 @@
    "move": "概要は、予算比つきの四つの合計と月次グラフから始まる（実績は塗り、見込は斜線）。横の「要対応」には 17 件のアラートが文で並ぶ。施策にも同じ「要対応」の絞り込み（6 件）があり、工数を超えた行は赤くなる。",
    "outcome": "確認は、表全体ではなく 17 件のアラートと 6 件の施策から始まる。どのアラートも、どの部門のどの科目がどれだけ外れたかを最初から書いている。",
    "role": [
-    "UI デザイン",
     "情報設計",
+    "UI デザイン",
     "フロントエンド"
    ]
   },
@@ -353,7 +353,7 @@
   "role": [
    "Interaction model",
    "UX concept",
-   "Prototype implementation"
+   "Prototyping"
   ],
   "video": "movies/session-stream.mp4",
   "v": "6e39ee71",
@@ -368,7 +368,7 @@
    "role": [
     "インタラクションモデル",
     "UX コンセプト",
-    "プロトタイプ実装"
+    "プロトタイピング"
    ]
   }
  }

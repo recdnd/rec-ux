@@ -3,7 +3,7 @@
 **2026-11-05 搬家**: 這個 repo(recdnd/rec-ux)= 作品集總站 **p.rec.ooo**. 一個版本一個子路徑, 互不連結:
 - `/` = 根頁: 名字 + https://rec.ooo. **不列出也不連到各版本**, 各版本之間也不互相連結.
 - `/resume/` = 通用 resume(2026-11-08 主筆「根頁連到resume的一個通用版本, 擔任“別人來找我”的位置」). 根頁**只連這一個**. 英 `/resume/` + 日 `/resume/ja/`, 日語瀏覽器自動轉 ja(網址帶 `?hl=` 不轉). 事實只在 `tools/resume/data.json`, 改完跑 `python3 tools/resume/build.py`(兩張頁是產物, 不手改). 日語版作品集連 `/aeu/`, 英語版連 `/uiux/`.
-- `/7xw/` = **Mercari 型 UX 版**(2026-11-20 主筆「ux.rec.ooo需要指定轉址到一個帶編號的特定ux版p.rec.ooo/xxx作品集，301，ux.rec.ooo本身不能作為部署網址」「對mercari進行精準建模並且默認英語 可以日語切換」). y2p から複製: 英語既定, 事例順 = 買う / 払う / 持つ(Marketplace + Merpay)-> 手機 -> 情報設計, How I work(AI / 検証 / 道具 / 体制). 鎖なし(選考中), noindex. **ux.rec.ooo = Porkbun URL 転送 301(パス保持)-> p.rec.ooo/7xw**, ux.rec.ooo 自体はどこにもデプロイしない.
+- `/7xw/` = **C2C マーケット型 UX 版**(2026-11-20 主筆「ux.rec.ooo需要指定轉址到一個帶編號的特定ux版p.rec.ooo/xxx作品集，301，ux.rec.ooo本身不能作為部署網址」「默認英語 可以日語切換」; 給誰只記在 b-rec 05). y2p から複製: 英語既定, 事例順 = 買う / 払う / 持つ(売買 + 決済)-> 手機 -> 情報設計, How I work(AI / 検証 / 道具 / 体制). 鎖なし(選考中), noindex. **ux.rec.ooo = Porkbun URL 転送 301(パス保持)-> p.rec.ooo/7xw**, ux.rec.ooo 自体はどこにもデプロイしない.
 - `/y2p/` = **標準版作品集**(2026-11-20 主筆「改為一份標準的portfolio（帶密碼，從recooo站才知道，自動複製進密碼）非純uiux，也非純運維，也不純向product」「公用的這份也是要用一個代碼編號的，沒有特殊性」). 從 `uiux/` 複製: 事例(影片 + 課題 / 設計 / 結果)照舊, 板塊名可按, 按了出產品層(課題 / 提供 / 運営 / 体制, `y2p/data/products.json`, 日文 = aeu 原文, 英文照譯). 英 / 日照瀏覽器自動. 前端密碼同 aeu(鍵 `p-rec.key`). rec.ooo career 的 portfolio 那一條點了自動複製碼再開這頁; resume 英 / 日都連這裡. 不加 noindex.
 - `/aeu/` = 通用作品集(11-08 從 8j5 複製), resume 連過來, **不加 noindex**. 其他代號站照舊 noindex. 進門要前端密碼(藍細線中心小框, Enter 送出, 錯了閃紅; 過一次存 localStorage; `?k=碼` 直接放行). 碼只在 b-rec 05 與 rec.ooo career 📋 profile 的說明, 這裡只放 SHA-256.
 - 給某一家交 resume 時: `/<代號>/resume/`, 從 `/resume/` 複製凍結(同 product -> 代號的做法).
