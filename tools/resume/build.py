@@ -57,9 +57,14 @@ def page(lang):
     ja = lang == "ja"
     L = lambda o: o[lang]
     canon = "https://p.rec.ooo/resume/ja/" if ja else "https://p.rec.ooo/resume/"
-    title = "Rec レジュメ" if ja else "Rec Resume"
-    desc = ("Rec（XUE JUNTAO）のレジュメ。作品、担当、学歴、語学。" if ja
-            else "Resume of Rec (Xue Juntao): work, role, education, languages.")
+    # 2026-11-22 主筆「rec dungeons/rec ooo等都不要檢索到我resume xuejuntao 還有招人可以搜到的詞」:
+    # title / description / h1 / JSON-LD 不放 Rec 與 rec.ooo, 改放本名 + 職稱 + 所在地 + 專長(職稱照 rec.ooo 首頁 jobTitle).
+    title = ("セツ シュントウ(XUE JUNTAO) UI/UX デザイナー / プロダクトエンジニア 東京 | レジュメ" if ja
+             else "Xue Juntao - UI/UX Designer, Product Engineer, Tokyo | Resume")
+    desc = ("XUE JUNTAO(セツ シュントウ)のレジュメ。東京の UI/UX デザイナー、プロダクトエンジニア、イラストレーター。"
+            "プロダクトデザイン、フロントエンド開発、イラスト。中国語、英語、日本語。作品、担当、学歴、語学。" if ja
+            else "Resume of Xue Juntao, UI/UX designer, product engineer and illustrator in Tokyo. "
+                 "Product design, front-end development, illustration. Chinese, English, Japanese. Work, role, education, languages.")
     other = ('<a class="hl" href="../?hl=en" hreflang="en" lang="en">EN</a>' if ja
              else '<a class="hl" href="ja/" hreflang="ja" lang="ja">日本語</a>')
     # 英語頁才轉: 日語瀏覽器 + 網址沒帶 ?hl= -> ja/. 從日語頁按 EN 來的帶 ?hl=en, 不轉回去.
@@ -70,12 +75,13 @@ def page(lang):
 </script>
 """
     ld = {"@context": "https://schema.org", "@type": "ProfilePage", "url": canon, "inLanguage": lang,
-          "mainEntity": {"@type": "Person", "name": D["name"]["en"], "alternateName": [D["alias"], "セツ シュントウ"],
-                         "email": "mailto:" + D["email"], "url": D["site"],
+          "mainEntity": {"@type": "Person", "name": D["name"]["en"], "alternateName": ["XUE JUNTAO", "セツ シュントウ"],
+                         "jobTitle": ["UI/UX Designer", "Product Engineer", "Illustrator"],
+                         "knowsAbout": ["UI/UX design", "product design", "front-end development", "illustration"],
+                         "email": "mailto:" + D["email"],
                          "address": {"@type": "PostalAddress", "addressLocality": "Tokyo", "addressCountry": "JP"},
                          "knowsLanguage": ["zh", "en", "ja"],
-                         "alumniOf": ["Rikkyo University", "Virginia Tech"],
-                         "sameAs": [w["url"] for w in D["work"]]}}
+                         "alumniOf": ["Rikkyo University", "Virginia Tech"]}}
 
     work = "\n".join(
         f'    <li><a href="{E(w["url"])}" data-u="{E(w["url"])}">{E(w["name"])}</a><span class="kind">{E(L(w["kind"]))}</span><p>{E(L(w["line"]))}</p></li>'
@@ -114,7 +120,7 @@ def page(lang):
 {other}
 <main>
   <header>
-    <h1>{E(L(D["name"]))} <span class="alias">{E(D["alias"])}</span></h1>
+    <h1>{E(L(D["name"]))}</h1>
     <p class="contact"><span>{E(L(D["place"]))}</span><a href="mailto:{E(D["email"])}">{E(D["email"])}</a><a href="{E(D["site"])}/">{E(D["site"].split("//")[1])}</a><a href="{pf}" data-u="{pfu}">{lab["pf"]}</a></p>
   </header>
   <section class="work">
