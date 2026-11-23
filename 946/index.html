@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- 掛在哪個子路徑都能動: 沒有結尾斜線時照現在的網址補 <base>(同 aeu). -->
+<script>(function(){var p=location.pathname;if(!/\/$/.test(p))p=/\.html?$/.test(p)?p.replace(/[^\/]*$/,""):p+"/";var b=document.createElement("base");b.href=p;document.head.appendChild(b);})();</script>
+<meta name="robots" content="noindex">
+<!-- 代號站 946(デザイン支援会社型 UI/UX 版): y2p から複製(11-24). 不鎖(選考中), noindex. 之後只在這個夾裡改. -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Rec Portfolio</title>
+<meta name="description" content="Portfolio of Rec, a UI/UX designer, product engineer and illustrator in Tokyo: what each product is for, how it runs, and the design decisions behind it. sus dungeons, Rec Dungeons, rec.ooo, Cloutric, BraintankAI, Spiral, kiln and Ruvia.">
+<link rel="canonical" href="https://p.rec.ooo/946/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎞️</text></svg>">
+<link rel="stylesheet" href="css/ux.css?v=20261120a">
+</head>
+<body>
+<!-- 2026-10-30 重做骨架(主筆: 風格對齊 rec.ooo/band, 背景簡潔, 照前端契約; 之後一支一支補 15 秒影片).
+     版面照 band: 左 = 舞台(band 的封面位 -> 16:10 影片), 右 = 板塊與事例條(band 的曲目條) + 說明(band 的歌詞位).
+     資料 data/cases.json, 影片 movies/<id>.mp4; video 為 null 時舞台是空框. 舊版(spiral.rec.ooo)= main 分支的 portfolio.css / portfolio.js. -->
+<nav id="tools">
+  <button type="button" class="bulb" id="lang">EN</button>
+  <a href="https://rec.ooo/" aria-label="rec.ooo">🏠</a>
+</nav>
+<main>
+  <section id="stage"><video id="vid" muted loop playsinline preload="metadata"></video><iframe id="live" hidden title="live page"></iframe></section>
+  <aside id="side">
+    <div id="list"></div>
+    <article id="detail">
+      <p id="t"></p>
+      <p id="line"></p>
+      <dl>
+        <dt>Problem</dt><dd id="problem"></dd>
+        <dt>Design</dt><dd id="move"></dd>
+        <dt>Outcome</dt><dd id="outcome"></dd>
+      </dl>
+      <dl id="prod" hidden>
+        <dt>Problem</dt><dd id="p-issue"></dd>
+        <dt>Offer</dt><dd id="p-offer"></dd>
+        <dt>Operation</dt><dd id="p-run"></dd>
+        <dt>Team</dt><dd id="p-team"></dd>
+      </dl>
+      <p id="role"></p>
+    </article>
+  </aside>
+</main>
+<script src="js/ux.js?v=20261120a"></script>
+<script src="/track.js" defer></script>
+</body>
+</html>

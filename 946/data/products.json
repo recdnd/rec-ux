@@ -1,0 +1,74 @@
+{
+ "_": "y2p 產品層(2026-11-20): 日文 = aeu/data/products.json 原文, 英文 = 照日文翻, 不加事實. 欄: issue 課題 / offer 提供 / run 運営 / team 体制.",
+ "products": [
+  {
+   "id": "band",
+   "live": "https://rec.ooo/band",
+   "issue": "The music I made for my own game wasn't released anywhere. I started a one-person label site to sell and share it as our own music.",
+   "offer": "40 tracks in 9 releases, from listening to buying to merch, on one site. Payments run on Stripe, and no account is needed to buy.",
+   "run": "The YouTube channel runs on uploads scheduled through the API (100+ subscribers). I drew 32 covers and kept 14.",
+   "team": "Solo, since September 2026. Planning, design, build and operation. All cover and merch art drawn by hand.",
+   "ja": {
+    "issue": "自作ゲームのために作った BGM が、どこにも出ていなかった。それを自分たちの音楽として出すために立ち上げた、一人の音楽レーベルの販売と発信の場。",
+    "offer": "40 曲を 9 作品にまとめ、試聴から購入、グッズまでを一つのサイトで完結させた。決済は Stripe で、アカウントなしで買える。",
+    "run": "YouTube チャンネルは、API で予約投稿を自動化して運営している（登録者 100 人超）。ジャケットは 32 枚描いて 14 枚に絞った。",
+    "team": "個人開発、2026年9月〜。企画、設計、実装、運営。ジャケットとグッズの絵はすべて手描き。"
+   }
+  },
+  {
+   "id": "dungeons",
+   "issue": "Keep a map of about a hundred floors and over a thousand items playable to the end, while building it alone.",
+   "offer": "Plays in the browser, in Japanese, English and Chinese. Phones run the same game, with no separate version.",
+   "run": "41 in-house production tools, used every day. An automated player checks that the game can be finished, and every place a friend tester gets stuck goes back into the design.",
+   "team": "Solo, since August 2026. Planning, design, build and operation.",
+   "ja": {
+    "issue": "百階ほどのマップとアイテム千件以上を、一人で作り続けながら、最後まで遊べる状態に保つ。",
+    "offer": "ブラウザで遊べる。日英中の 3 言語。スマホでも、別の版を作らずに同じゲームが動く。",
+    "run": "制作用の業務ツールを 41 個作り、毎日使っている。自動プレイヤーで最後まで進めるかを確かめ、友人の内部テスターが止まったところを設計に戻している。",
+    "team": "個人開発、2026年8月〜。企画、設計、実装、運営。"
+   }
+  },
+  {
+   "id": "cloutric",
+   "live": "https://cloutric.com/",
+   "issue": "The people who read budget-vs-actual numbers and the people who act on them are different. The numbers live in spreadsheets, the talk lives in chat, and people carry things between them by hand.",
+   "offer": "Self-hosted with Docker, so data never leaves the company. ¥9,800 one-time, unlimited users across the company, one year of updates. Not on sale yet.",
+   "team": "Solo, 2026. Screens use demo data.",
+   "ja": {
+    "issue": "予実の数字を見る人と、手を打つ人が別にいる。数字は表に、会話はチャットにあり、その間を人が手で運んでいる。",
+    "offer": "自社のサーバーで Docker で動き、データは自社の外に出ない。¥9,800 の一回払い、全社で人数無制限、1 年分の更新つき。販売開始前。",
+    "team": "個人開発、2026年。画面はデモデータ。"
+   }
+  },
+  {
+   "id": "rec",
+   "live": "https://rec.ooo/",
+   "issue": "Put the game, the music, the tools and the commission desk behind one entrance. A first-time visitor doesn't know which emoji opens what.",
+   "team": "Solo.",
+   "ja": {
+    "issue": "ゲーム、音楽、道具、依頼の窓口を、一つの入口から出す。初めて来た人は、どの絵文字が何の入口かを知らない。",
+    "team": "個人開発。"
+   }
+  },
+  {
+   "id": "braintank",
+   "live": "https://braintank.ai/",
+   "issue": "Make hard papers look worth opening, and keep long explanations of methods and limits calm to read.",
+   "team": "Solo. Planning, design and build.",
+   "ja": {
+    "issue": "難しい論文を、開きたくなるように見せ、方法や限界の長い説明まで落ち着いて読めるようにする。",
+    "team": "個人開発。企画、設計、実装。"
+   }
+  },
+  {
+   "id": "spiral",
+   "live": "https://spiral.ooo/",
+   "issue": "Writers create their own speakers and tie every line of a document to who said it. AI can play any of them.",
+   "team": "Solo, 2025 to present.",
+   "ja": {
+    "issue": "話し手を自分で作り、文書の一行ごとに誰の言葉かを持たせる。そのうちの誰かを、AI に演じさせる。",
+    "team": "個人開発、2025年〜現在。"
+   }
+  }
+ ]
+}

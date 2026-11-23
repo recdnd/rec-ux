@@ -1,0 +1,115 @@
+/* Rec UX 重做(2026-10-30). 色與字照 rec.ooo/band: 系統黑字, 選中系統紅, 底色框 = 主題黑 k 的 alpha 階.
+   前端契約: 無框 / 無圓角 / 無陰影 / 無漸進動畫, 外距與內距最多 4px, 一個模組最多兩種字色.
+   背景簡潔: 純白, 不鋪 band 的手做底圖. */
+:root{
+  --ink:#000;
+  --op:#0000ff;          /* 系統藍 - 連結 */
+  --pick:#ff0000;        /* 系統紅 - 選中 */
+  --bg:#fff;
+  --k:5,5,5;             /* 主題黑, 只當底色框 */
+  --vh:100vh;
+  /* 舞台 = 一個固定的盒(換則時版面不跳), 影片在盒裡照自己的比例放到最大(主筆 10-30: dungeons 是裝備欄 + 右側地圖的比例, 不鎖 16:10).
+     盒寬 = 視窗寬 - 側欄 420 - 間隙 16, 下限 560 上限 1200; 盒高 = 視窗高 - 40 與 盒寬 / 1.25 取小. */
+  --stage-w: clamp(560px, 100vw - 436px, 1200px);
+  --stage-h: min(var(--vh) - 40px, var(--stage-w) / 1.25);
+  --r: 16/10;            /* 影片比例, js 讀影片 metadata 或 cases.json 的 size 改寫 */
+  --nw: 960px;           /* 影片原寸寬(錄影是 @2x, 所以 = 影片像素寬 / 2). 不放大, 只在盒放不下時縮(主筆 10-30「保持影片的大小, 不然會不好看」) */
+  --font: ui-monospace,"SF Mono",Menlo,"Courier New","Hiragino Sans","PingFang TC",monospace;
+}
+@supports (height:100svh){ :root{ --vh:100svh; } }
+*{ box-sizing:border-box; }
+html{ background:var(--bg); }
+html,body{ margin:0; padding:0; color:var(--ink); }
+body{ font:12px/1.35 var(--font); padding:4px; }
+button,input,select,textarea{ border:0; border-radius:0; margin:0; padding:0; background:none; color:inherit; font:inherit; outline:none; }
+a{ color:inherit; text-decoration:none; }
+p,dl,dd{ margin:0; font:inherit; }
+
+/* 角落工具: 前置浮動, 底色框毛玻璃 .50 */
+#tools{ position:fixed; top:4px; right:4px; z-index:5; display:flex; gap:3px; }
+#tools a{ padding:1px 3px; background:rgba(255,255,255,.50); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); }
+#tools a:hover,#tools a:focus-visible{ background:rgba(var(--k),.10); }
+#tools a:active{ background:rgba(var(--k),.18); }
+/* 語言鈕: rec-kit〈燈泡按鈕模組〉. 透明底, 1px 系統藍細框, hover 亮成系統紅. 排在 🏠 左邊(〈頂部工具欄模組〉: 語言鈕永遠最左) */
+#tools{ align-items:center; }
+.bulb{ display:inline-block; box-sizing:border-box; padding:1px 4px; font-size:10px; line-height:1; color:var(--op); border:1px solid var(--op); border-radius:6px; background:transparent; cursor:pointer; }
+.bulb:hover,.bulb:focus-visible{ color:var(--pick); border-color:var(--pick); }
+
+main{ display:flex; gap:4px; align-items:flex-start; }
+@media (min-width:761px){
+  body{ min-height:var(--vh); display:flex; align-items:center; justify-content:center; }
+}
+
+/* 舞台 = 固定的盒, 影片貼著右欄、頂端對齊(主筆 11-03 看 saturn/ux-版式試版 後「走 B 固定盒」).
+   換片時右欄不動(之前 1440 x 900 量到左右 314 / 上下 93 在跳), 只有影片的左邊界在變.
+   取代 10-30「影片框跟著影片縮，整組置中…1試試看」; 保留那時的「影片 + 列表貼著」. 整組(盒 + 右欄)大小固定, 照舊由 body 置中.
+   手機(<= 760)不走這一段: 上下排, 照舊. */
+#stage{ max-width:100%; }
+@media (min-width:761px){
+  /* 寬再跟 100vw - 436 取小: --stage-w 下限 560, 761..995 寬的視窗不取小會整頁橫捲(900 寬實測多 42) */
+  /* 11-05 主筆「固定右側導致…總是貼右上角」: 片改在盒裡上下左右置中(= 11-03 試版 A). 盒和右欄照舊固定, 右欄不跳; 「影片 + 列表貼著」這一條放掉 */
+  #stage{ width:min(var(--stage-w), 100vw - 436px); height:var(--stage-h); display:flex; align-items:center; justify-content:center; }
+}
+/* 寬 = 原寸, 盒放不下才縮(盒寬 / 盒高 x 比例); 高由 aspect-ratio 給. 還沒有影片時這一塊就是 .07 的空框, 大小照 size */
+#vid{ display:block; aspect-ratio:var(--r); width:min(var(--nw), var(--stage-w), var(--stage-h) * (var(--r))); max-width:100%; height:auto; background:rgba(var(--k),.07); }
+
+/* 可玩版 🕹️: 真頁面鋪滿整個盒, 不縮放, 頁面自己照盒寬排 */
+#live{ display:block; width:var(--stage-w); max-width:100%; height:var(--stage-h); border:0; }   /* 互動版用整個可用的盒 */
+#live[hidden],#vid[hidden]{ display:none; }
+
+/* 右欄高 = 盒高, 固定(主筆 11-03「走 B 固定盒」). 10-31「內容容器居中」時是高 = 內容, 說明長短一變整組就上下移; 現在內容少時下方留白 */
+#side{ width:420px; max-width:100%; height:var(--stage-h); max-height:var(--stage-h); display:flex; flex-direction:column; gap:4px; }
+/* 右欄垂直置中(主筆 11-05「右側板垂直居中」): 整塊在固定高的右欄裡置中; 說明欄的最小高由 js reserve() 留到最長那一則, 換則時不跳 */
+@media (min-width:761px){ #side{ justify-content:center; } }
+
+/* 事例條: band 曲目條同一套 .07 / .14 / .22, 選中字換系統紅. 沒有可玩頁的板塊名(Spiral)是不可按的一行, 只有字 */
+#list{ display:flex; flex-direction:column; gap:1px; overflow:auto; flex:0 1 auto; }
+.bd{ padding:4px 1px 1px; }
+.bd:first-child{ padding-top:0; }
+/* 可玩的板塊名(主筆 10-30「標題本身可選擇，對應互動版」): 一顆可按的條, 右邊標 🕹️; 跟事例條同一套階, 只是底色是淡藍 */
+/* 板塊名一行: 名字 🕹️ 🔗 緊貼著排(主筆「在小標題右側」) */
+.bd{ display:flex; gap:3px; align-items:center; }
+.bd.live{ width:100%; margin-top:3px; padding:1px; cursor:pointer; outline:none; }
+.bd.live:first-child{ margin-top:0; }
+.bd.live.on{ color:var(--pick); }
+/* 🔗: 靜置只有符號; hover 時 🔗 + 網址一起變成一顆藍字底色框的連結(系統藍, 藍的 .07 / .14 / .22 階), 整顆都能點, 開新分頁. 不放說明字 */
+/* 🧊 Singles(11-02 雪藏)時期同一顆也用在說明標題後面(一則一個產品, 連結跟著事例). 樣式通用, 不用改 */
+.lk{ display:inline-flex; align-items:center; gap:3px; padding:1px; color:var(--op); text-decoration:none; white-space:nowrap; }
+.lk span{ display:none; }
+.lk:hover,.lk:focus-visible{ background:rgba(0,0,255,.14); }
+.lk:hover span,.lk:focus-visible span{ display:inline; }
+.lk:active{ background:rgba(0,0,255,.22); }
+/* 手機(主筆 10-30「手機版的ux網站的鏈接改為默認全顯示，無hover動作」): 沒有 hover, 🔗 + 網址一直顯示成一顆藍字底色框連結 */
+@media (max-width:760px), (hover:none){
+  .lk{ background:rgba(0,0,255,.07); }
+  .lk span{ display:inline; }
+  .lk:hover{ background:rgba(0,0,255,.07); }
+}
+.row{ display:flex; gap:3px; width:100%; padding:1px; text-align:left; cursor:pointer; background:rgba(var(--k),.07); }
+.row:hover,.row:focus-visible{ background:rgba(var(--k),.14); }
+.row:active,.row.on{ background:rgba(var(--k),.22); }
+.row.on{ color:var(--pick); }
+.row .n{ width:2ch; text-align:right; }
+.row .t{ flex:1; }
+/* 可玩 = 淡藍底(主筆 10-30 (c): 藍 = band 的「連結, 通往真的東西」). 同一套階 .07 / .14 / .22, 只換 k. 現在只在板塊名那一條 */
+.bd.live{ background:rgba(0,0,255,.07); }
+.bd.live:hover,.bd.live:focus-visible{ background:rgba(0,0,255,.14); }
+.bd.live:active,.bd.live.on{ background:rgba(0,0,255,.22); }
+
+/* 類型標(主筆 11-02 三個試版選 A): 灰字 .55, 跟 role 行同一個灰, 不加第三種字色. 只有板塊名有; 🧊 Singles 雪藏前事例列也有(.row .k), 樣式通用 */
+.k{ opacity:.55; white-space:nowrap; }
+.bd .k{ order:1; margin-left:auto; }   /* 板塊名的類型靠右; 🕹️🔗 仍貼著名字(主筆「在小標題右側」) */
+
+/* 說明: band 歌詞位. 一種字號, 黑字 + 標籤用 .55 */
+#detail{ flex:0 1 auto; overflow:auto; padding:1px; display:flex; flex-direction:column; gap:4px; }
+#detail dl{ display:grid; grid-template-columns:9ch 1fr; gap:4px 3px; }
+#detail dt,#role{ opacity:.55; }
+#detail dl[hidden]{ display:none; }
+
+@media (max-width:760px){
+  :root{ --stage-w: calc(100vw - 8px); --stage-h: min(70vh, calc(100vw - 8px) / (var(--r))); }
+  main{ flex-direction:column; }
+  #stage{ align-self:center; }        /* 直式手機片比螢幕窄: 置中 */
+  #live{ height:70vh; }               /* 互動版不跟著上一支影片的比例, 給固定的高 */
+  #side{ width:100%; height:auto; }
+}
