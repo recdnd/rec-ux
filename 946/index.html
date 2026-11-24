@@ -1,50 +1,462 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<!-- 掛在哪個子路徑都能動: 沒有結尾斜線時照現在的網址補 <base>(同 aeu). -->
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
+<title>セツシュントウ ポートフォリオ</title><link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎞️</text></svg>">
+<style>
+@page { size: 297mm 210mm; margin: 0; }
+* { box-sizing: border-box; }
+:root { --ink: #141414; --mute: #6b6b6b; --line: #e3e3e3; --acc: #4000ff; --accbg: rgba(64,0,255,.07); --blue: #4000ff; --red: #e0103a; --redbg: rgba(224,16,58,.07); --green: #00ff38; --tint: rgba(64,0,255,.07); --fill: rgba(0,0,0,.05); }
+body { margin: 0; background: #888; font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.pg { width: 297mm; height: 210mm; padding: 8mm 11mm 8mm; background: #fff; margin: 0 auto 6mm; position: relative; overflow: hidden; page-break-after: always; break-after: page; display: flex; flex-direction: column; gap: 3mm; }
+@media print { body { background: #fff; } .pg { margin: 0; } }
+header { display: flex; justify-content: space-between; font-size: 7.5pt; color: var(--mute); border-bottom: .3mm solid var(--ink); padding-bottom: 1.2mm; }
+header .tag { color: var(--ink); font-weight: 600; } header .no { font-weight: 700; color: var(--ink); }
+h2 { margin: 0; font-size: 15pt; letter-spacing: .02em; } h2 small { font-size: 9pt; font-weight: 400; color: var(--mute); margin-left: 4mm; }
+.sub { margin: 0; font-size: 9.5pt; color: #333; }
+.meta { margin: 0; font-size: 8pt; color: var(--mute); display: flex; gap: 4mm; } .meta b { color: var(--ink); } .meta .role { margin-left: auto; color: var(--blue); }
+.cap { margin: 0 0 1.2mm; font-size: 8.6pt; font-weight: 600; }
+.lab { display: inline-block; font-size: 7.6pt; font-weight: 700; padding: .4mm 2mm; background: #ececec; color: #555; margin-bottom: 1mm; }
+.lab.on { background: var(--blue); color: #fff; }
+figure { margin: 0; } figcaption { font-size: 7.4pt; color: #333; line-height: 1.45; margin-top: 1mm; } figcaption i { display: block; font-style: normal; color: var(--mute); font-size: 7pt; }
+.im { border: .25mm solid var(--line); overflow: hidden; display: flex; align-items: center; justify-content: center; background: #f4f4f4; }
+.im img, img { max-width: 100%; display: block; }
+.note { background: var(--tint); padding: 2.4mm 3mm; font-size: 8.6pt; line-height: 1.55; } .note i { display: block; font-style: normal; font-weight: 700; font-size: 7.6pt; color: var(--blue); margin-bottom: .6mm; }
+.arr { width: 16mm; height: 8mm; flex: none; align-self: center; overflow: visible; } .arr path { fill: none; stroke: var(--green); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+.ard { width: 3mm; height: 5mm; display: block; margin: .6mm auto; } .ard path { fill: none; stroke: #999; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+.st { padding: 1.6mm 2.4mm; font-size: 8pt; line-height: 1.5; } .st i { display: block; font-style: normal; font-weight: 700; font-size: 7.2pt; margin-bottom: .4mm; } .st p { margin: 0; } .st small { color: #444; }
+.st.sb { background: #f3f3f3; } .st.sb i { color: #777; } .st.sj { background: #fff7d6; } .st.sj i { color: #a07800; } .st.sa { background: var(--tint); } .st.sa i { color: var(--blue); }
+.pair { display: grid; grid-template-columns: 1fr 62mm 1fr; gap: 4mm; align-items: center; flex: 1; min-height: 0; }
+.pair .mid { display: flex; flex-direction: column; } .pair .mid .arr { margin: 0 auto 1.5mm; width: 22mm; height: 10mm; }
+.side { min-width: 0; } .fc { font-size: 7.4pt; color: #333; margin: 1mm 0 0; line-height: 1.45; }
+/* cover */
+.cover { flex-direction: row; gap: 10mm; padding: 16mm 14mm; align-items: center; }
+.cover .cl { flex: 1; } .kick { font-size: 10pt; color: var(--blue); font-weight: 700; margin: 0; letter-spacing: .2em; }
+.cover h1 { font-size: 34pt; margin: 3mm 0 0; } .cover .en { margin: 1mm 0 6mm; color: var(--mute); letter-spacing: .2em; font-size: 10pt; }
+.cover .aff { margin: 0 0 1mm; font-size: 10pt; } .cover .lead { font-size: 13pt; font-weight: 600; line-height: 1.7; margin: 8mm 0; border-left: 1.2mm solid var(--green); padding-left: 4mm; }
+.cover .url { font-size: 9pt; color: #333; line-height: 1.8; margin: 0; }
+.mos { width: 150mm; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5mm; } .mos img { width: 100%; height: 62mm; object-fit: contain; border: .25mm solid var(--line); }
+/* toc */
+.howrow { display: flex; gap: 4mm; align-items: center; font-size: 8.6pt; } .howk { display: flex; gap: 2mm; align-items: center; }
+.toc { border-collapse: collapse; width: 100%; font-size: 8.8pt; } .toc th { text-align: left; font-size: 7.6pt; color: var(--mute); border-bottom: .3mm solid var(--ink); padding: 1mm 2mm; }
+.toc td { border-bottom: .2mm solid var(--line); padding: 1.6mm 2mm; } .toc .n { font-weight: 700; width: 12mm; } .toc .m { color: var(--mute); font-size: 8pt; }
+/* band */
+.row3 { display: flex; gap: 2mm; align-items: stretch; } .v5 { flex: 1; border: .25mm solid var(--line); padding: 2mm 2.4mm; font-size: 7.8pt; } .v5.on { border-color: var(--blue); background: var(--tint); }
+.v5 b { font-size: 9pt; } .v5 small { color: var(--mute); margin-left: 2mm; } .v5 dl { display: grid; grid-template-columns: 19mm 1fr; gap: .6mm 2mm; margin: 1.4mm 0 0; } .v5 dt { color: var(--mute); } .v5 dd { margin: 0; }
+.row4 { display: grid; grid-template-columns: 1.6fr 1fr .9fr .9fr; gap: 3mm; flex: 1; min-height: 0; } .row4 .im { height: 84mm; } .row4 .im img { width: 100%; height: 100%; object-fit: contain; }
+/* logo */
+.cts { display: flex; gap: 2.5mm; } .ct { flex: 1; border: .25mm solid var(--line); padding: 2mm; text-align: center; } .ct img { height: 22mm; margin: 0 auto 1mm; } .ct small { font-size: 7.2pt; }
+.ct.on { border: .6mm solid var(--blue); } .ct.ng { opacity: .75; } .ct.ng small::after { content: "　不採用"; color: var(--red); font-weight: 700; }
+.lg2 { display: grid; grid-template-columns: 1.3fr 1fr; gap: 6mm; } .btrow { display: flex; align-items: center; gap: 3mm; } .btrow figure { flex: 1; } .btrow img { width: 100%; background: #0b0b0b; padding: 3mm; }
+.oth { display: flex; gap: 4mm; align-items: flex-end; } .oth figure { flex: 1; text-align: center; } .oth img { height: 20mm; margin: 0 auto; object-fit: contain; }
+/* jacket */
+.dkh { display: flex; gap: 2.5mm; } .dkh figure { flex: 1; } .dkh img { width: 100%; aspect-ratio: 1; object-fit: contain; border: .25mm solid var(--line); }
+.dkh figure.on img { outline: .7mm solid var(--blue); } .dkh figure.ng b::after { content: " 不採用"; color: var(--red); } .dkh figure.on b::after { content: " 採用"; color: var(--blue); }
+.dkh figcaption b { display: block; font-size: 7.8pt; }
+.cvs { display: grid; grid-template-columns: repeat(6, 1fr); gap: 2mm; width: 78%; } .cvs img { width: 100%; aspect-ratio: 1; object-fit: contain; }
+/* spiral */
+.olds { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5mm; } .olds img { width: 100%; height: 92mm; object-fit: contain; border: .25mm solid var(--line); }
+.news { display: flex; flex-direction: column; gap: 2mm; } .news img { width: 100%; height: 45mm; object-fit: contain; border: .25mm solid var(--line); }
+/* npc */
+.npcpg .npc { flex: 1; min-height: 0; display: flex; flex-direction: column; } .npcpg .pair { grid-template-columns: 1fr 66mm 1fr; }
+.npcpg .im { max-height: 62mm; } .npcpg .im img { max-height: 62mm; object-fit: contain; }
+/* dungeons */
+.g9 .im { max-height: 70mm; } .g9 .im img { max-height: 70mm; object-fit: contain; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; } .row2 .im { height: 44mm; } .row2 .im img { width: 100%; height: 100%; object-fit: contain; }
+/* shop */
+.row3s { display: flex; gap: 2mm; align-items: flex-start; flex: 1; } .row3s figure { flex: 1; min-width: 0; } .row3s .im { height: 96mm; } .row3s .im img { width: 100%; height: 100%; object-fit: contain; }
+.row3s figcaption { font-size: 7.8pt; } .row3s .arr { margin-top: 40mm; }
+/* cloutric */
+.txtold { background: #f3f3f3; padding: 5mm; font-size: 10pt; line-height: 1.8; color: #333; min-height: 90mm; }
+.c11 .side figure + figure { margin-top: 2mm; } .c11 .im { height: 62mm; } .c11 .im img { width: 100%; height: 100%; object-fit: contain; }
+/* flow */
+.flow { display: flex; align-items: stretch; gap: 1mm; } .fb { flex: 1; border: .25mm solid var(--line); padding: 2.4mm; font-size: 8pt; line-height: 1.5; } .fb b { display: block; font-size: 9pt; margin-bottom: .6mm; } .fb.on { border-color: var(--blue); background: var(--tint); }
+.g12 { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; } .end { margin: auto 0 0; text-align: right; font-size: 9pt; color: var(--mute); }
+
+.gen { display: flex; gap: 1.5mm; align-items: flex-start; } .gen figure { flex: 1; min-width: 0; } .gen .im { height: 54mm; } .gen .im img { width: 100%; height: 100%; object-fit: contain; } .gen .arr { width: 9mm; margin-top: 26mm; }
+.g6 { display: grid; grid-template-columns: 1fr 62mm; gap: 5mm; align-items: center; } .cut { border-collapse: collapse; width: 100%; font-size: 7.8pt; } .cut th { text-align: left; font-size: 7pt; color: var(--mute); border-bottom: .3mm solid var(--ink); padding: .6mm 1.6mm; } .cut td { border-bottom: .2mm solid var(--line); padding: .9mm 1.6mm; } .cut td:first-child { width: 42%; text-decoration: line-through; color: #888; }
+.gm { display: grid; grid-template-rows: auto auto; gap: 4mm; flex: 1; } .gem { grid-template-columns: 1fr 58mm 1.2fr; } .gold { width: 100%; } .gemw { display: flex; gap: 1.5mm; } .gemw img { height: 62mm; } .gl { display: flex; flex-direction: column; justify-content: space-around; font-size: 7pt; color: var(--mute); text-align: right; }
+.mw { display: inline-block; } .mice { height: 30mm !important; width: auto !important; max-height: none !important; } .mn { display: grid; grid-template-columns: repeat(6, 1fr); font-size: 6.8pt; font-style: italic; color: var(--mute); text-align: center; margin-top: -1mm; }
+.rdv { display: flex; gap: 3mm; align-items: center; } .rdv img { height: 24mm; } .rdv img.dk { background: #0b0b0b; padding: 1mm; }
+.btv { display: flex; gap: 4mm; margin-top: 2mm; } .btv figure { flex: 1; text-align: center; } .btv img { height: 18mm; margin: 0 auto; background: #0b0b0b; padding: 2mm; }
+.lgg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; } .lgc .lgi, .rdv2 .lgi { height: 34mm; border: .25mm solid var(--line); display: flex; align-items: center; justify-content: center; background: #fff; padding: 3mm; } .lgc img, .rdv2 img { max-height: 100%; max-width: 100%; object-fit: contain; } .lgc figcaption b { display: block; font-size: 8.6pt; }
+.rdv2 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; }
+.snp { display: flex; align-items: center; gap: 2mm; } .snp figure { flex: 1; }
+.g12b { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
+
+/* 11-24 主筆「圖也有多餘容器」: 框は図の大きさに合わせる(固定の高さ・灰色の地をやめ, 図そのものに細い線) */
+.im { display: block !important; height: auto !important; max-height: none !important; border: none !important; background: none !important; overflow: visible !important; }
+.im img { width: auto !important; height: auto !important; max-width: 100% !important; border: none !important; outline: none !important; display: block; }
+img { border: none !important; outline: none !important; } .lgc .lgi, .rdv2 .lgi, .ct, .v5 { border: none !important; }   /* 11-24 主筆「你放圖的時候, 都不要再加容器外框了, 這種放圖法以後禁止」 */
+.gen .im img { max-height: 54mm; } .row4 .im img { max-height: 84mm; } .row3s .im img { max-height: 96mm; } .c11 .im img { max-height: 62mm; }
+.row2 .im img { max-height: 44mm; } .npcpg .im img { max-height: 62mm; } .g9 .im img { max-height: 70mm; } .im img { max-height: 90mm; }
+.gen { align-items: center !important; } .gen .arr { margin-top: 0 !important; }
+.row3s { align-items: center !important; } .row3s .arr { margin-top: 0 !important; } .row3s figure { display: flex; flex-direction: column; align-items: flex-start; }
+
+/* 11-24 主筆「我們的透明藍紅色還有box和配色設計是我們必須帶的特徵, 你卻總是把這刪掉/塗改」: SmartHR 作品集 / 自己紹介 deck と同じ色と box. 図には枠を付けない(images-no-frames)が, 文字の box は残す */
+header .tag { color: var(--acc); background: var(--accbg); padding: .4mm 2.2mm; }
+.lab { background: none !important; padding: 0 !important; color: var(--red) !important; font-size: 8pt; } .lab.on { color: var(--acc) !important; }
+.st.sb { background: var(--redbg) !important; } .st.sb i { color: var(--red) !important; } .st.sj { background: var(--fill) !important; } .st.sj i { color: var(--mute) !important; } .st.sa { background: var(--accbg) !important; } .st.sa i { color: var(--acc) !important; }
+.note { background: var(--accbg) !important; } .note i { color: var(--acc) !important; }
+.v5 { border: none !important; background: var(--fill); } .v5.on { background: var(--accbg) !important; } .v5.on b { color: var(--acc); }
+.meta .role, .kick { color: var(--acc) !important; } .cover .lead { border-left-color: var(--green); }
+.toc th { border-bottom-color: var(--acc) !important; } .dkh figure.on b::after, .ct.on small { color: var(--acc) !important; } .dkh figure.ng b::after { color: var(--red) !important; }
+.cut td:first-child { color: var(--red) !important; }
+.fb { border: none !important; background: var(--fill); } .fb.on { background: var(--accbg) !important; }
+
+.brs { display: flex; flex-wrap: wrap; gap: 4mm; align-items: flex-start; align-content: flex-start; } .brs .brd { flex: none; }
+.brd { background: rgba(0,0,0,.05); padding: 3mm 4mm; } .brd p { margin: 0 0 2.4mm; font-size: 8pt; color: var(--mute); } .brd p b { display: block; color: var(--ink); font-size: 10pt; }
+.brl { display: flex; flex-wrap: wrap; gap: 4mm; align-items: center; } .brl img { height: 20mm; width: auto; } .brl img.big { height: 28mm; } .brl img.sm { height: 11mm; }   /* 11-24 主筆「完全版要大, 簡略版要小」 */
+
+
+.bd1 { display: grid; grid-template-columns: 1.4fr 1fr; gap: 4mm; } .bd1 .im img { max-height: 70mm; }
+.bd2 { display: grid; grid-template-columns: 1fr .6fr 1fr; gap: 4mm; } .bd2 .im img { max-height: 58mm; }
+.sp2 { display: flex; align-items: center; gap: 4mm; } .sp2 .side { flex: 1; } .sp2 .im img { max-height: 70mm; }
+.dts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm 5mm; align-items: start; } .dt .im img { max-height: 62mm; } .dt:first-child { grid-row: span 2; } .dt:first-child .im img { max-height: 150mm; }
+.cv2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; width: 78%; } .cv2 img { width: 100%; }   /* 11-24 主筆「cyc系和其他分為兩欄…拼九宮格」 */
+.gen .im img { max-height: 46mm !important; }
+.gen figure.now .im, .gen figure.now .im img { outline: none !important; border: none !important; }
+.rdr { display: flex; align-items: center; gap: 4mm; } .rdr img.big { height: 26mm; } .rdr img.rr { height: 26mm; } .rdc { margin: 2.4mm 0 1.2mm !important; font-size: 7.6pt; color: var(--mute); }
+.pxs { display: flex; flex-direction: column; gap: 2.4mm; } .px, .pxh { display: grid; grid-template-columns: 22mm 1fr 14mm 1fr; gap: 3mm; align-items: center; }
+.pxl { margin: 0; font-size: 8.6pt; font-weight: 700; } .px figure img { max-height: 30mm; max-width: 100%; } .px figcaption { font-size: 7.4pt; } .px .arr { width: 12mm; }
+.dkh { gap: 1.6mm !important; } .dkh figcaption { font-size: 6.6pt !important; } .dkh figure.pre figcaption b { color: var(--mute); }
+.pxs { gap: 2mm !important; } .px { background: rgba(0,0,0,.05); padding: 2mm 3mm; } .px figure img { max-height: 19mm !important; }
+.cbox { background: rgba(0,0,0,.05); padding: 2.4mm 3.4mm; } .cbt { margin: 0 0 1.6mm; font-size: 9pt; font-weight: 700; } .c2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; } .c2 .im img { max-height: 40mm !important; } .g9 .im img { max-height: 52mm !important; }
+.dkh { display: flex !important; gap: 4mm !important; align-items: flex-start; } .dg { background: rgba(0,0,0,.05); padding: 1.6mm 2mm; } .dgt { margin: 0 0 1mm; font-size: 7.6pt; font-weight: 700; } .dgi { display: flex; gap: 1.6mm; } .dgi figure { width: 24mm; } .dgi img { width: 24mm; } .dgi figure.on img { outline: none; }
+.dgi figure.ng b::after { content: " 不採用"; color: var(--red); } .dgi figure.on b::after { content: " 採用"; color: var(--acc); }
+.s3 { display: flex; flex-direction: column; gap: 3mm; flex: 1; } .st3 { display: grid; grid-template-columns: 40mm auto 1fr; gap: 4mm; align-items: center; } .nt3 { margin: 0; padding: 2mm 3mm 2mm 6mm; background: var(--accbg); font-size: 7.8pt; line-height: 1.55; } .nt3 li { margin-bottom: .8mm; } .st3 .cbt { margin: 0; } .cbt small { display: block; font-weight: 400; font-size: 7.4pt; color: var(--mute); margin-top: .4mm; }
+.pcsp { display: flex; gap: 5mm; align-items: flex-end; } .pcsp figure { flex: none; } .pcsp .im img { max-height: 37mm !important; max-width: 92mm !important; }
+.pxv { grid-template-columns: 22mm 1fr !important; } .pxw { display: flex; flex-direction: column; gap: 1mm; } .pxw figure img { max-height: none !important; max-width: none !important; }
+.pxv[data-k] {} .arv { width: 8mm; height: 6mm; margin-left: 20mm; } .arv path { fill: none; stroke: var(--green); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.px .lab { display: block; } .px-line figure img { max-height: 56mm !important; }
+.dts2 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; align-items: start; } .dts2 img { max-width: 100%; max-height: 40mm; } .dts2 figcaption { font-size: 7.2pt; }
+.mbx { display: grid; grid-template-columns: 52mm 1fr; gap: 4mm; align-items: center; } .mbx .cap { font-size: 9pt; line-height: 1.6; } .micen { width: 100%; max-height: 72mm; object-fit: contain; object-position: left center; }
+.rdx { font-size: 7.4pt; color: var(--mute); line-height: 1.4; padding: 0 2mm; border-left: .3mm solid var(--line); border-right: .3mm solid var(--line); }   /* 11-24 主筆「這兩個不是綠箭頭關係呀」: 緑の矢印 = 旧 -> 今 だけ */
+.lk { display: inline-block; font-size: 7.2pt; font-weight: 400; color: #7a00cc; background: rgba(122,0,204,.08); padding: .2mm 1.6mm; margin-left: 2mm; text-decoration: none; vertical-align: middle; letter-spacing: 0; } .cbt .lk, .brd p .lk { margin: .8mm 0 0; display: table; }
+.c3b { display: grid; grid-template-columns: 2.4fr 1fr; gap: 4mm; } .bk3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.4mm; } .bk3 .im img, .c3b .im img { max-height: 48mm !important; }
+.fd4 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.4mm 6mm; } .fd4 .im img { max-height: 58mm !important; }
+.hv7 { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2mm; align-items: start; } .hv7 img { width: auto; max-width: 100%; max-height: 52mm; } .hv7 figcaption { font-size: 6.8pt; } .hvr { margin: 1.6mm 0 0; font-size: 8pt; } .hvr b { color: var(--acc); margin-right: 2mm; }
+.tbar { width: 100%; } .tbs { width: 62%; margin-top: 1.6mm; } .lgx { display: flex; gap: 3mm; align-items: center; } .lgx img { height: 30mm; }
+.vdrip{display:block;overflow:visible;--p:#FE6281}.vdrip .stem{transform-box:fill-box;transform-origin:50% 0;animation:stem 4.6s ease-in-out infinite}.vdrip .bulb{transform-box:fill-box;transform-origin:50% 50%;animation:bulb 4.6s ease-in-out infinite}.vdrip .flare{transform-box:fill-box;transform-origin:50% 100%;animation:flare 4.6s ease-in-out infinite}.vdrip .stem,.vdrip .bulb,.vdrip .flare{animation:none}@keyframes bulb{0%,30%{transform:translateY(0) scale(1);opacity:1}
+ 46%{transform:translateY(calc(var(--r)*.45)) scale(1.04,1.14)}
+ 54%{transform:translateY(calc(var(--r)*1.05)) scale(.95,1.12);animation-timing-function:cubic-bezier(.5,0,1,.5)}
+ 78%{transform:translateY(calc(var(--r)*6.5)) scale(.9,1.06);opacity:1}
+ 82%{transform:translateY(calc(var(--r)*7.4)) scale(.9,1.04);opacity:0}
+ 83%{transform:translateY(var(--back)) scale(.15);opacity:0}
+ 87%{opacity:1;animation-timing-function:cubic-bezier(.3,0,.2,1)}
+ 100%{transform:translateY(0) scale(1);opacity:1}}@keyframes flare{0%,46%{transform:scale(1)}56%{transform:scale(.8,.75)}72%{transform:scale(.45,.3)}82%{transform:scale(.45,.3)}83%{transform:scale(.3)}100%{transform:scale(1)}}@keyframes stem{0%,30%{transform:scaleY(1)}46%{transform:scaleY(1.08)}54%{transform:scaleY(.62)}60%{transform:scaleY(.48)}83%{transform:scaleY(.32);animation-timing-function:cubic-bezier(.3,0,.2,1)}100%{transform:scaleY(1)}}
+body { background: #888; padding: 8px 0; }
+.pg { height: auto; min-height: 210mm; zoom: var(--z, 1); }
+.web video { max-width: 100%; max-height: 130mm; display: block; margin: 0 auto; }
+.wlogo.big .vdrip { height: 30mm; width: auto; } .wlogo.sm .vdrip { height: 18mm; width: auto; }
+</style>
 <script>(function(){var p=location.pathname;if(!/\/$/.test(p))p=/\.html?$/.test(p)?p.replace(/[^\/]*$/,""):p+"/";var b=document.createElement("base");b.href=p;document.head.appendChild(b);})();</script>
-<meta name="robots" content="noindex">
-<!-- 代號站 946(デザイン支援会社型 UI/UX 版): y2p から複製(11-24). 不鎖(選考中), noindex. 之後只在這個夾裡改. -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="light">
-<title>Rec Portfolio</title>
-<meta name="description" content="Portfolio of Rec, a UI/UX designer, product engineer and illustrator in Tokyo: what each product is for, how it runs, and the design decisions behind it. sus dungeons, Rec Dungeons, rec.ooo, Cloutric, BraintankAI, Spiral, kiln and Ruvia.">
-<link rel="canonical" href="https://p.rec.ooo/946/">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎞️</text></svg>">
-<link rel="stylesheet" href="css/ux.css?v=20261120a">
-</head>
-<body>
-<!-- 2026-10-30 重做骨架(主筆: 風格對齊 rec.ooo/band, 背景簡潔, 照前端契約; 之後一支一支補 15 秒影片).
-     版面照 band: 左 = 舞台(band 的封面位 -> 16:10 影片), 右 = 板塊與事例條(band 的曲目條) + 說明(band 的歌詞位).
-     資料 data/cases.json, 影片 movies/<id>.mp4; video 為 null 時舞台是空框. 舊版(spiral.rec.ooo)= main 分支的 portfolio.css / portfolio.js. -->
-<nav id="tools">
-  <button type="button" class="bulb" id="lang">EN</button>
-  <a href="https://rec.ooo/" aria-label="rec.ooo">🏠</a>
-</nav>
-<main>
-  <section id="stage"><video id="vid" muted loop playsinline preload="metadata"></video><iframe id="live" hidden title="live page"></iframe></section>
-  <aside id="side">
-    <div id="list"></div>
-    <article id="detail">
-      <p id="t"></p>
-      <p id="line"></p>
-      <dl>
-        <dt>Problem</dt><dd id="problem"></dd>
-        <dt>Design</dt><dd id="move"></dd>
-        <dt>Outcome</dt><dd id="outcome"></dd>
-      </dl>
-      <dl id="prod" hidden>
-        <dt>Problem</dt><dd id="p-issue"></dd>
-        <dt>Offer</dt><dd id="p-offer"></dd>
-        <dt>Operation</dt><dd id="p-run"></dd>
-        <dt>Team</dt><dd id="p-team"></dd>
-      </dl>
-      <p id="role"></p>
-    </article>
-  </aside>
-</main>
-<script src="js/ux.js?v=20261120a"></script>
-<script src="/track.js" defer></script>
-</body>
-</html>
+</head><body><section class="pg cover">
+<div class="cl"><p class="kick">Portfolio</p><h1>セツ シュントウ</h1><p class="en">XUE JUNTAO</p>
+<p class="aff">立教大学 文学部 史学科 4年</p><p class="aff">UI/UX デザイナー（2028年入社）応募資料　2026年11月</p>
+<p class="lead">画面、絵、ロゴ、実装まで自分で作り<br>版を重ねて直してきた跡ごと、見ていただく資料です</p>
+<p class="url">ポートフォリオ　<a class="lk" href="https://p.rec.ooo/946">🔗p.rec.ooo/946</a><br>個人サイト　<a class="lk" href="https://rec.ooo">🔗rec.ooo</a></p></div>
+<div class="mos"><img src="img/f-band-buy-20.jpg"><img src="img/spiral-personal.jpg"><img src="img/f-dungeons-trade-50.jpg"><img src="img/cv-Newel.jpg"></div>
+</section><section class="pg dense"><header><span>Portfolio　セツ シュントウ</span><span class="tag">この資料の読み方</span><span class="no">2</span></header><h2>この資料の読み方</h2>
+<p class="sub">どの頁も、左が前の版、右が今の版です。間の列に「旧で起きたこと → 判断 → 今」を置き、緑の矢印で前から今へつないでいます。</p>
+<div class="howrow"><div class="howk"><span class="lab">旧</span>前の版の実画面(git の履歴、古い録画、残した没案から)</div>
+<div class="howk"><svg class="arr" viewBox="0 0 60 30"><path d="M3 15H52M40 4L54 15L40 26"/></svg></div><div class="howk"><span class="lab on">今</span>いま公開している画面</div></div>
+<table class="toc"><tr><th>頁</th><th>作品</th><th>何を作り直したか</th><th>図</th></tr><tr><td class=n>3</td><td><b>Web サイト</b></td><td>Rec Dungeons / ゲームの中のライブハウス / rec.ooo</td><td class=m>PC 版とスマホ版</td></tr><tr><td class=n>4</td><td><b>ロゴ / ブランド</b></td><td>ブランドごとの印</td><td class=m>ロゴ一式</td></tr><tr><td class=n>5</td><td><b>ジャケット</b></td><td>32 枚描いて 14 枚 / 同じ曲の 6 版</td><td class=m>イラスト / グラフィック</td></tr><tr><td class=n>6</td><td><b>Spiral</b></td><td>デスクトップとエディタ、それぞれの版(2025 → 2026-04 → 今)</td><td class=m>各版の実画面</td></tr><tr><td class=n>7, 8</td><td><b>Spiral の部品</b></td><td>カード・頭・本文・書く欄・下の帯を、前の版と今で</td><td class=m>旧 / 今の実画面</td></tr><tr><td class=n>9</td><td><b>sus dungeons</b></td><td>持ち物欄と天秤</td><td class=m>2026-08 の実画面 / 今</td></tr><tr><td class=n>11, 12</td><td><b>BraintankAI</b></td><td>頭条の折りたたみ / 記事の hover 7 案 / 右上のボタンと言語</td><td class=m>実画面 / 試し頁</td></tr><tr><td class=n>10</td><td><b>アイコン / キャラクター</b></td><td>宝石と住民のヤマネ</td><td class=m>旧の宝石 / 今の 5 等級 × 7 色 / 12 種</td></tr></table>
+<div class="note"><i>体制</i>どの作品も個人で、企画・設計・絵・実装・運営をしています。</div></section><section class="pg dense"><header><span>Portfolio　セツ シュントウ</span><span class="tag">UI / Web サイト</span><span class="no">3</span></header><h2>Web サイト<small>PC とスマホで同じ店・同じ部屋。ジャケットとグッズの絵も自分で描いています。</small></h2>
+<div class="s3"><div class="cbox st3"><p class="cbt">Rec Dungeons<small>音楽サイト。聴いて、アカウントなしで買って、買ったものを持っておく</small><a class="lk" href="https://rec.ooo/band">🔗rec.ooo/band</a></p><div class="pcsp"><figure class=""><div class="lab ">PC</div><div class="im"><img src="img/f-band-buy-20.jpg"></div><figcaption>試聴から購入まで一つの画面。ジャケットが中心</figcaption></figure><figure class=""><div class="lab ">スマホ</div><div class="im"><img src="img/band-phone-m.jpg"></div><figcaption>スマホでも同じ店</figcaption></figure></div><ul class="nt3"><li>ジャケットを画面の中心に置き、曲はジャケットの小さな絵で並べる</li><li>PC で左に並ぶ棚を、スマホでは大きなジャケットの下に積む</li></ul></div>
+<div class="cbox st3"><p class="cbt">ゲームの中のライブハウス<small>sus dungeons の塔の中</small><a class="lk" href="https://rec.ooo/dungeons">🔗rec.ooo/dungeons</a></p><div class="pcsp"><figure class=""><div class="lab ">PC</div><div class="im"><img src="img/livehouse-lit.jpg"></div><figcaption>演奏中は舞台の照明とロゴの灯りが点く</figcaption></figure><figure class=""><div class="lab ">スマホ</div><div class="im"><img src="img/dungeons-phone-m.jpg"></div><figcaption>スマホでは下に十字キー</figcaption></figure></div><ul class="nt3"><li>ふだんは暗い部屋。演奏が始まると舞台の照明とロゴの灯りが点く</li><li>スマホでは画面の下に十字キーと持ち物</li></ul></div>
+<div class="cbox st3"><p class="cbt">rec.ooo<small>個人サイト。作ったものの入口</small><a class="lk" href="https://rec.ooo">🔗rec.ooo</a></p><div class="pcsp"><figure class=""><div class="lab ">PC</div><div class="im"><img src="img/recooo-desk.jpg"></div><figcaption>listening room。持っているものを一つの部屋に</figcaption></figure><figure class=""><div class="lab ">スマホ</div><div class="im"><img src="img/recooo-phone.jpg"></div><figcaption>スマホは入口の一覧</figcaption></figure></div><ul class="nt3"><li>作ったもの(ゲーム・音楽・道具)の入口を、絵文字のアイコンで一画面に並べる</li><li>案内は話しかける形:「レックです。ひとつ選んでみてください。」</li><li>PC は左に一覧、右に listening room</li></ul></div></div></section><section class="pg dense"><header><span>Portfolio　セツ シュントウ</span><span class="tag">ロゴ / ブランド</span><span class="no">4</span></header><h2>ロゴ / ブランド<small>UI の小さな例。どれも、サイトの上で対応するアニメーションがあります(Web 版で再生できます)。</small></h2>
+<div class="brs"><div class="brd"><p><b>Cloutric</b>経営管理クラウド<a class="lk" href="https://cloutric.com">🔗cloutric.com</a></p><div class="brl"><img src="img/ct-now.svg" class=""></div></div><div class="brd"><p><b>BraintankAI</b>AI の論文を紹介するメディア。完全版と、フッターの簡略版<a class="lk" href="https://braintank.ai">🔗braintank.ai</a></p><div class="brl"><div class="wlogo big"><svg class="vdrip " viewBox="0 0 2762 779" style="aspect-ratio:2762/779" role="img" aria-label="BraintankAI">
+<defs><filter id="goo-lockup" x="-60%" y="-30%" width="220%" height="260%"><feGaussianBlur in="SourceGraphic" stdDeviation="6.6"/>
+<feColorMatrix values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 24 -10"/></filter></defs>
+<g transform="translate(0.000000,779.000000) scale(0.100000,-0.100000)" style="fill:var(--p,#FE6281)"><path d="M3665 7014 c-240 -28 -386 -58 -538 -111 -167 -58 -324 -144 -449
+-246 l-58 -47 -83 55 c-127 82 -211 107 -382 113 -202 6 -357 -29 -524 -119
+-281 -151 -501 -410 -573 -676 -43 -159 -27 -358 40 -495 l29 -58 -73 -60
+c-165 -135 -293 -336 -339 -530 -62 -266 7 -566 177 -772 40 -48 40 -48 23
+-99 -23 -68 -23 -226 0 -305 57 -197 218 -380 417 -474 156 -74 416 -92 602
+-41 162 43 345 144 481 264 l49 44 81 -62 c310 -237 631 -297 943 -175 93 36
+92 36 92 7 0 -13 13 -93 30 -178 32 -170 53 -334 70 -568 14 -179 19 -168 -88
+-201 -132 -41 -238 -24 -418 67 -125 62 -137 66 -226 74 -197 16 -246 67 -273
+284 -23 184 -76 285 -170 321 -73 27 -127 16 -242 -49 -126 -72 -201 -103
+-339 -138 -258 -65 -547 -62 -794 10 -345 99 -597 355 -691 701 -23 85 -23 85
+-29 1310 -6 1110 -8 1233 -24 1315 -24 124 -45 204 -62 238 -29 54 -122 73
+-182 37 -67 -41 -63 132 -60 -2267 3 -2411 -3 -2206 67 -2285 68 -78 -18 -72
+1142 -78 1171 -6 1059 3 1096 -86 l18 -44 197 0 197 0 28 52 c15 29 39 58 53
+65 19 10 120 13 406 13 l381 0 5 -74 c8 -124 65 -186 170 -186 71 0 121 33
+223 145 50 54 89 89 116 99 35 14 160 16 1187 16 783 0 1159 4 1185 11 57 15
+142 102 157 159 19 69 14 4373 -5 4409 -49 97 -185 99 -233 4 -18 -35 -44
+-146 -73 -313 -8 -45 -14 -455 -18 -1320 -7 -1235 -7 -1257 -29 -1365 -107
+-542 -397 -978 -737 -1107 -59 -23 -66 -23 -505 -23 -475 0 -527 4 -568 48
+-44 47 -44 66 0 168 23 52 69 174 103 271 72 205 84 221 218 317 219 156 364
+339 438 555 32 91 26 86 135 121 359 114 596 462 545 798 -25 164 -105 322
+-219 437 -57 56 -57 56 -43 106 22 79 20 342 -3 429 -84 313 -374 593 -753
+725 l-90 32 -6 66 c-20 230 -185 444 -432 558 -183 85 -537 134 -770 108z
+m380 -419 c196 -31 318 -96 387 -204 32 -51 35 -86 13 -157 -47 -154 18 -263
+178 -299 284 -64 513 -195 628 -359 106 -151 125 -310 59 -506 -34 -102 -35
+-142 -4 -204 27 -52 56 -77 129 -111 115 -52 169 -135 168 -260 -1 -106 -31
+-175 -112 -255 -127 -126 -273 -143 -463 -55 -177 83 -330 -81 -223 -239 24
+-36 24 -36 -13 -36 -193 0 -376 56 -514 159 l-67 50 39 68 c56 96 79 170 86
+271 6 82 2 109 -33 258 -6 28 34 43 138 51 163 13 264 -36 334 -162 42 -74 64
+-94 122 -111 100 -29 201 23 233 122 55 166 -114 397 -353 482 -172 61 -498
+27 -665 -69 -32 -19 -32 -19 -80 15 -164 117 -434 177 -545 122 -79 -39 -116
+-143 -83 -230 30 -79 74 -104 226 -130 226 -39 335 -141 335 -311 0 -98 -17
+-137 -135 -315 -91 -137 -175 -303 -213 -420 -24 -75 -24 -75 -97 -111 -246
+-124 -466 -127 -651 -8 -35 23 -103 79 -150 125 -103 100 -153 125 -248 127
+-96 1 -156 -30 -244 -128 -210 -232 -519 -314 -754 -201 -116 57 -171 125
+-180 226 -5 50 -1 67 31 137 62 137 46 206 -79 334 -106 109 -146 195 -153
+327 -7 163 41 295 149 408 70 72 131 108 214 124 123 23 176 61 200 144 27 91
+6 145 -94 242 -83 79 -112 138 -119 240 -16 250 182 500 478 600 43 15 84 19
+185 19 167 0 219 -18 337 -116 187 -156 324 -146 456 33 92 126 209 202 402
+263 201 63 531 85 745 50z m140 -2813 c151 -94 338 -155 524 -172 63 -5 116
+-12 119 -15 3 -3 -12 -30 -32 -60 -41 -59 -125 -132 -249 -214 -94 -63 -147
+-116 -170 -168 -9 -21 -37 -119 -62 -218 -52 -208 -123 -370 -194 -439 -64
+-62 -66 -57 -80 192 -13 238 -24 318 -71 504 -51 204 -39 395 36 578 14 36 30
+75 35 88 9 23 9 23 52 -11 23 -18 65 -47 92 -65z M3696 6024 c-178 -43 -442
+-241 -635 -477 -78 -97 -182 -251 -217 -325 -15 -31 -29 -58 -30 -60 -6 -9
+-85 34 -145 79 -140 103 -259 255 -349 442 -55 114 -95 159 -160 177 -175 49
+-294 -90 -231 -271 65 -189 280 -447 488 -586 l92 -62 -57 -13 c-101 -23 -310
+-15 -425 16 -153 41 -214 34 -271 -34 -33 -40 -47 -94 -37 -145 20 -106 71
+-143 253 -183 123 -28 123 -28 126 -61 11 -114 -83 -182 -274 -201 -117 -11
+-167 -36 -201 -99 -47 -89 -17 -192 70 -245 58 -35 176 -46 280 -26 244 47
+453 287 471 541 l4 63 84 27 c46 14 100 34 120 43 21 9 39 16 41 16 3 0 14
+-28 27 -62 36 -102 77 -165 176 -269 123 -130 141 -194 81 -278 -12 -17 -35
+-49 -51 -71 -119 -165 83 -380 255 -271 106 67 219 325 219 501 0 137 -45 212
+-189 319 -144 107 -212 263 -164 372 135 305 536 708 756 760 137 32 203 107
+195 220 -10 139 -132 204 -302 163z M13385 5637 c-69 -23 -94 -39 -139 -83
+-43 -44 -53 -60 -85 -137 -6 -15 -11 -61 -11 -102 0 -69 4 -87 33 -155 14 -33
+103 -120 122 -120 8 0 15 -3 15 -8 0 -26 225 -45 268 -23 9 5 31 15 49 21 47
+18 124 95 149 150 29 64 34 85 34 145 0 92 -29 161 -98 231 -78 80 -234 117
+-337 81z M22115 5577 c-92 -31 -162 -82 -190 -138 -46 -89 -45 -39 -45 -1321
+0 -1194 0 -1208 21 -1262 26 -71 91 -135 159 -160 84 -30 223 -27 292 7 58 29
+104 73 127 122 7 17 17 38 22 47 5 10 9 110 9 223 0 160 3 212 14 233 17 32
+173 188 181 181 12 -12 85 -130 85 -138 0 -4 9 -16 20 -26 11 -10 20 -22 20
+-26 0 -5 30 -54 68 -110 37 -55 75 -115 86 -133 10 -17 22 -32 27 -34 5 -2 9
+-8 9 -13 0 -6 18 -37 40 -69 22 -32 40 -63 40 -67 1 -4 27 -42 58 -83 69 -88
+117 -116 225 -130 124 -15 207 5 282 71 32 29 42 45 74 122 17 44 13 146 -8
+194 -19 40 -117 193 -131 203 -4 3 -15 19 -24 35 -9 17 -29 46 -44 66 -15 20
+-72 101 -126 180 -55 79 -104 146 -108 147 -4 2 -8 9 -8 15 0 7 -12 25 -26 42
+-56 65 -77 125 -43 125 17 0 424 409 435 437 46 118 46 190 0 293 -57 127
+-270 182 -422 109 -64 -31 -162 -123 -238 -225 -31 -42 -143 -171 -275 -319
+-39 -44 -99 -113 -132 -152 -34 -40 -65 -70 -70 -67 -5 3 -9 309 -9 686 0 690
+0 700 -37 785 -28 65 -122 143 -174 143 -10 0 -21 5 -24 10 -8 13 -121 11
+-160 -3z M25090 5580 c-8 -5 -25 -10 -38 -10 -12 0 -30 -4 -40 -9 -9 -5 -36
+-18 -59 -28 -71 -31 -177 -115 -232 -183 -79 -98 -105 -152 -169 -345 -36
+-111 -48 -149 -75 -245 -5 -19 -13 -43 -18 -52 -5 -10 -9 -29 -9 -42 0 -14 -4
+-28 -10 -31 -5 -3 -10 -17 -10 -30 0 -13 -4 -27 -10 -30 -5 -3 -10 -16 -10
+-27 0 -21 -13 -70 -31 -113 -4 -11 -20 -60 -34 -110 -15 -49 -31 -98 -36 -107
+-5 -10 -9 -27 -9 -38 0 -11 -4 -28 -9 -38 -5 -9 -14 -37 -21 -62 -7 -25 -16
+-53 -21 -62 -5 -10 -9 -29 -9 -42 0 -14 -4 -28 -10 -31 -5 -3 -10 -15 -10 -26
+0 -10 -4 -27 -9 -37 -5 -9 -15 -37 -21 -62 -7 -25 -23 -76 -35 -115 -13 -38
+-33 -104 -45 -145 -12 -41 -26 -83 -31 -92 -5 -10 -9 -27 -9 -38 0 -11 -4 -28
+-9 -38 -5 -9 -15 -37 -21 -62 -7 -25 -20 -70 -30 -100 -19 -61 -34 -114 -50
+-175 -28 -111 -1 -226 67 -291 67 -64 184 -101 287 -90 151 16 246 111 296
+296 6 25 16 53 21 62 5 10 9 29 9 42 0 14 5 28 10 31 6 3 10 17 10 30 0 13 5
+27 10 30 6 3 10 19 10 35 0 16 5 32 10 35 6 3 10 19 10 35 0 16 5 32 10 35 6
+3 10 16 10 28 0 12 9 37 20 55 l20 32 494 0 c532 0 526 1 526 -51 0 -11 4 -27
+9 -37 5 -9 14 -37 21 -62 7 -25 16 -53 21 -62 5 -10 9 -27 9 -38 0 -11 4 -28
+9 -38 5 -9 19 -51 31 -92 72 -239 100 -284 205 -331 70 -31 213 -38 289 -14
+97 31 156 99 187 218 13 52 5 107 -30 217 -10 30 -24 75 -31 100 -6 25 -16 53
+-21 62 -5 10 -9 27 -9 37 0 11 -4 23 -10 26 -5 3 -10 15 -10 26 0 10 -21 83
+-46 162 -25 78 -50 158 -56 177 -6 19 -14 43 -19 52 -5 10 -9 27 -9 38 0 11
+-4 28 -9 38 -5 9 -15 37 -22 62 -7 25 -16 49 -21 54 -4 6 -8 22 -8 37 0 15 -4
+31 -10 34 -5 3 -10 17 -10 31 0 13 -4 32 -9 42 -5 9 -13 33 -19 52 -22 74
+-104 336 -112 355 -4 11 -13 40 -20 65 -6 25 -16 53 -21 62 -5 10 -9 27 -9 38
+0 11 -4 28 -9 38 -5 9 -15 37 -21 62 -7 25 -16 54 -20 65 -4 11 -20 61 -35
+110 -38 126 -111 291 -143 323 -7 8 -19 26 -26 41 -45 87 -241 226 -358 254
+-59 14 -329 20 -348 7z m184 -593 c7 -7 18 -28 24 -47 7 -19 27 -82 46 -140
+19 -58 44 -139 56 -180 12 -41 26 -84 30 -95 4 -11 13 -40 20 -65 6 -25 16
+-53 21 -62 5 -10 9 -27 9 -38 0 -11 4 -28 9 -38 5 -9 30 -84 56 -167 26 -82
+51 -160 56 -173 22 -54 38 -52 -351 -52 -198 0 -360 3 -360 7 0 4 4 20 10 37
+68 210 99 309 110 346 7 25 16 54 20 65 7 20 17 53 40 135 7 25 16 54 20 65 4
+11 17 52 29 90 95 313 115 353 155 312z M27105 5580 c-3 -5 -15 -10 -25 -10
+-55 0 -150 -81 -189 -160 -26 -55 -26 -55 -26 -1280 0 -1225 0 -1225 27 -1280
+59 -121 149 -170 311 -170 79 0 101 4 143 25 89 44 141 115 163 220 13 67 11
+2360 -3 2425 -22 104 -109 188 -237 229 -44 14 -156 15 -164 1z M7900 5504
+c-237 -40 -323 -104 -379 -285 -16 -51 -15 -2190 0 -2256 17 -69 28 -90 83
+-150 48 -53 75 -70 151 -94 50 -16 934 -15 1035 2 121 20 175 31 192 40 10 5
+27 9 38 9 11 0 39 9 63 19 23 10 57 25 75 32 17 8 32 17 32 21 0 5 5 8 11 8
+18 0 109 69 165 124 58 59 115 138 133 187 7 19 17 43 21 54 39 93 46 317 15
+460 -21 95 -107 234 -189 304 -15 14 -34 30 -41 37 -26 26 -175 104 -198 104
+-9 0 -19 5 -22 10 -3 6 -21 10 -38 10 -32 0 -32 0 -7 20 14 11 35 20 48 20 12
+0 22 5 22 10 0 6 7 10 15 10 30 0 179 164 218 241 20 41 37 80 37 87 0 7 4 20
+9 30 11 20 31 171 31 229 0 41 -12 110 -32 188 -47 184 -178 342 -346 420
+-214 100 -258 107 -727 110 -214 2 -401 1 -415 -1z m672 -554 c56 -21 82 -34
+114 -58 37 -27 84 -94 84 -120 0 -10 5 -23 11 -29 7 -7 9 -37 6 -79 -17 -255
+-131 -334 -478 -334 -112 0 -148 3 -152 13 -9 25 -8 597 2 614 8 17 24 18 195
+12 107 -4 199 -12 218 -19z m45 -1101 c189 -45 263 -132 263 -311 0 -78 -28
+-169 -62 -201 -48 -45 -108 -78 -173 -96 -52 -14 -474 -24 -489 -12 -8 7 -10
+101 -8 320 l3 311 209 0 c122 0 230 -5 257 -11z M16640 5348 c-14 -5 -39 -16
+-57 -24 -42 -17 -110 -79 -131 -118 -37 -71 -42 -99 -42 -288 l0 -188 -109 0
+c-72 0 -123 -5 -152 -15 -161 -57 -208 -295 -85 -433 51 -56 78 -64 216 -67
+l125 -3 6 -514 c3 -323 9 -528 16 -553 23 -84 33 -107 70 -168 20 -34 56 -82
+78 -106 39 -42 145 -121 163 -121 5 0 23 -7 40 -15 120 -61 466 -80 597 -34
+183 65 255 146 255 288 0 39 -4 73 -10 76 -5 3 -10 14 -10 24 0 24 -73 106
+-112 125 -41 21 -90 20 -162 -4 -64 -22 -131 -26 -141 -10 -3 6 -13 10 -21 10
+-21 0 -82 59 -99 95 -8 16 -19 68 -24 115 -9 85 -5 775 5 791 3 5 101 9 217 9
+186 0 217 3 254 19 152 70 195 287 81 416 -62 71 -80 75 -333 75 -124 0 -225
+3 -225 8 0 220 -8 411 -17 427 -6 11 -18 36 -26 55 -38 86 -144 140 -272 139
+-38 0 -81 -5 -95 -11z M10695 4778 c-16 -6 -38 -14 -47 -19 -10 -5 -22 -9 -28
+-9 -43 0 -185 -129 -225 -206 -26 -48 -39 -50 -43 -4 -6 71 -74 169 -139 199
+-16 8 -36 17 -45 22 -24 12 -195 11 -203 -1 -3 -5 -15 -10 -26 -10 -47 0 -159
+-109 -159 -154 0 -8 -4 -18 -10 -21 -16 -10 -13 -1660 3 -1705 45 -128 141
+-190 295 -190 98 0 163 22 216 76 38 37 47 52 76 117 6 13 11 222 13 542 2
+303 8 539 14 565 46 203 231 327 388 260 136 -58 270 21 321 189 45 149 -47
+306 -205 348 -55 14 -154 15 -196 1z M11800 4781 c-8 -6 -34 -11 -57 -11 -23
+0 -52 -4 -65 -9 -13 -5 -43 -15 -68 -22 -139 -40 -281 -149 -340 -260 -113
+-213 45 -456 257 -394 46 14 69 29 123 81 36 36 76 67 90 71 14 3 30 10 37 15
+19 15 223 13 268 -2 91 -32 161 -101 179 -175 12 -50 28 -206 22 -221 -5 -12
+-12 -11 -44 5 -72 37 -263 71 -395 71 -97 0 -126 -5 -267 -42 -292 -76 -468
+-302 -470 -600 0 -122 47 -284 97 -336 7 -7 13 -16 13 -20 1 -13 65 -80 112
+-115 131 -98 282 -140 506 -138 254 1 390 54 537 210 28 29 36 25 69 -41 33
+-67 73 -111 128 -140 65 -34 251 -34 321 1 81 40 127 128 127 244 0 82 -11
+109 -72 173 -76 79 -78 92 -78 546 0 374 -2 406 -32 523 -28 107 -73 211 -104
+243 -8 7 -14 17 -14 21 0 19 -132 143 -195 183 -77 49 -157 88 -179 88 -8 0
+-17 4 -20 9 -3 5 -23 11 -43 15 -21 3 -65 10 -98 16 -86 16 -327 23 -345 11z
+m245 -1227 c61 -7 142 -43 174 -78 21 -22 24 -35 24 -98 0 -114 -36 -175 -124
+-212 -24 -10 -53 -23 -63 -28 -24 -13 -229 -12 -253 1 -10 5 -34 16 -53 25
+-46 20 -74 50 -100 110 -19 45 -20 54 -8 105 15 67 82 142 138 156 96 23 158
+32 185 28 17 -2 53 -6 80 -9z M15095 4778 c-82 -14 -189 -52 -254 -91 -57 -34
+-181 -152 -181 -173 0 -13 -25 -26 -34 -17 -3 4 -6 19 -6 35 0 15 -4 36 -9 46
+-5 9 -15 30 -22 47 -28 60 -88 108 -170 134 -44 14 -186 15 -194 1 -3 -5 -14
+-10 -24 -10 -50 0 -171 -120 -171 -169 0 -11 -4 -23 -10 -26 -13 -8 -14 -1638
+-1 -1663 5 -9 15 -33 24 -52 22 -54 62 -95 120 -126 69 -37 230 -47 304 -19
+49 19 133 94 133 120 0 8 4 15 9 15 21 0 25 82 31 580 4 297 11 543 17 566 23
+96 100 203 168 233 17 7 38 17 47 22 10 5 61 9 114 9 88 0 102 -3 156 -30 69
+-35 73 -39 114 -100 81 -122 83 -138 84 -694 0 -483 1 -500 37 -584 42 -98
+148 -156 282 -154 112 1 169 23 230 87 84 89 82 74 78 730 -5 678 -8 707 -91
+887 -27 59 -110 174 -155 216 -45 41 -175 123 -204 129 -15 3 -30 10 -33 14
+-3 5 -15 9 -28 9 -12 0 -26 4 -31 9 -23 21 -240 34 -330 19z M18445 4780 c-16
+-4 -51 -8 -77 -9 -26 0 -50 -5 -53 -11 -3 -5 -19 -10 -34 -10 -15 0 -31 -4
+-36 -8 -6 -4 -28 -14 -50 -21 -106 -36 -249 -153 -297 -243 -35 -67 -32 -214
+6 -283 49 -92 151 -133 264 -106 38 10 60 24 103 67 63 65 118 92 208 106 217
+31 365 -61 396 -247 13 -76 13 -175 -1 -175 -7 0 -16 5 -19 10 -3 6 -16 10
+-29 10 -12 0 -26 4 -32 9 -5 5 -38 16 -74 25 -263 62 -502 40 -720 -66 -65
+-32 -179 -134 -209 -188 -71 -124 -102 -231 -100 -338 1 -63 20 -172 38 -217
+63 -154 197 -288 346 -345 125 -49 166 -55 355 -55 213 0 216 1 390 79 14 6
+34 19 44 29 11 9 24 17 30 17 6 0 29 21 53 46 36 40 45 45 58 34 8 -7 15 -21
+15 -32 0 -25 33 -74 77 -114 100 -90 359 -83 445 12 42 47 68 121 68 192 0 88
+-10 113 -76 182 -28 30 -55 66 -60 80 -4 14 -11 214 -15 445 -4 231 -12 445
+-18 475 -6 30 -13 72 -17 93 -3 20 -10 40 -15 43 -5 3 -9 14 -9 24 0 50 -118
+227 -192 287 -18 16 -39 33 -46 40 -16 15 -130 83 -140 83 -4 0 -18 6 -32 13
+-99 52 -444 94 -545 67z m328 -1254 c86 -38 112 -87 100 -189 -11 -90 -74
+-157 -184 -195 -48 -16 -216 -18 -254 -2 -79 33 -92 41 -120 72 -44 49 -55 73
+-55 123 0 88 40 149 124 190 64 30 95 34 229 29 84 -3 118 -9 160 -28z M20860
+4780 c-14 -4 -43 -8 -64 -9 -91 -2 -268 -87 -349 -168 -31 -31 -57 -60 -57
+-65 0 -5 -8 -18 -19 -29 -18 -20 -18 -19 -25 21 -16 101 -116 220 -185 220
+-11 0 -23 5 -26 10 -3 6 -44 10 -90 10 -46 0 -87 -4 -90 -10 -3 -5 -14 -10
+-24 -10 -30 0 -110 -60 -139 -104 -53 -80 -52 -55 -52 -924 0 -794 0 -812 21
+-866 24 -65 71 -115 137 -148 41 -20 62 -23 167 -23 133 0 152 6 217 69 33 32
+44 49 74 121 5 11 12 261 15 555 3 307 10 552 15 575 24 92 83 173 149 204 17
+7 38 18 49 23 36 19 197 11 251 -12 93 -40 161 -127 191 -245 4 -16 10 -271
+13 -565 6 -576 5 -559 62 -632 83 -104 269 -135 411 -68 56 26 79 50 114 119
+27 55 27 55 26 670 -2 600 -3 636 -34 756 -46 181 -185 357 -351 445 -86 46
+-110 54 -232 75 -88 16 -137 17 -175 5z M13375 4757 c-125 -43 -175 -94 -214
+-216 -16 -49 -15 -1578 0 -1635 30 -107 68 -159 145 -197 84 -40 226 -42 316
+-4 42 17 138 119 138 145 0 10 5 22 10 25 16 10 14 1634 -2 1685 -7 22 -16 40
+-20 40 -5 0 -8 5 -8 12 0 17 -46 74 -81 98 -74 53 -205 75 -284 47z"/></g>
+<g filter="url(#goo-lockup)" style="fill:var(--p,#FE6281)"><rect x="220" y="588" width="79" height="18"/>
+<path class="stem" d="M249.0,598 L271.0,598 Q272.1,659 273.6,720 A13.6,13.6 0 0 1 246.4,720 Q247.9,659 249.0,598 Z"/>
+<g class="bulb" style="--r:30px;--back:-95px"><ellipse class="flare" cx="260" cy="716" rx="23.4" ry="29.4"/><circle cx="260" cy="735" r="30"/></g></g></svg></div><div class="wlogo sm"><svg class="vdrip " viewBox="0 0 1024 1024" style="aspect-ratio:1024/1024" role="img" aria-label="BraintankAI">
+<defs><filter id="goo-tanky" x="-60%" y="-30%" width="220%" height="260%"><feGaussianBlur in="SourceGraphic" stdDeviation="9.2"/>
+<feColorMatrix values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 24 -10"/></filter></defs>
+<g transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)" style="fill:var(--p,#FE6281)"><path d="M5635 9908 c-444 -30 -858 -154 -1136 -340 -89 -59 -211 -170 -260
+-235 l-24 -33 -41 54 c-48 61 -165 144 -251 176 -215 82 -544 79 -838 -5 -424
+-122 -821 -494 -953 -893 -82 -247 -65 -568 43 -781 20 -40 35 -74 33 -75 -2
+-2 -50 -31 -108 -65 -494 -291 -745 -776 -642 -1237 52 -233 200 -450 392
+-576 41 -27 76 -51 78 -53 2 -2 -7 -28 -22 -57 -88 -181 -76 -402 32 -613 39
+-76 63 -107 156 -200 152 -151 290 -229 496 -281 126 -32 403 -27 538 9 254
+68 509 206 679 370 l71 68 30 -43 c65 -95 207 -210 339 -277 107 -54 281 -89
+421 -86 49 1 51 -3 16 -36 -67 -62 -78 -139 -29 -197 72 -85 269 -104 447 -43
+115 39 223 103 330 195 l78 66 12 -47 c19 -79 92 -279 161 -443 95 -224 119
+-313 121 -435 1 -85 -2 -107 -22 -146 -30 -62 -86 -117 -148 -145 -51 -24 -51
+-24 -2230 -22 -2179 3 -2179 3 -2226 30 -61 36 -114 100 -136 163 -16 47 -17
+215 -23 2465 -5 2139 -7 2424 -21 2496 -77 399 -207 604 -342 543 -14 -7 -30
+-25 -36 -42 -14 -43 -14 -5646 1 -5753 26 -189 119 -315 268 -366 27 -9 375
+-14 1461 -18 1425 -5 1425 -5 1476 -28 28 -13 66 -39 85 -58 33 -34 33 -34
+232 -34 l199 0 51 45 c87 76 78 75 689 75 539 0 539 0 556 -30 17 -30 17 -30
+334 -30 316 0 316 0 346 30 l30 30 1454 0 c1588 0 1510 -3 1620 57 62 34 123
+100 153 166 58 125 55 -24 55 3078 0 2848 0 2848 -26 2868 -48 38 -96 21 -164
+-56 -97 -110 -187 -361 -210 -589 -9 -79 -11 -649 -8 -2059 3 -1950 3 -1950
+-20 -2057 -82 -389 -329 -782 -561 -892 -66 -31 -66 -31 -1028 -34 l-962 -2
+55 87 c74 116 193 361 242 498 35 96 53 158 117 390 13 47 18 52 77 84 377
+205 638 520 728 879 8 31 16 42 30 42 33 0 183 51 255 87 366 185 617 528 655
+897 23 228 -52 460 -201 620 -40 43 -99 95 -131 117 -58 40 -58 40 -39 77 55
+107 76 330 47 485 -92 486 -524 926 -1093 1113 -72 24 -149 46 -170 50 -38 6
+-38 6 -38 107 -3 572 -667 955 -1550 895z m470 -552 c357 -65 571 -209 653
+-440 23 -65 26 -86 26 -233 1 -106 5 -166 12 -173 7 -7 62 -22 124 -35 509
+-108 873 -360 1040 -718 98 -212 92 -381 -21 -568 -61 -102 -49 -132 92 -225
+258 -169 343 -306 309 -494 -37 -205 -196 -399 -385 -469 -132 -50 -262 -39
+-498 40 -173 58 -225 62 -264 23 -31 -31 -28 -86 12 -203 44 -129 34 -158 -59
+-185 -141 -41 -391 1 -546 91 -75 45 -180 145 -234 225 l-39 57 86 91 c98 103
+139 177 156 285 12 68 10 98 -16 292 -19 142 88 208 249 154 83 -28 90 -36
+127 -151 86 -268 242 -383 442 -324 65 19 168 116 188 177 18 55 1 74 -119
+136 -56 28 -137 75 -179 103 -86 57 -246 215 -305 301 -47 68 -54 55 101 184
+168 139 179 170 75 199 -154 42 -203 59 -280 94 -45 21 -119 65 -165 98 -158
+114 -217 129 -244 65 -31 -75 39 -217 163 -332 42 -38 72 -71 67 -74 -5 -3
+-37 -10 -73 -16 -138 -24 -208 -43 -292 -77 l-87 -35 -108 60 c-300 168 -524
+222 -655 158 -98 -48 -173 -159 -215 -317 -21 -82 -24 -324 -5 -388 17 -55 74
+-119 118 -131 92 -25 253 72 357 218 94 129 112 140 186 106 110 -51 190 -146
+212 -253 9 -46 8 -67 -6 -126 -38 -157 -137 -298 -307 -437 -57 -46 -111 -93
+-120 -104 -38 -44 -13 -140 50 -191 26 -21 26 -21 1 -51 -14 -17 -47 -88 -73
+-159 -106 -282 -167 -353 -343 -399 -31 -8 -73 -26 -92 -40 -20 -14 -57 -40
+-84 -59 -89 -65 -145 -80 -292 -80 -117 1 -137 3 -205 28 -195 73 -340 227
+-380 406 -25 110 -138 180 -291 180 -137 0 -221 -45 -400 -216 -185 -176 -316
+-261 -470 -304 -356 -98 -740 87 -789 381 -16 92 -3 163 51 282 96 212 86 252
+-81 337 -313 159 -433 500 -283 805 125 254 379 433 661 466 134 15 195 51
+234 137 50 112 18 200 -125 339 -133 129 -187 247 -187 401 1 312 297 662 655
+775 294 93 559 41 762 -148 161 -149 365 -201 490 -125 18 11 49 49 74 92 59
+102 111 161 202 229 183 138 509 249 821 279 124 12 423 4 521 -14z m90 -3768
+c75 -199 186 -302 387 -358 173 -49 335 -37 562 41 135 47 156 51 210 46 73
+-7 93 -13 100 -34 14 -37 -96 -222 -186 -312 -158 -159 -311 -197 -557 -136
+-168 41 -311 25 -311 -34 0 -38 75 -123 159 -181 42 -29 42 -32 10 -225 -37
+-223 -99 -481 -166 -690 -65 -203 -93 -256 -196 -375 -29 -33 -81 -109 -115
+-168 -67 -116 -129 -203 -151 -210 -12 -4 -13 14 -8 114 7 149 28 216 107 354
+93 164 123 273 136 495 16 281 -69 745 -175 954 -12 23 -47 69 -77 103 -99
+107 -126 208 -88 324 14 41 38 70 139 169 68 66 135 137 150 158 15 20 31 37
+35 37 5 0 21 -33 35 -72z M5895 8329 c-202 -113 -264 -122 -486 -68 -163 39
+-243 38 -329 -6 -116 -59 -219 -200 -300 -410 -113 -294 -135 -345 -176 -412
+-61 -98 -106 -137 -151 -130 -122 20 -252 146 -333 321 -48 105 -67 177 -84
+322 -17 139 -32 181 -82 222 -46 38 -101 52 -203 52 -106 0 -169 -14 -268 -60
+-225 -105 -291 -277 -162 -424 23 -26 93 -81 156 -122 81 -54 155 -115 256
+-213 152 -147 188 -172 280 -191 194 -40 248 -133 172 -295 -54 -112 -135
+-137 -241 -72 -129 78 -288 95 -464 50 -254 -66 -374 -67 -509 -8 -78 35 -89
+37 -166 33 -74 -3 -88 -6 -127 -34 -123 -89 -139 -284 -31 -386 83 -79 237
+-98 353 -42 36 17 86 50 112 73 154 137 268 152 440 55 83 -47 84 -48 60 -79
+-11 -14 -31 -56 -43 -93 -50 -154 -119 -260 -213 -326 -99 -71 -137 -80 -314
+-81 -152 0 -154 0 -174 -25 -26 -32 -20 -107 15 -183 111 -241 425 -194 701
+104 103 112 215 293 259 422 5 14 20 17 100 17 195 0 358 81 458 229 19 28 37
+51 40 51 3 0 18 -29 33 -64 81 -191 179 -299 341 -377 82 -40 109 -58 121 -82
+34 -66 -9 -189 -100 -281 -66 -68 -114 -92 -201 -101 -87 -8 -103 -17 -111
+-61 -9 -49 10 -107 58 -179 80 -120 201 -154 336 -95 199 88 371 468 332 733
+-24 166 -91 272 -249 391 -162 123 -233 220 -261 361 -35 171 55 384 273 645
+247 296 420 426 734 551 163 65 221 103 278 180 70 95 75 142 15 147 -27 2
+-59 -11 -145 -59z"/></g>
+<g filter="url(#goo-tanky)" style="fill:var(--p,#FE6281)"><rect x="367" y="712" width="97" height="18"/>
+<path class="stem" d="M402.5,722 L429.5,722 Q430.9,830 432.7,937 A16.7,16.7 0 0 1 399.3,937 Q401.1,830 402.5,722 Z"/>
+<g class="bulb" style="--r:42px;--back:-163px"><ellipse class="flare" cx="416" cy="932" rx="32.8" ry="41.2"/><circle cx="416" cy="958" r="42"/></g></g></svg></div></div></div><div class="brd"><p><b>Rec Dungeons</b>音楽。黒版の頭文字 R は、そこだけ切り出しても印として成り立つ。小さい場所では R だけを使う<a class="lk" href="https://rec.ooo/band">🔗rec.ooo/band</a></p><div class="rdr"><img src="img/recdungeons-black.png" class="big"><span class="rdx">頭文字だけを<br>切り出す</span><img src="img/recdungeons-R.png" class="rr"></div><p class="rdc">色と線の使い分け</p><div class="brl"><img src="img/recdungeons-black.png"><img src="img/recdungeons-red-outline.png"><img src="img/recdungeons-gray-outline.png"></div></div><div class="brd"><p><b>spiral.ooo</b>文書エディタ<a class="lk" href="https://spiral.ooo">🔗spiral.ooo</a></p><div class="brl"><img src="img/logo-spiral.png" class=""></div></div></div></section><section class="pg dense"><header><span>Portfolio　セツ シュントウ</span><span class="tag">イラスト / グラフィック</span><span class="no">5</span></header><h2>ジャケット <a class="lk" href="https://rec.ooo/band">🔗rec.ooo/band</a><small>Rec Dungeons の作品より。ジャケットとグッズの絵は、すべて自分で描いています。</small></h2>
+<p class="cap">一枚を詳しく: 同じ曲のジャケット(DKH4-100)9 版を、主体の素材ごとに並べる。格子の版を採用</p>
+<div class="dkh"><div class="dg"><p class="dgt">山の写真</p><div class="dgi"><figure class=""><img src="img/dkh-p1.jpg"><figcaption><b>2026-09-21</b>曲名が Twentyeight の頃</figcaption></figure></div></div><div class="dg"><p class="dgt">結晶格子</p><div class="dgi"><figure class=""><img src="img/dkh-1.jpg"><figcaption><b>結晶格子の 3D</b>きれい、でも印象に残らない</figcaption></figure></div></div><div class="dg"><p class="dgt">Lattice</p><div class="dgi"><figure class=""><img src="img/dkh-2.jpg"><figcaption><b>Lattice</b>きれい、でも一目で分からない</figcaption></figure></div></div><div class="dg"><p class="dgt">白い塊</p><div class="dgi"><figure class="ng"><img src="img/dkh-3.jpg"><figcaption><b>赤い線の枠</b>実験的なデザイン</figcaption></figure><figure class="ng"><img src="img/dkh-4.jpg"><figcaption><b>シアン</b>実験性 + カラーチャート参照</figcaption></figure></div></div><div class="dg"><p class="dgt">赤い球</p><div class="dgi"><figure class=""><img src="img/dkh-p2.jpg"><figcaption><b>2026-09-29</b>灰色の地に、赤い透明の球</figcaption></figure><figure class=""><img src="img/dkh-5.jpg"><figcaption><b>赤い球</b>かっこいい、でも主客転倒</figcaption></figure></div></div><div class="dg"><p class="dgt">ガラスの球</p><div class="dgi"><figure class=""><img src="img/dkh-p3.jpg"><figcaption><b>2026-09-30</b>緑の地に、ガラスの球と格子</figcaption></figure></div></div><div class="dg"><p class="dgt">格子</p><div class="dgi"><figure class="on"><img src="img/dkh-6.jpg"><figcaption><b>現行</b>全体で見て、ブランディングにも合う</figcaption></figure></div></div></div>
+<div class="cv2"><div><p class="cap">Cyc シリーズ(同じ枠の連作)より 9 枚</p><img src="img/cv9-cyc.jpg"></div><div><p class="cap">そのほかの作品より 9 枚</p><img src="img/cv9-other.jpg"></div></div></section><section class="pg dense"><header><span>Portfolio　セツ シュントウ</span><span class="tag">UI / AI と一緒に使う画面</span><span class="no">6</span></header><h2>Spiral: デスクトップとエディタ、それぞれの版<small>一行ごとに話し手（グリフ）が付く構造化文書のエディタ。AI がグリフを演じる。</small></h2>
+<p class="meta"><b>Web アプリ</b>個人開発 2025年〜現在<a class="lk" href="https://spiral.ooo">🔗spiral.ooo</a><span class="role">UI・インタラクション・実装</span></p>
+<p class="cap">デスクトップ</p><div class="gen"><figure><div class="lab">2025　spiral_mugen v2.2</div><div class="im"><img src="img/sp-mugen-desk.png"></div><figcaption>Win95 風。ファイルの印と、断片のつながりの図</figcaption></figure><svg class="arr" viewBox="0 0 60 30"><path d="M3 15H52M40 4L54 15L40 26"/></svg><figure><div class="lab">2025-04　mini-spiral</div><div class="im"><img src="img/sp-mini.png"></div><figcaption>文書のカードと「+」</figcaption></figure><svg class="arr" viewBox="0 0 60 30"><path d="M3 15H52M40 4L54 15L40 26"/></svg><figure><div class="lab">2026-04　前の spiral.ooo</div><div class="im"><img src="img/sp-old-desk.jpg"></div><figcaption>カードに権限(RW)・容量のバー・封印(WRAPPED)の札。下に赤い帯</figcaption></figure><svg class="arr" viewBox="0 0 60 30"><path d="M3 15H52M40 4L54 15L40 26"/></svg><figure class="now"><div class="lab on">今　spiral.ooo</div><div class="im"><img src="img/sp-now-desk.jpg"></div><figcaption>カードは題名と大きなグリフだけ</figcaption></figure></div><p class="cap">エディタ</p><div class="gen"><figure><div class="lab">2025　spiral_mugen v2.2</div><div class="im"><img src="img/sp-mugen-editor.png"></div><figcaption>頭に [TYPE] [AUTHOR] [ACCESS] [FLAME MARK]</figcaption></figure><svg class="arr" viewBox="0 0 60 30"><path d="M3 15H52M40 4L54 15L40 26"/></svg><figure><div class="lab">2026-04　前の spiral.ooo</div><div class="im"><img src="img/sp-old-edit.jpg"></div><figcaption>頭に [SPEED INDEX] [ACCESS TIER]、行ごとに系統の札</figcaption></figure><svg class="arr" viewBox="0 0 60 30"><path d="M3 15H52M40 4L54 15L40 26"/></svg><figure class="now"><div class="lab on">今　spiral.ooo</div><div class="im"><img src="img/spiral-personal.jpg"></div><figcaption>題名・日時・大きさだけ。字は黒、話し手のグリフだけに色</figcaption></figure></div></section><section class="pg dense"><header><span>Portfolio　セツ シュントウ</span><span class="tag">UI / 部品ごとの比較</span><span class="no">7</span></header><h2>Spiral: 部品ごとに、前の版と今 <a class="lk" href="https://spiral.ooo">🔗spiral.ooo</a><small>左 = 2026-04 の Replit 版(当時の画面を手元で起動して撮影)、右 = 今の spiral.ooo</small></h2>
+<div class="pxs"><div class="px px-card"><p class="pxl">文書のカード</p><figure><div class="lab">旧　2026-04</div><img src="img/spx-card-old.png"><figcaption>種類・権限(RW)・容量のバーと星</figcaption></figure><svg class="arr" viewBox="0 0 60 30"><path d="M3 15H52M40 4L54 15L40 26"/></svg><figure><div class="lab on">今</div><img src="img/spx-card-new.png"><figcaption>題名と大きさだけ。個人文書には大きなグリフ</figcaption></figure></div><div class="px pxv"><p class="pxl">文書の頭</p><div class="pxw"><figure><div class="lab">旧　2026-04</div><img src="img/spx-head-old.png" style="width:51.0%"><figcaption>灰色の箱に [TYPE] [AUTHOR] [SPEED INDEX] [ACCESS TIER] の 4 行。題名はなく、ボタンは右に大きな丸 2 つ</figcaption></figure><svg class="arv" viewBox="0 0 30 22"><path d="M15 2V16M6 10L15 19L24 10"/></svg><figure><div class="lab on">今</div><img src="img/spx-head-new.png" style="width:45.9%"><figcaption>題名を一行目に、その下に [TYPE] [VOICES] [CREATED] [SIZE] を 2 列で。値は機械が数え、ボタンは右上に小さく</figcaption></figure></div></div><div class="px px-line"><p class="pxl">本文の行</p><figure><div class="lab">旧　2026-04</div><img src="img/spx-line-old.png"><figcaption>一行ごとに左に線の付いた枠。[QUARANTINE] などの系統の札が黒い帯で行の間に入る</figcaption></figure><svg class="arr" viewBox="0 0 60 30"><path d="M3 15H52M40 4L54 15L40 26"/></svg><figure><div class="lab on">今</div><img src="img/spx-line-new.png"><figcaption>一人の続けた話は一つの枠にまとめ、話し手のグリフは頭に一度だけ。個人文書は字を紫に</figcaption></figure></div></div></section><section class="pg dense"><header><span>Portfolio　セツ シュントウ</span><span class="tag">UI / 部品ごとの比較</span><span class="no">8</span></header><h2>Spiral: 部品ごとに、前の版と今(続き) <a class="lk" href="https://spiral.ooo">🔗spiral.ooo</a><small>下段は、今の版の中で細部を並べて決めた比較(開発の記録から)</small></h2>
+<div class="pxs"><div class="px px-close"><p class="pxl">閉じる</p><figure><div class="lab">旧　2026-04</div><img src="img/spx-close-old.png"><figcaption>エディタは一枚の頁。左上の「☜ 模組桌面」で、デスクトップに戻る</figcaption></figure><svg class="arr" viewBox="0 0 60 30"><path d="M3 15H52M40 4L54 15L40 26"/></svg><figure><div class="lab on">今</div><img src="img/spx-close-new.png"><figcaption>エディタは小さな窓。頭の右の ✖️ で閉じ、デスクトップはそのまま後ろに見えている</figcaption></figure></div></div><div class="cbox"><p class="cbt">今の版の細部</p><div class="dts2"><figure class="dt"><div class="lab on">個人文書の字の色</div><img src="img/spd-主權藍-比較.png"><figcaption>#007AFF は白地とのコントラストが 4.0:1 で淡く読める。#0066DD(5.3:1)に</figcaption></figure><figure class="dt"><div class="lab on">背景画像の上の文書</div><img src="img/spd-背景毛玻璃-前後.png"><figcaption>左が前、右がすりガラス。暗い画像の時は透けを減らす</figcaption></figure><figure class="dt"><div class="lab on">カタカナのグリフの書体</div><img src="img/spd-片假名三套比較.png"><figcaption>丸い書体 3 つを比べ、Mochiy Pop One に</figcaption></figure></div></div></section><section class="pg dense"><header><span>Portfolio　セツ シュントウ</span><span class="tag">UI / ゲーム</span><span class="no">9</span></header><h2>sus dungeons<small>ブラウザの 2D RPG。画面もキャラクターもアイコンも、自分で描いています。</small></h2>
+<p class="meta"><b>ブラウザゲーム</b>個人開発 2025年〜現在<a class="lk" href="https://rec.ooo/dungeons">🔗rec.ooo/dungeons</a><span class="role">UI・絵・実装</span></p>
+<div class="cbox"><p class="cbt">持ち物欄</p><div class="pair g9">
+<div class="side"><figure class=""><div class="lab ">旧　2026-08 の実画面(git afba0e2)</div><div class="im"><img src="img/bag-before.jpg"></div><figcaption>名前 × 数の文字の列</figcaption></figure></div>
+<div class="mid"><svg class="arr" viewBox="0 0 60 30"><path d="M3 15H52M40 4L54 15L40 26"/></svg><div class="st sb"><i>旧で起きたこと</i><p>持ち物は、名前と数の文字の列。種類は字の色で分けていた</p></div><svg class="ard" viewBox="0 0 10 22"><path d="M5 1V19M1.5 14.5L5 20L8.5 14.5"/></svg><div class="st sj"><i>判断</i><p>持ち物は絵で見せる。色の文字で種類を分けるのをやめる</p></div><svg class="ard" viewBox="0 0 10 22"><path d="M5 1V19M1.5 14.5L5 20L8.5 14.5"/></svg><div class="st sa"><i>今</i><p>全部アイコン。形と色で一目、数は右下の小さい数字だけ</p></div></div>
+<div class="side"><figure class="on"><div class="lab on">今</div><div class="im"><img src="img/bag-after.jpg"></div></figure></div></div></div>
+<div class="c3b"><div class="cbox"><p class="cbt">教会の仕事と銀行のカード<small>どの手順も地図の上で、ゲームのほかの場面と同じ小さな枠の中で起きる</small></p><div class="bk3"><figure class="on"><div class="lab on">今</div><div class="im"><img src="img/bank-1.jpg"></div><figcaption>1 教会の椅子を直し終えると、コインが一枚</figcaption></figure><figure class="on"><div class="lab on">今</div><div class="im"><img src="img/bank-2.jpg"></div><figcaption>2 神父に「カードを作る」</figcaption></figure><figure class="on"><div class="lab on">今</div><div class="im"><img src="img/bank-3.jpg"></div><figcaption>3 教会銀行の ATM で名前を入れる</figcaption></figure></div></div>
+<div class="cbox"><p class="cbt">店の天秤</p><figure class="on"><div class="lab on">今</div><div class="im"><img src="img/cmp-trade.jpg"></div><figcaption>品物とコインを皿に載せ、天秤の傾きで払いが足りるかを見せる。少し揺れてから止まる動き</figcaption></figure></div></div><div class="cbox web"><p class="cbt">動画<small>教会の仕事から銀行のカードまで、通しで</small></p><video src="movies/dungeons-job-card.mp4" autoplay muted loop playsinline preload="metadata"></video></div></section><section class="pg dense"><header><span>Portfolio　セツ シュントウ</span><span class="tag">アイコン / キャラクター</span><span class="no">10</span></header><h2>sus dungeons のアイコンとキャラクター <a class="lk" href="https://rec.ooo/dungeons">🔗rec.ooo/dungeons</a><small>画面の中で、形と色だけで読めるように描いた</small></h2>
+<div class="gm"><div class="cbox"><p class="cap">宝石: 前の六角の宝石(色違いだけ)→ 今は形で等級、色で効果を分ける</p>
+<div class="pair gem"><div class="side"><div class="lab">旧</div><img src="img/gems-old.png" class="gold"><p class="fc">形は全部同じ六角。色だけが違い、等級は読めない</p></div>
+<div class="mid"><svg class="arr" viewBox="0 0 60 30"><path d="M3 15H52M40 4L54 15L40 26"/></svg><div class="st sj"><i>判断</i><p>戦闘で効くのは「どの色を、どの等級で入れたか」。一目で両方を読めるようにする</p></div></div>
+<div class="side"><div class="lab on">今</div><div class="gemw"><div class="gl"><span>原石</span><span>等級 1</span><span>2</span><span>3</span><span>4</span><span>5</span></div><img src="img/gems-grid.png"></div>
+<p class="fc">縦 = 原石と等級 1〜5(形が変わる)/ 横 = 色。赤 = 力を溜める、青 = 盾、橙 = 速攻、緑 = 回復</p></div></div></div>
+<div class="cbox mbx"><p class="cap">住民のヤマネ(ヤマネ科 12 種): 大きさは頭胴長の実寸比(主人公を基準に 0.9〜1.5 倍へ圧縮)、足の線をそろえて並べる</p><img src="img/mice-named.png" class="micen"></div></div></section><section class="pg dense"><header><span>Portfolio　セツ シュントウ</span><span class="tag">UI / 動き</span><span class="no">11</span></header><h2>BraintankAI: 頭条は、スクロールで奥へ折れて消える <a class="lk" href="https://braintank.ai">🔗braintank.ai</a><small>AI の論文を紹介するメディア。黒の地で、動きは凝らせる、ただし要らないボタンは足さない</small></h2>
+<div class="cbox"><p class="cbt">頭条の折りたたみ(PC)</p><div class="fd4"><figure><figure class="on"><div class="im"><img src="img/bt-fold-0.jpg"></div><figcaption>いちばん上。頭条は画面いっぱい</figcaption></figure></figure><figure><figure class="on"><div class="im"><img src="img/bt-fold-1.jpg"></div><figcaption>スクロールに合わせて、奥へ倒れ始める</figcaption></figure></figure><figure><figure class="on"><div class="im"><img src="img/bt-fold-2.jpg"></div><figcaption>倒れながら、少しずつ透明に</figcaption></figure></figure><figure><figure class="on"><div class="im"><img src="img/bt-fold-3.jpg"></div><figcaption>ほぼ消える。上の帯も消え、右上に 🔍🧠 が出る</figcaption></figure></figure></div></div>
+<div class="c2"><div class="st sj"><i>判断</i><p>前に Unreal Engine のサイトで見た、頭条がスクロールで 3D に上へ折れて透明になる動き。スクロールした分だけ折れる。三本の柱はもっとゆっくり、上に折れながら少しずつ透明に</p></div>
+<div class="st sa"><i>スマホ</i><p>スマホでは折りたたみをしない。並びを変えて、ぶつからないようにする</p></div></div><div class="cbox web"><p class="cbt">動画<small>頭条の折りたたみ、記事の hover、右上のボタン、欄の頁へ</small></p><video src="movies/braintank.mp4" autoplay muted loop playsinline preload="metadata"></video></div></section><section class="pg dense"><header><span>Portfolio　セツ シュントウ</span><span class="tag">UI / 動き</span><span class="no">12</span></header><h2>BraintankAI: 記事の hover と、右上のボタン <a class="lk" href="https://braintank.ai">🔗braintank.ai</a><small>hover の案は試し頁で 7 つ並べ、実際に触って選んだ</small></h2>
+<div class="cbox"><p class="cbt">記事カードの hover(試し頁の 7 案。カーソルを 1 枚目に乗せた状態)</p><div class="hv7"><figure class=""><div class="lab">それまで</div><img src="img/bt-hv-now.jpg"><figcaption>枠が内側に縮む + 走査</figcaption></figure><figure class="on"><div class="lab on">A</div><img src="img/bt-hv-A.jpg"><figcaption>すぐ少し拡大 + 色が戻る</figcaption></figure><figure class=""><div class="lab">F</div><img src="img/bt-hv-F.jpg"><figcaption>動かず、灰色から色に戻るだけ</figcaption></figure><figure class=""><div class="lab">G</div><img src="img/bt-hv-G.jpg"><figcaption>枠の内側に 1px のピンク</figcaption></figure><figure class="on"><div class="lab on">B</div><img src="img/bt-hv-B.jpg"><figcaption>カーソルの周りだけ色が戻る</figcaption></figure><figure class=""><div class="lab">D</div><img src="img/bt-hv-D.jpg"><figcaption>ピンクの線が下へ走り、通った所から色</figcaption></figure><figure class="on"><div class="lab on">E</div><img src="img/bt-hv-E.jpg"><figcaption>カーソルの方へ少し傾き、光が一筋</figcaption></figure></div>
+<p class="hvr"><b>採用</b>E + B + A: 傾き + カーソルの周りの光 + 拡大。乗せたらすぐ反応し、離れたら元の速さで戻る</p></div>
+<div class="c2"><div class="cbox"><p class="cbt">上の帯が消えると、右上に 🔍 と 🧠</p><div class="tb2"><img src="img/bt-topbar.png" class="tbar"><p class="fc">いちばん上: 左にロゴ、横に欄の名前</p></div>
+<img src="img/bt-fold-4.jpg" class="tbs"><p class="fc">下へスクロールして上の帯がちょうど消えた時、右上に 🔍 と 🧠 が並んで出る。🔍 に乗せると検索の欄が伸びる</p></div>
+<div class="cbox"><p class="cbt">言語は 🧠 の下に</p><div class="lgx"><img src="img/bt-icons.png"><p class="fc">枠のない文字で並べる。選んでいる言語はピンクに小さな点。ブラウザの言語で、出す組を決める</p></div></div></div></section>
+<script>function z(){document.documentElement.style.setProperty('--z',Math.min(1,(innerWidth-16)/1123));}z();addEventListener('resize',z);</script></body></html>
