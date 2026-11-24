@@ -17,7 +17,7 @@
     {"name": "BraintankAI", "url": "https://braintank.ai/",
      "kind": {"ja": "Web メディア", "en": "Web media"},
      "line": {"ja": "最先端の技術と AI 研究のニュース。どの記事も元の論文につながっている。", "en": "Frontier technology and AI research news, every story linked to its paper."}},
-    {"name": "Rec Dungeons", "url": "https://rec.ooo/band/",
+    {"name": "band", "url": "https://rec.ooo/band/",
      "kind": {"ja": "音楽ストア", "en": "Music store"},
      "line": {"ja": "音楽サイト。聴いて、アカウントなしで買って、買ったものを持っておく。YouTube 登録者 100 人超。", "en": "Music site: listen, buy without an account, keep what you own. 100+ YouTube subscribers."}},
     {"name": "sus dungeons", "url": "https://rec.ooo/dungeons/",

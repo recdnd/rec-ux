@@ -59,12 +59,13 @@ def page(lang):
     canon = "https://p.rec.ooo/resume/ja/" if ja else "https://p.rec.ooo/resume/"
     # 2026-11-22 主筆「rec dungeons/rec ooo等都不要檢索到我resume xuejuntao 還有招人可以搜到的詞」:
     # title / description / h1 / JSON-LD 不放 Rec 與 rec.ooo, 改放本名 + 職稱 + 所在地 + 專長(職稱照 rec.ooo 首頁 jobTitle).
-    # 2026-11-24 主筆「我不是uiux設計師」: UI/UX Designer / Product Engineer 拿掉.
-    title = ("セツ シュントウ(XUE JUNTAO) 個人開発 / デザイナー / イラストレーター 東京 | レジュメ" if ja
-             else "Xue Juntao - Independent Developer, Designer, Illustrator, Tokyo | Resume")
-    desc = ("XUE JUNTAO(セツ シュントウ)のレジュメ。東京の個人開発者、デザイナー、イラストレーター。"
+    # 2026-11-24 主筆「我不是uiux設計師」「用獨立開發者比較好」: 職稱只寫 Independent Developer / 個人開発者.
+    # 同日「resume也必須從rec ooo 和rec dungeosn是搜不到的」: 聯絡列不放 rec.ooo 連結, Work 的樂隊條目不叫 Rec Dungeons(data.json).
+    title = ("セツ シュントウ(XUE JUNTAO) 個人開発者 東京 | レジュメ" if ja
+             else "Xue Juntao - Independent Developer, Tokyo | Resume")
+    desc = ("XUE JUNTAO(セツ シュントウ)のレジュメ。東京の個人開発者。"
             "プロダクトデザイン、フロントエンド開発、イラスト。中国語、英語、日本語。作品、担当、学歴、語学。" if ja
-            else "Resume of Xue Juntao, independent developer, designer and illustrator in Tokyo. "
+            else "Resume of Xue Juntao, independent developer in Tokyo. "
                  "Product design, front-end development, illustration. Chinese, English, Japanese. Work, role, education, languages.")
     other = ('<a class="hl" href="../?hl=en" hreflang="en" lang="en">EN</a>' if ja
              else '<a class="hl" href="ja/" hreflang="ja" lang="ja">日本語</a>')
@@ -77,7 +78,7 @@ def page(lang):
 """
     ld = {"@context": "https://schema.org", "@type": "ProfilePage", "url": canon, "inLanguage": lang,
           "mainEntity": {"@type": "Person", "name": D["name"]["en"], "alternateName": ["XUE JUNTAO", "セツ シュントウ"],
-                         "jobTitle": ["Independent Developer", "Designer", "Illustrator"],
+                         "jobTitle": "Independent Developer",
                          "knowsAbout": ["product design", "front-end development", "illustration"],
                          "email": "mailto:" + D["email"],
                          "address": {"@type": "PostalAddress", "addressLocality": "Tokyo", "addressCountry": "JP"},
@@ -122,7 +123,7 @@ def page(lang):
 <main>
   <header>
     <h1>{E(L(D["name"]))}</h1>
-    <p class="contact"><span>{E(L(D["place"]))}</span><a href="mailto:{E(D["email"])}">{E(D["email"])}</a><a href="{E(D["site"])}/">{E(D["site"].split("//")[1])}</a><a href="{pf}" data-u="{pfu}">{lab["pf"]}</a></p>
+    <p class="contact"><span>{E(L(D["place"]))}</span><a href="mailto:{E(D["email"])}">{E(D["email"])}</a><a href="{pf}" data-u="{pfu}">{lab["pf"]}</a></p>
   </header>
   <section class="work">
     <h2>{lab["work"]}</h2>
