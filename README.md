@@ -42,3 +42,7 @@ python3 -m http.server 8080
 ## Domain
 
 GitHub Pages, custom domain **`p.rec.ooo`**(CNAME, 2026-11-05). DNS: p.rec.ooo CNAME -> recdnd.github.io(主筆 11-05 在 Porkbun 建). ux.rec.ooo -> https://p.rec.ooo/uiux 301(Porkbun URL 轉址, 保留路徑, 主筆設). 更早: spiral.rec.ooo(10-30 前)-> ux.rec.ooo(10-30 ~ 11-05).
+
+## 共用授權列（2026-11-25）
+
+所有作品集、根頁與履歷載入 `/rights.js`：左下透明黑底版權列，hover / 鍵盤聚焦展開橫向授權摘要，手機可點按。跟隨頁面語言，完整條款連到 rec.ooo/licensing。履歷產生器同步載入；新版本需保留這個 script。

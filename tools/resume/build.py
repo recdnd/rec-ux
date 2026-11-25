@@ -152,6 +152,7 @@ def page(lang):
 </main>
 <div class="dock"><button type="button" aria-label="print" onclick="print()">🖨️</button></div>
 <script src="/track.js" defer></script>
+<script src="/rights.js" defer></script>
 </body>
 </html>
 """
