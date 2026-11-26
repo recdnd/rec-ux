@@ -45,4 +45,4 @@ GitHub Pages, custom domain **`p.rec.ooo`**(CNAME, 2026-11-05). DNS: p.rec.ooo C
 
 ## 共用授權列（2026-11-25）
 
-所有作品集、根頁與履歷載入 `/rights.js`：左下透明黑底版權列，hover / 鍵盤聚焦展開橫向授權摘要，手機可點按。跟隨頁面語言，完整條款連到 rec.ooo/licensing。履歷產生器同步載入；新版本需保留這個 script。
+所有作品集、根頁與履歷載入 `/rights.js`：左下透明黑底版權列，hover / 鍵盤聚焦展開橫向授權摘要，手機可點按。跟隨頁面語言，完整條款連到本站 /licensing/（英／日／中，英文正文與 fallback），卡內右下為系統藍全文連結。履歷產生器同步載入；新版本需保留這個 script。
